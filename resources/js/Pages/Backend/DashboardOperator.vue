@@ -65,18 +65,18 @@ const chartJenisLabels = computed(() => {
  <AuthenticatedLayout>
  <div class="space-y-8">
  <!-- Top Welcome banner -->
- <div class="relative overflow-hidden from-purple-700 via-indigo-700 to-indigo-800 rounded-card p-8 text-white shadow-purple-500/10">
- <div class="absolute -right-10 -top-10 w-40 h-40 bg-paper/10 rounded-full blur-2xl"></div>
- <div class="absolute right-20 bottom-0 w-32 h-32 bg-indigo-500/20 rounded-full blur-xl"></div>
- <div class="relative z-10 max-w-xl">
- <span class="bg-paper/10 text-white font-bold text-xs uppercase tracking-wider px-3 py-1 rounded-full border border-white/20">
- Operator Bidang
- </span>
- <h2 class="text-3xl font-semibold mt-4">Selamat Datang, {{ user.name }}</h2>
- <p class="text-purple-100/90 text-sm mt-2 leading-relaxed">
- Kelola draf, usulan kajian baru, lampiran, dan publikasi penelitian khusus untuk Bidang Anda.
- </p>
- </div>
+ <div class="relative overflow-hidden rounded-card p-8" style="background: linear-gradient(135deg, #6B46C1 0%, #4C51BF 100%);">
+  <div class="absolute -right-10 -top-10 w-40 h-40 rounded-full blur-2xl" style="background: rgba(255,255,255,0.08);"></div>
+  <div class="absolute right-20 bottom-0 w-32 h-32 rounded-full blur-xl" style="background: rgba(255,255,255,0.06);"></div>
+  <div class="relative z-10 max-w-xl">
+  <span class="font-bold text-xs uppercase tracking-wider px-3 py-1 rounded-full" style="background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.25);">
+   Operator Bidang
+  </span>
+  <h2 class="text-2xl font-bold mt-4 text-white">Selamat Datang, {{ user.name }}</h2>
+  <p class="text-sm mt-2 leading-relaxed" style="color: rgba(255,255,255,0.85);">
+   Kelola draf, usulan kajian baru, lampiran, dan publikasi penelitian khusus untuk Bidang Anda.
+  </p>
+  </div>
  </div>
 
  <!-- Stats Summary Cards -->

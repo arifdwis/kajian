@@ -123,7 +123,7 @@ const submit = () => {
  </div>
 
  <div>
- <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Bidang OPD <span class="text-red-500">*</span></label>
+  <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Bidang <span class="text-red-500">*</span></label>
  <SearchSelect
  v-model="form.bidang_id"
  :options="bidangOptions"

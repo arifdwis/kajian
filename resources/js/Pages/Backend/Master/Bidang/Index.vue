@@ -98,7 +98,7 @@ const executeDeleteBidang = () => {
  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700 ">
  <div>
  <h3 class="text-xl font-bold text-gray-900 dark:text-white">Master Bidang Kajian</h3>
- <p class="text-xs text-gray-500 mt-1">Kelola rumpun bidang/OPD pelaksana kajian ilmiah.</p>
+  <p class="text-xs text-gray-500 mt-1">Kelola rumpun bidang kajian ilmiah.</p>
  </div>
  <button 
  @click="openCreateModal"

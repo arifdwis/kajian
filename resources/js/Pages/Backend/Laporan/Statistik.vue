@@ -194,7 +194,7 @@ const chartJenisLabels = computed(() => {
  <!-- Bar Chart: Bidang Distribution -->
  <div class="bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6 ">
  <h4 class="font-bold text-gray-800 dark:text-white text-base mb-1">Distribusi Bidang / Rumpun OPD</h4>
- <p class="text-xs text-gray-400 mb-6">Jumlah berkas kajian terpublikasi per OPD pelaksana</p>
+  <p class="text-xs text-gray-400 mb-6">Jumlah berkas kajian terpublikasi per bidang</p>
  <div class="h-80">
  <apexchart 
  type="bar" 

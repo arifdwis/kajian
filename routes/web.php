@@ -111,6 +111,7 @@ Route::middleware('auth')->group(function () {
         // Custom Role-Permission adjustments
         Route::get('roles/{role}/permission', [RoleController::class, 'permission'])->name('roles.permission');
         Route::put('roles/{role}/permission', [RoleController::class, 'updatePermission'])->name('roles.permission.update');
+        Route::get('roles/{role}/users', [RoleController::class, 'users'])->name('roles.users');
         Route::post('menu/reorder', [MenuController::class, 'reorder'])->name('menu.reorder');
     });
 });

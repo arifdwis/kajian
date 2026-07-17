@@ -126,7 +126,7 @@ const directDownload = (slug) => {
   </div>
 
   <div>
-  <label class="block text-xs font-medium mb-2.5" style="color: var(--color-ink-2);">Bidang OPD</label>
+   <label class="block text-xs font-medium mb-2.5" style="color: var(--color-ink-2);">Bidang</label>
   <SearchSelect
   v-model="bidang_id"
   :options="bidangOptions"

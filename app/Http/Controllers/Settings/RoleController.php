@@ -29,6 +29,19 @@ class RoleController extends Controller
         ]);
     }
 
+    public function users($id)
+    {
+        $role = Role::with('users')->findOrFail($id);
+        return response()->json([
+            'role' => $role->name,
+            'users' => $role->users->map(fn($u) => [
+                'id' => $u->id,
+                'name' => $u->name,
+                'email' => $u->email,
+            ]),
+        ]);
+    }
+
     public function store(Request $request)
     {
         $this->authorizePermission('settings.roles.create');

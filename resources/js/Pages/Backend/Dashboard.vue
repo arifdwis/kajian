@@ -17,41 +17,61 @@ const user = computed(() => page.props.auth.user);
 // Charts settings & themes
 const getLineChartOptions = (categories) => ({
  chart: {
- id: 'downloads-trend',
- toolbar: { show: false },
- zoom: { enabled: false },
- foreColor: '#9CA3AF',
+  id: 'downloads-trend',
+  toolbar: { show: false },
+  zoom: { enabled: false },
+  foreColor: '#9CA3AF',
  },
  colors: ['#3B82F6'],
  stroke: { curve: 'smooth', width: 3 },
  xaxis: { categories, axisBorder: { show: false } },
  grid: { borderColor: '#E5E7EB', strokeDashArray: 4 },
+ tooltip: {
+  theme: 'light',
+  style: { fontSize: '12px' },
+  y: { formatter: (val) => val + ' unduhan' },
+ },
+ markers: { size: 5, strokeWidth: 0 },
 });
 
 const getBarChartOptions = (categories) => ({
  chart: {
- id: 'bidang-dist',
- toolbar: { show: false },
- foreColor: '#9CA3AF',
+  id: 'bidang-dist',
+  toolbar: { show: false },
+  foreColor: '#9CA3AF',
  },
  colors: ['#8B5CF6'],
  plotOptions: {
- bar: {
- borderRadius: 6,
- horizontal: true,
- }
+  bar: {
+  borderRadius: 6,
+  horizontal: true,
+  }
  },
  xaxis: { categories },
+ tooltip: {
+  theme: 'light',
+  style: { fontSize: '12px' },
+  y: { formatter: (val) => val + ' kajian' },
+ },
 });
 
 const getPieChartOptions = (labels) => ({
  chart: {
- id: 'jenis-dist',
- foreColor: '#9CA3AF',
+  id: 'jenis-dist',
+  foreColor: '#9CA3AF',
  },
  labels,
  colors: ['#10B981', '#F59E0B', '#EF4444', '#3B82F6', '#EC4899'],
- legend: { position: 'bottom' }
+ legend: { position: 'bottom' },
+ tooltip: {
+  theme: 'light',
+  style: { fontSize: '12px' },
+  y: { formatter: (val) => val + ' kajian' },
+ },
+ dataLabels: {
+  enabled: true,
+  style: { fontSize: '11px', fontWeight: 600 },
+ },
 });
 
 const chartTrendData = computed(() => {
@@ -93,18 +113,18 @@ const chartJenisLabels = computed(() => {
  <AuthenticatedLayout>
  <div class="space-y-8">
  <!-- Top Welcome banner -->
- <div class="relative overflow-hidden rounded-card p-8 text-white ">
- <div class="absolute -right-10 -top-10 w-40 h-40 bg-paper/10 rounded-full blur-2xl"></div>
- <div class="absolute right-20 bottom-0 w-32 h-32 bg-indigo-500/20 rounded-full blur-xl"></div>
- <div class="relative z-10 max-w-xl">
- <span class="bg-paper/10 text-white font-bold text-xs uppercase tracking-wider px-3 py-1 rounded-full border border-white/20">
- Admin Bapperida
- </span>
- <h2 class="text-3xl font-semibold mt-4">Selamat Datang Kembali, {{ user.name }}</h2>
- <p class="text-blue-100/90 text-sm mt-2 leading-relaxed">
- Kelola data penelitian, riset, dan kajian strategis Pemerintah Kota Samarinda secara terpadu melalui panel SIKAJIAN.
- </p>
- </div>
+ <div class="relative overflow-hidden rounded-card p-8" style="background: linear-gradient(135deg, var(--color-accent) 0%, oklch(35% 0.06 135) 100%);">
+  <div class="absolute -right-10 -top-10 w-40 h-40 rounded-full blur-2xl" style="background: rgba(255,255,255,0.08);"></div>
+  <div class="absolute right-20 bottom-0 w-32 h-32 rounded-full blur-xl" style="background: rgba(255,255,255,0.06);"></div>
+  <div class="relative z-10 max-w-xl">
+  <span class="font-bold text-xs uppercase tracking-wider px-3 py-1 rounded-full" style="background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.25);">
+   Admin Bapperida
+  </span>
+  <h2 class="text-2xl font-bold mt-4 text-white">Selamat Datang Kembali, {{ user.name }}</h2>
+  <p class="text-sm mt-2 leading-relaxed" style="color: rgba(255,255,255,0.85);">
+   Kelola data penelitian, riset, dan kajian strategis Pemerintah Kota Samarinda secara terpadu melalui panel SIKAJIAN.
+  </p>
+  </div>
  </div>
 
  <!-- Stats Summary Cards -->
@@ -200,7 +220,7 @@ const chartJenisLabels = computed(() => {
  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
  <!-- Bar Chart: Bidang Distribution -->
  <div class="lg:col-span-2 bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6 ">
- <h4 class="font-bold text-gray-800 dark:text-white text-base mb-1">Kajian per Bidang OPD</h4>
+  <h4 class="font-bold text-gray-800 dark:text-white text-base mb-1">Kajian per Bidang</h4>
  <p class="text-xs text-gray-400 mb-6">Jumlah publikasi terbit per unit</p>
  <div class="h-72">
  <apexchart 

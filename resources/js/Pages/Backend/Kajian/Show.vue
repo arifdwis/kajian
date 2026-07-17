@@ -209,7 +209,7 @@ const deleteKajian = () => {
  <span class="text-sm font-semibold text-gray-700 dark:text-gray-200 mt-1 block">{{ kajian.tahun?.tahun }}</span>
  </div>
  <div>
- <span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">Bidang OPD</span>
+  <span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">Bidang</span>
  <span class="text-sm font-semibold text-gray-700 dark:text-gray-200 mt-1 block">{{ kajian.bidang?.nama }}</span>
  </div>
  <div>

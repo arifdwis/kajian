@@ -84,7 +84,7 @@ const deleteKajian = (id) => {
  'Ya, Hapus',
  'danger',
  () => {
- router.delete(route('kajian.destroy', id), {
+ router.delete(route('kajian.destroy', item.uuid), {
  onSuccess: () => {
  showConfirmModal.value = false;
  },
@@ -292,7 +292,7 @@ const archiveKajian = (uuid) => {
  </button>
  
  <Link 
- :href="route('kajian.show', item.id)" 
+ :href="route('kajian.show', item.uuid)" 
  class="p-2 bg-gray-50 hover:bg-paper-2 text-gray-600 hover:text-blue-600 dark:bg-gray-700 dark:text-gray-300 rounded-sm transition-all"
  title="Detail"
  >
@@ -300,7 +300,7 @@ const archiveKajian = (uuid) => {
  </Link>
 
  <Link 
- :href="route('kajian.edit', item.id)" 
+ :href="route('kajian.edit', item.uuid)" 
  class="p-2 bg-gray-50 hover:bg-amber-50 text-gray-600 hover:text-amber-600 dark:bg-gray-700 dark:text-gray-300 rounded-sm transition-all"
  title="Edit"
  >

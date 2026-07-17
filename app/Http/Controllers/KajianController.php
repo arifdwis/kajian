@@ -158,7 +158,7 @@ class KajianController extends Controller
             $this->kajianService->uploadFile($kajian, $request->file('file_cover'), 'cover');
         }
 
-        return redirect()->route('kajian.show', $kajian->id)->with('success', 'Kajian berhasil diperbarui.');
+        return redirect()->route('kajian.show', $kajian->uuid)->with('success', 'Kajian berhasil diperbarui.');
     }
 
     public function destroy(Kajian $kajian)

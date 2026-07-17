@@ -102,7 +102,7 @@ const deleteKajian = () => {
  'Ya, Hapus',
  'danger',
  () => {
- router.delete(route('kajian.destroy', props.kajian.id), {
+ router.delete(route('kajian.destroy', props.kajian.uuid), {
  onSuccess: () => {
  showConfirmModal.value = false;
  },
@@ -137,7 +137,7 @@ const deleteKajian = () => {
  <!-- Action group -->
  <div class="flex flex-wrap gap-2">
  <Link 
- :href="route('kajian.edit', kajian.id)"
+ :href="route('kajian.edit', kajian.uuid)"
  class="px-4 py-2.5 bg-gray-100 dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-200 text-gray-700 font-bold rounded-sm text-xs transition-all inline-flex items-center gap-2"
  >
  <Icon icon="solar:pen-bold" class="w-4 h-4" />

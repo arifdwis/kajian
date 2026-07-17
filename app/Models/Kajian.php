@@ -12,6 +12,11 @@ class Kajian extends Model
 
     protected $table = 'kajians';
 
+    public function getRouteKeyName(): string
+    {
+        return 'uuid';
+    }
+
     protected $fillable = [
         'uuid',
         'judul',

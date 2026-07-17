@@ -82,7 +82,7 @@ const submit = () => {
  <!-- Header section -->
  <div class="flex items-center justify-between bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700 ">
  <div class="flex items-center gap-3">
- <Link :href="route('kajian.show', kajian.id)" class="p-2.5 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-paper-2 hover:text-blue-600 rounded-sm transition-all">
+ <Link :href="route('kajian.show', kajian.uuid)" class="p-2.5 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-paper-2 hover:text-blue-600 rounded-sm transition-all">
  <Icon icon="solar:arrow-left-outline" class="w-5 h-5" />
  </Link>
  <div>
@@ -372,7 +372,7 @@ const submit = () => {
  <!-- Submit / Buttons -->
  <div class="flex items-center justify-end gap-3">
  <Link 
- :href="route('kajian.show', kajian.id)"
+ :href="route('kajian.show', kajian.uuid)"
  class="px-5 py-3 border border-gray-200 dark:border-gray-700 rounded-card text-sm font-bold text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
  >
  Batal

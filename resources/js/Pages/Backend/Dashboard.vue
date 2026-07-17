@@ -20,7 +20,8 @@ const getLineChartOptions = (categories) => ({
   id: 'downloads-trend',
   toolbar: { show: false },
   zoom: { enabled: false },
-  foreColor: '#9CA3AF',
+  foreColor: '#6B7280',
+  fontFamily: 'Inter, sans-serif',
  },
  colors: ['#3B82F6'],
  stroke: { curve: 'smooth', width: 3 },
@@ -28,7 +29,7 @@ const getLineChartOptions = (categories) => ({
  grid: { borderColor: '#E5E7EB', strokeDashArray: 4 },
  tooltip: {
   theme: 'light',
-  style: { fontSize: '12px' },
+  style: { fontSize: '13px', fontFamily: 'Inter, sans-serif' },
   y: { formatter: (val) => val + ' unduhan' },
  },
  markers: { size: 5, strokeWidth: 0 },
@@ -58,19 +59,20 @@ const getBarChartOptions = (categories) => ({
 const getPieChartOptions = (labels) => ({
  chart: {
   id: 'jenis-dist',
-  foreColor: '#9CA3AF',
+  foreColor: '#6B7280',
+  fontFamily: 'Inter, sans-serif',
  },
  labels,
  colors: ['#10B981', '#F59E0B', '#EF4444', '#3B82F6', '#EC4899'],
  legend: { position: 'bottom' },
  tooltip: {
   theme: 'light',
-  style: { fontSize: '12px' },
+  style: { fontSize: '13px', fontFamily: 'Inter, sans-serif' },
   y: { formatter: (val) => val + ' kajian' },
  },
  dataLabels: {
   enabled: true,
-  style: { fontSize: '11px', fontWeight: 600 },
+  style: { fontSize: '12px', fontWeight: 600, fontFamily: 'Inter, sans-serif' },
  },
 });
 

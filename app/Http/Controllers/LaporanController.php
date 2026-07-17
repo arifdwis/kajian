@@ -26,7 +26,7 @@ class LaporanController extends Controller
         $query = Kajian::with(['bidang', 'jenisKajian', 'tahun'])
             ->where('status', 'published');
 
-        if ($user->hasRole('operator')) {
+        if ($user->hasRole('pengguna')) {
             $query->where('bidang_id', $user->id_opd);
         }
 
@@ -49,7 +49,7 @@ class LaporanController extends Controller
 
         $data = $query->orderBy('created_at', 'desc')->get();
 
-        $summary = $this->statsService->getSummaryStats($user->hasRole('operator') ? $user->id_opd : null);
+        $summary = $this->statsService->getSummaryStats($user->hasRole('pengguna') ? $user->id_opd : null);
 
         return Inertia::render('Backend/Laporan/Index', [
             'data' => $data,
@@ -64,7 +64,7 @@ class LaporanController extends Controller
     public function statistik(Request $request)
     {
         $user = $request->user();
-        $bidangId = $user->hasRole('operator') ? $user->id_opd : null;
+        $bidangId = $user->hasRole('pengguna') ? $user->id_opd : null;
 
         $summary = $this->statsService->getSummaryStats($bidangId);
         $charts = $this->statsService->getChartsData($bidangId);

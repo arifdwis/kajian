@@ -1,4 +1,4 @@
-import { ref, resolveComponent, unref, withCtx, createVNode, createTextVNode, withDirectives, withKeys, vModelText, openBlock, createBlock, createCommentVNode, Fragment, renderList, toDisplayString, useSSRContext } from "vue";
+import { ref, resolveComponent, unref, withCtx, createVNode, withDirectives, withKeys, vModelText, openBlock, createBlock, createCommentVNode, Fragment, renderList, toDisplayString, useSSRContext } from "vue";
 import { ssrRenderComponent, ssrRenderAttr, ssrRenderList, ssrInterpolate } from "vue/server-renderer";
 import { Head, Link, router } from "@inertiajs/vue3";
 import { _ as _sfc_main$1 } from "./AuthenticatedLayout-C8eooNFo.js";
@@ -47,31 +47,7 @@ const _sfc_main = {
       _push(ssrRenderComponent(_sfc_main$1, null, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<div class="space-y-6 w-full"${_scopeId}><div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700"${_scopeId}><div${_scopeId}><h3 class="text-xl font-bold text-gray-900 dark:text-white"${_scopeId}>Manajemen Pengguna</h3><p class="text-xs text-gray-500 mt-1"${_scopeId}>Kelola akun pengguna, penugasan role, dan OPD instansi.</p></div>`);
-            _push2(ssrRenderComponent(unref(Link), {
-              href: _ctx.route("settings.users.create"),
-              class: "inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-accent-ink font-semibold rounded-card transition-all text-sm shrink-0"
-            }, {
-              default: withCtx((_2, _push3, _parent3, _scopeId2) => {
-                if (_push3) {
-                  _push3(ssrRenderComponent(_component_Icon, {
-                    icon: "solar:add-circle-bold",
-                    class: "w-5 h-5"
-                  }, null, _parent3, _scopeId2));
-                  _push3(` Tambah User `);
-                } else {
-                  return [
-                    createVNode(_component_Icon, {
-                      icon: "solar:add-circle-bold",
-                      class: "w-5 h-5"
-                    }),
-                    createTextVNode(" Tambah User ")
-                  ];
-                }
-              }),
-              _: 1
-            }, _parent2, _scopeId));
-            _push2(`</div><div class="bg-paper dark:bg-gray-800 rounded-card border border-gray-100 dark:border-gray-700 overflow-hidden p-6 space-y-4"${_scopeId}><div class="flex justify-between items-center max-w-md"${_scopeId}><div class="relative w-full"${_scopeId}>`);
+            _push2(`<div class="space-y-6 w-full"${_scopeId}><div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700"${_scopeId}><div${_scopeId}><h3 class="text-xl font-bold text-gray-900 dark:text-white"${_scopeId}>Manajemen Pengguna</h3><p class="text-xs text-gray-500 mt-1"${_scopeId}>Kelola akun pengguna, penugasan role, dan OPD instansi.</p></div></div><div class="bg-paper dark:bg-gray-800 rounded-card border border-gray-100 dark:border-gray-700 overflow-hidden p-6 space-y-4"${_scopeId}><div class="flex justify-between items-center max-w-md"${_scopeId}><div class="relative w-full"${_scopeId}>`);
             _push2(ssrRenderComponent(_component_Icon, {
               icon: "solar:magnifer-linear",
               class: "absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4"
@@ -146,20 +122,7 @@ const _sfc_main = {
                   createVNode("div", null, [
                     createVNode("h3", { class: "text-xl font-bold text-gray-900 dark:text-white" }, "Manajemen Pengguna"),
                     createVNode("p", { class: "text-xs text-gray-500 mt-1" }, "Kelola akun pengguna, penugasan role, dan OPD instansi.")
-                  ]),
-                  createVNode(unref(Link), {
-                    href: _ctx.route("settings.users.create"),
-                    class: "inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-accent-ink font-semibold rounded-card transition-all text-sm shrink-0"
-                  }, {
-                    default: withCtx(() => [
-                      createVNode(_component_Icon, {
-                        icon: "solar:add-circle-bold",
-                        class: "w-5 h-5"
-                      }),
-                      createTextVNode(" Tambah User ")
-                    ]),
-                    _: 1
-                  }, 8, ["href"])
+                  ])
                 ]),
                 createVNode("div", { class: "bg-paper dark:bg-gray-800 rounded-card border border-gray-100 dark:border-gray-700 overflow-hidden p-6 space-y-4" }, [
                   createVNode("div", { class: "flex justify-between items-center max-w-md" }, [

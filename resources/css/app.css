@@ -219,6 +219,45 @@ input.multiselect__input::placeholder {
     100% { transform: translateX(-50%); }
 }
 
+/* ---- ApexCharts tooltip fix ---- */
+
+.apexcharts-tooltip {
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+    color: #1f2937 !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+.apexcharts-tooltip-title {
+    background: #f9fafb !important;
+    border-bottom: 1px solid #e5e7eb !important;
+    color: #374151 !important;
+    font-weight: 600 !important;
+}
+
+.apexcharts-tooltip-series-group {
+    color: #374151 !important;
+}
+
+.apexcharts-tooltip-text {
+    font-size: 13px !important;
+    color: #374151 !important;
+}
+
+.apexcharts-tooltip-text-y-value {
+    color: #111827 !important;
+    font-weight: 600 !important;
+}
+
+.apexcharts-xaxistooltip,
+.apexcharts-yaxistooltip {
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    color: #374151 !important;
+}
+
 /* ---- Page transitions (minimal) ---- */
 
 .fade-enter-active,

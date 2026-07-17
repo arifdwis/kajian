@@ -35,7 +35,7 @@ class DashboardController extends Controller
         }
 
         // 2. Operator Bidang
-        if ($user->hasRole('operator')) {
+        if ($user->hasRole('pengguna')) {
             $bidangId = $user->id_opd;
             $summary = $this->statsService->getSummaryStats($bidangId);
             $charts = $this->statsService->getChartsData($bidangId);

@@ -25,7 +25,7 @@ class ExportController extends Controller
         $query = Kajian::with(['bidang', 'jenisKajian', 'tahun'])
             ->where('status', 'published');
 
-        if ($user->hasRole('operator')) {
+        if ($user->hasRole('pengguna')) {
             $query->where('bidang_id', $user->id_opd);
         }
 

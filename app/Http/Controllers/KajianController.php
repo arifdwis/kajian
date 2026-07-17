@@ -32,7 +32,7 @@ class KajianController extends Controller
         $query = Kajian::with(['bidang', 'jenisKajian', 'tahun', 'keywords', 'creator']);
 
         // Scope by operator's bidang
-        if ($user->hasRole('operator')) {
+        if ($user->hasRole('pengguna')) {
             $query->where('bidang_id', $user->id_opd);
         }
 

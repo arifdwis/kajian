@@ -1,5 +1,5 @@
-import { resolveComponent, unref, withCtx, createVNode, toDisplayString, withModifiers, withDirectives, vModelText, openBlock, createBlock, createCommentVNode, createTextVNode, useSSRContext } from "vue";
-import { ssrRenderComponent, ssrInterpolate, ssrRenderAttr, ssrIncludeBooleanAttr } from "vue/server-renderer";
+import { ref, computed, resolveComponent, unref, withCtx, createVNode, toDisplayString, withModifiers, withDirectives, vModelText, openBlock, createBlock, createCommentVNode, createTextVNode, useSSRContext } from "vue";
+import { ssrRenderComponent, ssrInterpolate, ssrRenderAttr, ssrRenderClass, ssrIncludeBooleanAttr } from "vue/server-renderer";
 import { useForm, Head } from "@inertiajs/vue3";
 import { _ as _sfc_main$1 } from "./AuthenticatedLayout-C8eooNFo.js";
 import { useToast } from "vue-toastification";
@@ -11,17 +11,25 @@ const _sfc_main = {
   __name: "Edit",
   __ssrInlineRender: true,
   props: {
-    user: Object
+    user: Object,
+    bidangs: Array
   },
   setup(__props) {
     const toast = useToast();
     const props = __props;
+    const institutionMode = ref(props.user.id_opd ? "opd" : props.user.institution_name ? "manual" : "opd");
+    const bidangOptions = computed(() => [
+      { label: "Pilih OPD / Instansi", value: "" },
+      ...props.bidangs.map((b) => ({ label: b.nama, value: b.id }))
+    ]);
     const profileForm = useForm({
       _method: "PATCH",
       name: props.user.name || "",
       email: props.user.email || "",
       phone: props.user.phone || "",
-      address: props.user.address || ""
+      address: props.user.address || "",
+      id_opd: props.user.id_opd || "",
+      institution_name: props.user.institution_name || ""
     });
     const passwordForm = useForm({
       current_password: "",
@@ -48,13 +56,25 @@ const _sfc_main = {
       });
     };
     return (_ctx, _push, _parent, _attrs) => {
+      const _component_SearchSelect = resolveComponent("SearchSelect");
       const _component_Icon = resolveComponent("Icon");
       _push(`<!--[-->`);
       _push(ssrRenderComponent(unref(Head), { title: "Pengaturan Profil Saya" }, null, _parent));
       _push(ssrRenderComponent(_sfc_main$1, null, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<div class="max-w-4xl mx-auto space-y-6"${_scopeId}><div class="bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700"${_scopeId}><h3 class="text-xl font-bold text-gray-900 dark:text-white"${_scopeId}>Pengaturan Profil Pengguna</h3><p class="text-xs text-gray-500 mt-1"${_scopeId}>Kelola data informasi personal, kontak, dan ganti password akun Anda.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-6"${_scopeId}><div class="bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center space-y-4"${_scopeId}><div class="w-24 h-24 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold text-3xl"${_scopeId}>${ssrInterpolate(__props.user.name.charAt(0).toUpperCase())}</div><div${_scopeId}><h4 class="font-semibold text-gray-900 dark:text-white text-base"${_scopeId}>${ssrInterpolate(__props.user.name)}</h4><span class="text-xs text-gray-400 font-mono block mt-0.5"${_scopeId}>${ssrInterpolate(__props.user.email)}</span></div></div><div class="md:col-span-2 space-y-6"${_scopeId}><div class="bg-paper dark:bg-gray-800 p-8 rounded-card border border-gray-100 dark:border-gray-700"${_scopeId}><h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider border-b dark:border-gray-700 pb-3 mb-5"${_scopeId}>Informasi Pribadi</h4><form class="space-y-4"${_scopeId}><div${_scopeId}><label class="block text-xs font-semibold text-slate-450 uppercase tracking-wider mb-2"${_scopeId}>Nama Lengkap</label><input type="text"${ssrRenderAttr("value", unref(profileForm).name)} required class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-950 text-slate-900 dark:text-white px-4 py-2.5 focus:ring-2 focus:ring-blue-500/20"${_scopeId}></div><div${_scopeId}><label class="block text-xs font-semibold text-slate-455 uppercase tracking-wider mb-2"${_scopeId}>Email Address</label><input type="email"${ssrRenderAttr("value", unref(profileForm).email)} required class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-950 text-slate-900 dark:text-white px-4 py-2.5 focus:ring-2 focus:ring-blue-500/20"${_scopeId}></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-4"${_scopeId}><div${_scopeId}><label class="block text-xs font-semibold text-slate-455 uppercase tracking-wider mb-2"${_scopeId}>No. Handphone / WA</label><input type="text"${ssrRenderAttr("value", unref(profileForm).phone)} placeholder="0812..." class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-955 text-slate-900 dark:text-white px-4 py-2.5"${_scopeId}></div><div${_scopeId}><label class="block text-xs font-semibold text-slate-455 uppercase tracking-wider mb-2"${_scopeId}>Alamat Tinggal</label><input type="text"${ssrRenderAttr("value", unref(profileForm).address)} placeholder="Alamat Lengkap..." class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-955 text-slate-900 dark:text-white px-4 py-2.5"${_scopeId}></div></div><div class="flex justify-end pt-2"${_scopeId}><button type="submit"${ssrIncludeBooleanAttr(unref(profileForm).processing) ? " disabled" : ""} class="px-5 py-2.5 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-all inline-flex items-center gap-1"${_scopeId}>`);
+            _push2(`<div class="space-y-6"${_scopeId}><div class="bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700"${_scopeId}><h3 class="text-xl font-bold text-gray-900 dark:text-white"${_scopeId}>Pengaturan Profil Pengguna</h3><p class="text-xs text-gray-500 mt-1"${_scopeId}>Kelola data informasi personal, kontak, dan ganti password akun Anda.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-6"${_scopeId}><div class="bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center space-y-4"${_scopeId}><div class="w-24 h-24 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold text-3xl"${_scopeId}>${ssrInterpolate(__props.user.name.charAt(0).toUpperCase())}</div><div${_scopeId}><h4 class="font-semibold text-gray-900 dark:text-white text-base"${_scopeId}>${ssrInterpolate(__props.user.name)}</h4><span class="text-xs text-gray-400 font-mono block mt-0.5"${_scopeId}>${ssrInterpolate(__props.user.email)}</span></div></div><div class="md:col-span-2 space-y-6"${_scopeId}><div class="bg-paper dark:bg-gray-800 p-8 rounded-card border border-gray-100 dark:border-gray-700"${_scopeId}><h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider border-b dark:border-gray-700 pb-3 mb-5"${_scopeId}>Informasi Pribadi</h4><form class="space-y-4"${_scopeId}><div${_scopeId}><label class="block text-xs font-semibold text-slate-450 uppercase tracking-wider mb-2"${_scopeId}>Nama Lengkap</label><input type="text"${ssrRenderAttr("value", unref(profileForm).name)} required class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-950 text-slate-900 dark:text-white px-4 py-2.5 focus:ring-2 focus:ring-blue-500/20"${_scopeId}></div><div${_scopeId}><label class="block text-xs font-semibold text-slate-455 uppercase tracking-wider mb-2"${_scopeId}>Email Address</label><input type="email"${ssrRenderAttr("value", unref(profileForm).email)} required class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-950 text-slate-900 dark:text-white px-4 py-2.5 focus:ring-2 focus:ring-blue-500/20"${_scopeId}></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-4"${_scopeId}><div${_scopeId}><label class="block text-xs font-semibold text-slate-455 uppercase tracking-wider mb-2"${_scopeId}>No. Handphone / WA</label><input type="text"${ssrRenderAttr("value", unref(profileForm).phone)} placeholder="0812..." class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-955 text-slate-900 dark:text-white px-4 py-2.5"${_scopeId}></div><div${_scopeId}><label class="block text-xs font-semibold text-slate-455 uppercase tracking-wider mb-2"${_scopeId}>Alamat Tinggal</label><input type="text"${ssrRenderAttr("value", unref(profileForm).address)} placeholder="Alamat Lengkap..." class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-955 text-slate-900 dark:text-white px-4 py-2.5"${_scopeId}></div></div><div${_scopeId}><label class="block text-xs font-semibold text-slate-450 uppercase tracking-wider mb-2"${_scopeId}>Asal Instansi / OPD</label><div class="flex gap-2 mb-3"${_scopeId}><button type="button" class="${ssrRenderClass([institutionMode.value === "opd" ? "bg-blue-600 text-white" : "border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-gray-50", "px-3 py-1.5 text-xs font-semibold rounded-sm transition-colors"])}"${_scopeId}> Pilih dari OPD </button><button type="button" class="${ssrRenderClass([institutionMode.value === "manual" ? "bg-blue-600 text-white" : "border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-gray-50", "px-3 py-1.5 text-xs font-semibold rounded-sm transition-colors"])}"${_scopeId}> Tulis Manual </button></div>`);
+            if (institutionMode.value === "opd") {
+              _push2(ssrRenderComponent(_component_SearchSelect, {
+                modelValue: unref(profileForm).id_opd,
+                "onUpdate:modelValue": ($event) => unref(profileForm).id_opd = $event,
+                options: bidangOptions.value,
+                placeholder: "Pilih OPD / Instansi"
+              }, null, _parent2, _scopeId));
+            } else {
+              _push2(`<input type="text"${ssrRenderAttr("value", unref(profileForm).institution_name)} placeholder="Tuliskan nama instansi / perguruan tinggi / organisasi..." class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-950 text-slate-900 dark:text-white px-4 py-2.5"${_scopeId}>`);
+            }
+            _push2(`</div><div class="flex justify-end pt-2"${_scopeId}><button type="submit"${ssrIncludeBooleanAttr(unref(profileForm).processing) ? " disabled" : ""} class="px-5 py-2.5 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-all inline-flex items-center gap-1"${_scopeId}>`);
             if (unref(profileForm).processing) {
               _push2(ssrRenderComponent(_component_Icon, {
                 icon: "svg-spinners:ring-resize",
@@ -75,7 +95,7 @@ const _sfc_main = {
             _push2(` Ubah Password </button></div></form></div></div></div></div>`);
           } else {
             return [
-              createVNode("div", { class: "max-w-4xl mx-auto space-y-6" }, [
+              createVNode("div", { class: "space-y-6" }, [
                 createVNode("div", { class: "bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700" }, [
                   createVNode("h3", { class: "text-xl font-bold text-gray-900 dark:text-white" }, "Pengaturan Profil Pengguna"),
                   createVNode("p", { class: "text-xs text-gray-500 mt-1" }, "Kelola data informasi personal, kontak, dan ganti password akun Anda.")
@@ -139,6 +159,44 @@ const _sfc_main = {
                             }, null, 8, ["onUpdate:modelValue"]), [
                               [vModelText, unref(profileForm).address]
                             ])
+                          ])
+                        ]),
+                        createVNode("div", null, [
+                          createVNode("label", { class: "block text-xs font-semibold text-slate-450 uppercase tracking-wider mb-2" }, "Asal Instansi / OPD"),
+                          createVNode("div", { class: "flex gap-2 mb-3" }, [
+                            createVNode("button", {
+                              type: "button",
+                              onClick: ($event) => {
+                                institutionMode.value = "opd";
+                                unref(profileForm).id_opd = "";
+                                unref(profileForm).institution_name = "";
+                              },
+                              class: ["px-3 py-1.5 text-xs font-semibold rounded-sm transition-colors", institutionMode.value === "opd" ? "bg-blue-600 text-white" : "border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-gray-50"]
+                            }, " Pilih dari OPD ", 10, ["onClick"]),
+                            createVNode("button", {
+                              type: "button",
+                              onClick: ($event) => {
+                                institutionMode.value = "manual";
+                                unref(profileForm).id_opd = "";
+                                unref(profileForm).institution_name = "";
+                              },
+                              class: ["px-3 py-1.5 text-xs font-semibold rounded-sm transition-colors", institutionMode.value === "manual" ? "bg-blue-600 text-white" : "border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-gray-50"]
+                            }, " Tulis Manual ", 10, ["onClick"])
+                          ]),
+                          institutionMode.value === "opd" ? (openBlock(), createBlock(_component_SearchSelect, {
+                            key: 0,
+                            modelValue: unref(profileForm).id_opd,
+                            "onUpdate:modelValue": ($event) => unref(profileForm).id_opd = $event,
+                            options: bidangOptions.value,
+                            placeholder: "Pilih OPD / Instansi"
+                          }, null, 8, ["modelValue", "onUpdate:modelValue", "options"])) : withDirectives((openBlock(), createBlock("input", {
+                            key: 1,
+                            type: "text",
+                            "onUpdate:modelValue": ($event) => unref(profileForm).institution_name = $event,
+                            placeholder: "Tuliskan nama instansi / perguruan tinggi / organisasi...",
+                            class: "w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-950 text-slate-900 dark:text-white px-4 py-2.5"
+                          }, null, 8, ["onUpdate:modelValue"])), [
+                            [vModelText, unref(profileForm).institution_name]
                           ])
                         ]),
                         createVNode("div", { class: "flex justify-end pt-2" }, [

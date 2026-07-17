@@ -20,7 +20,7 @@ class KajianPolicy
      */
     public function view(User $user, Kajian $kajian): bool
     {
-        if ($user->hasRole('operator')) {
+        if ($user->hasRole('pengguna')) {
             return $user->hasPermission('kajian.show') && $user->id_opd === $kajian->bidang_id;
         }
 
@@ -40,7 +40,7 @@ class KajianPolicy
      */
     public function update(User $user, Kajian $kajian): bool
     {
-        if ($user->hasRole('operator')) {
+        if ($user->hasRole('pengguna')) {
             return $user->hasPermission('kajian.edit') && $user->id_opd === $kajian->bidang_id;
         }
 

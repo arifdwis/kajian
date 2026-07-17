@@ -10,7 +10,7 @@ class UpdateKajianRequest extends FormRequest
     {
         // Operator can only update their own bidang
         $kajian = $this->route('kajian');
-        if ($this->user()->hasRole('operator')) {
+        if ($this->user()->hasRole('pengguna')) {
             return $this->user()->hasPermission('kajian.edit') && $this->user()->id_opd === $kajian->bidang_id;
         }
 

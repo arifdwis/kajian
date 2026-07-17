@@ -8,21 +8,16 @@ import "./ApplicationLogo-CmsQkCHn.js";
 import "@iconify/vue";
 import "mitt";
 const _sfc_main = {
-  __name: "Edit",
+  __name: "Create",
   __ssrInlineRender: true,
-  props: {
-    permission: Object
-  },
   setup(__props) {
     const toast = useToast();
-    const props = __props;
     const form = useForm({
-      _method: "PUT",
-      name: props.permission.name || ""
+      name: ""
     });
     const submit = () => {
-      form.post(route("settings.permissions.update", props.permission.id), {
-        onSuccess: () => toast.success("Permission berhasil diperbarui."),
+      form.post(route("settings.permissions.store"), {
+        onSuccess: () => toast.success("Permission berhasil dibuat."),
         onError: (errors) => {
           Object.values(errors).forEach((err) => toast.error(err));
         }
@@ -31,11 +26,11 @@ const _sfc_main = {
     return (_ctx, _push, _parent, _attrs) => {
       const _component_Icon = resolveComponent("Icon");
       _push(`<!--[-->`);
-      _push(ssrRenderComponent(unref(Head), { title: "Edit Permission" }, null, _parent));
+      _push(ssrRenderComponent(unref(Head), { title: "Tambah Permission Baru" }, null, _parent));
       _push(ssrRenderComponent(_sfc_main$1, null, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<div class="max-w-md mx-auto space-y-6"${_scopeId}><div class="flex items-center gap-3 bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700"${_scopeId}>`);
+            _push2(`<div class="space-y-6"${_scopeId}><div class="flex items-center gap-3 bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700"${_scopeId}>`);
             _push2(ssrRenderComponent(unref(Link), {
               href: _ctx.route("settings.permissions.index"),
               class: "p-2.5 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-paper-2 hover:text-blue-600 rounded-sm transition-all"
@@ -57,7 +52,7 @@ const _sfc_main = {
               }),
               _: 1
             }, _parent2, _scopeId));
-            _push2(`<div${_scopeId}><h3 class="text-lg font-bold text-gray-900 dark:text-white"${_scopeId}>Edit Permission</h3><p class="text-xs text-gray-500 mt-0.5"${_scopeId}>Perbarui nama parameter permission granular sistem.</p></div></div><div class="bg-paper dark:bg-gray-800 p-8 rounded-card border border-gray-100 dark:border-gray-700"${_scopeId}><form class="space-y-5"${_scopeId}><div${_scopeId}><label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"${_scopeId}>Nama Permission <span class="text-red-500"${_scopeId}>*</span></label><input type="text"${ssrRenderAttr("value", unref(form).name)} required placeholder="E.g., settings.users.index" class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-950 text-slate-900 dark:text-white px-4 py-2.5 focus:ring-2 focus:ring-blue-500/20"${_scopeId}></div><div class="flex justify-end gap-2 border-t dark:border-slate-800 pt-4"${_scopeId}>`);
+            _push2(`<div${_scopeId}><h3 class="text-lg font-bold text-gray-900 dark:text-white"${_scopeId}>Tambah Permission</h3><p class="text-xs text-gray-500 mt-0.5"${_scopeId}>Daftarkan parameter permission akses baru.</p></div></div><div class="bg-paper dark:bg-gray-800 p-8 rounded-card border border-gray-100 dark:border-gray-700"${_scopeId}><form class="space-y-5"${_scopeId}><div${_scopeId}><label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"${_scopeId}>Nama Permission <span class="text-red-500"${_scopeId}>*</span></label><input type="text"${ssrRenderAttr("value", unref(form).name)} required placeholder="E.g., settings.users.index" class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-950 text-slate-900 dark:text-white px-4 py-2.5 focus:ring-2 focus:ring-blue-500/20"${_scopeId}></div><div class="flex justify-end gap-2 border-t dark:border-slate-800 pt-4"${_scopeId}>`);
             _push2(ssrRenderComponent(unref(Link), {
               href: _ctx.route("settings.permissions.index"),
               class: "px-5 py-2.5 border border-rule dark:border-rule-dark text-slate-700 dark:text-slate-400 text-xs font-semibold rounded-sm"
@@ -82,10 +77,10 @@ const _sfc_main = {
             } else {
               _push2(`<!---->`);
             }
-            _push2(` Simpan Perubahan </button></div></form></div></div>`);
+            _push2(` Simpan </button></div></form></div></div>`);
           } else {
             return [
-              createVNode("div", { class: "max-w-md mx-auto space-y-6" }, [
+              createVNode("div", { class: "space-y-6" }, [
                 createVNode("div", { class: "flex items-center gap-3 bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700" }, [
                   createVNode(unref(Link), {
                     href: _ctx.route("settings.permissions.index"),
@@ -100,8 +95,8 @@ const _sfc_main = {
                     _: 1
                   }, 8, ["href"]),
                   createVNode("div", null, [
-                    createVNode("h3", { class: "text-lg font-bold text-gray-900 dark:text-white" }, "Edit Permission"),
-                    createVNode("p", { class: "text-xs text-gray-500 mt-0.5" }, "Perbarui nama parameter permission granular sistem.")
+                    createVNode("h3", { class: "text-lg font-bold text-gray-900 dark:text-white" }, "Tambah Permission"),
+                    createVNode("p", { class: "text-xs text-gray-500 mt-0.5" }, "Daftarkan parameter permission akses baru.")
                   ])
                 ]),
                 createVNode("div", { class: "bg-paper dark:bg-gray-800 p-8 rounded-card border border-gray-100 dark:border-gray-700" }, [
@@ -144,7 +139,7 @@ const _sfc_main = {
                           icon: "svg-spinners:ring-resize",
                           class: "w-4 h-4 animate-spin"
                         })) : createCommentVNode("", true),
-                        createTextVNode(" Simpan Perubahan ")
+                        createTextVNode(" Simpan ")
                       ], 8, ["disabled"])
                     ])
                   ], 32)
@@ -162,7 +157,7 @@ const _sfc_main = {
 const _sfc_setup = _sfc_main.setup;
 _sfc_main.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Backend/Settings/Permissions/Edit.vue");
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Backend/Settings/Permissions/Create.vue");
   return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
 };
 export {

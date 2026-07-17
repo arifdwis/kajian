@@ -101,7 +101,7 @@ const _sfc_main = {
         "Ya, Hapus",
         "danger",
         () => {
-          router.delete(route("kajian.destroy", props.kajian.id), {
+          router.delete(route("kajian.destroy", props.kajian.uuid), {
             onSuccess: () => {
               showConfirmModal.value = false;
             },
@@ -120,7 +120,7 @@ const _sfc_main = {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           var _a, _b, _c, _d, _e, _f;
           if (_push2) {
-            _push2(`<div class="max-w-6xl mx-auto space-y-6"${_scopeId}><div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700"${_scopeId}><div class="flex items-center gap-3"${_scopeId}>`);
+            _push2(`<div class="space-y-6"${_scopeId}><div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700"${_scopeId}><div class="flex items-center gap-3"${_scopeId}>`);
             _push2(ssrRenderComponent(unref(Link), {
               href: _ctx.route("kajian.index"),
               class: "p-2.5 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-paper-2 hover:text-blue-600 rounded-sm transition-all"
@@ -144,7 +144,7 @@ const _sfc_main = {
             }, _parent2, _scopeId));
             _push2(`<div${_scopeId}><span class="text-xs font-semibold text-blue-600 dark:text-blue-400 capitalize bg-paper-2 dark:bg-blue-900/30 px-2.5 py-1 rounded-full border border-blue-100 dark:border-blue-800"${_scopeId}>${ssrInterpolate((_a = __props.kajian.jenis_kajian) == null ? void 0 : _a.nama)}</span><h3 class="text-lg font-bold text-gray-900 dark:text-white mt-2 max-w-2xl line-clamp-1"${ssrRenderAttr("title", __props.kajian.judul)}${_scopeId}>${ssrInterpolate(__props.kajian.judul)}</h3></div></div><div class="flex flex-wrap gap-2"${_scopeId}>`);
             _push2(ssrRenderComponent(unref(Link), {
-              href: _ctx.route("kajian.edit", __props.kajian.id),
+              href: _ctx.route("kajian.edit", __props.kajian.uuid),
               class: "px-4 py-2.5 bg-gray-100 dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-200 text-gray-700 font-bold rounded-sm text-xs transition-all inline-flex items-center gap-2"
             }, {
               default: withCtx((_2, _push3, _parent3, _scopeId2) => {
@@ -206,7 +206,7 @@ const _sfc_main = {
               "bg-paper-2 text-blue-700 border-blue-200 dark:bg-blue-950/30 dark:text-blue-400 dark:border-blue-800": __props.kajian.status === "draft",
               "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/30 dark:text-amber-400 dark:border-amber-800": __props.kajian.status === "review",
               "bg-gray-50 text-gray-600 border-gray-200 dark:bg-gray-950/30 dark:text-gray-400 dark:border-gray-800": __props.kajian.status === "archived"
-            }, "ml-auto px-2.5 py-0.5 rounded-full text-xs font-bold border capitalize"])}"${_scopeId}> Status: ${ssrInterpolate(__props.kajian.status)}</span></div><div class="grid grid-cols-2 md:grid-cols-4 gap-6"${_scopeId}><div${_scopeId}><span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider block"${_scopeId}>Tahun Terbit</span><span class="text-sm font-semibold text-gray-700 dark:text-gray-200 mt-1 block"${_scopeId}>${ssrInterpolate((_b = __props.kajian.tahun) == null ? void 0 : _b.tahun)}</span></div><div${_scopeId}><span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider block"${_scopeId}>Bidang OPD</span><span class="text-sm font-semibold text-gray-700 dark:text-gray-200 mt-1 block"${_scopeId}>${ssrInterpolate((_c = __props.kajian.bidang) == null ? void 0 : _c.nama)}</span></div><div${_scopeId}><span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider block"${_scopeId}>Penanggung Jawab</span><span class="text-sm font-semibold text-gray-700 dark:text-gray-200 mt-1 block"${_scopeId}>${ssrInterpolate(__props.kajian.penanggung_jawab || "-")}</span></div><div${_scopeId}><span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider block"${_scopeId}>Mitra Peneliti</span><span class="text-sm font-semibold text-gray-700 dark:text-gray-200 mt-1 block"${_scopeId}>${ssrInterpolate(__props.kajian.mitra || "-")}</span></div></div>`);
+            }, "ml-auto px-2.5 py-0.5 rounded-full text-xs font-bold border capitalize"])}"${_scopeId}> Status: ${ssrInterpolate(__props.kajian.status)}</span></div><div class="grid grid-cols-2 md:grid-cols-4 gap-6"${_scopeId}><div${_scopeId}><span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider block"${_scopeId}>Tahun Terbit</span><span class="text-sm font-semibold text-gray-700 dark:text-gray-200 mt-1 block"${_scopeId}>${ssrInterpolate((_b = __props.kajian.tahun) == null ? void 0 : _b.tahun)}</span></div><div${_scopeId}><span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider block"${_scopeId}>Bidang</span><span class="text-sm font-semibold text-gray-700 dark:text-gray-200 mt-1 block"${_scopeId}>${ssrInterpolate((_c = __props.kajian.bidang) == null ? void 0 : _c.nama)}</span></div><div${_scopeId}><span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider block"${_scopeId}>Penanggung Jawab</span><span class="text-sm font-semibold text-gray-700 dark:text-gray-200 mt-1 block"${_scopeId}>${ssrInterpolate(__props.kajian.penanggung_jawab || "-")}</span></div><div${_scopeId}><span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider block"${_scopeId}>Mitra Peneliti</span><span class="text-sm font-semibold text-gray-700 dark:text-gray-200 mt-1 block"${_scopeId}>${ssrInterpolate(__props.kajian.mitra || "-")}</span></div></div>`);
             if (__props.kajian.ringkasan) {
               _push2(`<div class="space-y-2 pt-4 border-t border-gray-100 dark:border-gray-700"${_scopeId}><span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider block"${_scopeId}>Ringkasan Eksekutif (Abstrak)</span><p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed font-light whitespace-pre-line"${_scopeId}>${ssrInterpolate(__props.kajian.ringkasan)}</p></div>`);
             } else {
@@ -315,7 +315,7 @@ const _sfc_main = {
             _push2(`</div>`);
           } else {
             return [
-              createVNode("div", { class: "max-w-6xl mx-auto space-y-6" }, [
+              createVNode("div", { class: "space-y-6" }, [
                 createVNode("div", { class: "flex flex-col md:flex-row md:items-center md:justify-between gap-4 bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700" }, [
                   createVNode("div", { class: "flex items-center gap-3" }, [
                     createVNode(unref(Link), {
@@ -340,7 +340,7 @@ const _sfc_main = {
                   ]),
                   createVNode("div", { class: "flex flex-wrap gap-2" }, [
                     createVNode(unref(Link), {
-                      href: _ctx.route("kajian.edit", __props.kajian.id),
+                      href: _ctx.route("kajian.edit", __props.kajian.uuid),
                       class: "px-4 py-2.5 bg-gray-100 dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-200 text-gray-700 font-bold rounded-sm text-xs transition-all inline-flex items-center gap-2"
                     }, {
                       default: withCtx(() => [
@@ -417,7 +417,7 @@ const _sfc_main = {
                           createVNode("span", { class: "text-sm font-semibold text-gray-700 dark:text-gray-200 mt-1 block" }, toDisplayString((_e = __props.kajian.tahun) == null ? void 0 : _e.tahun), 1)
                         ]),
                         createVNode("div", null, [
-                          createVNode("span", { class: "text-[10px] text-gray-400 font-bold uppercase tracking-wider block" }, "Bidang OPD"),
+                          createVNode("span", { class: "text-[10px] text-gray-400 font-bold uppercase tracking-wider block" }, "Bidang"),
                           createVNode("span", { class: "text-sm font-semibold text-gray-700 dark:text-gray-200 mt-1 block" }, toDisplayString((_f = __props.kajian.bidang) == null ? void 0 : _f.nama), 1)
                         ]),
                         createVNode("div", null, [

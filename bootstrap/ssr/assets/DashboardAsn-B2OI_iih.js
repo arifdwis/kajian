@@ -1,5 +1,5 @@
 import { computed, resolveComponent, unref, withCtx, createTextVNode, toDisplayString, createVNode, openBlock, createBlock, Fragment, renderList, useSSRContext } from "vue";
-import { ssrRenderComponent, ssrInterpolate, ssrRenderList } from "vue/server-renderer";
+import { ssrRenderComponent, ssrRenderStyle, ssrInterpolate, ssrRenderList } from "vue/server-renderer";
 import { usePage, Head, Link } from "@inertiajs/vue3";
 import { _ as _sfc_main$1 } from "./AuthenticatedLayout-C8eooNFo.js";
 import "flowbite-vue";
@@ -23,7 +23,7 @@ const _sfc_main = {
       _push(ssrRenderComponent(_sfc_main$1, null, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<div class="space-y-8"${_scopeId}><div class="relative overflow-hidden from-teal-700 via-emerald-700 to-emerald-800 rounded-card p-8 text-white shadow-teal-500/10"${_scopeId}><div class="absolute -right-10 -top-10 w-40 h-40 bg-paper/10 rounded-full blur-2xl"${_scopeId}></div><div class="absolute right-20 bottom-0 w-32 h-32 bg-emerald-500/20 rounded-full blur-xl"${_scopeId}></div><div class="relative z-10 max-w-xl"${_scopeId}><span class="bg-paper/10 text-white font-bold text-xs uppercase tracking-wider px-3 py-1 rounded-full border border-white/20"${_scopeId}> ASN Samarinda </span><h2 class="text-3xl font-semibold mt-4"${_scopeId}>Selamat Datang, ${ssrInterpolate(user.value.name)}</h2><p class="text-teal-100/90 text-sm mt-2 leading-relaxed"${_scopeId}> Akses pustaka digital kajian, rekomendasi kebijakan, riset strategis, dan data penelitian Pemerintah Kota Samarinda. </p></div></div><div class="bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6 flex flex-col md:flex-row items-center justify-between gap-4"${_scopeId}><div class="flex items-center gap-4"${_scopeId}><div class="p-3 bg-teal-50 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 rounded-sm shrink-0"${_scopeId}>`);
+            _push2(`<div class="space-y-8"${_scopeId}><div class="relative overflow-hidden rounded-card p-8" style="${ssrRenderStyle({ "background": "linear-gradient(135deg, #047857 0%, #065F46 100%)" })}"${_scopeId}><div class="absolute -right-10 -top-10 w-40 h-40 rounded-full blur-2xl" style="${ssrRenderStyle({ "background": "rgba(255,255,255,0.08)" })}"${_scopeId}></div><div class="absolute right-20 bottom-0 w-32 h-32 rounded-full blur-xl" style="${ssrRenderStyle({ "background": "rgba(255,255,255,0.06)" })}"${_scopeId}></div><div class="relative z-10 max-w-xl"${_scopeId}><span class="font-bold text-xs uppercase tracking-wider px-3 py-1 rounded-full" style="${ssrRenderStyle({ "background": "rgba(255,255,255,0.15)", "color": "#fff", "border": "1px solid rgba(255,255,255,0.25)" })}"${_scopeId}> Pengguna </span><h2 class="text-2xl font-bold mt-4 text-white"${_scopeId}>Selamat Datang, ${ssrInterpolate(user.value.name)}</h2><p class="text-sm mt-2 leading-relaxed" style="${ssrRenderStyle({ "color": "rgba(255,255,255,0.85)" })}"${_scopeId}> Akses pustaka digital kajian, rekomendasi kebijakan, riset strategis, dan data penelitian Pemerintah Kota Samarinda. </p></div></div><div class="bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6 flex flex-col md:flex-row items-center justify-between gap-4"${_scopeId}><div class="flex items-center gap-4"${_scopeId}><div class="p-3 bg-teal-50 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 rounded-sm shrink-0"${_scopeId}>`);
             _push2(ssrRenderComponent(_component_Icon, {
               icon: "solar:minimalistic-magnifer-bold",
               class: "w-6 h-6"
@@ -99,13 +99,28 @@ const _sfc_main = {
           } else {
             return [
               createVNode("div", { class: "space-y-8" }, [
-                createVNode("div", { class: "relative overflow-hidden from-teal-700 via-emerald-700 to-emerald-800 rounded-card p-8 text-white shadow-teal-500/10" }, [
-                  createVNode("div", { class: "absolute -right-10 -top-10 w-40 h-40 bg-paper/10 rounded-full blur-2xl" }),
-                  createVNode("div", { class: "absolute right-20 bottom-0 w-32 h-32 bg-emerald-500/20 rounded-full blur-xl" }),
+                createVNode("div", {
+                  class: "relative overflow-hidden rounded-card p-8",
+                  style: { "background": "linear-gradient(135deg, #047857 0%, #065F46 100%)" }
+                }, [
+                  createVNode("div", {
+                    class: "absolute -right-10 -top-10 w-40 h-40 rounded-full blur-2xl",
+                    style: { "background": "rgba(255,255,255,0.08)" }
+                  }),
+                  createVNode("div", {
+                    class: "absolute right-20 bottom-0 w-32 h-32 rounded-full blur-xl",
+                    style: { "background": "rgba(255,255,255,0.06)" }
+                  }),
                   createVNode("div", { class: "relative z-10 max-w-xl" }, [
-                    createVNode("span", { class: "bg-paper/10 text-white font-bold text-xs uppercase tracking-wider px-3 py-1 rounded-full border border-white/20" }, " ASN Samarinda "),
-                    createVNode("h2", { class: "text-3xl font-semibold mt-4" }, "Selamat Datang, " + toDisplayString(user.value.name), 1),
-                    createVNode("p", { class: "text-teal-100/90 text-sm mt-2 leading-relaxed" }, " Akses pustaka digital kajian, rekomendasi kebijakan, riset strategis, dan data penelitian Pemerintah Kota Samarinda. ")
+                    createVNode("span", {
+                      class: "font-bold text-xs uppercase tracking-wider px-3 py-1 rounded-full",
+                      style: { "background": "rgba(255,255,255,0.15)", "color": "#fff", "border": "1px solid rgba(255,255,255,0.25)" }
+                    }, " Pengguna "),
+                    createVNode("h2", { class: "text-2xl font-bold mt-4 text-white" }, "Selamat Datang, " + toDisplayString(user.value.name), 1),
+                    createVNode("p", {
+                      class: "text-sm mt-2 leading-relaxed",
+                      style: { "color": "rgba(255,255,255,0.85)" }
+                    }, " Akses pustaka digital kajian, rekomendasi kebijakan, riset strategis, dan data penelitian Pemerintah Kota Samarinda. ")
                   ])
                 ]),
                 createVNode("div", { class: "bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6 flex flex-col md:flex-row items-center justify-between gap-4" }, [

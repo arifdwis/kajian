@@ -12,41 +12,61 @@ const props = defineProps({
 // Charts configs
 const getLineChartOptions = (categories) => ({
  chart: {
- id: 'downloads-trend-lap',
- toolbar: { show: true },
- zoom: { enabled: true },
- foreColor: '#9CA3AF',
+  id: 'downloads-trend-lap',
+  toolbar: { show: true },
+  zoom: { enabled: true },
+  foreColor: '#9CA3AF',
  },
  colors: ['#3B82F6'],
  stroke: { curve: 'smooth', width: 3 },
  xaxis: { categories, axisBorder: { show: false } },
  grid: { borderColor: '#E5E7EB', strokeDashArray: 4 },
+ tooltip: {
+  theme: 'light',
+  style: { fontSize: '12px' },
+  y: { formatter: (val) => val + ' unduhan' },
+ },
+ markers: { size: 5, strokeWidth: 0 },
 });
 
 const getBarChartOptions = (categories) => ({
  chart: {
- id: 'bidang-dist-lap',
- toolbar: { show: true },
- foreColor: '#9CA3AF',
+  id: 'bidang-dist-lap',
+  toolbar: { show: true },
+  foreColor: '#9CA3AF',
  },
  colors: ['#8B5CF6'],
  plotOptions: {
- bar: {
- borderRadius: 6,
- horizontal: true,
- }
+  bar: {
+  borderRadius: 6,
+  horizontal: true,
+  }
  },
  xaxis: { categories },
+ tooltip: {
+  theme: 'light',
+  style: { fontSize: '12px' },
+  y: { formatter: (val) => val + ' kajian' },
+ },
 });
 
 const getPieChartOptions = (labels) => ({
  chart: {
- id: 'jenis-dist-lap',
- foreColor: '#9CA3AF',
+  id: 'jenis-dist-lap',
+  foreColor: '#9CA3AF',
  },
  labels,
  colors: ['#10B981', '#F59E0B', '#EF4444', '#3B82F6', '#EC4899'],
- legend: { position: 'bottom' }
+ legend: { position: 'bottom' },
+ tooltip: {
+  theme: 'light',
+  style: { fontSize: '12px' },
+  y: { formatter: (val) => val + ' kajian' },
+ },
+ dataLabels: {
+  enabled: true,
+  style: { fontSize: '11px', fontWeight: 600 },
+ },
 });
 
 const chartTrendData = computed(() => {

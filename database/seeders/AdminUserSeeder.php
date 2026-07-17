@@ -52,7 +52,7 @@ class AdminUserSeeder extends Seeder
                 'id_opd' => $bidangId, // Bind operator to bidang ID
             ]);
 
-            $op->assignRole('operator');
+            $op->assignRole('pengguna');
         }
 
         // Create a Pengguna user

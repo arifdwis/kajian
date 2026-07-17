@@ -1,5 +1,5 @@
-import { ref, resolveComponent, unref, withCtx, createVNode, createTextVNode, toDisplayString, withDirectives, withKeys, vModelText, openBlock, createBlock, Fragment, renderList, vModelSelect, createCommentVNode, useSSRContext } from "vue";
-import { ssrRenderComponent, ssrInterpolate, ssrRenderAttr, ssrIncludeBooleanAttr, ssrLooseContain, ssrLooseEqual, ssrRenderList } from "vue/server-renderer";
+import { ref, computed, resolveComponent, unref, withCtx, createVNode, createTextVNode, toDisplayString, withDirectives, withKeys, vModelText, openBlock, createBlock, createCommentVNode, Fragment, renderList, useSSRContext } from "vue";
+import { ssrRenderComponent, ssrInterpolate, ssrRenderAttr, ssrRenderList } from "vue/server-renderer";
 import { Head, Link, router } from "@inertiajs/vue3";
 import { _ as _sfc_main$1 } from "./AuthenticatedLayout-C8eooNFo.js";
 import "flowbite-vue";
@@ -23,6 +23,9 @@ const _sfc_main = {
     const bidang_id = ref(props.filters.bidang_id || "");
     const jenis_id = ref(props.filters.jenis_id || "");
     const tahun_id = ref(props.filters.tahun_id || "");
+    const bidangOptions = computed(() => [{ label: "Semua Bidang", value: "" }, ...props.bidangs.map((b) => ({ label: b.nama, value: b.id }))]);
+    const jenisOptions = computed(() => [{ label: "Semua Jenis", value: "" }, ...props.jenisKajians.map((j) => ({ label: j.nama, value: j.id }))]);
+    const tahunOptions = computed(() => [{ label: "Semua Tahun", value: "" }, ...props.tahuns.map((t) => ({ label: t.tahun, value: t.id }))]);
     const handleFilter = () => {
       router.get(route("laporan.index"), {
         search: search.value,
@@ -52,6 +55,7 @@ const _sfc_main = {
     };
     return (_ctx, _push, _parent, _attrs) => {
       const _component_Icon = resolveComponent("Icon");
+      const _component_SearchSelect = resolveComponent("SearchSelect");
       _push(`<!--[-->`);
       _push(ssrRenderComponent(unref(Head), { title: "Laporan & Rekapitulasi Kajian" }, null, _parent));
       _push(ssrRenderComponent(_sfc_main$1, null, {
@@ -101,19 +105,28 @@ const _sfc_main = {
               icon: "solar:download-bold",
               class: "w-6 h-6"
             }, null, _parent2, _scopeId));
-            _push2(`</div></div></div><div class="bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700 space-y-4"${_scopeId}><div class="grid grid-cols-1 sm:grid-cols-4 gap-4"${_scopeId}><div${_scopeId}><label class="block text-xs font-bold text-gray-450 uppercase tracking-wider mb-2"${_scopeId}>Cari Judul</label><input type="text"${ssrRenderAttr("value", search.value)} placeholder="Kata kunci..." class="w-full text-xs rounded-sm border border-gray-200 dark:border-gray-700 bg-paper dark:bg-gray-900 text-gray-900 dark:text-white px-4 py-2.5"${_scopeId}></div><div${_scopeId}><label class="block text-xs font-bold text-gray-450 uppercase tracking-wider mb-2"${_scopeId}>Bidang</label><select class="w-full text-xs rounded-sm border border-gray-200 dark:border-gray-700 bg-paper dark:bg-gray-900 text-gray-900 dark:text-white px-4 py-2.5"${_scopeId}><option value=""${ssrIncludeBooleanAttr(Array.isArray(bidang_id.value) ? ssrLooseContain(bidang_id.value, "") : ssrLooseEqual(bidang_id.value, "")) ? " selected" : ""}${_scopeId}>Semua Bidang</option><!--[-->`);
-            ssrRenderList(__props.bidangs, (b) => {
-              _push2(`<option${ssrRenderAttr("value", b.id)}${ssrIncludeBooleanAttr(Array.isArray(bidang_id.value) ? ssrLooseContain(bidang_id.value, b.id) : ssrLooseEqual(bidang_id.value, b.id)) ? " selected" : ""}${_scopeId}>${ssrInterpolate(b.nama)}</option>`);
-            });
-            _push2(`<!--]--></select></div><div${_scopeId}><label class="block text-xs font-bold text-gray-450 uppercase tracking-wider mb-2"${_scopeId}>Jenis Kajian</label><select class="w-full text-xs rounded-sm border border-gray-200 dark:border-gray-700 bg-paper dark:bg-gray-900 text-gray-900 dark:text-white px-4 py-2.5"${_scopeId}><option value=""${ssrIncludeBooleanAttr(Array.isArray(jenis_id.value) ? ssrLooseContain(jenis_id.value, "") : ssrLooseEqual(jenis_id.value, "")) ? " selected" : ""}${_scopeId}>Semua Jenis</option><!--[-->`);
-            ssrRenderList(__props.jenisKajians, (j) => {
-              _push2(`<option${ssrRenderAttr("value", j.id)}${ssrIncludeBooleanAttr(Array.isArray(jenis_id.value) ? ssrLooseContain(jenis_id.value, j.id) : ssrLooseEqual(jenis_id.value, j.id)) ? " selected" : ""}${_scopeId}>${ssrInterpolate(j.nama)}</option>`);
-            });
-            _push2(`<!--]--></select></div><div${_scopeId}><label class="block text-xs font-bold text-gray-450 uppercase tracking-wider mb-2"${_scopeId}>Tahun</label><select class="w-full text-xs rounded-sm border border-gray-200 dark:border-gray-700 bg-paper dark:bg-gray-900 text-gray-900 dark:text-white px-4 py-2.5"${_scopeId}><option value=""${ssrIncludeBooleanAttr(Array.isArray(tahun_id.value) ? ssrLooseContain(tahun_id.value, "") : ssrLooseEqual(tahun_id.value, "")) ? " selected" : ""}${_scopeId}>Semua Tahun</option><!--[-->`);
-            ssrRenderList(__props.tahuns, (t) => {
-              _push2(`<option${ssrRenderAttr("value", t.id)}${ssrIncludeBooleanAttr(Array.isArray(tahun_id.value) ? ssrLooseContain(tahun_id.value, t.id) : ssrLooseEqual(tahun_id.value, t.id)) ? " selected" : ""}${_scopeId}>${ssrInterpolate(t.tahun)}</option>`);
-            });
-            _push2(`<!--]--></select></div></div><div class="flex justify-end gap-2 pt-2"${_scopeId}><button class="px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-white text-xs font-semibold rounded-sm transition-colors"${_scopeId}> Reset Filter </button><button class="px-4 py-2 bg-accent text-accent-ink text-xs font-semibold rounded-sm transition-colors"${_scopeId}> Terapkan </button></div></div><div class="bg-paper dark:bg-gray-800 rounded-card border border-gray-100 dark:border-gray-700 overflow-hidden"${_scopeId}><div class="overflow-x-auto"${_scopeId}><table class="w-full text-left text-sm"${_scopeId}><thead class="bg-gray-50/70 dark:bg-gray-900/50 text-gray-400 text-xs font-semibold uppercase tracking-wider border-b border-gray-100 dark:border-gray-700"${_scopeId}><tr${_scopeId}><th class="px-6 py-4"${_scopeId}>Judul Kajian</th><th class="px-6 py-4"${_scopeId}>Bidang / Jenis</th><th class="px-6 py-4"${_scopeId}>Tahun</th><th class="px-6 py-4"${_scopeId}>Views / Downloads</th><th class="px-6 py-4 text-right"${_scopeId}>Aksi</th></tr></thead><tbody class="divide-y divide-gray-100 dark:divide-gray-700"${_scopeId}>`);
+            _push2(`</div></div></div><div class="bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700 space-y-4"${_scopeId}><div class="grid grid-cols-1 sm:grid-cols-4 gap-4"${_scopeId}><div${_scopeId}><label class="block text-xs font-bold text-gray-450 uppercase tracking-wider mb-2"${_scopeId}>Cari Judul</label><input type="text"${ssrRenderAttr("value", search.value)} placeholder="Kata kunci..." class="w-full text-xs rounded-sm border border-gray-200 dark:border-gray-700 bg-paper dark:bg-gray-900 text-gray-900 dark:text-white px-4 py-2.5"${_scopeId}></div><div${_scopeId}><label class="block text-xs font-bold text-gray-450 uppercase tracking-wider mb-2"${_scopeId}>Bidang</label>`);
+            _push2(ssrRenderComponent(_component_SearchSelect, {
+              modelValue: bidang_id.value,
+              "onUpdate:modelValue": ($event) => bidang_id.value = $event,
+              options: bidangOptions.value,
+              onChange: handleFilter
+            }, null, _parent2, _scopeId));
+            _push2(`</div><div${_scopeId}><label class="block text-xs font-bold text-gray-450 uppercase tracking-wider mb-2"${_scopeId}>Jenis Kajian</label>`);
+            _push2(ssrRenderComponent(_component_SearchSelect, {
+              modelValue: jenis_id.value,
+              "onUpdate:modelValue": ($event) => jenis_id.value = $event,
+              options: jenisOptions.value,
+              onChange: handleFilter
+            }, null, _parent2, _scopeId));
+            _push2(`</div><div${_scopeId}><label class="block text-xs font-bold text-gray-450 uppercase tracking-wider mb-2"${_scopeId}>Tahun</label>`);
+            _push2(ssrRenderComponent(_component_SearchSelect, {
+              modelValue: tahun_id.value,
+              "onUpdate:modelValue": ($event) => tahun_id.value = $event,
+              options: tahunOptions.value,
+              onChange: handleFilter
+            }, null, _parent2, _scopeId));
+            _push2(`</div></div><div class="flex justify-end gap-2 pt-2"${_scopeId}><button class="px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-white text-xs font-semibold rounded-sm transition-colors"${_scopeId}> Reset Filter </button><button class="px-4 py-2 bg-accent text-accent-ink text-xs font-semibold rounded-sm transition-colors"${_scopeId}> Terapkan </button></div></div><div class="bg-paper dark:bg-gray-800 rounded-card border border-gray-100 dark:border-gray-700 overflow-hidden"${_scopeId}><div class="overflow-x-auto"${_scopeId}><table class="w-full text-left text-sm"${_scopeId}><thead class="bg-gray-50/70 dark:bg-gray-900/50 text-gray-400 text-xs font-semibold uppercase tracking-wider border-b border-gray-100 dark:border-gray-700"${_scopeId}><tr${_scopeId}><th class="px-6 py-4"${_scopeId}>Judul Kajian</th><th class="px-6 py-4"${_scopeId}>Bidang / Jenis</th><th class="px-6 py-4"${_scopeId}>Tahun</th><th class="px-6 py-4"${_scopeId}>Views / Downloads</th><th class="px-6 py-4 text-right"${_scopeId}>Aksi</th></tr></thead><tbody class="divide-y divide-gray-100 dark:divide-gray-700"${_scopeId}>`);
             if (__props.data.length === 0) {
               _push2(`<tr${_scopeId}><td colspan="5" class="px-6 py-12 text-center text-gray-400"${_scopeId}> Tidak ada data rekapitulasi kajian. </td></tr>`);
             } else {
@@ -248,57 +261,30 @@ const _sfc_main = {
                     ]),
                     createVNode("div", null, [
                       createVNode("label", { class: "block text-xs font-bold text-gray-450 uppercase tracking-wider mb-2" }, "Bidang"),
-                      withDirectives(createVNode("select", {
+                      createVNode(_component_SearchSelect, {
+                        modelValue: bidang_id.value,
                         "onUpdate:modelValue": ($event) => bidang_id.value = $event,
-                        class: "w-full text-xs rounded-sm border border-gray-200 dark:border-gray-700 bg-paper dark:bg-gray-900 text-gray-900 dark:text-white px-4 py-2.5",
+                        options: bidangOptions.value,
                         onChange: handleFilter
-                      }, [
-                        createVNode("option", { value: "" }, "Semua Bidang"),
-                        (openBlock(true), createBlock(Fragment, null, renderList(__props.bidangs, (b) => {
-                          return openBlock(), createBlock("option", {
-                            key: b.id,
-                            value: b.id
-                          }, toDisplayString(b.nama), 9, ["value"]);
-                        }), 128))
-                      ], 40, ["onUpdate:modelValue"]), [
-                        [vModelSelect, bidang_id.value]
-                      ])
+                      }, null, 8, ["modelValue", "onUpdate:modelValue", "options"])
                     ]),
                     createVNode("div", null, [
                       createVNode("label", { class: "block text-xs font-bold text-gray-450 uppercase tracking-wider mb-2" }, "Jenis Kajian"),
-                      withDirectives(createVNode("select", {
+                      createVNode(_component_SearchSelect, {
+                        modelValue: jenis_id.value,
                         "onUpdate:modelValue": ($event) => jenis_id.value = $event,
-                        class: "w-full text-xs rounded-sm border border-gray-200 dark:border-gray-700 bg-paper dark:bg-gray-900 text-gray-900 dark:text-white px-4 py-2.5",
+                        options: jenisOptions.value,
                         onChange: handleFilter
-                      }, [
-                        createVNode("option", { value: "" }, "Semua Jenis"),
-                        (openBlock(true), createBlock(Fragment, null, renderList(__props.jenisKajians, (j) => {
-                          return openBlock(), createBlock("option", {
-                            key: j.id,
-                            value: j.id
-                          }, toDisplayString(j.nama), 9, ["value"]);
-                        }), 128))
-                      ], 40, ["onUpdate:modelValue"]), [
-                        [vModelSelect, jenis_id.value]
-                      ])
+                      }, null, 8, ["modelValue", "onUpdate:modelValue", "options"])
                     ]),
                     createVNode("div", null, [
                       createVNode("label", { class: "block text-xs font-bold text-gray-450 uppercase tracking-wider mb-2" }, "Tahun"),
-                      withDirectives(createVNode("select", {
+                      createVNode(_component_SearchSelect, {
+                        modelValue: tahun_id.value,
                         "onUpdate:modelValue": ($event) => tahun_id.value = $event,
-                        class: "w-full text-xs rounded-sm border border-gray-200 dark:border-gray-700 bg-paper dark:bg-gray-900 text-gray-900 dark:text-white px-4 py-2.5",
+                        options: tahunOptions.value,
                         onChange: handleFilter
-                      }, [
-                        createVNode("option", { value: "" }, "Semua Tahun"),
-                        (openBlock(true), createBlock(Fragment, null, renderList(__props.tahuns, (t) => {
-                          return openBlock(), createBlock("option", {
-                            key: t.id,
-                            value: t.id
-                          }, toDisplayString(t.tahun), 9, ["value"]);
-                        }), 128))
-                      ], 40, ["onUpdate:modelValue"]), [
-                        [vModelSelect, tahun_id.value]
-                      ])
+                      }, null, 8, ["modelValue", "onUpdate:modelValue", "options"])
                     ])
                   ]),
                   createVNode("div", { class: "flex justify-end gap-2 pt-2" }, [

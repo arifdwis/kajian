@@ -16,7 +16,7 @@ class CreateMissingRolesSeeder extends Seeder
         $roles = [
             ['name' => 'Super Admin', 'slug' => 'superadmin'],
             ['name' => 'Admin Bapperida', 'slug' => 'admin'],
-            ['name' => 'Operator Bidang', 'slug' => 'operator'],
+            ['name' => 'Pengguna', 'slug' => 'pengguna'],
             ['name' => 'Pengguna', 'slug' => 'pengguna'],
         ];
 

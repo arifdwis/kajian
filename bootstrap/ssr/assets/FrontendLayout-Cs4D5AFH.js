@@ -190,10 +190,10 @@ const _sfc_main = {
       }
       _push(`</div></nav><main class="flex-1 pt-[82px]">`);
       ssrRenderSlot(_ctx.$slots, "default", {}, null, _push, _parent);
-      _push(`</main><footer style="${ssrRenderStyle({ "border-top": "1px solid var(--color-rule)", "background-color": "var(--color-paper-2)" })}"><div class="container mx-auto px-4 xl:px-0 py-16 md:py-20"><p class="text-base leading-relaxed max-w-xl mb-14" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}"> Sistem Informasi Kajian dan Riset — Badan Perencanaan Pembangunan, Riset dan Inovasi Daerah Kota Samarinda. Mewujudkan tata kelola dokumen kajian dan penelitian yang transparan, terpusat, dan mudah diakses. </p><div class="grid grid-cols-2 md:grid-cols-4 gap-10 pb-14" style="${ssrRenderStyle({ "border-bottom": "1px solid var(--color-rule)" })}"><div><h5 class="text-xs font-semibold mb-5" style="${ssrRenderStyle({ "color": "var(--color-ink)" })}">Akses Cepat</h5><ul class="space-y-3"><li>`);
+      _push(`</main><footer style="${ssrRenderStyle({ "border-top": "1px solid var(--color-rule)", "background-color": "var(--color-paper-2)" })}"><div class="container mx-auto px-4 xl:px-0 py-16 md:py-20"><div class="grid grid-cols-2 md:grid-cols-4 gap-10 pb-14" style="${ssrRenderStyle({ "border-bottom": "1px solid var(--color-rule)" })}"><div><h5 class="text-xs font-semibold mb-5" style="${ssrRenderStyle({ "color": "var(--color-ink)" })}">Akses Cepat</h5><ul class="space-y-3"><li>`);
       _push(ssrRenderComponent(unref(Link), {
         href: "/",
-        class: "text-sm transition-colors",
+        class: "text-sm transition-colors hover:underline",
         style: { "color": "var(--color-ink-2)" }
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
@@ -210,7 +210,7 @@ const _sfc_main = {
       _push(`</li><li>`);
       _push(ssrRenderComponent(unref(Link), {
         href: _ctx.route("portal.kajian"),
-        class: "text-sm transition-colors",
+        class: "text-sm transition-colors hover:underline",
         style: { "color": "var(--color-ink-2)" }
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
@@ -227,7 +227,7 @@ const _sfc_main = {
       _push(`</li><li>`);
       _push(ssrRenderComponent(unref(Link), {
         href: _ctx.route("portal.search"),
-        class: "text-sm transition-colors",
+        class: "text-sm transition-colors hover:underline",
         style: { "color": "var(--color-ink-2)" }
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
@@ -244,7 +244,7 @@ const _sfc_main = {
       _push(`</li></ul></div><div><h5 class="text-xs font-semibold mb-5" style="${ssrRenderStyle({ "color": "var(--color-ink)" })}">Layanan</h5><ul class="space-y-3"><li>`);
       _push(ssrRenderComponent(unref(Link), {
         href: _ctx.route("login"),
-        class: "text-sm transition-colors",
+        class: "text-sm transition-colors hover:underline",
         style: { "color": "var(--color-ink-2)" }
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
@@ -258,41 +258,22 @@ const _sfc_main = {
         }),
         _: 1
       }, _parent));
-      _push(`</li><li>`);
-      _push(ssrRenderComponent(unref(Link), {
-        href: "#",
-        class: "text-sm transition-colors",
-        style: { "color": "var(--color-ink-2)" }
-      }, {
-        default: withCtx((_, _push2, _parent2, _scopeId) => {
-          if (_push2) {
-            _push2(`Panduan Pengguna`);
-          } else {
-            return [
-              createTextVNode("Panduan Pengguna")
-            ];
-          }
-        }),
-        _: 1
-      }, _parent));
-      _push(`</li><li>`);
-      _push(ssrRenderComponent(unref(Link), {
-        href: "#",
-        class: "text-sm transition-colors",
-        style: { "color": "var(--color-ink-2)" }
-      }, {
-        default: withCtx((_, _push2, _parent2, _scopeId) => {
-          if (_push2) {
-            _push2(`Syarat &amp; Ketentuan`);
-          } else {
-            return [
-              createTextVNode("Syarat & Ketentuan")
-            ];
-          }
-        }),
-        _: 1
-      }, _parent));
-      _push(`</li></ul></div><div><h5 class="text-xs font-semibold mb-5" style="${ssrRenderStyle({ "color": "var(--color-ink)" })}">Kontak</h5><ul class="space-y-3"><li class="text-sm" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">BAPPERIDA</li><li class="text-sm" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">Jl. Dahlia No. 4</li><li class="text-sm" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">Samarinda 75121</li></ul></div><div><h5 class="text-xs font-semibold mb-5" style="${ssrRenderStyle({ "color": "var(--color-ink)" })}">Ikuti</h5><div class="flex items-center gap-3"><a href="#" class="w-9 h-9 flex items-center justify-center rounded-md transition-colors" style="${ssrRenderStyle({ "border": "1px solid var(--color-rule)", "color": "var(--color-ink-2)" })}">⋮</a><a href="#" class="w-9 h-9 flex items-center justify-center rounded-md transition-colors" style="${ssrRenderStyle({ "border": "1px solid var(--color-rule)", "color": "var(--color-ink-2)" })}">⋮</a><a href="#" class="w-9 h-9 flex items-center justify-center rounded-md transition-colors" style="${ssrRenderStyle({ "border": "1px solid var(--color-rule)", "color": "var(--color-ink-2)" })}">⋮</a></div></div></div><div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8"><div class="flex items-center gap-3"><img src="/img/logo-samarinda.webp" alt="Lambang Kota Samarinda" class="w-8 h-8 object-contain"><div><span class="text-sm font-semibold" style="${ssrRenderStyle({ "font-family": "var(--font-display)", "color": "var(--color-ink)", "letter-spacing": "-0.02em" })}">SIKAJIAN</span><span class="text-xs block" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">© ${ssrInterpolate((/* @__PURE__ */ new Date()).getFullYear())} BAPPERIDA Kota Samarinda</span></div></div><span class="text-xs" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">Dibangun untuk pelayanan publik</span></div></div></footer></div>`);
+      _push(`</li><li><a href="#" class="text-sm transition-colors hover:underline" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">Panduan Pengguna</a></li><li><a href="#" class="text-sm transition-colors hover:underline" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">Syarat &amp; Ketentuan</a></li></ul></div><div><h5 class="text-xs font-semibold mb-5" style="${ssrRenderStyle({ "color": "var(--color-ink)" })}">Kontak</h5><ul class="space-y-3"><li class="text-sm" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">Jl. Dahlia No.81, Kel. Bugis</li><li class="text-sm" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">Kec. Samarinda Kota, Kota Samarinda</li><li class="text-sm" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">Kalimantan Timur 75121</li><li class="text-sm" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">Telp: 0541-203785</li><li><a href="mailto:bappedalitbang@samarindakota.go.id" class="text-sm" style="${ssrRenderStyle({ "color": "var(--color-accent)" })}">bappedalitbang@samarindakota.go.id</a></li></ul></div><div><h5 class="text-xs font-semibold mb-5" style="${ssrRenderStyle({ "color": "var(--color-ink)" })}">Ikuti Kami</h5><div class="flex items-center gap-3"><a href="https://www.instagram.com/bapperida_smd/" target="_blank" class="w-9 h-9 flex items-center justify-center rounded-lg transition-colors" style="${ssrRenderStyle({ "border": "1px solid var(--color-rule)", "color": "var(--color-ink-2)" })}">`);
+      _push(ssrRenderComponent(_component_Icon, {
+        icon: "solar:gallery-bold",
+        class: "w-4 h-4"
+      }, null, _parent));
+      _push(`</a><a href="https://www.youtube.com/@bapperidasamarinda" target="_blank" class="w-9 h-9 flex items-center justify-center rounded-lg transition-colors" style="${ssrRenderStyle({ "border": "1px solid var(--color-rule)", "color": "var(--color-ink-2)" })}">`);
+      _push(ssrRenderComponent(_component_Icon, {
+        icon: "solar:play-bold",
+        class: "w-4 h-4"
+      }, null, _parent));
+      _push(`</a><a href="mailto:bappedalitbang@samarindakota.go.id" class="w-9 h-9 flex items-center justify-center rounded-lg transition-colors" style="${ssrRenderStyle({ "border": "1px solid var(--color-rule)", "color": "var(--color-ink-2)" })}">`);
+      _push(ssrRenderComponent(_component_Icon, {
+        icon: "solar:letter-bold",
+        class: "w-4 h-4"
+      }, null, _parent));
+      _push(`</a></div></div></div><div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8"><div class="flex items-center gap-3"><img src="/img/logo-samarinda.webp" alt="Lambang Kota Samarinda" class="w-8 h-8 object-contain"><div><span class="text-sm font-semibold" style="${ssrRenderStyle({ "font-family": "var(--font-display)", "color": "var(--color-ink)", "letter-spacing": "-0.02em" })}">SIKAJIAN</span><span class="text-xs block" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">© ${ssrInterpolate((/* @__PURE__ */ new Date()).getFullYear())} BAPPEDA Litbang Kota Samarinda</span></div></div><span class="text-xs" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">Dibangun untuk pelayanan publik</span></div></div></footer></div>`);
     };
   }
 };

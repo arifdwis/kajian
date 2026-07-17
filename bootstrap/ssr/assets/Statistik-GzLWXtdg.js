@@ -26,7 +26,13 @@ const _sfc_main = {
       colors: ["#3B82F6"],
       stroke: { curve: "smooth", width: 3 },
       xaxis: { categories, axisBorder: { show: false } },
-      grid: { borderColor: "#E5E7EB", strokeDashArray: 4 }
+      grid: { borderColor: "#E5E7EB", strokeDashArray: 4 },
+      tooltip: {
+        theme: "light",
+        style: { fontSize: "12px" },
+        y: { formatter: (val) => val + " unduhan" }
+      },
+      markers: { size: 5, strokeWidth: 0 }
     });
     const getBarChartOptions = (categories) => ({
       chart: {
@@ -41,7 +47,12 @@ const _sfc_main = {
           horizontal: true
         }
       },
-      xaxis: { categories }
+      xaxis: { categories },
+      tooltip: {
+        theme: "light",
+        style: { fontSize: "12px" },
+        y: { formatter: (val) => val + " kajian" }
+      }
     });
     const getPieChartOptions = (labels) => ({
       chart: {
@@ -50,7 +61,16 @@ const _sfc_main = {
       },
       labels,
       colors: ["#10B981", "#F59E0B", "#EF4444", "#3B82F6", "#EC4899"],
-      legend: { position: "bottom" }
+      legend: { position: "bottom" },
+      tooltip: {
+        theme: "light",
+        style: { fontSize: "12px" },
+        y: { formatter: (val) => val + " kajian" }
+      },
+      dataLabels: {
+        enabled: true,
+        style: { fontSize: "11px", fontWeight: 600 }
+      }
     });
     const chartTrendData = computed(() => {
       const list = props.charts.downloads_trend || [];
@@ -143,7 +163,7 @@ const _sfc_main = {
               options: getPieChartOptions(chartJenisLabels.value),
               series: chartJenisSeries.value
             }, null, _parent2, _scopeId));
-            _push2(`</div></div></div><div class="grid grid-cols-1 gap-8"${_scopeId}><div class="bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6"${_scopeId}><h4 class="font-bold text-gray-800 dark:text-white text-base mb-1"${_scopeId}>Distribusi Bidang / Rumpun OPD</h4><p class="text-xs text-gray-400 mb-6"${_scopeId}>Jumlah berkas kajian terpublikasi per OPD pelaksana</p><div class="h-80"${_scopeId}>`);
+            _push2(`</div></div></div><div class="grid grid-cols-1 gap-8"${_scopeId}><div class="bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6"${_scopeId}><h4 class="font-bold text-gray-800 dark:text-white text-base mb-1"${_scopeId}>Distribusi Bidang / Rumpun OPD</h4><p class="text-xs text-gray-400 mb-6"${_scopeId}>Jumlah berkas kajian terpublikasi per bidang</p><div class="h-80"${_scopeId}>`);
             _push2(ssrRenderComponent(unref(apexchart), {
               type: "bar",
               height: "100%",
@@ -266,7 +286,7 @@ const _sfc_main = {
                 createVNode("div", { class: "grid grid-cols-1 gap-8" }, [
                   createVNode("div", { class: "bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6" }, [
                     createVNode("h4", { class: "font-bold text-gray-800 dark:text-white text-base mb-1" }, "Distribusi Bidang / Rumpun OPD"),
-                    createVNode("p", { class: "text-xs text-gray-400 mb-6" }, "Jumlah berkas kajian terpublikasi per OPD pelaksana"),
+                    createVNode("p", { class: "text-xs text-gray-400 mb-6" }, "Jumlah berkas kajian terpublikasi per bidang"),
                     createVNode("div", { class: "h-80" }, [
                       createVNode(unref(apexchart), {
                         type: "bar",

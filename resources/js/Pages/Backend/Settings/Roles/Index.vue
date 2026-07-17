@@ -171,7 +171,7 @@ const executeDeleteRole = () => {
   <Icon icon="solar:pen-bold" class="w-4 h-4" />
  </button>
  <button
-  v-if="!['superadmin', 'admin', 'operator'].includes(item.slug)"
+  v-if="!['superadmin', 'admin'].includes(item.slug)"
   @click="confirmDeleteRole(item.id)"
   class="p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-sm transition-all"
   title="Hapus"

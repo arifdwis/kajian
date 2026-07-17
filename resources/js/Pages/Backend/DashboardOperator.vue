@@ -17,25 +17,40 @@ const user = computed(() => page.props.auth.user);
 // Charts settings & themes
 const getLineChartOptions = (categories) => ({
  chart: {
- id: 'downloads-trend-op',
- toolbar: { show: false },
- zoom: { enabled: false },
- foreColor: '#9CA3AF',
+  id: 'downloads-trend-op',
+  toolbar: { show: false },
+  zoom: { enabled: false },
+  foreColor: '#9CA3AF',
  },
  colors: ['#8B5CF6'],
  stroke: { curve: 'smooth', width: 3 },
  xaxis: { categories, axisBorder: { show: false } },
  grid: { borderColor: '#E5E7EB', strokeDashArray: 4 },
+ tooltip: {
+  theme: 'light',
+  style: { fontSize: '12px' },
+  y: { formatter: (val) => val + ' unduhan' },
+ },
+ markers: { size: 5, strokeWidth: 0 },
 });
 
 const getPieChartOptions = (labels) => ({
  chart: {
- id: 'jenis-dist-op',
- foreColor: '#9CA3AF',
+  id: 'jenis-dist-op',
+  foreColor: '#9CA3AF',
  },
  labels,
  colors: ['#10B981', '#F59E0B', '#EF4444', '#3B82F6', '#EC4899'],
- legend: { position: 'bottom' }
+ legend: { position: 'bottom' },
+ tooltip: {
+  theme: 'light',
+  style: { fontSize: '12px' },
+  y: { formatter: (val) => val + ' kajian' },
+ },
+ dataLabels: {
+  enabled: true,
+  style: { fontSize: '11px', fontWeight: 600 },
+ },
 });
 
 const chartTrendData = computed(() => {

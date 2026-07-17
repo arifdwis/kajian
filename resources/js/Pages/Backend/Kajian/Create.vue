@@ -183,7 +183,7 @@ const submit = () => {
    <span v-if="stepErrors.tahun_id" class="text-[11px] text-red-500 mt-1 block">{{ stepErrors.tahun_id }}</span>
    </div>
    <div>
-       <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Bidang <span class="text-red-500">*</span></label></label>
+        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Bidang <span class="text-red-500">*</span></label>
    <SearchSelect v-model="form.bidang_id" :options="bidangOptions" placeholder="Pilih Bidang" :required="true" />
    <span v-if="stepErrors.bidang_id" class="text-[11px] text-red-500 mt-1 block">{{ stepErrors.bidang_id }}</span>
    </div>

@@ -1,5 +1,5 @@
-import { resolveComponent, withCtx, unref, createTextVNode, createVNode, withModifiers, withDirectives, vModelText, vModelSelect, openBlock, createBlock, createCommentVNode, useSSRContext } from "vue";
-import { ssrRenderComponent, ssrRenderAttr, ssrIncludeBooleanAttr, ssrLooseContain, ssrLooseEqual } from "vue/server-renderer";
+import { resolveComponent, withCtx, unref, createTextVNode, createVNode, withModifiers, withDirectives, vModelText, openBlock, createBlock, createCommentVNode, useSSRContext } from "vue";
+import { ssrRenderComponent, ssrRenderAttr, ssrIncludeBooleanAttr } from "vue/server-renderer";
 import { useForm, Head, Link } from "@inertiajs/vue3";
 import { useToast } from "vue-toastification";
 import { _ as _sfc_main$1, a as _sfc_main$2 } from "./InputError-BPcHmz-m.js";
@@ -14,7 +14,7 @@ const _sfc_main = {
       email: "",
       password: "",
       password_confirmation: "",
-      role: "akademisi"
+      role: "pengguna"
     });
     const submit = () => {
       form.post(route("register"), {
@@ -26,6 +26,7 @@ const _sfc_main = {
       });
     };
     return (_ctx, _push, _parent, _attrs) => {
+      const _component_SearchSelect = resolveComponent("SearchSelect");
       const _component_Icon = resolveComponent("Icon");
       _push(ssrRenderComponent(_sfc_main$1, _attrs, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
@@ -41,7 +42,15 @@ const _sfc_main = {
               class: "mt-1",
               message: unref(form).errors.email
             }, null, _parent2, _scopeId));
-            _push2(`</div><div${_scopeId}><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"${_scopeId}>Rumpun Rencana Akses (Role)</label><select required class="w-full px-4 py-2.5 rounded-sm border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm"${_scopeId}><option value="akademisi"${ssrIncludeBooleanAttr(Array.isArray(unref(form).role) ? ssrLooseContain(unref(form).role, "akademisi") : ssrLooseEqual(unref(form).role, "akademisi")) ? " selected" : ""}${_scopeId}>Akademisi (Dosen / Peneliti)</option><option value="mahasiswa"${ssrIncludeBooleanAttr(Array.isArray(unref(form).role) ? ssrLooseContain(unref(form).role, "mahasiswa") : ssrLooseEqual(unref(form).role, "mahasiswa")) ? " selected" : ""}${_scopeId}>Mahasiswa / Umum</option></select>`);
+            _push2(`</div><div${_scopeId}><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"${_scopeId}>Rumpun Rencana Akses (Role)</label>`);
+            _push2(ssrRenderComponent(_component_SearchSelect, {
+              modelValue: unref(form).role,
+              "onUpdate:modelValue": ($event) => unref(form).role = $event,
+              options: [
+                { label: "Pengguna (ASN / Akademisi / Mahasiswa)", value: "pengguna" }
+              ],
+              required: true
+            }, null, _parent2, _scopeId));
             _push2(ssrRenderComponent(_sfc_main$2, {
               class: "mt-1",
               message: unref(form).errors.role
@@ -129,16 +138,14 @@ const _sfc_main = {
                 ]),
                 createVNode("div", null, [
                   createVNode("label", { class: "block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" }, "Rumpun Rencana Akses (Role)"),
-                  withDirectives(createVNode("select", {
+                  createVNode(_component_SearchSelect, {
+                    modelValue: unref(form).role,
                     "onUpdate:modelValue": ($event) => unref(form).role = $event,
-                    required: "",
-                    class: "w-full px-4 py-2.5 rounded-sm border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm"
-                  }, [
-                    createVNode("option", { value: "akademisi" }, "Akademisi (Dosen / Peneliti)"),
-                    createVNode("option", { value: "mahasiswa" }, "Mahasiswa / Umum")
-                  ], 8, ["onUpdate:modelValue"]), [
-                    [vModelSelect, unref(form).role]
-                  ]),
+                    options: [
+                      { label: "Pengguna (ASN / Akademisi / Mahasiswa)", value: "pengguna" }
+                    ],
+                    required: true
+                  }, null, 8, ["modelValue", "onUpdate:modelValue"]),
                   createVNode(_sfc_main$2, {
                     class: "mt-1",
                     message: unref(form).errors.role

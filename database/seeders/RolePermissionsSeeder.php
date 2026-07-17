@@ -59,8 +59,8 @@ class RolePermissionsSeeder extends Seeder
             'settings.log-activity.destroy',
         ];
 
-        // 2. Operator Bidang Permissions
-        $operatorPermissions = [
+        // 2. Pengguna Permissions (gabungan operator + pengguna lama)
+        $penggunaPermissions = [
             'dashboard',
             'kajian.index',
             'kajian.create',
@@ -71,13 +71,6 @@ class RolePermissionsSeeder extends Seeder
             'laporan.statistik',
         ];
 
-        // 3. Pengguna Permissions
-        $penggunaPermissions = [
-            'dashboard',
-            'kajian.index',
-            'kajian.show',
-        ];
-
         // Assign to Admin
         $adminRole = Role::where('slug', 'admin')->first();
         if ($adminRole) {
@@ -85,17 +78,6 @@ class RolePermissionsSeeder extends Seeder
                 $perm = Permission::where('name', $name)->first();
                 if ($perm) {
                     $adminRole->permissions()->attach($perm->id);
-                }
-            }
-        }
-
-        // Assign to Operator
-        $operatorRole = Role::where('slug', 'operator')->first();
-        if ($operatorRole) {
-            foreach ($operatorPermissions as $name) {
-                $perm = Permission::where('name', $name)->first();
-                if ($perm) {
-                    $operatorRole->permissions()->attach($perm->id);
                 }
             }
         }

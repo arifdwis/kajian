@@ -1,5 +1,5 @@
-import { ref, resolveComponent, unref, withCtx, createVNode, createTextVNode, openBlock, createBlock, createCommentVNode, Fragment, renderList, toDisplayString, withModifiers, withDirectives, vModelText, vModelSelect, vModelCheckbox, useSSRContext } from "vue";
-import { ssrRenderComponent, ssrRenderList, ssrInterpolate, ssrRenderAttr, ssrIncludeBooleanAttr, ssrLooseContain, ssrLooseEqual } from "vue/server-renderer";
+import { computed, ref, resolveComponent, unref, withCtx, createVNode, createTextVNode, openBlock, createBlock, createCommentVNode, Fragment, renderList, toDisplayString, withModifiers, withDirectives, vModelText, vModelCheckbox, useSSRContext } from "vue";
+import { ssrRenderComponent, ssrRenderList, ssrInterpolate, ssrRenderAttr, ssrIncludeBooleanAttr, ssrLooseContain } from "vue/server-renderer";
 import { useForm, Head, router } from "@inertiajs/vue3";
 import { _ as _sfc_main$1 } from "./AuthenticatedLayout-C8eooNFo.js";
 import { _ as _sfc_main$2 } from "./ConfirmModal-C43yiw5v.js";
@@ -17,6 +17,11 @@ const _sfc_main = {
   },
   setup(__props) {
     const toast = useToast();
+    const props = __props;
+    const menuOptions = computed(() => [
+      { label: "Menu Utama (Parent)", value: "" },
+      ...props.menus.map((m) => ({ label: m.title, value: m.id }))
+    ]);
     const showModal = ref(false);
     const isEdit = ref(false);
     const currentId = ref(null);
@@ -87,6 +92,7 @@ const _sfc_main = {
     };
     return (_ctx, _push, _parent, _attrs) => {
       const _component_Icon = resolveComponent("Icon");
+      const _component_SearchSelect = resolveComponent("SearchSelect");
       _push(`<!--[-->`);
       _push(ssrRenderComponent(unref(Head), { title: "Manajemen Menu Sidebar" }, null, _parent));
       _push(ssrRenderComponent(_sfc_main$1, null, {
@@ -171,11 +177,14 @@ const _sfc_main = {
                 icon: "solar:close-square-linear",
                 class: "w-5 h-5"
               }, null, _parent2, _scopeId));
-              _push2(`</button></div><form class="space-y-4"${_scopeId}><div class="grid grid-cols-2 gap-4"${_scopeId}><div${_scopeId}><label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"${_scopeId}>Judul Menu <span class="text-red-500"${_scopeId}>*</span></label><input type="text"${ssrRenderAttr("value", unref(form).title)} required placeholder="E.g., Dashboard" class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-955 text-slate-900 dark:text-white px-4 py-2.5"${_scopeId}></div><div${_scopeId}><label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"${_scopeId}>Route / URL</label><input type="text"${ssrRenderAttr("value", unref(form).route)} placeholder="E.g., dashboard" class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-955 text-slate-900 dark:text-white px-4 py-2.5"${_scopeId}></div></div><div class="grid grid-cols-2 gap-4"${_scopeId}><div${_scopeId}><label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"${_scopeId}>Icon (Solar/Iconify)</label><input type="text"${ssrRenderAttr("value", unref(form).icon)} placeholder="E.g., solar:home-bold" class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-955 text-slate-900 dark:text-white px-4 py-2.5"${_scopeId}></div><div${_scopeId}><label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"${_scopeId}>Parent Menu</label><select class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-955 text-slate-900 dark:text-white px-4 py-2.5"${_scopeId}><option value=""${ssrIncludeBooleanAttr(Array.isArray(unref(form).parent_id) ? ssrLooseContain(unref(form).parent_id, "") : ssrLooseEqual(unref(form).parent_id, "")) ? " selected" : ""}${_scopeId}>Menu Utama (Parent)</option><!--[-->`);
-              ssrRenderList(__props.menus, (m) => {
-                _push2(`<option${ssrRenderAttr("value", m.id)}${ssrIncludeBooleanAttr(Array.isArray(unref(form).parent_id) ? ssrLooseContain(unref(form).parent_id, m.id) : ssrLooseEqual(unref(form).parent_id, m.id)) ? " selected" : ""}${_scopeId}>${ssrInterpolate(m.title)}</option>`);
-              });
-              _push2(`<!--]--></select></div></div><div${_scopeId}><label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"${_scopeId}>Permission Required</label><input type="text"${ssrRenderAttr("value", unref(form).permission_name)} placeholder="E.g., dashboard" class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-955 text-slate-900 dark:text-white px-4 py-2.5"${_scopeId}></div><div${_scopeId}><label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3"${_scopeId}>Batasi Peran (Role)</label><div class="flex flex-wrap gap-2.5"${_scopeId}><!--[-->`);
+              _push2(`</button></div><form class="space-y-4"${_scopeId}><div class="grid grid-cols-2 gap-4"${_scopeId}><div${_scopeId}><label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"${_scopeId}>Judul Menu <span class="text-red-500"${_scopeId}>*</span></label><input type="text"${ssrRenderAttr("value", unref(form).title)} required placeholder="E.g., Dashboard" class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-955 text-slate-900 dark:text-white px-4 py-2.5"${_scopeId}></div><div${_scopeId}><label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"${_scopeId}>Route / URL</label><input type="text"${ssrRenderAttr("value", unref(form).route)} placeholder="E.g., dashboard" class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-955 text-slate-900 dark:text-white px-4 py-2.5"${_scopeId}></div></div><div class="grid grid-cols-2 gap-4"${_scopeId}><div${_scopeId}><label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"${_scopeId}>Icon (Solar/Iconify)</label><input type="text"${ssrRenderAttr("value", unref(form).icon)} placeholder="E.g., solar:home-bold" class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-955 text-slate-900 dark:text-white px-4 py-2.5"${_scopeId}></div><div${_scopeId}><label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"${_scopeId}>Parent Menu</label>`);
+              _push2(ssrRenderComponent(_component_SearchSelect, {
+                modelValue: unref(form).parent_id,
+                "onUpdate:modelValue": ($event) => unref(form).parent_id = $event,
+                options: menuOptions.value,
+                placeholder: "Menu Utama (Parent)"
+              }, null, _parent2, _scopeId));
+              _push2(`</div></div><div${_scopeId}><label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"${_scopeId}>Permission Required</label><input type="text"${ssrRenderAttr("value", unref(form).permission_name)} placeholder="E.g., dashboard" class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-955 text-slate-900 dark:text-white px-4 py-2.5"${_scopeId}></div><div${_scopeId}><label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3"${_scopeId}>Batasi Peran (Role)</label><div class="flex flex-wrap gap-2.5"${_scopeId}><!--[-->`);
               ssrRenderList(__props.roles, (r) => {
                 _push2(`<label class="inline-flex items-center gap-1.5 px-3 py-1.5 border border-rule dark:border-rule-dark rounded-sm cursor-pointer hover:bg-paper-2 dark:hover:bg-slate-800 select-none text-xs"${_scopeId}><input type="checkbox"${ssrRenderAttr("value", r.slug)}${ssrIncludeBooleanAttr(Array.isArray(unref(form).roles) ? ssrLooseContain(unref(form).roles, r.slug) : unref(form).roles) ? " checked" : ""} class="rounded text-blue-600 focus:ring-blue-500/20"${_scopeId}><span class="text-slate-800 dark:text-slate-200 font-semibold"${_scopeId}>${ssrInterpolate(r.name)}</span></label>`);
               });
@@ -385,20 +394,12 @@ const _sfc_main = {
                         ]),
                         createVNode("div", null, [
                           createVNode("label", { class: "block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2" }, "Parent Menu"),
-                          withDirectives(createVNode("select", {
+                          createVNode(_component_SearchSelect, {
+                            modelValue: unref(form).parent_id,
                             "onUpdate:modelValue": ($event) => unref(form).parent_id = $event,
-                            class: "w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-955 text-slate-900 dark:text-white px-4 py-2.5"
-                          }, [
-                            createVNode("option", { value: "" }, "Menu Utama (Parent)"),
-                            (openBlock(true), createBlock(Fragment, null, renderList(__props.menus, (m) => {
-                              return openBlock(), createBlock("option", {
-                                key: m.id,
-                                value: m.id
-                              }, toDisplayString(m.title), 9, ["value"]);
-                            }), 128))
-                          ], 8, ["onUpdate:modelValue"]), [
-                            [vModelSelect, unref(form).parent_id]
-                          ])
+                            options: menuOptions.value,
+                            placeholder: "Menu Utama (Parent)"
+                          }, null, 8, ["modelValue", "onUpdate:modelValue", "options"])
                         ])
                       ]),
                       createVNode("div", null, [

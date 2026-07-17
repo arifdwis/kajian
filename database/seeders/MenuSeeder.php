@@ -21,7 +21,7 @@ class MenuSeeder extends Seeder
             'icon' => 'solar:home-smile-bold-duotone',
             'is_active' => true,
             'order' => 1,
-            'roles' => 'superadmin,admin,operator,pengguna',
+            'roles' => 'superadmin,admin,pengguna',
         ]);
 
         // 2. Kelola Kajian
@@ -32,7 +32,7 @@ class MenuSeeder extends Seeder
             'permission_name' => 'kajian.index',
             'is_active' => true,
             'order' => 2,
-            'roles' => 'superadmin,admin,operator,pengguna',
+            'roles' => 'superadmin,admin,pengguna',
         ]);
 
         // 3. Master Data

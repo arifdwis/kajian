@@ -1,8 +1,10 @@
-import { ref, resolveComponent, unref, withCtx, createTextVNode, toDisplayString, createVNode, withDirectives, withKeys, vModelText, openBlock, createBlock, Fragment, renderList, vModelSelect, createCommentVNode, useSSRContext } from "vue";
-import { ssrRenderComponent, ssrRenderStyle, ssrRenderAttr, ssrIncludeBooleanAttr, ssrLooseContain, ssrLooseEqual, ssrRenderList, ssrInterpolate } from "vue/server-renderer";
+import { ref, computed, resolveComponent, unref, withCtx, createTextVNode, toDisplayString, createVNode, withDirectives, withKeys, vModelText, openBlock, createBlock, createCommentVNode, Fragment, renderList, useSSRContext } from "vue";
+import { ssrRenderComponent, ssrRenderStyle, ssrRenderAttr, ssrInterpolate, ssrRenderList } from "vue/server-renderer";
 import { Head, Link, router } from "@inertiajs/vue3";
-import { _ as _sfc_main$1 } from "./FrontendLayout-CemJRisx.js";
+import { _ as _sfc_main$1 } from "./FrontendLayout-Cs4D5AFH.js";
 import { _ as _sfc_main$2 } from "./Pagination-DE6AvrVK.js";
+import axios from "axios";
+import { useToast } from "vue-toastification";
 const _sfc_main = {
   __name: "Search",
   __ssrInlineRender: true,
@@ -14,11 +16,24 @@ const _sfc_main = {
     tahuns: Array
   },
   setup(__props) {
+    const toast = useToast();
     const props = __props;
     const q = ref(props.filters.q || "");
     const bidang_id = ref(props.filters.bidang_id || "");
     const jenis_id = ref(props.filters.jenis_id || "");
     const tahun_id = ref(props.filters.tahun_id || "");
+    const bidangOptions = computed(() => [
+      { label: "Semua Bidang", value: "" },
+      ...props.bidangs.map((b) => ({ label: b.nama, value: b.id }))
+    ]);
+    const jenisOptions = computed(() => [
+      { label: "Semua Jenis", value: "" },
+      ...props.jenisKajians.map((j) => ({ label: j.nama, value: j.id }))
+    ]);
+    const tahunOptions = computed(() => [
+      { label: "Semua Tahun", value: "" },
+      ...props.tahuns.map((t) => ({ label: t.tahun, value: t.id }))
+    ]);
     const handleSearch = () => {
       router.get(route("portal.search"), {
         q: q.value,
@@ -37,8 +52,22 @@ const _sfc_main = {
       tahun_id.value = "";
       handleSearch();
     };
+    const directDownload = (slug) => {
+      toast.info("Memulai unduhan...");
+      axios.post(route("portal.download", slug), {}, { responseType: "blob" }).then((response) => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", slug + ".pdf");
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        toast.success("Unduhan berhasil.");
+      }).catch(() => toast.error("Gagal mengunduh berkas."));
+    };
     return (_ctx, _push, _parent, _attrs) => {
       const _component_Icon = resolveComponent("Icon");
+      const _component_SearchSelect = resolveComponent("SearchSelect");
       _push(`<!--[-->`);
       _push(ssrRenderComponent(unref(Head), { title: "Pencarian Canggih" }, null, _parent));
       _push(ssrRenderComponent(_sfc_main$1, null, {
@@ -50,19 +79,31 @@ const _sfc_main = {
               class: "absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5",
               style: { "color": "var(--color-ink-2)" }
             }, null, _parent2, _scopeId));
-            _push2(`<input type="text"${ssrRenderAttr("value", q.value)} placeholder="Cari judul kajian, abstrak, penulis..." class="w-full pl-12 pr-4 py-3.5 text-sm rounded-md" style="${ssrRenderStyle({ "border": "1px solid var(--color-rule)", "color": "var(--color-ink)", "background-color": "var(--color-paper-2)" })}"${_scopeId}></div><div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mt-6"${_scopeId}><div${_scopeId}><label class="block text-xs font-medium mb-2" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}"${_scopeId}>Klaster Bidang</label><select class="w-full text-sm px-4 py-2.5 rounded-md" style="${ssrRenderStyle({ "border": "1px solid var(--color-rule)", "color": "var(--color-ink)", "background-color": "var(--color-paper-2)" })}"${_scopeId}><option value=""${ssrIncludeBooleanAttr(Array.isArray(bidang_id.value) ? ssrLooseContain(bidang_id.value, "") : ssrLooseEqual(bidang_id.value, "")) ? " selected" : ""}${_scopeId}>Semua Bidang</option><!--[-->`);
-            ssrRenderList(__props.bidangs, (b) => {
-              _push2(`<option${ssrRenderAttr("value", b.id)}${ssrIncludeBooleanAttr(Array.isArray(bidang_id.value) ? ssrLooseContain(bidang_id.value, b.id) : ssrLooseEqual(bidang_id.value, b.id)) ? " selected" : ""}${_scopeId}>${ssrInterpolate(b.nama)}</option>`);
-            });
-            _push2(`<!--]--></select></div><div${_scopeId}><label class="block text-xs font-medium mb-2" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}"${_scopeId}>Jenis Penelitian</label><select class="w-full text-sm px-4 py-2.5 rounded-md" style="${ssrRenderStyle({ "border": "1px solid var(--color-rule)", "color": "var(--color-ink)", "background-color": "var(--color-paper-2)" })}"${_scopeId}><option value=""${ssrIncludeBooleanAttr(Array.isArray(jenis_id.value) ? ssrLooseContain(jenis_id.value, "") : ssrLooseEqual(jenis_id.value, "")) ? " selected" : ""}${_scopeId}>Semua Jenis</option><!--[-->`);
-            ssrRenderList(__props.jenisKajians, (j) => {
-              _push2(`<option${ssrRenderAttr("value", j.id)}${ssrIncludeBooleanAttr(Array.isArray(jenis_id.value) ? ssrLooseContain(jenis_id.value, j.id) : ssrLooseEqual(jenis_id.value, j.id)) ? " selected" : ""}${_scopeId}>${ssrInterpolate(j.nama)}</option>`);
-            });
-            _push2(`<!--]--></select></div><div${_scopeId}><label class="block text-xs font-medium mb-2" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}"${_scopeId}>Tahun</label><select class="w-full text-sm px-4 py-2.5 rounded-md" style="${ssrRenderStyle({ "border": "1px solid var(--color-rule)", "color": "var(--color-ink)", "background-color": "var(--color-paper-2)" })}"${_scopeId}><option value=""${ssrIncludeBooleanAttr(Array.isArray(tahun_id.value) ? ssrLooseContain(tahun_id.value, "") : ssrLooseEqual(tahun_id.value, "")) ? " selected" : ""}${_scopeId}>Semua Tahun</option><!--[-->`);
-            ssrRenderList(__props.tahuns, (t) => {
-              _push2(`<option${ssrRenderAttr("value", t.id)}${ssrIncludeBooleanAttr(Array.isArray(tahun_id.value) ? ssrLooseContain(tahun_id.value, t.id) : ssrLooseEqual(tahun_id.value, t.id)) ? " selected" : ""}${_scopeId}>${ssrInterpolate(t.tahun)}</option>`);
-            });
-            _push2(`<!--]--></select></div></div><div class="flex justify-end gap-3 mt-6 pt-5" style="${ssrRenderStyle({ "border-top": "1px solid var(--color-rule)" })}"${_scopeId}><button class="px-5 py-2.5 text-sm font-medium rounded-md" style="${ssrRenderStyle({ "border": "1px solid var(--color-rule)", "color": "var(--color-ink)" })}"${_scopeId}> Reset </button><button class="px-6 py-2.5 text-sm font-semibold rounded-md" style="${ssrRenderStyle({ "background-color": "var(--color-accent)", "color": "var(--color-accent-ink)" })}"${_scopeId}> Cari </button></div></div><div class="space-y-6"${_scopeId}><div class="flex items-center justify-between"${_scopeId}><p style="${ssrRenderStyle({ "color": "var(--color-ink-2)", "font-size": "14px" })}"${_scopeId}>Ditemukan <strong style="${ssrRenderStyle({ "color": "var(--color-ink)" })}"${_scopeId}>${ssrInterpolate(__props.results.total)}</strong> hasil pencarian `);
+            _push2(`<input type="text"${ssrRenderAttr("value", q.value)} placeholder="Cari judul kajian, abstrak, penulis..." class="w-full pl-12 pr-4 py-3.5 text-sm rounded-md" style="${ssrRenderStyle({ "border": "1px solid var(--color-rule)", "color": "var(--color-ink)", "background-color": "var(--color-paper-2)" })}"${_scopeId}></div><div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mt-6"${_scopeId}><div${_scopeId}><label class="block text-xs font-medium mb-2.5" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}"${_scopeId}>Klaster Bidang</label>`);
+            _push2(ssrRenderComponent(_component_SearchSelect, {
+              modelValue: bidang_id.value,
+              "onUpdate:modelValue": ($event) => bidang_id.value = $event,
+              options: bidangOptions.value,
+              placeholder: "Semua Bidang",
+              onChange: handleSearch
+            }, null, _parent2, _scopeId));
+            _push2(`</div><div${_scopeId}><label class="block text-xs font-medium mb-2.5" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}"${_scopeId}>Jenis Penelitian</label>`);
+            _push2(ssrRenderComponent(_component_SearchSelect, {
+              modelValue: jenis_id.value,
+              "onUpdate:modelValue": ($event) => jenis_id.value = $event,
+              options: jenisOptions.value,
+              placeholder: "Semua Jenis",
+              onChange: handleSearch
+            }, null, _parent2, _scopeId));
+            _push2(`</div><div${_scopeId}><label class="block text-xs font-medium mb-2.5" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}"${_scopeId}>Tahun</label>`);
+            _push2(ssrRenderComponent(_component_SearchSelect, {
+              modelValue: tahun_id.value,
+              "onUpdate:modelValue": ($event) => tahun_id.value = $event,
+              options: tahunOptions.value,
+              placeholder: "Semua Tahun",
+              onChange: handleSearch
+            }, null, _parent2, _scopeId));
+            _push2(`</div></div><div class="flex justify-end gap-3 mt-6 pt-5" style="${ssrRenderStyle({ "border-top": "1px solid var(--color-rule)" })}"${_scopeId}><button class="px-5 py-2.5 text-sm font-medium rounded-md" style="${ssrRenderStyle({ "border": "1px solid var(--color-rule)", "color": "var(--color-ink)" })}"${_scopeId}> Reset </button><button class="px-6 py-2.5 text-sm font-semibold rounded-md" style="${ssrRenderStyle({ "background-color": "var(--color-accent)", "color": "var(--color-accent-ink)" })}"${_scopeId}> Cari </button></div></div><div class="space-y-6"${_scopeId}><div class="flex items-center justify-between"${_scopeId}><p style="${ssrRenderStyle({ "color": "var(--color-ink-2)", "font-size": "14px" })}"${_scopeId}>Ditemukan <strong style="${ssrRenderStyle({ "color": "var(--color-ink)" })}"${_scopeId}>${ssrInterpolate(__props.results.total)}</strong> hasil pencarian `);
             if (__props.filters.q) {
               _push2(`<span${_scopeId}>untuk &quot;${ssrInterpolate(__props.filters.q)}&quot;</span>`);
             } else {
@@ -98,7 +139,7 @@ const _sfc_main = {
                 }),
                 _: 2
               }, _parent2, _scopeId));
-              _push2(`</h4><p class="text-sm line-clamp-2 leading-relaxed" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}"${_scopeId}>${ssrInterpolate(item.ringkasan)}</p><span style="${ssrRenderStyle({ "font-size": "11px", "color": "var(--color-ink-2)" })}"${_scopeId}>Rumpun: ${ssrInterpolate((_c = item.bidang) == null ? void 0 : _c.nama)}</span></div><div class="flex sm:flex-col items-center sm:items-end justify-between sm:justify-center gap-4 shrink-0 sm:pl-6" style="${ssrRenderStyle({ "border-left": "1px solid var(--color-rule)" })}"${_scopeId}><div class="flex items-center gap-4" style="${ssrRenderStyle({ "color": "var(--color-ink-2)", "font-size": "13px" })}"${_scopeId}><span class="flex items-center gap-1"${_scopeId}>`);
+              _push2(`</h4><p class="text-sm line-clamp-2 leading-relaxed" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}"${_scopeId}>${ssrInterpolate(item.ringkasan)}</p><span style="${ssrRenderStyle({ "font-size": "11px", "color": "var(--color-ink-2)" })}"${_scopeId}>Rumpun: ${ssrInterpolate((_c = item.bidang) == null ? void 0 : _c.nama)}</span></div><div class="flex sm:flex-col items-center sm:items-end justify-between sm:justify-center gap-3 shrink-0 sm:pl-6" style="${ssrRenderStyle({ "border-left": "1px solid var(--color-rule)" })}"${_scopeId}><div class="flex items-center gap-4" style="${ssrRenderStyle({ "color": "var(--color-ink-2)", "font-size": "13px" })}"${_scopeId}><span class="flex items-center gap-1"${_scopeId}>`);
               _push2(ssrRenderComponent(_component_Icon, {
                 icon: "solar:eye-linear",
                 class: "w-4 h-4"
@@ -108,11 +149,11 @@ const _sfc_main = {
                 icon: "solar:download-linear",
                 class: "w-4 h-4"
               }, null, _parent2, _scopeId));
-              _push2(` ${ssrInterpolate(item.download_count || 0)}</span></div>`);
+              _push2(` ${ssrInterpolate(item.download_count || 0)}</span></div><div class="flex items-center gap-2"${_scopeId}>`);
               _push2(ssrRenderComponent(unref(Link), {
                 href: _ctx.route("portal.detail", item.slug),
-                class: "px-4 py-2 text-sm font-semibold rounded-md",
-                style: { "background-color": "var(--color-accent)", "color": "var(--color-accent-ink)" }
+                class: "px-3 py-1.5 text-xs font-semibold rounded-md",
+                style: { "border": "1px solid var(--color-rule)", "color": "var(--color-ink)" }
               }, {
                 default: withCtx((_2, _push3, _parent3, _scopeId2) => {
                   if (_push3) {
@@ -125,7 +166,7 @@ const _sfc_main = {
                 }),
                 _: 2
               }, _parent2, _scopeId));
-              _push2(`</div></div></div>`);
+              _push2(`<button class="px-3 py-1.5 text-xs font-semibold rounded-md cursor-pointer" style="${ssrRenderStyle({ "background-color": "var(--color-accent)", "color": "var(--color-accent-ink)" })}"${_scopeId}> Unduh </button></div></div></div></div>`);
             });
             _push2(`<!--]--></div><div class="flex justify-end pt-4"${_scopeId}>`);
             _push2(ssrRenderComponent(_sfc_main$2, {
@@ -166,66 +207,42 @@ const _sfc_main = {
                   createVNode("div", { class: "grid grid-cols-1 sm:grid-cols-3 gap-5 mt-6" }, [
                     createVNode("div", null, [
                       createVNode("label", {
-                        class: "block text-xs font-medium mb-2",
+                        class: "block text-xs font-medium mb-2.5",
                         style: { "color": "var(--color-ink-2)" }
                       }, "Klaster Bidang"),
-                      withDirectives(createVNode("select", {
+                      createVNode(_component_SearchSelect, {
+                        modelValue: bidang_id.value,
                         "onUpdate:modelValue": ($event) => bidang_id.value = $event,
-                        class: "w-full text-sm px-4 py-2.5 rounded-md",
-                        style: { "border": "1px solid var(--color-rule)", "color": "var(--color-ink)", "background-color": "var(--color-paper-2)" }
-                      }, [
-                        createVNode("option", { value: "" }, "Semua Bidang"),
-                        (openBlock(true), createBlock(Fragment, null, renderList(__props.bidangs, (b) => {
-                          return openBlock(), createBlock("option", {
-                            key: b.id,
-                            value: b.id
-                          }, toDisplayString(b.nama), 9, ["value"]);
-                        }), 128))
-                      ], 8, ["onUpdate:modelValue"]), [
-                        [vModelSelect, bidang_id.value]
-                      ])
+                        options: bidangOptions.value,
+                        placeholder: "Semua Bidang",
+                        onChange: handleSearch
+                      }, null, 8, ["modelValue", "onUpdate:modelValue", "options"])
                     ]),
                     createVNode("div", null, [
                       createVNode("label", {
-                        class: "block text-xs font-medium mb-2",
+                        class: "block text-xs font-medium mb-2.5",
                         style: { "color": "var(--color-ink-2)" }
                       }, "Jenis Penelitian"),
-                      withDirectives(createVNode("select", {
+                      createVNode(_component_SearchSelect, {
+                        modelValue: jenis_id.value,
                         "onUpdate:modelValue": ($event) => jenis_id.value = $event,
-                        class: "w-full text-sm px-4 py-2.5 rounded-md",
-                        style: { "border": "1px solid var(--color-rule)", "color": "var(--color-ink)", "background-color": "var(--color-paper-2)" }
-                      }, [
-                        createVNode("option", { value: "" }, "Semua Jenis"),
-                        (openBlock(true), createBlock(Fragment, null, renderList(__props.jenisKajians, (j) => {
-                          return openBlock(), createBlock("option", {
-                            key: j.id,
-                            value: j.id
-                          }, toDisplayString(j.nama), 9, ["value"]);
-                        }), 128))
-                      ], 8, ["onUpdate:modelValue"]), [
-                        [vModelSelect, jenis_id.value]
-                      ])
+                        options: jenisOptions.value,
+                        placeholder: "Semua Jenis",
+                        onChange: handleSearch
+                      }, null, 8, ["modelValue", "onUpdate:modelValue", "options"])
                     ]),
                     createVNode("div", null, [
                       createVNode("label", {
-                        class: "block text-xs font-medium mb-2",
+                        class: "block text-xs font-medium mb-2.5",
                         style: { "color": "var(--color-ink-2)" }
                       }, "Tahun"),
-                      withDirectives(createVNode("select", {
+                      createVNode(_component_SearchSelect, {
+                        modelValue: tahun_id.value,
                         "onUpdate:modelValue": ($event) => tahun_id.value = $event,
-                        class: "w-full text-sm px-4 py-2.5 rounded-md",
-                        style: { "border": "1px solid var(--color-rule)", "color": "var(--color-ink)", "background-color": "var(--color-paper-2)" }
-                      }, [
-                        createVNode("option", { value: "" }, "Semua Tahun"),
-                        (openBlock(true), createBlock(Fragment, null, renderList(__props.tahuns, (t) => {
-                          return openBlock(), createBlock("option", {
-                            key: t.id,
-                            value: t.id
-                          }, toDisplayString(t.tahun), 9, ["value"]);
-                        }), 128))
-                      ], 8, ["onUpdate:modelValue"]), [
-                        [vModelSelect, tahun_id.value]
-                      ])
+                        options: tahunOptions.value,
+                        placeholder: "Semua Tahun",
+                        onChange: handleSearch
+                      }, null, 8, ["modelValue", "onUpdate:modelValue", "options"])
                     ])
                   ]),
                   createVNode("div", {
@@ -308,7 +325,7 @@ const _sfc_main = {
                             createVNode("span", { style: { "font-size": "11px", "color": "var(--color-ink-2)" } }, "Rumpun: " + toDisplayString((_c = item.bidang) == null ? void 0 : _c.nama), 1)
                           ]),
                           createVNode("div", {
-                            class: "flex sm:flex-col items-center sm:items-end justify-between sm:justify-center gap-4 shrink-0 sm:pl-6",
+                            class: "flex sm:flex-col items-center sm:items-end justify-between sm:justify-center gap-3 shrink-0 sm:pl-6",
                             style: { "border-left": "1px solid var(--color-rule)" }
                           }, [
                             createVNode("div", {
@@ -330,16 +347,23 @@ const _sfc_main = {
                                 createTextVNode(" " + toDisplayString(item.download_count || 0), 1)
                               ])
                             ]),
-                            createVNode(unref(Link), {
-                              href: _ctx.route("portal.detail", item.slug),
-                              class: "px-4 py-2 text-sm font-semibold rounded-md",
-                              style: { "background-color": "var(--color-accent)", "color": "var(--color-accent-ink)" }
-                            }, {
-                              default: withCtx(() => [
-                                createTextVNode(" Baca ")
-                              ]),
-                              _: 1
-                            }, 8, ["href"])
+                            createVNode("div", { class: "flex items-center gap-2" }, [
+                              createVNode(unref(Link), {
+                                href: _ctx.route("portal.detail", item.slug),
+                                class: "px-3 py-1.5 text-xs font-semibold rounded-md",
+                                style: { "border": "1px solid var(--color-rule)", "color": "var(--color-ink)" }
+                              }, {
+                                default: withCtx(() => [
+                                  createTextVNode(" Baca ")
+                                ]),
+                                _: 1
+                              }, 8, ["href"]),
+                              createVNode("button", {
+                                onClick: ($event) => directDownload(item.slug),
+                                class: "px-3 py-1.5 text-xs font-semibold rounded-md cursor-pointer",
+                                style: { "background-color": "var(--color-accent)", "color": "var(--color-accent-ink)" }
+                              }, " Unduh ", 8, ["onClick"])
+                            ])
                           ])
                         ])
                       ], 40, ["onMouseenter", "onMouseleave"]);

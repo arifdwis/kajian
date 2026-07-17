@@ -1,0 +1,232 @@
+@import '../../tokens.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    line-height: 1.6;
+}
+
+::selection {
+    background-color: oklch(44% 0.055 135 / 0.2);
+}
+
+html,
+body {
+    height: 100%;
+}
+
+/* ---- Third-party component overrides ---- */
+
+.Vue-Toastification__toast {
+    padding: 10px 15px;
+    min-height: 15px;
+    font-size: 0.8rem;
+    border-radius: 6px;
+}
+
+.Vue-Toastification__toast-body {
+    font-size: 1rem;
+}
+
+@media only screen and (min-width: 600px) {
+    .Vue-Toastification__container.top-right,
+    .Vue-Toastification__container.bottom-right {
+        right: 1em;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .Vue-Toastification__container.top-left,
+    .Vue-Toastification__container.top-right,
+    .Vue-Toastification__container.top-center {
+        top: 5em;
+    }
+}
+
+.multiselect input {
+    display: none;
+}
+
+.multiselect.multiselect--active input {
+    display: block;
+}
+
+.multiselect__single {
+    padding: 0 0 0 5px;
+    margin-bottom: 0;
+}
+
+.multiselect__input,
+.multiselect__single {
+    min-height: 10px;
+    line-height: 10px;
+}
+
+.multiselect__tags {
+    min-height: 10px;
+    padding: 0.625rem 0.625rem 0.425rem 0.925rem;
+    border-radius: var(--radius-input);
+    border: 1px solid var(--color-rule);
+    background: var(--color-paper-2);
+    font-size: 1rem;
+}
+
+.multiselect__placeholder {
+    margin-bottom: 0;
+    padding-top: 0;
+}
+
+span.multiselect__single {
+    font-size: 1rem;
+    line-height: 1.25rem;
+}
+
+input.multiselect__input {
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-input);
+    border: 1px solid var(--color-rule);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-ink);
+    background-color: transparent;
+}
+
+input.multiselect__input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 2px oklch(77% 0.035 60 / 0.3);
+}
+
+input.multiselect__input::placeholder {
+    color: var(--color-ink-2);
+    opacity: 1;
+}
+
+.multiselect__input,
+.multiselect__single {
+    background: transparent;
+}
+
+.p-datatable-column-title {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+}
+
+.p-fileupload-file-thumbnail {
+    display: none;
+}
+
+.p-fileupload-file {
+    padding: 5px;
+}
+
+.p-fileupload-file-info {
+    gap: 0;
+    font-size: 0.95em;
+}
+
+.p-fileupload-file-name {
+    font-weight: 600;
+}
+
+.pdf-container {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+}
+
+.p-dialog-header {
+    padding: 0.8rem 1.5rem;
+}
+
+.p-divider-content {
+    background-color: var(--color-paper-2);
+}
+
+.dark .p-divider-content {
+    background-color: var(--color-paper-2-dark);
+}
+
+.p-togglebutton.p-togglebutton-checked {
+    background: var(--color-ink);
+    border-color: var(--color-ink);
+    color: var(--color-paper);
+}
+
+.dark .p-togglebutton.p-togglebutton-checked {
+    background: var(--color-ink-dark);
+    border-color: var(--color-ink-dark);
+    color: var(--color-paper-dark);
+}
+
+.vel-modal {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.vel-img {
+    background-color: transparent;
+    box-shadow: none;
+    filter: drop-shadow(5px 25px 25px rgba(0, 0, 0, 0.7));
+}
+
+.p-datatable-column-header-content {
+    display: block;
+}
+
+.filepond--credits {
+    opacity: 0.1;
+}
+
+.filepond--root,
+.filepond--browser,
+.filepond--root .filepond--drop-label,
+.filepond--drop-label {
+    min-height: 200px;
+}
+
+.filepond--panel-root {
+    background-color: var(--color-paper-2);
+}
+
+.filepond--drop-label label {
+    color: var(--color-ink);
+    font-size: 0.9rem;
+}
+
+.dark .filepond--panel-root {
+    background-color: var(--color-paper-2-dark);
+}
+
+.dark .filepond--drop-label label {
+    color: var(--color-ink-dark);
+}
+
+/* ---- Marquee (Tally-inspired) ---- */
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ---- Page transitions (minimal) ---- */
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity var(--dur-short) var(--ease-out);
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}

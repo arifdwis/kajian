@@ -1,0 +1,22 @@
+[
+  {
+    "date": "2026-07-17",
+    "macrostructure": "Full app: SaaS/API Product + Filter+Index + Content-Detail + Workbench",
+    "theme": "Tally-inspired (Geist · oklch(54% 0.220 268))",
+    "enrichment": "none",
+    "brief": "SIKAJIAN — Tally DNA: marquee hero, stats card, mono meta, fixed all backend gradients/shadows/scales",
+    "scope": "app",
+    "theme_axes": "light / grotesk-sans / cool (accent hue 268°)",
+    "note": "Samarinda civic: green palette, Outfit+Inter fonts, py-14 rhythm, container layout, h-14 nav, gap-8/6/3 spacing adapted from samarindakota.go.id measurements."
+  },
+  {
+    "date": "2026-07-17",
+    "macrostructure": "SaaS/API Product (public) + Workbench (admin)",
+    "theme": "Tally-inspired (cool white · Geist sans · accent oklch(54% 0.220 268))",
+    "enrichment": "none",
+    "brief": "SIKAJIAN — adopted Tally DNA (Geist, N5 pill nav, Ft5+link footer, blue-purple accent)",
+    "scope": "app",
+    "theme_axes": "light / grotesk-sans / cool (accent hue 268°)",
+    "note": "Full DNA adoption from hallmark study tally. Single-family Geist, Instrument Serif micro-accent, N5 Floating pill nav."
+  }
+]

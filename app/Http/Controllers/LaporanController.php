@@ -172,11 +172,87 @@ class LaporanController extends Controller
                 'value' => $l->count,
             ])->toArray();
 
+        // 5. View trend (last 6 months)
+        $viewsTrend = ViewLog::select(
+                DB::raw("DATE_FORMAT(created_at, '%Y-%m') as month"),
+                DB::raw("count(*) as count")
+            )
+            ->whereIn('kajian_id', $kajianIds)
+            ->where('created_at', '>=', now()->subMonths(6))
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get()
+            ->map(fn($l) => [
+                'label' => $l->month,
+                'value' => $l->count,
+            ])->toArray();
+
+        // 6. Top kajian by views
+        $topByViews = Kajian::with(['bidang', 'jenisKajian'])
+            ->whereIn('id', $kajianIds)
+            ->where('status', 'published')
+            ->orderBy('view_count', 'desc')
+            ->limit(5)
+            ->get()
+            ->map(fn($k) => [
+                'judul' => $k->judul,
+                'bidang' => $k->bidang->nama ?? '-',
+                'views' => $k->view_count,
+                'downloads' => $k->download_count,
+                'slug' => $k->slug,
+            ])->toArray();
+
+        // 7. Top kajian by downloads
+        $topByDownloads = Kajian::with(['bidang', 'jenisKajian'])
+            ->whereIn('id', $kajianIds)
+            ->where('status', 'published')
+            ->orderBy('download_count', 'desc')
+            ->limit(5)
+            ->get()
+            ->map(fn($k) => [
+                'judul' => $k->judul,
+                'bidang' => $k->bidang->nama ?? '-',
+                'views' => $k->view_count,
+                'downloads' => $k->download_count,
+                'slug' => $k->slug,
+            ])->toArray();
+
+        // 8. Status distribution
+        $statusDist = [
+            ['label' => 'Published', 'value' => $totalPublished],
+            ['label' => 'Draft', 'value' => $totalDraft],
+            ['label' => 'Review', 'value' => $totalReview],
+            ['label' => 'Archived', 'value' => $totalArchived],
+        ];
+
+        // 9. Views & Downloads per bidang
+        $viewsPerBidang = Bidang::withCount(['kajians' => function ($q) use ($kajianIds) {
+            $q->whereIn('id', $kajianIds)->where('status', 'published');
+        }])
+        ->withSum(['kajians' => function ($q) use ($kajianIds) {
+            $q->whereIn('id', $kajianIds)->where('status', 'published');
+        }], 'view_count')
+        ->withSum(['kajians' => function ($q) use ($kajianIds) {
+            $q->whereIn('id', $kajianIds)->where('status', 'published');
+        }], 'download_count')
+        ->get()
+        ->map(fn($b) => [
+            'bidang' => $b->nama,
+            'kajian' => $b->kajians_count,
+            'views' => $b->kajians_sum_view_count ?? 0,
+            'downloads' => $b->kajians_sum_download_count ?? 0,
+        ])->toArray();
+
         $charts = [
             'per_tahun' => $perTahun,
             'per_bidang' => $perBidang,
             'per_jenis' => $perJenis,
             'downloads_trend' => $downloadsTrend,
+            'views_trend' => $viewsTrend,
+            'top_by_views' => $topByViews,
+            'top_by_downloads' => $topByDownloads,
+            'status_distribution' => $statusDist,
+            'views_per_bidang' => $viewsPerBidang,
         ];
 
         return Inertia::render('Backend/Laporan/Statistik', [

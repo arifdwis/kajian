@@ -1,7 +1,7 @@
 import { ref, computed, resolveComponent, unref, withCtx, createVNode, createTextVNode, toDisplayString, withDirectives, withKeys, vModelText, openBlock, createBlock, createCommentVNode, Fragment, renderList, useSSRContext } from "vue";
 import { ssrRenderComponent, ssrInterpolate, ssrRenderAttr, ssrRenderList } from "vue/server-renderer";
 import { Head, Link, router } from "@inertiajs/vue3";
-import { _ as _sfc_main$1 } from "./AuthenticatedLayout-C8eooNFo.js";
+import { _ as _sfc_main$1 } from "./AuthenticatedLayout-CCLRqrRv.js";
 import "flowbite-vue";
 import "./ApplicationLogo-CmsQkCHn.js";
 import "@iconify/vue";

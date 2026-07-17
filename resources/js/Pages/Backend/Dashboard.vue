@@ -2,7 +2,7 @@
 import { computed } from 'vue';
 import { Head, Link, usePage } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import apexchart from 'vue3-apexcharts';
+import Chart from 'primevue/chart';
 
 const props = defineProps({
  summary: Object,
@@ -14,99 +14,130 @@ const props = defineProps({
 const page = usePage();
 const user = computed(() => page.props.auth.user);
 
-// Charts settings & themes
-const getLineChartOptions = (categories) => ({
- chart: {
-  id: 'downloads-trend',
-  toolbar: { show: false },
-  zoom: { enabled: false },
-  foreColor: '#6B7280',
-  fontFamily: 'Inter, sans-serif',
- },
- colors: ['#3B82F6'],
- stroke: { curve: 'smooth', width: 3 },
- xaxis: { categories, axisBorder: { show: false } },
- grid: { borderColor: '#E5E7EB', strokeDashArray: 4 },
- tooltip: {
-  theme: 'light',
-  style: { fontSize: '13px', fontFamily: 'Inter, sans-serif' },
-  y: { formatter: (val) => val + ' unduhan' },
- },
- markers: { size: 5, strokeWidth: 0 },
-});
+// 1. Line Chart Data & Options
+const lineChartData = computed(() => ({
+  labels: (props.charts.downloads_trend || []).map(item => item.label),
+  datasets: [
+    {
+      label: 'Unduhan',
+      data: (props.charts.downloads_trend || []).map(item => item.value),
+      fill: false,
+      borderColor: '#3B82F6',
+      tension: 0.4,
+      pointBackgroundColor: '#3B82F6',
+      pointHoverRadius: 6
+    }
+  ]
+}));
 
-const getBarChartOptions = (categories) => ({
- chart: {
-  id: 'bidang-dist',
-  toolbar: { show: false },
-  foreColor: '#9CA3AF',
- },
- colors: ['#8B5CF6'],
- plotOptions: {
-  bar: {
-  borderRadius: 6,
-  horizontal: true,
+const lineChartOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: {
+      display: false
+    },
+    tooltip: {
+      mode: 'index',
+      intersect: false
+    }
+  },
+  scales: {
+    y: {
+      grid: {
+        color: 'rgba(156, 163, 175, 0.15)',
+        drawBorder: false
+      },
+      ticks: {
+        color: '#9CA3AF'
+      }
+    },
+    x: {
+      grid: {
+        display: false
+      },
+      ticks: {
+        color: '#9CA3AF'
+      }
+    }
   }
- },
- xaxis: { categories },
- tooltip: {
-  theme: 'light',
-  style: { fontSize: '12px' },
-  y: { formatter: (val) => val + ' kajian' },
- },
-});
+};
 
-const getPieChartOptions = (labels) => ({
- chart: {
-  id: 'jenis-dist',
-  foreColor: '#6B7280',
-  fontFamily: 'Inter, sans-serif',
- },
- labels,
- colors: ['#10B981', '#F59E0B', '#EF4444', '#3B82F6', '#EC4899'],
- legend: { position: 'bottom' },
- tooltip: {
-  theme: 'light',
-  style: { fontSize: '13px', fontFamily: 'Inter, sans-serif' },
-  y: { formatter: (val) => val + ' kajian' },
- },
- dataLabels: {
-  enabled: true,
-  style: { fontSize: '12px', fontWeight: 600, fontFamily: 'Inter, sans-serif' },
- },
-});
+// 2. Doughnut/Donut Chart Data & Options
+const doughnutChartData = computed(() => ({
+  labels: (props.charts.per_jenis || []).map(item => item.label),
+  datasets: [
+    {
+      data: (props.charts.per_jenis || []).map(item => item.value),
+      backgroundColor: ['#10B981', '#F59E0B', '#EF4444', '#3B82F6', '#EC4899'],
+      hoverBackgroundColor: ['#059669', '#D97706', '#DC2626', '#2563EB', '#DB2777'],
+      borderWidth: 0
+    }
+  ]
+}));
 
-const chartTrendData = computed(() => {
- const list = props.charts.downloads_trend || [];
- return [{
- name: 'Downloads',
- data: list.map(item => item.value)
- }];
-});
+const doughnutChartOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: {
+      position: 'bottom',
+      labels: {
+        color: '#9CA3AF',
+        boxWidth: 12,
+        font: {
+          size: 11
+        }
+      }
+    }
+  },
+  cutout: '65%'
+};
 
-const chartTrendCategories = computed(() => {
- return (props.charts.downloads_trend || []).map(item => item.label);
-});
+// 3. Horizontal Bar Chart Data & Options
+const barChartData = computed(() => ({
+  labels: (props.charts.per_bidang || []).map(item => item.label),
+  datasets: [
+    {
+      label: 'Jumlah Kajian',
+      backgroundColor: '#8B5CF6',
+      hoverBackgroundColor: '#7C3AED',
+      data: (props.charts.per_bidang || []).map(item => item.value),
+      borderRadius: 6
+    }
+  ]
+}));
 
-const chartBidangData = computed(() => {
- const list = props.charts.per_bidang || [];
- return [{
- name: 'Jumlah Kajian',
- data: list.map(item => item.value)
- }];
-});
-
-const chartBidangCategories = computed(() => {
- return (props.charts.per_bidang || []).map(item => item.label);
-});
-
-const chartJenisSeries = computed(() => {
- return (props.charts.per_jenis || []).map(item => item.value);
-});
-
-const chartJenisLabels = computed(() => {
- return (props.charts.per_jenis || []).map(item => item.label);
-});
+const barChartOptions = {
+  indexAxis: 'y',
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: {
+      display: false
+    }
+  },
+  scales: {
+    x: {
+      grid: {
+        color: 'rgba(156, 163, 175, 0.15)',
+        drawBorder: false
+      },
+      ticks: {
+        color: '#9CA3AF',
+        precision: 0
+      }
+    },
+    y: {
+      grid: {
+        display: false
+      },
+      ticks: {
+        color: '#9CA3AF'
+      }
+    }
+  }
+};
 </script>
 
 <template>
@@ -184,56 +215,53 @@ const chartJenisLabels = computed(() => {
  </div>
  </div>
 
- <!-- Charts Section -->
- <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
- <!-- Line Chart: Downloads Trend -->
- <div class="lg:col-span-2 bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6 ">
- <h4 class="font-bold text-gray-800 dark:text-white text-base mb-1">Tren Unduhan Kajian</h4>
- <p class="text-xs text-gray-400 mb-6">Aktivitas download 6 bulan terakhir</p>
- <div class="h-72">
- <apexchart 
- type="line" 
- height="100%" 
- width="100%"
- :options="getLineChartOptions(chartTrendCategories)" 
- :series="chartTrendData" 
- />
- </div>
- </div>
+  <!-- Charts Section -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- Line Chart: Downloads Trend -->
+    <div class="lg:col-span-2 bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6">
+      <h4 class="font-bold text-gray-800 dark:text-white text-base mb-1">Tren Unduhan Kajian</h4>
+      <p class="text-xs text-gray-400 mb-6">Aktivitas download 6 bulan terakhir</p>
+      <div class="h-72 relative">
+        <Chart 
+          type="line" 
+          :data="lineChartData"
+          :options="lineChartOptions"
+          class="h-full w-full"
+        />
+      </div>
+    </div>
 
- <!-- Pie Chart: Distribution by Jenis -->
- <div class="bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6 flex flex-col justify-between">
- <div>
- <h4 class="font-bold text-gray-800 dark:text-white text-base mb-1">Persentase Jenis Kajian</h4>
- <p class="text-xs text-gray-400 mb-6">Berdasarkan klasifikasi riset</p>
- </div>
- <div class="h-72 flex items-center justify-center">
- <apexchart 
- type="donut" 
- height="100%" 
- width="100%"
- :options="getPieChartOptions(chartJenisLabels)" 
- :series="chartJenisSeries" 
- />
- </div>
- </div>
- </div>
+    <!-- Pie Chart: Distribution by Jenis -->
+    <div class="bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6 flex flex-col justify-between">
+      <div>
+        <h4 class="font-bold text-gray-800 dark:text-white text-base mb-1">Persentase Jenis Kajian</h4>
+        <p class="text-xs text-gray-400 mb-6">Berdasarkan klasifikasi riset</p>
+      </div>
+      <div class="h-72 flex items-center justify-center relative">
+        <Chart 
+          type="doughnut" 
+          :data="doughnutChartData"
+          :options="doughnutChartOptions"
+          class="h-full w-full"
+        />
+      </div>
+    </div>
+  </div>
 
- <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
- <!-- Bar Chart: Bidang Distribution -->
- <div class="lg:col-span-2 bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6 ">
-  <h4 class="font-bold text-gray-800 dark:text-white text-base mb-1">Kajian per Bidang</h4>
- <p class="text-xs text-gray-400 mb-6">Jumlah publikasi terbit per unit</p>
- <div class="h-72">
- <apexchart 
- type="bar" 
- height="100%" 
- width="100%"
- :options="getBarChartOptions(chartBidangCategories)" 
- :series="chartBidangData" 
- />
- </div>
- </div>
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- Bar Chart: Bidang Distribution -->
+    <div class="lg:col-span-2 bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6">
+      <h4 class="font-bold text-gray-800 dark:text-white text-base mb-1">Kajian per Bidang</h4>
+      <p class="text-xs text-gray-400 mb-6">Jumlah publikasi terbit per unit</p>
+      <div class="h-72 relative">
+        <Chart 
+          type="bar" 
+          :data="barChartData"
+          :options="barChartOptions"
+          class="h-full w-full"
+        />
+      </div>
+    </div>
 
  <!-- Popular list -->
  <div class="bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6 flex flex-col justify-between">

@@ -17,6 +17,7 @@ import PrimeVue from 'primevue/config';
 import MyPreset from './datatable';
 import Tooltip from 'primevue/tooltip';
 import 'primeicons/primeicons.css';
+import 'apexcharts/dist/apexcharts.css';
 import SearchSelect from './Components/SearchSelect.vue';
 
 const PrimeCustom = {

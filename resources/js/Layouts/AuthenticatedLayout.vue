@@ -25,7 +25,7 @@ onUnmounted(() => {
 </script>
 
 <template>
- <div class="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+ <div class="min-h-screen flex flex-col" :style="{ backgroundColor: 'var(--color-paper)', color: 'var(--color-ink)' }">
  <Navbar />
  
  <div class="flex flex-1 pt-16">

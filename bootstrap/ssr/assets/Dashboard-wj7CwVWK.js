@@ -1,8 +1,8 @@
 import { computed, resolveComponent, unref, withCtx, createTextVNode, toDisplayString, createVNode, openBlock, createBlock, Fragment, renderList, useSSRContext } from "vue";
 import { ssrRenderComponent, ssrRenderStyle, ssrInterpolate, ssrRenderList, ssrRenderClass } from "vue/server-renderer";
 import { usePage, Head, Link } from "@inertiajs/vue3";
-import { _ as _sfc_main$1 } from "./AuthenticatedLayout-C8eooNFo.js";
-import apexchart from "vue3-apexcharts";
+import { _ as _sfc_main$1 } from "./AuthenticatedLayout-CCLRqrRv.js";
+import Chart from "primevue/chart";
 import "flowbite-vue";
 import "./ApplicationLogo-CmsQkCHn.js";
 import "@iconify/vue";
@@ -20,90 +20,122 @@ const _sfc_main = {
     const props = __props;
     const page = usePage();
     const user = computed(() => page.props.auth.user);
-    const getLineChartOptions = (categories) => ({
-      chart: {
-        id: "downloads-trend",
-        toolbar: { show: false },
-        zoom: { enabled: false },
-        foreColor: "#6B7280",
-        fontFamily: "Inter, sans-serif"
-      },
-      colors: ["#3B82F6"],
-      stroke: { curve: "smooth", width: 3 },
-      xaxis: { categories, axisBorder: { show: false } },
-      grid: { borderColor: "#E5E7EB", strokeDashArray: 4 },
-      tooltip: {
-        theme: "light",
-        style: { fontSize: "13px", fontFamily: "Inter, sans-serif" },
-        y: { formatter: (val) => val + " unduhan" }
-      },
-      markers: { size: 5, strokeWidth: 0 }
-    });
-    const getBarChartOptions = (categories) => ({
-      chart: {
-        id: "bidang-dist",
-        toolbar: { show: false },
-        foreColor: "#9CA3AF"
-      },
-      colors: ["#8B5CF6"],
-      plotOptions: {
-        bar: {
-          borderRadius: 6,
-          horizontal: true
+    const lineChartData = computed(() => ({
+      labels: (props.charts.downloads_trend || []).map((item) => item.label),
+      datasets: [
+        {
+          label: "Unduhan",
+          data: (props.charts.downloads_trend || []).map((item) => item.value),
+          fill: false,
+          borderColor: "#3B82F6",
+          tension: 0.4,
+          pointBackgroundColor: "#3B82F6",
+          pointHoverRadius: 6
+        }
+      ]
+    }));
+    const lineChartOptions = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          mode: "index",
+          intersect: false
         }
       },
-      xaxis: { categories },
-      tooltip: {
-        theme: "light",
-        style: { fontSize: "12px" },
-        y: { formatter: (val) => val + " kajian" }
+      scales: {
+        y: {
+          grid: {
+            color: "rgba(156, 163, 175, 0.15)",
+            drawBorder: false
+          },
+          ticks: {
+            color: "#9CA3AF"
+          }
+        },
+        x: {
+          grid: {
+            display: false
+          },
+          ticks: {
+            color: "#9CA3AF"
+          }
+        }
       }
-    });
-    const getPieChartOptions = (labels) => ({
-      chart: {
-        id: "jenis-dist",
-        foreColor: "#6B7280",
-        fontFamily: "Inter, sans-serif"
+    };
+    const doughnutChartData = computed(() => ({
+      labels: (props.charts.per_jenis || []).map((item) => item.label),
+      datasets: [
+        {
+          data: (props.charts.per_jenis || []).map((item) => item.value),
+          backgroundColor: ["#10B981", "#F59E0B", "#EF4444", "#3B82F6", "#EC4899"],
+          hoverBackgroundColor: ["#059669", "#D97706", "#DC2626", "#2563EB", "#DB2777"],
+          borderWidth: 0
+        }
+      ]
+    }));
+    const doughnutChartOptions = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: "bottom",
+          labels: {
+            color: "#9CA3AF",
+            boxWidth: 12,
+            font: {
+              size: 11
+            }
+          }
+        }
       },
-      labels,
-      colors: ["#10B981", "#F59E0B", "#EF4444", "#3B82F6", "#EC4899"],
-      legend: { position: "bottom" },
-      tooltip: {
-        theme: "light",
-        style: { fontSize: "13px", fontFamily: "Inter, sans-serif" },
-        y: { formatter: (val) => val + " kajian" }
+      cutout: "65%"
+    };
+    const barChartData = computed(() => ({
+      labels: (props.charts.per_bidang || []).map((item) => item.label),
+      datasets: [
+        {
+          label: "Jumlah Kajian",
+          backgroundColor: "#8B5CF6",
+          hoverBackgroundColor: "#7C3AED",
+          data: (props.charts.per_bidang || []).map((item) => item.value),
+          borderRadius: 6
+        }
+      ]
+    }));
+    const barChartOptions = {
+      indexAxis: "y",
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false
+        }
       },
-      dataLabels: {
-        enabled: true,
-        style: { fontSize: "12px", fontWeight: 600, fontFamily: "Inter, sans-serif" }
+      scales: {
+        x: {
+          grid: {
+            color: "rgba(156, 163, 175, 0.15)",
+            drawBorder: false
+          },
+          ticks: {
+            color: "#9CA3AF",
+            precision: 0
+          }
+        },
+        y: {
+          grid: {
+            display: false
+          },
+          ticks: {
+            color: "#9CA3AF"
+          }
+        }
       }
-    });
-    const chartTrendData = computed(() => {
-      const list = props.charts.downloads_trend || [];
-      return [{
-        name: "Downloads",
-        data: list.map((item) => item.value)
-      }];
-    });
-    const chartTrendCategories = computed(() => {
-      return (props.charts.downloads_trend || []).map((item) => item.label);
-    });
-    const chartBidangData = computed(() => {
-      const list = props.charts.per_bidang || [];
-      return [{
-        name: "Jumlah Kajian",
-        data: list.map((item) => item.value)
-      }];
-    });
-    const chartBidangCategories = computed(() => {
-      return (props.charts.per_bidang || []).map((item) => item.label);
-    });
-    const chartJenisSeries = computed(() => {
-      return (props.charts.per_jenis || []).map((item) => item.value);
-    });
-    const chartJenisLabels = computed(() => {
-      return (props.charts.per_jenis || []).map((item) => item.label);
-    });
+    };
     return (_ctx, _push, _parent, _attrs) => {
       const _component_Icon = resolveComponent("Icon");
       _push(`<!--[-->`);
@@ -131,29 +163,26 @@ const _sfc_main = {
               icon: "solar:download-bold",
               class: "w-6 h-6"
             }, null, _parent2, _scopeId));
-            _push2(`</div></div></div></div><div class="grid grid-cols-1 lg:grid-cols-3 gap-8"${_scopeId}><div class="lg:col-span-2 bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6"${_scopeId}><h4 class="font-bold text-gray-800 dark:text-white text-base mb-1"${_scopeId}>Tren Unduhan Kajian</h4><p class="text-xs text-gray-400 mb-6"${_scopeId}>Aktivitas download 6 bulan terakhir</p><div class="h-72"${_scopeId}>`);
-            _push2(ssrRenderComponent(unref(apexchart), {
+            _push2(`</div></div></div></div><div class="grid grid-cols-1 lg:grid-cols-3 gap-8"${_scopeId}><div class="lg:col-span-2 bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6"${_scopeId}><h4 class="font-bold text-gray-800 dark:text-white text-base mb-1"${_scopeId}>Tren Unduhan Kajian</h4><p class="text-xs text-gray-400 mb-6"${_scopeId}>Aktivitas download 6 bulan terakhir</p><div class="h-72 relative"${_scopeId}>`);
+            _push2(ssrRenderComponent(unref(Chart), {
               type: "line",
-              height: "100%",
-              width: "100%",
-              options: getLineChartOptions(chartTrendCategories.value),
-              series: chartTrendData.value
+              data: lineChartData.value,
+              options: lineChartOptions,
+              class: "h-full w-full"
             }, null, _parent2, _scopeId));
-            _push2(`</div></div><div class="bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6 flex flex-col justify-between"${_scopeId}><div${_scopeId}><h4 class="font-bold text-gray-800 dark:text-white text-base mb-1"${_scopeId}>Persentase Jenis Kajian</h4><p class="text-xs text-gray-400 mb-6"${_scopeId}>Berdasarkan klasifikasi riset</p></div><div class="h-72 flex items-center justify-center"${_scopeId}>`);
-            _push2(ssrRenderComponent(unref(apexchart), {
-              type: "donut",
-              height: "100%",
-              width: "100%",
-              options: getPieChartOptions(chartJenisLabels.value),
-              series: chartJenisSeries.value
+            _push2(`</div></div><div class="bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6 flex flex-col justify-between"${_scopeId}><div${_scopeId}><h4 class="font-bold text-gray-800 dark:text-white text-base mb-1"${_scopeId}>Persentase Jenis Kajian</h4><p class="text-xs text-gray-400 mb-6"${_scopeId}>Berdasarkan klasifikasi riset</p></div><div class="h-72 flex items-center justify-center relative"${_scopeId}>`);
+            _push2(ssrRenderComponent(unref(Chart), {
+              type: "doughnut",
+              data: doughnutChartData.value,
+              options: doughnutChartOptions,
+              class: "h-full w-full"
             }, null, _parent2, _scopeId));
-            _push2(`</div></div></div><div class="grid grid-cols-1 lg:grid-cols-3 gap-8"${_scopeId}><div class="lg:col-span-2 bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6"${_scopeId}><h4 class="font-bold text-gray-800 dark:text-white text-base mb-1"${_scopeId}>Kajian per Bidang</h4><p class="text-xs text-gray-400 mb-6"${_scopeId}>Jumlah publikasi terbit per unit</p><div class="h-72"${_scopeId}>`);
-            _push2(ssrRenderComponent(unref(apexchart), {
+            _push2(`</div></div></div><div class="grid grid-cols-1 lg:grid-cols-3 gap-8"${_scopeId}><div class="lg:col-span-2 bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6"${_scopeId}><h4 class="font-bold text-gray-800 dark:text-white text-base mb-1"${_scopeId}>Kajian per Bidang</h4><p class="text-xs text-gray-400 mb-6"${_scopeId}>Jumlah publikasi terbit per unit</p><div class="h-72 relative"${_scopeId}>`);
+            _push2(ssrRenderComponent(unref(Chart), {
               type: "bar",
-              height: "100%",
-              width: "100%",
-              options: getBarChartOptions(chartBidangCategories.value),
-              series: chartBidangData.value
+              data: barChartData.value,
+              options: barChartOptions,
+              class: "h-full w-full"
             }, null, _parent2, _scopeId));
             _push2(`</div></div><div class="bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6 flex flex-col justify-between"${_scopeId}><div${_scopeId}><h4 class="font-bold text-gray-800 dark:text-white text-base mb-1"${_scopeId}>Kajian Terpopuler</h4><p class="text-xs text-gray-400 mb-6"${_scopeId}>Paling sering diunduh oleh pemohon</p></div><div class="flex-1 overflow-y-auto space-y-4 max-h-[280px]"${_scopeId}><!--[-->`);
             ssrRenderList(__props.popularKajians, (item) => {
@@ -317,14 +346,13 @@ const _sfc_main = {
                   createVNode("div", { class: "lg:col-span-2 bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6" }, [
                     createVNode("h4", { class: "font-bold text-gray-800 dark:text-white text-base mb-1" }, "Tren Unduhan Kajian"),
                     createVNode("p", { class: "text-xs text-gray-400 mb-6" }, "Aktivitas download 6 bulan terakhir"),
-                    createVNode("div", { class: "h-72" }, [
-                      createVNode(unref(apexchart), {
+                    createVNode("div", { class: "h-72 relative" }, [
+                      createVNode(unref(Chart), {
                         type: "line",
-                        height: "100%",
-                        width: "100%",
-                        options: getLineChartOptions(chartTrendCategories.value),
-                        series: chartTrendData.value
-                      }, null, 8, ["options", "series"])
+                        data: lineChartData.value,
+                        options: lineChartOptions,
+                        class: "h-full w-full"
+                      }, null, 8, ["data"])
                     ])
                   ]),
                   createVNode("div", { class: "bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6 flex flex-col justify-between" }, [
@@ -332,14 +360,13 @@ const _sfc_main = {
                       createVNode("h4", { class: "font-bold text-gray-800 dark:text-white text-base mb-1" }, "Persentase Jenis Kajian"),
                       createVNode("p", { class: "text-xs text-gray-400 mb-6" }, "Berdasarkan klasifikasi riset")
                     ]),
-                    createVNode("div", { class: "h-72 flex items-center justify-center" }, [
-                      createVNode(unref(apexchart), {
-                        type: "donut",
-                        height: "100%",
-                        width: "100%",
-                        options: getPieChartOptions(chartJenisLabels.value),
-                        series: chartJenisSeries.value
-                      }, null, 8, ["options", "series"])
+                    createVNode("div", { class: "h-72 flex items-center justify-center relative" }, [
+                      createVNode(unref(Chart), {
+                        type: "doughnut",
+                        data: doughnutChartData.value,
+                        options: doughnutChartOptions,
+                        class: "h-full w-full"
+                      }, null, 8, ["data"])
                     ])
                   ])
                 ]),
@@ -347,14 +374,13 @@ const _sfc_main = {
                   createVNode("div", { class: "lg:col-span-2 bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6" }, [
                     createVNode("h4", { class: "font-bold text-gray-800 dark:text-white text-base mb-1" }, "Kajian per Bidang"),
                     createVNode("p", { class: "text-xs text-gray-400 mb-6" }, "Jumlah publikasi terbit per unit"),
-                    createVNode("div", { class: "h-72" }, [
-                      createVNode(unref(apexchart), {
+                    createVNode("div", { class: "h-72 relative" }, [
+                      createVNode(unref(Chart), {
                         type: "bar",
-                        height: "100%",
-                        width: "100%",
-                        options: getBarChartOptions(chartBidangCategories.value),
-                        series: chartBidangData.value
-                      }, null, 8, ["options", "series"])
+                        data: barChartData.value,
+                        options: barChartOptions,
+                        class: "h-full w-full"
+                      }, null, 8, ["data"])
                     ])
                   ]),
                   createVNode("div", { class: "bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6 flex flex-col justify-between" }, [

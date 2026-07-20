@@ -1,5 +1,5 @@
-import { ref, resolveComponent, unref, withCtx, createVNode, withDirectives, withKeys, vModelText, openBlock, createBlock, createCommentVNode, Fragment, renderList, toDisplayString, createTextVNode, useSSRContext } from "vue";
-import { ssrRenderComponent, ssrRenderAttr, ssrRenderList, ssrInterpolate, ssrRenderClass } from "vue/server-renderer";
+import { ref, computed, resolveComponent, unref, withCtx, createVNode, withDirectives, withKeys, vModelText, openBlock, createBlock, createTextVNode, createCommentVNode, toDisplayString, Fragment, renderList, useSSRContext } from "vue";
+import { ssrRenderComponent, ssrRenderAttr, ssrRenderClass, ssrInterpolate, ssrRenderList } from "vue/server-renderer";
 import { Head, router } from "@inertiajs/vue3";
 import { _ as _sfc_main$1 } from "./AuthenticatedLayout-CCLRqrRv.js";
 import { _ as _sfc_main$2 } from "./Pagination-DE6AvrVK.js";
@@ -21,36 +21,65 @@ const _sfc_main = {
     const toast = useToast();
     const props = __props;
     const search = ref(props.filters.search || "");
+    const filterAction = ref(props.filters.action || "");
+    const filterModel = ref(props.filters.model_type || "");
+    const filterDateFrom = ref(props.filters.date_from || "");
+    const filterDateTo = ref(props.filters.date_to || "");
     const activeLog = ref(null);
     const showModal = ref(false);
-    const handleSearch = () => {
-      router.get(route("settings.log-activity.index"), { search: search.value }, {
+    const hasActiveFilters = computed(() => {
+      return search.value || filterAction.value || filterModel.value || filterDateFrom.value || filterDateTo.value;
+    });
+    const applyFilters = () => {
+      const params = {};
+      if (search.value) params.search = search.value;
+      if (filterAction.value) params.action = filterAction.value;
+      if (filterModel.value) params.model_type = filterModel.value;
+      if (filterDateFrom.value) params.date_from = filterDateFrom.value;
+      if (filterDateTo.value) params.date_to = filterDateTo.value;
+      router.get(route("settings.log-activity.index"), params, {
         preserveState: true,
         preserveScroll: true
       });
     };
-    const viewDetails = (id) => {
-      axios.get(route("settings.log-activity.show", id)).then((res) => {
-        activeLog.value = res.data;
-        showModal.value = true;
-      }).catch((err) => {
-        toast.error("Gagal mengambil data log detail.");
-        console.error(err);
+    const handleSearch = () => applyFilters();
+    const clearFilters = () => {
+      search.value = "";
+      filterAction.value = "";
+      filterModel.value = "";
+      filterDateFrom.value = "";
+      filterDateTo.value = "";
+      router.get(route("settings.log-activity.index"), {}, {
+        preserveState: true,
+        preserveScroll: true
       });
     };
-    const showConfirmDelete = ref(false);
-    const deleteTargetId = ref(null);
-    const confirmDeleteLog = (id) => {
-      deleteTargetId.value = id;
-      showConfirmDelete.value = true;
-    };
-    const executeDeleteLog = () => {
-      router.delete(route("settings.log-activity.destroy", deleteTargetId.value), {
-        onSuccess: () => {
-          showConfirmDelete.value = false;
-        },
-        onError: (error) => toast.error("Gagal menghapus log.")
-      });
+    const setQuickDate = (range) => {
+      const today = /* @__PURE__ */ new Date();
+      const fmt = (d) => d.toISOString().split("T")[0];
+      if (range === "today") {
+        filterDateFrom.value = fmt(today);
+        filterDateTo.value = fmt(today);
+      } else if (range === "yesterday") {
+        const y = new Date(today);
+        y.setDate(y.getDate() - 1);
+        filterDateFrom.value = fmt(y);
+        filterDateTo.value = fmt(y);
+      } else if (range === "this_week") {
+        const first = new Date(today);
+        first.setDate(today.getDate() - today.getDay() + (today.getDay() === 0 ? -6 : 1));
+        filterDateFrom.value = fmt(first);
+        filterDateTo.value = fmt(today);
+      } else if (range === "this_month") {
+        const first = new Date(today.getFullYear(), today.getMonth(), 1);
+        filterDateFrom.value = fmt(first);
+        filterDateTo.value = fmt(today);
+      } else if (range === "this_year") {
+        const first = new Date(today.getFullYear(), 0, 1);
+        filterDateFrom.value = fmt(first);
+        filterDateTo.value = fmt(today);
+      }
+      applyFilters();
     };
     const modelLabels = {
       "App\\Models\\Kajian": "Kajian",
@@ -108,6 +137,11 @@ const _sfc_main = {
       update: "Diperbarui",
       delete: "Dihapus"
     };
+    const actionColors = {
+      create: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400",
+      update: "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
+      delete: "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
+    };
     const getRecordName = (log) => {
       const nv = log.new_values || log.old_values || {};
       return nv.name || nv.judul || nv.nama || nv.title || null;
@@ -145,20 +179,133 @@ const _sfc_main = {
       return fields;
     };
     const skippedFields = ["updated_at", "created_at", "updated_by", "created_by"];
+    const viewDetails = (id) => {
+      axios.get(route("settings.log-activity.show", id)).then((res) => {
+        activeLog.value = res.data;
+        showModal.value = true;
+      }).catch((err) => {
+        toast.error("Gagal mengambil data log detail.");
+        console.error(err);
+      });
+    };
+    const showConfirmDelete = ref(false);
+    const deleteTargetId = ref(null);
+    const confirmDeleteLog = (id) => {
+      deleteTargetId.value = id;
+      showConfirmDelete.value = true;
+    };
+    const executeDeleteLog = () => {
+      router.delete(route("settings.log-activity.destroy", deleteTargetId.value), {
+        onSuccess: () => {
+          showConfirmDelete.value = false;
+        },
+        onError: (error) => toast.error("Gagal menghapus log.")
+      });
+    };
     return (_ctx, _push, _parent, _attrs) => {
       const _component_Icon = resolveComponent("Icon");
+      const _component_SearchSelect = resolveComponent("SearchSelect");
       _push(`<!--[-->`);
       _push(ssrRenderComponent(unref(Head), { title: "Audit Log Aktivitas" }, null, _parent));
       _push(ssrRenderComponent(_sfc_main$1, null, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           var _a, _b;
           if (_push2) {
-            _push2(`<div class="space-y-6 w-full"${_scopeId}><div class="bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700"${_scopeId}><h3 class="text-xl font-bold text-gray-900 dark:text-white"${_scopeId}>Audit Trail &amp; Log Aktivitas</h3><p class="text-xs text-gray-500 mt-1"${_scopeId}>Daftar rekaman jejak audit operasi sistem yang dilakukan oleh pengguna terotentikasi.</p></div><div class="bg-paper dark:bg-gray-800 rounded-card border border-gray-100 dark:border-gray-700 overflow-hidden p-6 space-y-4"${_scopeId}><div class="flex justify-between items-center max-w-md"${_scopeId}><div class="relative w-full"${_scopeId}>`);
+            _push2(`<div class="space-y-6 w-full"${_scopeId}><div class="bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700"${_scopeId}><h3 class="text-xl font-bold text-gray-900 dark:text-white"${_scopeId}>Audit Trail &amp; Log Aktivitas</h3><p class="text-xs text-gray-500 mt-1"${_scopeId}>Daftar rekaman jejak audit operasi sistem yang dilakukan oleh pengguna terotentikasi.</p></div><div class="bg-paper dark:bg-gray-800 rounded-card border border-gray-100 dark:border-gray-700 p-6 space-y-4"${_scopeId}><div class="grid grid-cols-1 md:grid-cols-4 gap-3"${_scopeId}><div class="relative"${_scopeId}>`);
             _push2(ssrRenderComponent(_component_Icon, {
               icon: "solar:magnifer-linear",
-              class: "absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4"
+              class: "absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4"
             }, null, _parent2, _scopeId));
-            _push2(`<input type="text"${ssrRenderAttr("value", search.value)} placeholder="Cari berdasarkan aksi, nama pengguna, model..." class="w-full text-xs pl-10 pr-4 py-2.5 rounded-sm border border-gray-300 dark:border-gray-700 bg-paper dark:bg-gray-900 text-gray-900 dark:text-white"${_scopeId}></div></div><div class="overflow-x-auto border border-gray-100 dark:border-gray-700 rounded-card"${_scopeId}><table class="w-full text-left text-sm"${_scopeId}><thead class="bg-gray-50 dark:bg-gray-900/50 text-gray-400 text-xs font-semibold uppercase tracking-wider border-b border-gray-100 dark:border-gray-700"${_scopeId}><tr${_scopeId}><th class="px-6 py-4"${_scopeId}>Waktu</th><th class="px-6 py-4"${_scopeId}>Pengguna</th><th class="px-6 py-4"${_scopeId}>Objek</th><th class="px-6 py-4"${_scopeId}>Aksi</th><th class="px-6 py-4"${_scopeId}>Rincian</th><th class="px-6 py-4 text-right"${_scopeId}>Aksi</th></tr></thead><tbody class="divide-y divide-gray-200 dark:divide-gray-700"${_scopeId}>`);
+            _push2(`<input type="text"${ssrRenderAttr("value", search.value)} placeholder="Cari..." class="w-full text-xs pl-9 pr-3 py-2.5 rounded-sm border border-gray-300 dark:border-gray-700 bg-paper dark:bg-gray-900 text-gray-900 dark:text-white"${_scopeId}></div>`);
+            _push2(ssrRenderComponent(_component_SearchSelect, {
+              modelValue: filterAction.value,
+              "onUpdate:modelValue": ($event) => filterAction.value = $event,
+              options: [
+                { label: "Semua Aksi", value: "" },
+                { label: "Dibuat", value: "create" },
+                { label: "Diperbarui", value: "update" },
+                { label: "Dihapus", value: "delete" }
+              ],
+              optionLabel: "label",
+              optionValue: "value",
+              placeholder: "Semua Aksi",
+              onChange: applyFilters
+            }, null, _parent2, _scopeId));
+            _push2(ssrRenderComponent(_component_SearchSelect, {
+              modelValue: filterModel.value,
+              "onUpdate:modelValue": ($event) => filterModel.value = $event,
+              options: [
+                { label: "Semua Objek", value: "" },
+                ...Object.entries(modelLabels).map(([k, v]) => ({ label: v, value: k }))
+              ],
+              optionLabel: "label",
+              optionValue: "value",
+              placeholder: "Semua Objek",
+              onChange: applyFilters
+            }, null, _parent2, _scopeId));
+            if (hasActiveFilters.value) {
+              _push2(`<button class="inline-flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-semibold text-red-600 bg-red-50 hover:bg-red-100 dark:bg-red-900/20 dark:text-red-400 dark:hover:bg-red-900/30 rounded-sm transition-all"${_scopeId}>`);
+              _push2(ssrRenderComponent(_component_Icon, {
+                icon: "solar:close-circle-bold",
+                class: "w-4 h-4"
+              }, null, _parent2, _scopeId));
+              _push2(` Reset Filter </button>`);
+            } else {
+              _push2(`<!---->`);
+            }
+            _push2(`</div><div class="flex flex-col md:flex-row md:items-center gap-3"${_scopeId}><div class="flex flex-wrap gap-1.5"${_scopeId}><button class="${ssrRenderClass([filterDateFrom.value === filterDateTo.value && filterDateFrom.value ? "bg-accent text-accent-ink border-accent" : "border-gray-200 dark:border-gray-700 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800", "px-3 py-1.5 text-[11px] font-semibold rounded-full border transition-all"])}"${_scopeId}> Hari Ini </button><button class="${ssrRenderClass([filterDateFrom.value !== filterDateTo.value && filterDateFrom.value ? "bg-accent text-accent-ink border-accent" : "border-gray-200 dark:border-gray-700 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800", "px-3 py-1.5 text-[11px] font-semibold rounded-full border transition-all"])}"${_scopeId}> Kemarin </button><button class="${ssrRenderClass([filterDateFrom.value !== filterDateTo.value && filterDateFrom.value ? "bg-accent text-accent-ink border-accent" : "border-gray-200 dark:border-gray-700 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800", "px-3 py-1.5 text-[11px] font-semibold rounded-full border transition-all"])}"${_scopeId}> Minggu Ini </button><button class="${ssrRenderClass([filterDateFrom.value !== filterDateTo.value && filterDateFrom.value ? "bg-accent text-accent-ink border-accent" : "border-gray-200 dark:border-gray-700 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800", "px-3 py-1.5 text-[11px] font-semibold rounded-full border transition-all"])}"${_scopeId}> Bulan Ini </button><button class="${ssrRenderClass([filterDateFrom.value !== filterDateTo.value && filterDateFrom.value ? "bg-accent text-accent-ink border-accent" : "border-gray-200 dark:border-gray-700 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800", "px-3 py-1.5 text-[11px] font-semibold rounded-full border transition-all"])}"${_scopeId}> Tahun Ini </button></div><div class="hidden md:block w-px h-6 bg-gray-200 dark:bg-gray-700"${_scopeId}></div><div class="flex items-center gap-2"${_scopeId}><div class="relative"${_scopeId}>`);
+            _push2(ssrRenderComponent(_component_Icon, {
+              icon: "solar:calendar-bold",
+              class: "absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-3.5 h-3.5"
+            }, null, _parent2, _scopeId));
+            _push2(`<input type="date"${ssrRenderAttr("value", filterDateFrom.value)} class="text-xs pl-9 pr-3 py-2 rounded-sm border border-gray-300 dark:border-gray-700 bg-paper dark:bg-gray-900 text-gray-900 dark:text-white"${_scopeId}></div><span class="text-gray-400 text-xs"${_scopeId}>—</span><div class="relative"${_scopeId}>`);
+            _push2(ssrRenderComponent(_component_Icon, {
+              icon: "solar:calendar-bold",
+              class: "absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-3.5 h-3.5"
+            }, null, _parent2, _scopeId));
+            _push2(`<input type="date"${ssrRenderAttr("value", filterDateTo.value)} class="text-xs pl-9 pr-3 py-2 rounded-sm border border-gray-300 dark:border-gray-700 bg-paper dark:bg-gray-900 text-gray-900 dark:text-white"${_scopeId}></div></div></div>`);
+            if (hasActiveFilters.value) {
+              _push2(`<div class="flex items-center gap-2 text-[11px] text-gray-400"${_scopeId}>`);
+              _push2(ssrRenderComponent(_component_Icon, {
+                icon: "solar:filter-bold",
+                class: "w-3 h-3"
+              }, null, _parent2, _scopeId));
+              _push2(` Filter aktif: `);
+              if (filterAction.value) {
+                _push2(`<span class="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-full font-semibold"${_scopeId}>${ssrInterpolate(actionLabels[filterAction.value] || filterAction.value)} <button class="hover:text-blue-800"${_scopeId}>`);
+                _push2(ssrRenderComponent(_component_Icon, {
+                  icon: "solar:close-circle-bold",
+                  class: "w-3 h-3"
+                }, null, _parent2, _scopeId));
+                _push2(`</button></span>`);
+              } else {
+                _push2(`<!---->`);
+              }
+              if (filterModel.value) {
+                _push2(`<span class="inline-flex items-center gap-1 px-2 py-0.5 bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 rounded-full font-semibold"${_scopeId}>${ssrInterpolate(getModelLabel(filterModel.value))} <button class="hover:text-purple-800"${_scopeId}>`);
+                _push2(ssrRenderComponent(_component_Icon, {
+                  icon: "solar:close-circle-bold",
+                  class: "w-3 h-3"
+                }, null, _parent2, _scopeId));
+                _push2(`</button></span>`);
+              } else {
+                _push2(`<!---->`);
+              }
+              if (filterDateFrom.value || filterDateTo.value) {
+                _push2(`<span class="inline-flex items-center gap-1 px-2 py-0.5 bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 rounded-full font-semibold"${_scopeId}>${ssrInterpolate(filterDateFrom.value || "...")} — ${ssrInterpolate(filterDateTo.value || "...")} <button class="hover:text-amber-800"${_scopeId}>`);
+                _push2(ssrRenderComponent(_component_Icon, {
+                  icon: "solar:close-circle-bold",
+                  class: "w-3 h-3"
+                }, null, _parent2, _scopeId));
+                _push2(`</button></span>`);
+              } else {
+                _push2(`<!---->`);
+              }
+              _push2(`</div>`);
+            } else {
+              _push2(`<!---->`);
+            }
+            _push2(`</div><div class="bg-paper dark:bg-gray-800 rounded-card border border-gray-100 dark:border-gray-700 overflow-hidden"${_scopeId}><div class="overflow-x-auto"${_scopeId}><table class="w-full text-left text-sm"${_scopeId}><thead class="bg-gray-50 dark:bg-gray-900/50 text-gray-400 text-xs font-semibold uppercase tracking-wider border-b border-gray-100 dark:border-gray-700"${_scopeId}><tr${_scopeId}><th class="px-6 py-4"${_scopeId}>Waktu</th><th class="px-6 py-4"${_scopeId}>Pengguna</th><th class="px-6 py-4"${_scopeId}>Objek</th><th class="px-6 py-4"${_scopeId}>Aksi</th><th class="px-6 py-4"${_scopeId}>Rincian</th><th class="px-6 py-4 text-right"${_scopeId}>Aksi</th></tr></thead><tbody class="divide-y divide-gray-200 dark:divide-gray-700"${_scopeId}>`);
             if (__props.logs.data.length === 0) {
               _push2(`<tr${_scopeId}><td colspan="6" class="px-6 py-8 text-center text-gray-400"${_scopeId}> Tidak ada catatan log aktivitas ditemukan. </td></tr>`);
             } else {
@@ -167,16 +314,12 @@ const _sfc_main = {
             _push2(`<!--[-->`);
             ssrRenderList(__props.logs.data, (item) => {
               var _a2;
-              _push2(`<tr class="hover:bg-gray-50/50 dark:hover:bg-gray-800 transition-colors"${_scopeId}><td class="px-6 py-4 text-xs font-semibold text-gray-500"${_scopeId}>${ssrInterpolate(_ctx.$formatDateTime(item.created_at))}</td><td class="px-6 py-4 text-gray-900 dark:text-white font-semibold text-xs"${_scopeId}>${ssrInterpolate(((_a2 = item.user) == null ? void 0 : _a2.name) || "Sistem / Guest")}</td><td class="px-6 py-4"${_scopeId}><span class="${ssrRenderClass([getModelColor(item.model_type), "inline-flex items-center gap-1.5 px-2 py-0.5 text-[10px] font-bold rounded-full"])}"${_scopeId}>`);
+              _push2(`<tr class="hover:bg-gray-50/50 dark:hover:bg-gray-800 transition-colors"${_scopeId}><td class="px-6 py-4 text-xs font-semibold text-gray-500 whitespace-nowrap"${_scopeId}>${ssrInterpolate(_ctx.$formatDateTime(item.created_at))}</td><td class="px-6 py-4 text-gray-900 dark:text-white font-semibold text-xs"${_scopeId}>${ssrInterpolate(((_a2 = item.user) == null ? void 0 : _a2.name) || "Sistem / Guest")}</td><td class="px-6 py-4"${_scopeId}><span class="${ssrRenderClass([getModelColor(item.model_type), "inline-flex items-center gap-1.5 px-2 py-0.5 text-[10px] font-bold rounded-full"])}"${_scopeId}>`);
               _push2(ssrRenderComponent(_component_Icon, {
                 icon: getModelIcon(item.model_type),
                 class: "w-3 h-3"
               }, null, _parent2, _scopeId));
-              _push2(` ${ssrInterpolate(getModelLabel(item.model_type))}</span></td><td class="px-6 py-4"${_scopeId}><span class="${ssrRenderClass([{
-                "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400": item.action === "create",
-                "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400": item.action === "update",
-                "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400": item.action === "delete"
-              }, "inline-flex items-center px-2 py-0.5 text-[10px] font-bold rounded-full"])}"${_scopeId}>${ssrInterpolate(actionLabels[item.action] || item.action)}</span></td><td class="px-6 py-4 text-xs text-gray-500 max-w-[200px] truncate"${_scopeId}>${ssrInterpolate(getRecordName(item) || "#" + item.model_id)}</td><td class="px-6 py-4 text-right"${_scopeId}><div class="flex items-center justify-end gap-2"${_scopeId}><button class="p-2 bg-gray-50 hover:bg-paper-2 text-gray-600 hover:text-blue-600 dark:bg-gray-600 dark:text-gray-300 rounded-sm transition-all" title="Detail Log"${_scopeId}>`);
+              _push2(` ${ssrInterpolate(getModelLabel(item.model_type))}</span></td><td class="px-6 py-4"${_scopeId}><span class="${ssrRenderClass([actionColors[item.action], "inline-flex items-center px-2 py-0.5 text-[10px] font-bold rounded-full"])}"${_scopeId}>${ssrInterpolate(actionLabels[item.action] || item.action)}</span></td><td class="px-6 py-4 text-xs text-gray-500 max-w-[200px] truncate"${_scopeId}>${ssrInterpolate(getRecordName(item) || "#" + item.model_id)}</td><td class="px-6 py-4 text-right"${_scopeId}><div class="flex items-center justify-end gap-2"${_scopeId}><button class="p-2 bg-gray-50 hover:bg-paper-2 text-gray-600 hover:text-blue-600 dark:bg-gray-600 dark:text-gray-300 rounded-sm transition-all" title="Detail Log"${_scopeId}>`);
               _push2(ssrRenderComponent(_component_Icon, {
                 icon: "solar:eye-bold",
                 class: "w-4 h-4"
@@ -188,7 +331,7 @@ const _sfc_main = {
               }, null, _parent2, _scopeId));
               _push2(`</button></div></td></tr>`);
             });
-            _push2(`<!--]--></tbody></table></div><div class="flex flex-col sm:flex-row justify-between items-center gap-4 pt-2"${_scopeId}><p class="text-xs text-gray-400"${_scopeId}> Menampilkan ${ssrInterpolate(__props.logs.from || 0)} sampai ${ssrInterpolate(__props.logs.to || 0)} dari ${ssrInterpolate(__props.logs.total)} data </p>`);
+            _push2(`<!--]--></tbody></table></div><div class="flex flex-col sm:flex-row justify-between items-center gap-4 px-6 py-4 border-t border-gray-100 dark:border-gray-700"${_scopeId}><p class="text-xs text-gray-400"${_scopeId}> Menampilkan ${ssrInterpolate(__props.logs.from || 0)} sampai ${ssrInterpolate(__props.logs.to || 0)} dari ${ssrInterpolate(__props.logs.total)} data </p>`);
             _push2(ssrRenderComponent(_sfc_main$2, {
               links: __props.logs.links
             }, null, _parent2, _scopeId));
@@ -212,11 +355,7 @@ const _sfc_main = {
                 } else {
                   _push2(`<!---->`);
                 }
-                _push2(`<span class="${ssrRenderClass([{
-                  "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400": activeLog.value.action === "create",
-                  "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400": activeLog.value.action === "update",
-                  "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400": activeLog.value.action === "delete"
-                }, "ml-auto inline-flex items-center px-2 py-0.5 text-[10px] font-bold rounded-full"])}"${_scopeId}>${ssrInterpolate(actionLabels[activeLog.value.action] || activeLog.value.action)}</span></div><div class="grid grid-cols-2 gap-4"${_scopeId}><div${_scopeId}><span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider block"${_scopeId}>Waktu Operasi</span><span class="text-slate-900 dark:text-slate-200 mt-1 block font-semibold"${_scopeId}>${ssrInterpolate(_ctx.$formatDateTime(activeLog.value.created_at))}</span></div><div${_scopeId}><span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider block"${_scopeId}>Nama Pengguna</span><span class="text-slate-900 dark:text-slate-200 mt-1 block font-semibold"${_scopeId}>${ssrInterpolate(((_a = activeLog.value.user) == null ? void 0 : _a.name) || "Sistem / Guest")}</span></div><div${_scopeId}><span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider block"${_scopeId}>IP Address</span><span class="text-slate-900 dark:text-slate-200 mt-1 block font-mono"${_scopeId}>${ssrInterpolate(activeLog.value.ip_address)}</span></div><div${_scopeId}><span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider block"${_scopeId}>Aksi / Operasi</span><span class="text-blue-600 dark:text-blue-400 mt-1 block font-mono font-bold"${_scopeId}>${ssrInterpolate(activeLog.value.action)}</span></div></div><div${_scopeId}><span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider block mb-1"${_scopeId}>User Agent</span><span class="text-slate-600 dark:text-slate-300 block font-light font-mono leading-relaxed bg-paper-2 dark:bg-paper-2-dark p-2.5 rounded-sm border border-rule dark:border-rule-dark text-[10px]"${_scopeId}>${ssrInterpolate(activeLog.value.user_agent)}</span></div>`);
+                _push2(`<span class="${ssrRenderClass([actionColors[activeLog.value.action], "ml-auto inline-flex items-center px-2 py-0.5 text-[10px] font-bold rounded-full"])}"${_scopeId}>${ssrInterpolate(actionLabels[activeLog.value.action] || activeLog.value.action)}</span></div><div class="grid grid-cols-2 gap-4"${_scopeId}><div${_scopeId}><span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider block"${_scopeId}>Waktu Operasi</span><span class="text-slate-900 dark:text-slate-200 mt-1 block font-semibold"${_scopeId}>${ssrInterpolate(_ctx.$formatDateTime(activeLog.value.created_at))}</span></div><div${_scopeId}><span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider block"${_scopeId}>Nama Pengguna</span><span class="text-slate-900 dark:text-slate-200 mt-1 block font-semibold"${_scopeId}>${ssrInterpolate(((_a = activeLog.value.user) == null ? void 0 : _a.name) || "Sistem / Guest")}</span></div><div${_scopeId}><span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider block"${_scopeId}>IP Address</span><span class="text-slate-900 dark:text-slate-200 mt-1 block font-mono"${_scopeId}>${ssrInterpolate(activeLog.value.ip_address)}</span></div><div${_scopeId}><span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider block"${_scopeId}>Aksi / Operasi</span><span class="text-blue-600 dark:text-blue-400 mt-1 block font-mono font-bold"${_scopeId}>${ssrInterpolate(activeLog.value.action)}</span></div></div><div${_scopeId}><span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider block mb-1"${_scopeId}>User Agent</span><span class="text-slate-600 dark:text-slate-300 block font-light font-mono leading-relaxed bg-paper-2 dark:bg-paper-2-dark p-2.5 rounded-sm border border-rule dark:border-rule-dark text-[10px]"${_scopeId}>${ssrInterpolate(activeLog.value.user_agent)}</span></div>`);
                 if (activeLog.value.action === "update") {
                   _push2(`<div${_scopeId}><span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider block mb-2"${_scopeId}>Perubahan Data</span><div class="border dark:border-slate-800 rounded-sm overflow-hidden"${_scopeId}><table class="w-full text-[11px]"${_scopeId}><thead class="bg-gray-50 dark:bg-slate-800"${_scopeId}><tr${_scopeId}><th class="px-3 py-2 text-left font-bold text-slate-500 w-1/4"${_scopeId}>Field</th><th class="px-3 py-2 text-left font-bold text-red-500/80 w-[37.5%]"${_scopeId}>Sebelum</th><th class="px-3 py-2 text-left font-bold text-emerald-600 dark:text-emerald-400 w-[37.5%]"${_scopeId}>Sesudah</th></tr></thead><tbody class="divide-y divide-gray-100 dark:divide-slate-800"${_scopeId}><!--[-->`);
                   ssrRenderList(getDiffFields(activeLog.value.old_values, activeLog.value.new_values).filter((d) => !skippedFields.includes(d.key)), (d) => {
@@ -272,25 +411,185 @@ const _sfc_main = {
                   createVNode("h3", { class: "text-xl font-bold text-gray-900 dark:text-white" }, "Audit Trail & Log Aktivitas"),
                   createVNode("p", { class: "text-xs text-gray-500 mt-1" }, "Daftar rekaman jejak audit operasi sistem yang dilakukan oleh pengguna terotentikasi.")
                 ]),
-                createVNode("div", { class: "bg-paper dark:bg-gray-800 rounded-card border border-gray-100 dark:border-gray-700 overflow-hidden p-6 space-y-4" }, [
-                  createVNode("div", { class: "flex justify-between items-center max-w-md" }, [
-                    createVNode("div", { class: "relative w-full" }, [
+                createVNode("div", { class: "bg-paper dark:bg-gray-800 rounded-card border border-gray-100 dark:border-gray-700 p-6 space-y-4" }, [
+                  createVNode("div", { class: "grid grid-cols-1 md:grid-cols-4 gap-3" }, [
+                    createVNode("div", { class: "relative" }, [
                       createVNode(_component_Icon, {
                         icon: "solar:magnifer-linear",
-                        class: "absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4"
+                        class: "absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4"
                       }),
                       withDirectives(createVNode("input", {
                         type: "text",
                         "onUpdate:modelValue": ($event) => search.value = $event,
                         onKeyup: withKeys(handleSearch, ["enter"]),
-                        placeholder: "Cari berdasarkan aksi, nama pengguna, model...",
-                        class: "w-full text-xs pl-10 pr-4 py-2.5 rounded-sm border border-gray-300 dark:border-gray-700 bg-paper dark:bg-gray-900 text-gray-900 dark:text-white"
+                        placeholder: "Cari...",
+                        class: "w-full text-xs pl-9 pr-3 py-2.5 rounded-sm border border-gray-300 dark:border-gray-700 bg-paper dark:bg-gray-900 text-gray-900 dark:text-white"
                       }, null, 40, ["onUpdate:modelValue"]), [
                         [vModelText, search.value]
                       ])
+                    ]),
+                    createVNode(_component_SearchSelect, {
+                      modelValue: filterAction.value,
+                      "onUpdate:modelValue": ($event) => filterAction.value = $event,
+                      options: [
+                        { label: "Semua Aksi", value: "" },
+                        { label: "Dibuat", value: "create" },
+                        { label: "Diperbarui", value: "update" },
+                        { label: "Dihapus", value: "delete" }
+                      ],
+                      optionLabel: "label",
+                      optionValue: "value",
+                      placeholder: "Semua Aksi",
+                      onChange: applyFilters
+                    }, null, 8, ["modelValue", "onUpdate:modelValue"]),
+                    createVNode(_component_SearchSelect, {
+                      modelValue: filterModel.value,
+                      "onUpdate:modelValue": ($event) => filterModel.value = $event,
+                      options: [
+                        { label: "Semua Objek", value: "" },
+                        ...Object.entries(modelLabels).map(([k, v]) => ({ label: v, value: k }))
+                      ],
+                      optionLabel: "label",
+                      optionValue: "value",
+                      placeholder: "Semua Objek",
+                      onChange: applyFilters
+                    }, null, 8, ["modelValue", "onUpdate:modelValue", "options"]),
+                    hasActiveFilters.value ? (openBlock(), createBlock("button", {
+                      key: 0,
+                      onClick: clearFilters,
+                      class: "inline-flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-semibold text-red-600 bg-red-50 hover:bg-red-100 dark:bg-red-900/20 dark:text-red-400 dark:hover:bg-red-900/30 rounded-sm transition-all"
+                    }, [
+                      createVNode(_component_Icon, {
+                        icon: "solar:close-circle-bold",
+                        class: "w-4 h-4"
+                      }),
+                      createTextVNode(" Reset Filter ")
+                    ])) : createCommentVNode("", true)
+                  ]),
+                  createVNode("div", { class: "flex flex-col md:flex-row md:items-center gap-3" }, [
+                    createVNode("div", { class: "flex flex-wrap gap-1.5" }, [
+                      createVNode("button", {
+                        onClick: ($event) => setQuickDate("today"),
+                        class: ["px-3 py-1.5 text-[11px] font-semibold rounded-full border transition-all", filterDateFrom.value === filterDateTo.value && filterDateFrom.value ? "bg-accent text-accent-ink border-accent" : "border-gray-200 dark:border-gray-700 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800"]
+                      }, " Hari Ini ", 10, ["onClick"]),
+                      createVNode("button", {
+                        onClick: ($event) => setQuickDate("yesterday"),
+                        class: ["px-3 py-1.5 text-[11px] font-semibold rounded-full border transition-all", filterDateFrom.value !== filterDateTo.value && filterDateFrom.value ? "bg-accent text-accent-ink border-accent" : "border-gray-200 dark:border-gray-700 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800"]
+                      }, " Kemarin ", 10, ["onClick"]),
+                      createVNode("button", {
+                        onClick: ($event) => setQuickDate("this_week"),
+                        class: ["px-3 py-1.5 text-[11px] font-semibold rounded-full border transition-all", filterDateFrom.value !== filterDateTo.value && filterDateFrom.value ? "bg-accent text-accent-ink border-accent" : "border-gray-200 dark:border-gray-700 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800"]
+                      }, " Minggu Ini ", 10, ["onClick"]),
+                      createVNode("button", {
+                        onClick: ($event) => setQuickDate("this_month"),
+                        class: ["px-3 py-1.5 text-[11px] font-semibold rounded-full border transition-all", filterDateFrom.value !== filterDateTo.value && filterDateFrom.value ? "bg-accent text-accent-ink border-accent" : "border-gray-200 dark:border-gray-700 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800"]
+                      }, " Bulan Ini ", 10, ["onClick"]),
+                      createVNode("button", {
+                        onClick: ($event) => setQuickDate("this_year"),
+                        class: ["px-3 py-1.5 text-[11px] font-semibold rounded-full border transition-all", filterDateFrom.value !== filterDateTo.value && filterDateFrom.value ? "bg-accent text-accent-ink border-accent" : "border-gray-200 dark:border-gray-700 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800"]
+                      }, " Tahun Ini ", 10, ["onClick"])
+                    ]),
+                    createVNode("div", { class: "hidden md:block w-px h-6 bg-gray-200 dark:bg-gray-700" }),
+                    createVNode("div", { class: "flex items-center gap-2" }, [
+                      createVNode("div", { class: "relative" }, [
+                        createVNode(_component_Icon, {
+                          icon: "solar:calendar-bold",
+                          class: "absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-3.5 h-3.5"
+                        }),
+                        withDirectives(createVNode("input", {
+                          type: "date",
+                          "onUpdate:modelValue": ($event) => filterDateFrom.value = $event,
+                          onChange: applyFilters,
+                          class: "text-xs pl-9 pr-3 py-2 rounded-sm border border-gray-300 dark:border-gray-700 bg-paper dark:bg-gray-900 text-gray-900 dark:text-white"
+                        }, null, 40, ["onUpdate:modelValue"]), [
+                          [vModelText, filterDateFrom.value]
+                        ])
+                      ]),
+                      createVNode("span", { class: "text-gray-400 text-xs" }, "—"),
+                      createVNode("div", { class: "relative" }, [
+                        createVNode(_component_Icon, {
+                          icon: "solar:calendar-bold",
+                          class: "absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-3.5 h-3.5"
+                        }),
+                        withDirectives(createVNode("input", {
+                          type: "date",
+                          "onUpdate:modelValue": ($event) => filterDateTo.value = $event,
+                          onChange: applyFilters,
+                          class: "text-xs pl-9 pr-3 py-2 rounded-sm border border-gray-300 dark:border-gray-700 bg-paper dark:bg-gray-900 text-gray-900 dark:text-white"
+                        }, null, 40, ["onUpdate:modelValue"]), [
+                          [vModelText, filterDateTo.value]
+                        ])
+                      ])
                     ])
                   ]),
-                  createVNode("div", { class: "overflow-x-auto border border-gray-100 dark:border-gray-700 rounded-card" }, [
+                  hasActiveFilters.value ? (openBlock(), createBlock("div", {
+                    key: 0,
+                    class: "flex items-center gap-2 text-[11px] text-gray-400"
+                  }, [
+                    createVNode(_component_Icon, {
+                      icon: "solar:filter-bold",
+                      class: "w-3 h-3"
+                    }),
+                    createTextVNode(" Filter aktif: "),
+                    filterAction.value ? (openBlock(), createBlock("span", {
+                      key: 0,
+                      class: "inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-full font-semibold"
+                    }, [
+                      createTextVNode(toDisplayString(actionLabels[filterAction.value] || filterAction.value) + " ", 1),
+                      createVNode("button", {
+                        onClick: ($event) => {
+                          filterAction.value = "";
+                          applyFilters();
+                        },
+                        class: "hover:text-blue-800"
+                      }, [
+                        createVNode(_component_Icon, {
+                          icon: "solar:close-circle-bold",
+                          class: "w-3 h-3"
+                        })
+                      ], 8, ["onClick"])
+                    ])) : createCommentVNode("", true),
+                    filterModel.value ? (openBlock(), createBlock("span", {
+                      key: 1,
+                      class: "inline-flex items-center gap-1 px-2 py-0.5 bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 rounded-full font-semibold"
+                    }, [
+                      createTextVNode(toDisplayString(getModelLabel(filterModel.value)) + " ", 1),
+                      createVNode("button", {
+                        onClick: ($event) => {
+                          filterModel.value = "";
+                          applyFilters();
+                        },
+                        class: "hover:text-purple-800"
+                      }, [
+                        createVNode(_component_Icon, {
+                          icon: "solar:close-circle-bold",
+                          class: "w-3 h-3"
+                        })
+                      ], 8, ["onClick"])
+                    ])) : createCommentVNode("", true),
+                    filterDateFrom.value || filterDateTo.value ? (openBlock(), createBlock("span", {
+                      key: 2,
+                      class: "inline-flex items-center gap-1 px-2 py-0.5 bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 rounded-full font-semibold"
+                    }, [
+                      createTextVNode(toDisplayString(filterDateFrom.value || "...") + " — " + toDisplayString(filterDateTo.value || "...") + " ", 1),
+                      createVNode("button", {
+                        onClick: ($event) => {
+                          filterDateFrom.value = "";
+                          filterDateTo.value = "";
+                          applyFilters();
+                        },
+                        class: "hover:text-amber-800"
+                      }, [
+                        createVNode(_component_Icon, {
+                          icon: "solar:close-circle-bold",
+                          class: "w-3 h-3"
+                        })
+                      ], 8, ["onClick"])
+                    ])) : createCommentVNode("", true)
+                  ])) : createCommentVNode("", true)
+                ]),
+                createVNode("div", { class: "bg-paper dark:bg-gray-800 rounded-card border border-gray-100 dark:border-gray-700 overflow-hidden" }, [
+                  createVNode("div", { class: "overflow-x-auto" }, [
                     createVNode("table", { class: "w-full text-left text-sm" }, [
                       createVNode("thead", { class: "bg-gray-50 dark:bg-gray-900/50 text-gray-400 text-xs font-semibold uppercase tracking-wider border-b border-gray-100 dark:border-gray-700" }, [
                         createVNode("tr", null, [
@@ -315,7 +614,7 @@ const _sfc_main = {
                             key: item.id,
                             class: "hover:bg-gray-50/50 dark:hover:bg-gray-800 transition-colors"
                           }, [
-                            createVNode("td", { class: "px-6 py-4 text-xs font-semibold text-gray-500" }, toDisplayString(_ctx.$formatDateTime(item.created_at)), 1),
+                            createVNode("td", { class: "px-6 py-4 text-xs font-semibold text-gray-500 whitespace-nowrap" }, toDisplayString(_ctx.$formatDateTime(item.created_at)), 1),
                             createVNode("td", { class: "px-6 py-4 text-gray-900 dark:text-white font-semibold text-xs" }, toDisplayString(((_a2 = item.user) == null ? void 0 : _a2.name) || "Sistem / Guest"), 1),
                             createVNode("td", { class: "px-6 py-4" }, [
                               createVNode("span", {
@@ -330,11 +629,7 @@ const _sfc_main = {
                             ]),
                             createVNode("td", { class: "px-6 py-4" }, [
                               createVNode("span", {
-                                class: ["inline-flex items-center px-2 py-0.5 text-[10px] font-bold rounded-full", {
-                                  "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400": item.action === "create",
-                                  "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400": item.action === "update",
-                                  "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400": item.action === "delete"
-                                }]
+                                class: ["inline-flex items-center px-2 py-0.5 text-[10px] font-bold rounded-full", actionColors[item.action]]
                               }, toDisplayString(actionLabels[item.action] || item.action), 3)
                             ]),
                             createVNode("td", { class: "px-6 py-4 text-xs text-gray-500 max-w-[200px] truncate" }, toDisplayString(getRecordName(item) || "#" + item.model_id), 1),
@@ -367,7 +662,7 @@ const _sfc_main = {
                       ])
                     ])
                   ]),
-                  createVNode("div", { class: "flex flex-col sm:flex-row justify-between items-center gap-4 pt-2" }, [
+                  createVNode("div", { class: "flex flex-col sm:flex-row justify-between items-center gap-4 px-6 py-4 border-t border-gray-100 dark:border-gray-700" }, [
                     createVNode("p", { class: "text-xs text-gray-400" }, " Menampilkan " + toDisplayString(__props.logs.from || 0) + " sampai " + toDisplayString(__props.logs.to || 0) + " dari " + toDisplayString(__props.logs.total) + " data ", 1),
                     createVNode(_sfc_main$2, {
                       links: __props.logs.links
@@ -415,11 +710,7 @@ const _sfc_main = {
                           class: "text-gray-900 dark:text-white font-semibold truncate"
                         }, " — " + toDisplayString(getRecordName(activeLog.value)), 1)) : createCommentVNode("", true),
                         createVNode("span", {
-                          class: ["ml-auto inline-flex items-center px-2 py-0.5 text-[10px] font-bold rounded-full", {
-                            "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400": activeLog.value.action === "create",
-                            "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400": activeLog.value.action === "update",
-                            "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400": activeLog.value.action === "delete"
-                          }]
+                          class: ["ml-auto inline-flex items-center px-2 py-0.5 text-[10px] font-bold rounded-full", actionColors[activeLog.value.action]]
                         }, toDisplayString(actionLabels[activeLog.value.action] || activeLog.value.action), 3)
                       ]),
                       createVNode("div", { class: "grid grid-cols-2 gap-4" }, [

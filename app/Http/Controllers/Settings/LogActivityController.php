@@ -15,13 +15,34 @@ class LogActivityController extends Controller
 
         $query = AuditLog::with('user');
 
+        // Search
         if ($request->filled('search')) {
             $search = $request->search;
-            $query->where('action', 'like', "%{$search}%")
+            $query->where(function ($q) use ($search) {
+                $q->where('action', 'like', "%{$search}%")
                   ->orWhere('model_type', 'like', "%{$search}%")
-                  ->orWhereHas('user', function($q) use ($search) {
-                      $q->where('name', 'like', "%{$search}%");
+                  ->orWhereHas('user', function ($q2) use ($search) {
+                      $q2->where('name', 'like', "%{$search}%");
                   });
+            });
+        }
+
+        // Filter by action
+        if ($request->filled('action')) {
+            $query->where('action', $request->action);
+        }
+
+        // Filter by model type
+        if ($request->filled('model_type')) {
+            $query->where('model_type', $request->model_type);
+        }
+
+        // Date filter
+        if ($request->filled('date_from')) {
+            $query->where('created_at', '>=', $request->date_from . ' 00:00:00');
+        }
+        if ($request->filled('date_to')) {
+            $query->where('created_at', '<=', $request->date_to . ' 23:59:59');
         }
 
         $logs = $query->orderBy('created_at', 'desc')->paginate(20)->withQueryString();

@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { Head, router } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import Pagination from '@/Components/Pagination.vue';
@@ -15,43 +15,71 @@ const props = defineProps({
 });
 
 const search = ref(props.filters.search || '');
+const filterAction = ref(props.filters.action || '');
+const filterModel = ref(props.filters.model_type || '');
+const filterDateFrom = ref(props.filters.date_from || '');
+const filterDateTo = ref(props.filters.date_to || '');
 const activeLog = ref(null);
 const showModal = ref(false);
 
-const handleSearch = () => {
- router.get(route('settings.log-activity.index'), { search: search.value }, {
+const hasActiveFilters = computed(() => {
+ return search.value || filterAction.value || filterModel.value || filterDateFrom.value || filterDateTo.value;
+});
+
+const applyFilters = () => {
+ const params = {};
+ if (search.value) params.search = search.value;
+ if (filterAction.value) params.action = filterAction.value;
+ if (filterModel.value) params.model_type = filterModel.value;
+ if (filterDateFrom.value) params.date_from = filterDateFrom.value;
+ if (filterDateTo.value) params.date_to = filterDateTo.value;
+ router.get(route('settings.log-activity.index'), params, {
   preserveState: true,
   preserveScroll: true,
  });
 };
 
-const viewDetails = (id) => {
- axios.get(route('settings.log-activity.show', id))
-  .then(res => {
-   activeLog.value = res.data;
-   showModal.value = true;
-  })
-  .catch(err => {
-   toast.error('Gagal mengambil data log detail.');
-   console.error(err);
-  });
-};
+const handleSearch = () => applyFilters();
 
-const showConfirmDelete = ref(false);
-const deleteTargetId = ref(null);
-
-const confirmDeleteLog = (id) => {
- deleteTargetId.value = id;
- showConfirmDelete.value = true;
-};
-
-const executeDeleteLog = () => {
- router.delete(route('settings.log-activity.destroy', deleteTargetId.value), {
-  onSuccess: () => {
-   showConfirmDelete.value = false;
-  },
-  onError: (error) => toast.error('Gagal menghapus log.')
+const clearFilters = () => {
+ search.value = '';
+ filterAction.value = '';
+ filterModel.value = '';
+ filterDateFrom.value = '';
+ filterDateTo.value = '';
+ router.get(route('settings.log-activity.index'), {}, {
+  preserveState: true,
+  preserveScroll: true,
  });
+};
+
+const setQuickDate = (range) => {
+ const today = new Date();
+ const fmt = (d) => d.toISOString().split('T')[0];
+
+ if (range === 'today') {
+  filterDateFrom.value = fmt(today);
+  filterDateTo.value = fmt(today);
+ } else if (range === 'yesterday') {
+  const y = new Date(today);
+  y.setDate(y.getDate() - 1);
+  filterDateFrom.value = fmt(y);
+  filterDateTo.value = fmt(y);
+ } else if (range === 'this_week') {
+  const first = new Date(today);
+  first.setDate(today.getDate() - today.getDay() + (today.getDay() === 0 ? -6 : 1));
+  filterDateFrom.value = fmt(first);
+  filterDateTo.value = fmt(today);
+ } else if (range === 'this_month') {
+  const first = new Date(today.getFullYear(), today.getMonth(), 1);
+  filterDateFrom.value = fmt(first);
+  filterDateTo.value = fmt(today);
+ } else if (range === 'this_year') {
+  const first = new Date(today.getFullYear(), 0, 1);
+  filterDateFrom.value = fmt(first);
+  filterDateTo.value = fmt(today);
+ }
+ applyFilters();
 };
 
 const modelLabels = {
@@ -115,6 +143,12 @@ const actionLabels = {
  delete: 'Dihapus',
 };
 
+const actionColors = {
+ create: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400',
+ update: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
+ delete: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400',
+};
+
 const getRecordName = (log) => {
  const nv = log.new_values || log.old_values || {};
  return nv.name || nv.judul || nv.nama || nv.title || null;
@@ -158,6 +192,35 @@ const getDiffFields = (oldVals, newVals) => {
 };
 
 const skippedFields = ['updated_at', 'created_at', 'updated_by', 'created_by'];
+
+const viewDetails = (id) => {
+ axios.get(route('settings.log-activity.show', id))
+  .then(res => {
+   activeLog.value = res.data;
+   showModal.value = true;
+  })
+  .catch(err => {
+   toast.error('Gagal mengambil data log detail.');
+   console.error(err);
+  });
+};
+
+const showConfirmDelete = ref(false);
+const deleteTargetId = ref(null);
+
+const confirmDeleteLog = (id) => {
+ deleteTargetId.value = id;
+ showConfirmDelete.value = true;
+};
+
+const executeDeleteLog = () => {
+ router.delete(route('settings.log-activity.destroy', deleteTargetId.value), {
+  onSuccess: () => {
+   showConfirmDelete.value = false;
+  },
+  onError: (error) => toast.error('Gagal menghapus log.')
+ });
+};
 </script>
 
 <template>
@@ -171,22 +234,135 @@ const skippedFields = ['updated_at', 'created_at', 'updated_by', 'created_by'];
  <p class="text-xs text-gray-500 mt-1">Daftar rekaman jejak audit operasi sistem yang dilakukan oleh pengguna terotentikasi.</p>
  </div>
 
- <!-- Search and Table -->
- <div class="bg-paper dark:bg-gray-800 rounded-card border border-gray-100 dark:border-gray-700 overflow-hidden p-6 space-y-4">
- <div class="flex justify-between items-center max-w-md">
- <div class="relative w-full">
- <Icon icon="solar:magnifer-linear" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
- <input 
-  type="text" 
-  v-model="search"
-  @keyup.enter="handleSearch"
-  placeholder="Cari berdasarkan aksi, nama pengguna, model..."
-  class="w-full text-xs pl-10 pr-4 py-2.5 rounded-sm border border-gray-300 dark:border-gray-700 bg-paper dark:bg-gray-900 text-gray-900 dark:text-white"
- />
- </div>
+ <!-- Filters Panel -->
+ <div class="bg-paper dark:bg-gray-800 rounded-card border border-gray-100 dark:border-gray-700 p-6 space-y-4">
+  <!-- Row 1: Search + Action + Model Type -->
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+   <!-- Search -->
+   <div class="relative">
+    <Icon icon="solar:magnifer-linear" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
+    <input 
+     type="text" 
+     v-model="search"
+     @keyup.enter="handleSearch"
+     placeholder="Cari..."
+     class="w-full text-xs pl-9 pr-3 py-2.5 rounded-sm border border-gray-300 dark:border-gray-700 bg-paper dark:bg-gray-900 text-gray-900 dark:text-white"
+    />
+   </div>
+
+   <!-- Action Filter -->
+   <SearchSelect
+    v-model="filterAction"
+    :options="[
+     { label: 'Semua Aksi', value: '' },
+     { label: 'Dibuat', value: 'create' },
+     { label: 'Diperbarui', value: 'update' },
+     { label: 'Dihapus', value: 'delete' },
+    ]"
+    optionLabel="label"
+    optionValue="value"
+    placeholder="Semua Aksi"
+    @change="applyFilters"
+   />
+
+   <!-- Model Type Filter -->
+   <SearchSelect
+    v-model="filterModel"
+    :options="[
+     { label: 'Semua Objek', value: '' },
+     ...Object.entries(modelLabels).map(([k, v]) => ({ label: v, value: k }))
+    ]"
+    optionLabel="label"
+    optionValue="value"
+    placeholder="Semua Objek"
+    @change="applyFilters"
+   />
+
+   <!-- Clear Filters -->
+   <button 
+    v-if="hasActiveFilters"
+    @click="clearFilters"
+    class="inline-flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-semibold text-red-600 bg-red-50 hover:bg-red-100 dark:bg-red-900/20 dark:text-red-400 dark:hover:bg-red-900/30 rounded-sm transition-all"
+   >
+    <Icon icon="solar:close-circle-bold" class="w-4 h-4" />
+    Reset Filter
+   </button>
+  </div>
+
+  <!-- Row 2: Quick Date Buttons + Date Range -->
+  <div class="flex flex-col md:flex-row md:items-center gap-3">
+   <!-- Quick Date Buttons -->
+   <div class="flex flex-wrap gap-1.5">
+    <button @click="setQuickDate('today')" class="px-3 py-1.5 text-[11px] font-semibold rounded-full border transition-all"
+     :class="filterDateFrom === filterDateTo && filterDateFrom ? 'bg-accent text-accent-ink border-accent' : 'border-gray-200 dark:border-gray-700 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800'">
+     Hari Ini
+    </button>
+    <button @click="setQuickDate('yesterday')" class="px-3 py-1.5 text-[11px] font-semibold rounded-full border transition-all"
+     :class="filterDateFrom !== filterDateTo && filterDateFrom ? 'bg-accent text-accent-ink border-accent' : 'border-gray-200 dark:border-gray-700 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800'">
+     Kemarin
+    </button>
+    <button @click="setQuickDate('this_week')" class="px-3 py-1.5 text-[11px] font-semibold rounded-full border transition-all"
+     :class="filterDateFrom !== filterDateTo && filterDateFrom ? 'bg-accent text-accent-ink border-accent' : 'border-gray-200 dark:border-gray-700 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800'">
+     Minggu Ini
+    </button>
+    <button @click="setQuickDate('this_month')" class="px-3 py-1.5 text-[11px] font-semibold rounded-full border transition-all"
+     :class="filterDateFrom !== filterDateTo && filterDateFrom ? 'bg-accent text-accent-ink border-accent' : 'border-gray-200 dark:border-gray-700 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800'">
+     Bulan Ini
+    </button>
+    <button @click="setQuickDate('this_year')" class="px-3 py-1.5 text-[11px] font-semibold rounded-full border transition-all"
+     :class="filterDateFrom !== filterDateTo && filterDateFrom ? 'bg-accent text-accent-ink border-accent' : 'border-gray-200 dark:border-gray-700 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800'">
+     Tahun Ini
+    </button>
+   </div>
+
+   <div class="hidden md:block w-px h-6 bg-gray-200 dark:bg-gray-700"></div>
+
+   <!-- Date Range -->
+   <div class="flex items-center gap-2">
+    <div class="relative">
+     <Icon icon="solar:calendar-bold" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-3.5 h-3.5" />
+     <input 
+      type="date" 
+      v-model="filterDateFrom"
+      @change="applyFilters"
+      class="text-xs pl-9 pr-3 py-2 rounded-sm border border-gray-300 dark:border-gray-700 bg-paper dark:bg-gray-900 text-gray-900 dark:text-white"
+     />
+    </div>
+    <span class="text-gray-400 text-xs">—</span>
+    <div class="relative">
+     <Icon icon="solar:calendar-bold" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-3.5 h-3.5" />
+     <input 
+      type="date" 
+      v-model="filterDateTo"
+      @change="applyFilters"
+      class="text-xs pl-9 pr-3 py-2 rounded-sm border border-gray-300 dark:border-gray-700 bg-paper dark:bg-gray-900 text-gray-900 dark:text-white"
+     />
+    </div>
+   </div>
+  </div>
+
+  <!-- Active Filters Indicator -->
+  <div v-if="hasActiveFilters" class="flex items-center gap-2 text-[11px] text-gray-400">
+   <Icon icon="solar:filter-bold" class="w-3 h-3" />
+   Filter aktif:
+   <span v-if="filterAction" class="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-full font-semibold">
+    {{ actionLabels[filterAction] || filterAction }}
+    <button @click="filterAction = ''; applyFilters()" class="hover:text-blue-800"><Icon icon="solar:close-circle-bold" class="w-3 h-3" /></button>
+   </span>
+   <span v-if="filterModel" class="inline-flex items-center gap-1 px-2 py-0.5 bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 rounded-full font-semibold">
+    {{ getModelLabel(filterModel) }}
+    <button @click="filterModel = ''; applyFilters()" class="hover:text-purple-800"><Icon icon="solar:close-circle-bold" class="w-3 h-3" /></button>
+   </span>
+   <span v-if="filterDateFrom || filterDateTo" class="inline-flex items-center gap-1 px-2 py-0.5 bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 rounded-full font-semibold">
+    {{ filterDateFrom || '...' }} — {{ filterDateTo || '...' }}
+    <button @click="filterDateFrom = ''; filterDateTo = ''; applyFilters()" class="hover:text-amber-800"><Icon icon="solar:close-circle-bold" class="w-3 h-3" /></button>
+   </span>
+  </div>
  </div>
 
- <div class="overflow-x-auto border border-gray-100 dark:border-gray-700 rounded-card">
+ <!-- Table -->
+ <div class="bg-paper dark:bg-gray-800 rounded-card border border-gray-100 dark:border-gray-700 overflow-hidden">
+ <div class="overflow-x-auto">
  <table class="w-full text-left text-sm">
  <thead class="bg-gray-50 dark:bg-gray-900/50 text-gray-400 text-xs font-semibold uppercase tracking-wider border-b border-gray-100 dark:border-gray-700">
  <tr>
@@ -205,7 +381,7 @@ const skippedFields = ['updated_at', 'created_at', 'updated_by', 'created_by'];
  </td>
  </tr>
  <tr v-for="item in logs.data" :key="item.id" class="hover:bg-gray-50/50 dark:hover:bg-gray-800 transition-colors">
- <td class="px-6 py-4 text-xs font-semibold text-gray-500">
+ <td class="px-6 py-4 text-xs font-semibold text-gray-500 whitespace-nowrap">
   {{ $formatDateTime(item.created_at) }}
  </td>
  <td class="px-6 py-4 text-gray-900 dark:text-white font-semibold text-xs">
@@ -218,12 +394,7 @@ const skippedFields = ['updated_at', 'created_at', 'updated_by', 'created_by'];
   </span>
  </td>
  <td class="px-6 py-4">
-  <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-bold rounded-full"
-   :class="{
-    'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400': item.action === 'create',
-    'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400': item.action === 'update',
-    'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400': item.action === 'delete',
-   }">
+  <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-bold rounded-full" :class="actionColors[item.action]">
    {{ actionLabels[item.action] || item.action }}
   </span>
  </td>
@@ -254,7 +425,7 @@ const skippedFields = ['updated_at', 'created_at', 'updated_by', 'created_by'];
  </div>
 
  <!-- Pagination -->
- <div class="flex flex-col sm:flex-row justify-between items-center gap-4 pt-2">
+ <div class="flex flex-col sm:flex-row justify-between items-center gap-4 px-6 py-4 border-t border-gray-100 dark:border-gray-700">
  <p class="text-xs text-gray-400">
   Menampilkan {{ logs.from || 0 }} sampai {{ logs.to || 0 }} dari {{ logs.total }} data
  </p>
@@ -288,11 +459,7 @@ const skippedFields = ['updated_at', 'created_at', 'updated_by', 'created_by'];
     — {{ getRecordName(activeLog) }}
    </span>
    <span class="ml-auto inline-flex items-center px-2 py-0.5 text-[10px] font-bold rounded-full"
-    :class="{
-     'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400': activeLog.action === 'create',
-     'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400': activeLog.action === 'update',
-     'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400': activeLog.action === 'delete',
-    }">
+    :class="actionColors[activeLog.action]">
     {{ actionLabels[activeLog.action] || activeLog.action }}
    </span>
   </div>

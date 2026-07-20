@@ -201,88 +201,94 @@ const shareLink = (platform) => {
   <p class="text-[10px] mt-1" style="color: var(--color-ink-2);">Dokumen cover, laporan, dan presentasi belum tersedia.</p>
  </div>
 
- <!-- Cover graphic -->
- <div v-else class="aspect-[4/3] rounded-xl overflow-hidden relative flex items-center justify-center" style="background-color: var(--color-paper-2); border: 1px solid var(--color-rule);">
- <img 
- v-if="fileCover" 
- :src="`/storage/${fileCover.file_path}`" 
- alt="Cover File"
- class="w-full h-full object-cover" 
- />
- <div v-else class="text-center p-6" style="color: var(--color-ink-2);">
- <Icon icon="solar:gallery-bold" class="w-12 h-12 mx-auto mb-2" />
- <span class="text-xs">No Cover Image</span>
- </div>
- </div>
-
- <!-- Action buttons for attachment downloads and reading -->
-  <div class="space-y-3">
-    <!-- PDF File Card -->
-    <div v-if="filePdf" class="p-3.5 rounded-xl border space-y-3" style="border-color: var(--color-rule); background-color: var(--color-paper-2);">
-      <div class="flex items-center gap-3">
-        <div class="p-2 rounded-lg shrink-0" style="background-color: var(--color-paper); color: var(--color-accent);">
-          <Icon icon="solar:file-text-bold" class="w-5 h-5" />
-        </div>
-        <div class="min-w-0 flex-grow">
-          <span class="block text-xs font-bold" style="color: var(--color-ink);">Laporan Kajian Utama</span>
-          <span class="text-[10px] block mt-0.5" style="color: var(--color-ink-2);">{{ formatSize(filePdf.file_size) }} &middot; PDF</span>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-2 gap-2 pt-2 border-t" style="border-color: var(--color-rule);">
-        <a 
-          :href="route('portal.preview', { slug: kajian.slug, file_uuid: filePdf.uuid })" 
-          target="_blank" 
-          class="flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg text-xs font-semibold transition-colors"
-          style="background-color: var(--color-paper); color: var(--color-accent); border: 1px solid var(--color-rule);"
-        >
-          <Icon icon="solar:eye-bold" class="w-4 h-4" />
-          <span>Baca</span>
-        </a>
-        <button 
-          @click="triggerDownload(filePdf)"
-          class="flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg text-xs font-semibold transition-colors"
-          style="background-color: var(--color-accent); color: var(--color-accent-ink);"
-        >
-          <Icon icon="solar:download-bold" class="w-4 h-4" />
-          <span>Unduh</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Presentation File Card -->
-    <div v-if="filePresentasi" class="p-3.5 rounded-xl border space-y-3" style="border-color: var(--color-rule); background-color: var(--color-paper-2);">
-      <div class="flex items-center gap-3">
-        <div class="p-2 rounded-lg shrink-0" style="background-color: var(--color-paper); color: var(--color-accent);">
-          <Icon icon="solar:play-bold" class="w-5 h-5" />
-        </div>
-        <div class="min-w-0 flex-grow">
-          <span class="block text-xs font-bold" style="color: var(--color-ink);">Bahan Presentasi / Slide</span>
-          <span class="text-[10px] block mt-0.5" style="color: var(--color-ink-2);">{{ formatSize(filePresentasi.file_size) }}</span>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-2 gap-2 pt-2 border-t" style="border-color: var(--color-rule);">
-        <a 
-          :href="route('portal.preview', { slug: kajian.slug, file_uuid: filePresentasi.uuid })" 
-          target="_blank" 
-          class="flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg text-xs font-semibold transition-colors"
-          style="background-color: var(--color-paper); color: var(--color-accent); border: 1px solid var(--color-rule);"
-        >
-          <Icon icon="solar:eye-bold" class="w-4 h-4" />
-          <span>Baca</span>
-        </a>
-        <button 
-          @click="triggerDownload(filePresentasi)"
-          class="flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg text-xs font-semibold transition-colors"
-          style="background-color: var(--color-accent); color: var(--color-accent-ink);"
-        >
-          <Icon icon="solar:download-bold" class="w-4 h-4" />
-          <span>Unduh</span>
-        </button>
-      </div>
-    </div>
+ <template v-else>
+  <!-- Cover graphic -->
+  <div class="aspect-[4/3] rounded-xl overflow-hidden relative flex items-center justify-center" style="background-color: var(--color-paper-2); border: 1px solid var(--color-rule);">
+  <img 
+   v-if="fileCover" 
+   :src="`/storage/${fileCover.file_path}`" 
+   alt="Cover File"
+   class="w-full h-full object-cover" 
+  />
+  <div v-else class="text-center p-6" style="color: var(--color-ink-2);">
+   <Icon icon="solar:gallery-bold" class="w-12 h-12 mx-auto mb-2" />
+   <span class="text-xs">Tidak ada cover</span>
   </div>
+  </div>
+
+  <!-- Attachment files -->
+  <div class="space-y-3">
+  <!-- PDF File Card -->
+  <div v-if="filePdf" class="p-3.5 rounded-xl border space-y-3" style="border-color: var(--color-rule); background-color: var(--color-paper-2);">
+   <div class="flex items-center gap-3">
+   <div class="p-2 rounded-lg shrink-0" style="background-color: var(--color-paper); color: var(--color-accent);">
+    <Icon icon="solar:file-text-bold" class="w-5 h-5" />
+   </div>
+   <div class="min-w-0 flex-grow">
+    <span class="block text-xs font-bold" style="color: var(--color-ink);">Laporan Kajian Utama</span>
+    <span class="text-[10px] block mt-0.5" style="color: var(--color-ink-2);">{{ formatSize(filePdf.file_size) }} &middot; PDF</span>
+   </div>
+   </div>
+   <div class="grid grid-cols-2 gap-2 pt-2 border-t" style="border-color: var(--color-rule);">
+   <a 
+    :href="route('portal.preview', { slug: kajian.slug, file_uuid: filePdf.uuid })" 
+    target="_blank" 
+    class="flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg text-xs font-semibold transition-colors"
+    style="background-color: var(--color-paper); color: var(--color-accent); border: 1px solid var(--color-rule);"
+   >
+    <Icon icon="solar:eye-bold" class="w-4 h-4" />
+    <span>Baca</span>
+   </a>
+   <button 
+    @click="triggerDownload(filePdf)"
+    class="flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg text-xs font-semibold transition-colors"
+    style="background-color: var(--color-accent); color: var(--color-accent-ink);"
+   >
+    <Icon icon="solar:download-bold" class="w-4 h-4" />
+    <span>Unduh</span>
+   </button>
+   </div>
+  </div>
+
+  <!-- Presentation File Card -->
+  <div v-if="filePresentasi" class="p-3.5 rounded-xl border space-y-3" style="border-color: var(--color-rule); background-color: var(--color-paper-2);">
+   <div class="flex items-center gap-3">
+   <div class="p-2 rounded-lg shrink-0" style="background-color: var(--color-paper); color: var(--color-accent);">
+    <Icon icon="solar:play-bold" class="w-5 h-5" />
+   </div>
+   <div class="min-w-0 flex-grow">
+    <span class="block text-xs font-bold" style="color: var(--color-ink);">Bahan Presentasi / Slide</span>
+    <span class="text-[10px] block mt-0.5" style="color: var(--color-ink-2);">{{ formatSize(filePresentasi.file_size) }}</span>
+   </div>
+   </div>
+   <div class="grid grid-cols-2 gap-2 pt-2 border-t" style="border-color: var(--color-rule);">
+   <a 
+    :href="route('portal.preview', { slug: kajian.slug, file_uuid: filePresentasi.uuid })" 
+    target="_blank" 
+    class="flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg text-xs font-semibold transition-colors"
+    style="background-color: var(--color-paper); color: var(--color-accent); border: 1px solid var(--color-rule);"
+   >
+    <Icon icon="solar:eye-bold" class="w-4 h-4" />
+    <span>Baca</span>
+   </a>
+   <button 
+    @click="triggerDownload(filePresentasi)"
+    class="flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg text-xs font-semibold transition-colors"
+    style="background-color: var(--color-accent); color: var(--color-accent-ink);"
+   >
+    <Icon icon="solar:download-bold" class="w-4 h-4" />
+    <span>Unduh</span>
+   </button>
+   </div>
+  </div>
+
+  <!-- No attachments message -->
+  <div v-if="!filePdf && !filePresentasi" class="flex items-center gap-2.5 p-3 rounded-lg" style="background-color: var(--color-paper-2);">
+   <Icon icon="solar:info-circle-bold" class="w-4 h-4 shrink-0" style="color: var(--color-ink-2);" />
+   <span class="text-[11px]" style="color: var(--color-ink-2);">Laporan dan presentasi belum tersedia.</span>
+  </div>
+  </div>
+ </template>
  </div>
 
  <!-- Share Platform -->

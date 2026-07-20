@@ -259,7 +259,7 @@ const _sfc_main = {
               }, null, _parent2, _scopeId));
               _push2(`</div><p class="text-xs font-semibold text-gray-400"${_scopeId}>Belum ada berkas</p><p class="text-[10px] text-gray-300 dark:text-gray-600 mt-1"${_scopeId}>Dokumen cover, laporan, dan presentasi belum tersedia.</p></div>`);
             } else {
-              _push2(`<div class="aspect-[4/3] bg-gray-100 dark:bg-gray-900 rounded-card overflow-hidden border border-gray-200 dark:border-gray-700 relative flex items-center justify-center"${_scopeId}>`);
+              _push2(`<!--[--><div class="aspect-[4/3] bg-gray-100 dark:bg-gray-900 rounded-card overflow-hidden border border-gray-200 dark:border-gray-700 relative flex items-center justify-center"${_scopeId}>`);
               if (fileCover.value) {
                 _push2(`<img${ssrRenderAttr("src", `/storage/${fileCover.value.path}`)} alt="Cover" class="w-full h-full object-cover"${_scopeId}>`);
               } else {
@@ -270,40 +270,50 @@ const _sfc_main = {
                 }, null, _parent2, _scopeId));
                 _push2(`<span class="text-xs"${_scopeId}>Tidak ada cover</span></div>`);
               }
-              _push2(`</div>`);
+              _push2(`</div><div class="space-y-3"${_scopeId}>`);
+              if (filePdf.value) {
+                _push2(`<a${ssrRenderAttr("href", `/storage/${filePdf.value.path}`)} target="_blank" class="w-full flex items-center gap-3 p-3 border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-sm transition-all"${_scopeId}><div class="p-2 bg-red-50 text-red-500 rounded-sm"${_scopeId}>`);
+                _push2(ssrRenderComponent(_component_Icon, {
+                  icon: "solar:file-text-bold",
+                  class: "w-5 h-5"
+                }, null, _parent2, _scopeId));
+                _push2(`</div><div class="min-w-0 flex-1"${_scopeId}><span class="block text-xs font-bold text-gray-800 dark:text-gray-200 truncate"${_scopeId}>Laporan Kajian Utama</span><span class="text-[10px] text-gray-400 block mt-0.5"${_scopeId}>${ssrInterpolate((filePdf.value.size / 1024 / 1024).toFixed(2))} MB • PDF</span></div>`);
+                _push2(ssrRenderComponent(_component_Icon, {
+                  icon: "solar:download-bold",
+                  class: "w-4 h-4 text-gray-400"
+                }, null, _parent2, _scopeId));
+                _push2(`</a>`);
+              } else {
+                _push2(`<!---->`);
+              }
+              if (filePresentasi.value) {
+                _push2(`<a${ssrRenderAttr("href", `/storage/${filePresentasi.value.path}`)} target="_blank" class="w-full flex items-center gap-3 p-3 border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-sm transition-all"${_scopeId}><div class="p-2 bg-amber-50 text-amber-500 rounded-sm"${_scopeId}>`);
+                _push2(ssrRenderComponent(_component_Icon, {
+                  icon: "solar:play-bold",
+                  class: "w-5 h-5"
+                }, null, _parent2, _scopeId));
+                _push2(`</div><div class="min-w-0 flex-1"${_scopeId}><span class="block text-xs font-bold text-gray-800 dark:text-gray-200 truncate"${_scopeId}>Bahan Presentasi / Slide</span><span class="text-[10px] text-gray-400 block mt-0.5"${_scopeId}>${ssrInterpolate((filePresentasi.value.size / 1024 / 1024).toFixed(2))} MB</span></div>`);
+                _push2(ssrRenderComponent(_component_Icon, {
+                  icon: "solar:download-bold",
+                  class: "w-4 h-4 text-gray-400"
+                }, null, _parent2, _scopeId));
+                _push2(`</a>`);
+              } else {
+                _push2(`<!---->`);
+              }
+              if (!filePdf.value && !filePresentasi.value) {
+                _push2(`<div class="flex items-center gap-2.5 p-3 rounded-lg bg-gray-50 dark:bg-gray-900"${_scopeId}>`);
+                _push2(ssrRenderComponent(_component_Icon, {
+                  icon: "solar:info-circle-bold",
+                  class: "w-4 h-4 shrink-0 text-gray-400"
+                }, null, _parent2, _scopeId));
+                _push2(`<span class="text-[11px] text-gray-400"${_scopeId}>Laporan dan presentasi belum tersedia.</span></div>`);
+              } else {
+                _push2(`<!---->`);
+              }
+              _push2(`</div><!--]-->`);
             }
-            _push2(`<div class="space-y-3"${_scopeId}>`);
-            if (filePdf.value) {
-              _push2(`<a${ssrRenderAttr("href", `/storage/${filePdf.value.path}`)} target="_blank" class="w-full flex items-center gap-3 p-3 border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-sm transition-all"${_scopeId}><div class="p-2 bg-red-50 text-red-500 rounded-sm"${_scopeId}>`);
-              _push2(ssrRenderComponent(_component_Icon, {
-                icon: "solar:file-text-bold",
-                class: "w-5 h-5"
-              }, null, _parent2, _scopeId));
-              _push2(`</div><div class="min-w-0 flex-1"${_scopeId}><span class="block text-xs font-bold text-gray-800 dark:text-gray-200 truncate"${_scopeId}>Laporan Kajian Utama</span><span class="text-[10px] text-gray-400 block mt-0.5"${_scopeId}>${ssrInterpolate((filePdf.value.size / 1024 / 1024).toFixed(2))} MB • PDF</span></div>`);
-              _push2(ssrRenderComponent(_component_Icon, {
-                icon: "solar:download-bold",
-                class: "w-4 h-4 text-gray-400"
-              }, null, _parent2, _scopeId));
-              _push2(`</a>`);
-            } else {
-              _push2(`<!---->`);
-            }
-            if (filePresentasi.value) {
-              _push2(`<a${ssrRenderAttr("href", `/storage/${filePresentasi.value.path}`)} target="_blank" class="w-full flex items-center gap-3 p-3 border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-sm transition-all"${_scopeId}><div class="p-2 bg-amber-50 text-amber-500 rounded-sm"${_scopeId}>`);
-              _push2(ssrRenderComponent(_component_Icon, {
-                icon: "solar:play-bold",
-                class: "w-5 h-5"
-              }, null, _parent2, _scopeId));
-              _push2(`</div><div class="min-w-0 flex-1"${_scopeId}><span class="block text-xs font-bold text-gray-800 dark:text-gray-200 truncate"${_scopeId}>Bahan Presentasi / Slide</span><span class="text-[10px] text-gray-400 block mt-0.5"${_scopeId}>${ssrInterpolate((filePresentasi.value.size / 1024 / 1024).toFixed(2))} MB</span></div>`);
-              _push2(ssrRenderComponent(_component_Icon, {
-                icon: "solar:download-bold",
-                class: "w-4 h-4 text-gray-400"
-              }, null, _parent2, _scopeId));
-              _push2(`</a>`);
-            } else {
-              _push2(`<!---->`);
-            }
-            _push2(`</div></div><div class="bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700 space-y-6"${_scopeId}><h4 class="font-bold text-gray-800 dark:text-white text-sm border-b border-gray-50 dark:border-gray-700 pb-3 flex items-center justify-between"${_scopeId}><span${_scopeId}>Riwayat Versi</span><span class="bg-paper-2 text-blue-600 dark:bg-blue-900/30 text-[10px] font-bold px-2 py-0.5 rounded-full"${_scopeId}>v${ssrInterpolate(__props.kajian.version)}</span></h4><div class="space-y-4 max-h-[300px] overflow-y-auto"${_scopeId}>`);
+            _push2(`</div><div class="bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700 space-y-6"${_scopeId}><h4 class="font-bold text-gray-800 dark:text-white text-sm border-b border-gray-50 dark:border-gray-700 pb-3 flex items-center justify-between"${_scopeId}><span${_scopeId}>Riwayat Versi</span><span class="bg-paper-2 text-blue-600 dark:bg-blue-900/30 text-[10px] font-bold px-2 py-0.5 rounded-full"${_scopeId}>v${ssrInterpolate(__props.kajian.version)}</span></h4><div class="space-y-4 max-h-[300px] overflow-y-auto"${_scopeId}>`);
             if (!__props.kajian.versions || __props.kajian.versions.length === 0) {
               _push2(`<div class="text-center text-xs text-gray-400 py-6"${_scopeId}> Belum ada riwayat perubahan terekam. </div>`);
             } else {
@@ -518,70 +528,79 @@ const _sfc_main = {
                         ]),
                         createVNode("p", { class: "text-xs font-semibold text-gray-400" }, "Belum ada berkas"),
                         createVNode("p", { class: "text-[10px] text-gray-300 dark:text-gray-600 mt-1" }, "Dokumen cover, laporan, dan presentasi belum tersedia.")
-                      ])) : (openBlock(), createBlock("div", {
-                        key: 1,
-                        class: "aspect-[4/3] bg-gray-100 dark:bg-gray-900 rounded-card overflow-hidden border border-gray-200 dark:border-gray-700 relative flex items-center justify-center"
-                      }, [
-                        fileCover.value ? (openBlock(), createBlock("img", {
-                          key: 0,
-                          src: `/storage/${fileCover.value.path}`,
-                          alt: "Cover",
-                          class: "w-full h-full object-cover"
-                        }, null, 8, ["src"])) : (openBlock(), createBlock("div", {
-                          key: 1,
-                          class: "text-center p-6 text-gray-300"
-                        }, [
-                          createVNode(_component_Icon, {
-                            icon: "solar:gallery-bold",
-                            class: "w-12 h-12 mx-auto mb-2"
-                          }),
-                          createVNode("span", { class: "text-xs" }, "Tidak ada cover")
-                        ]))
-                      ])),
-                      createVNode("div", { class: "space-y-3" }, [
-                        filePdf.value ? (openBlock(), createBlock("a", {
-                          key: 0,
-                          href: `/storage/${filePdf.value.path}`,
-                          target: "_blank",
-                          class: "w-full flex items-center gap-3 p-3 border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-sm transition-all"
-                        }, [
-                          createVNode("div", { class: "p-2 bg-red-50 text-red-500 rounded-sm" }, [
+                      ])) : (openBlock(), createBlock(Fragment, { key: 1 }, [
+                        createVNode("div", { class: "aspect-[4/3] bg-gray-100 dark:bg-gray-900 rounded-card overflow-hidden border border-gray-200 dark:border-gray-700 relative flex items-center justify-center" }, [
+                          fileCover.value ? (openBlock(), createBlock("img", {
+                            key: 0,
+                            src: `/storage/${fileCover.value.path}`,
+                            alt: "Cover",
+                            class: "w-full h-full object-cover"
+                          }, null, 8, ["src"])) : (openBlock(), createBlock("div", {
+                            key: 1,
+                            class: "text-center p-6 text-gray-300"
+                          }, [
                             createVNode(_component_Icon, {
-                              icon: "solar:file-text-bold",
-                              class: "w-5 h-5"
-                            })
-                          ]),
-                          createVNode("div", { class: "min-w-0 flex-1" }, [
-                            createVNode("span", { class: "block text-xs font-bold text-gray-800 dark:text-gray-200 truncate" }, "Laporan Kajian Utama"),
-                            createVNode("span", { class: "text-[10px] text-gray-400 block mt-0.5" }, toDisplayString((filePdf.value.size / 1024 / 1024).toFixed(2)) + " MB • PDF", 1)
-                          ]),
-                          createVNode(_component_Icon, {
-                            icon: "solar:download-bold",
-                            class: "w-4 h-4 text-gray-400"
-                          })
-                        ], 8, ["href"])) : createCommentVNode("", true),
-                        filePresentasi.value ? (openBlock(), createBlock("a", {
-                          key: 1,
-                          href: `/storage/${filePresentasi.value.path}`,
-                          target: "_blank",
-                          class: "w-full flex items-center gap-3 p-3 border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-sm transition-all"
-                        }, [
-                          createVNode("div", { class: "p-2 bg-amber-50 text-amber-500 rounded-sm" }, [
+                              icon: "solar:gallery-bold",
+                              class: "w-12 h-12 mx-auto mb-2"
+                            }),
+                            createVNode("span", { class: "text-xs" }, "Tidak ada cover")
+                          ]))
+                        ]),
+                        createVNode("div", { class: "space-y-3" }, [
+                          filePdf.value ? (openBlock(), createBlock("a", {
+                            key: 0,
+                            href: `/storage/${filePdf.value.path}`,
+                            target: "_blank",
+                            class: "w-full flex items-center gap-3 p-3 border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-sm transition-all"
+                          }, [
+                            createVNode("div", { class: "p-2 bg-red-50 text-red-500 rounded-sm" }, [
+                              createVNode(_component_Icon, {
+                                icon: "solar:file-text-bold",
+                                class: "w-5 h-5"
+                              })
+                            ]),
+                            createVNode("div", { class: "min-w-0 flex-1" }, [
+                              createVNode("span", { class: "block text-xs font-bold text-gray-800 dark:text-gray-200 truncate" }, "Laporan Kajian Utama"),
+                              createVNode("span", { class: "text-[10px] text-gray-400 block mt-0.5" }, toDisplayString((filePdf.value.size / 1024 / 1024).toFixed(2)) + " MB • PDF", 1)
+                            ]),
                             createVNode(_component_Icon, {
-                              icon: "solar:play-bold",
-                              class: "w-5 h-5"
+                              icon: "solar:download-bold",
+                              class: "w-4 h-4 text-gray-400"
                             })
-                          ]),
-                          createVNode("div", { class: "min-w-0 flex-1" }, [
-                            createVNode("span", { class: "block text-xs font-bold text-gray-800 dark:text-gray-200 truncate" }, "Bahan Presentasi / Slide"),
-                            createVNode("span", { class: "text-[10px] text-gray-400 block mt-0.5" }, toDisplayString((filePresentasi.value.size / 1024 / 1024).toFixed(2)) + " MB", 1)
-                          ]),
-                          createVNode(_component_Icon, {
-                            icon: "solar:download-bold",
-                            class: "w-4 h-4 text-gray-400"
-                          })
-                        ], 8, ["href"])) : createCommentVNode("", true)
-                      ])
+                          ], 8, ["href"])) : createCommentVNode("", true),
+                          filePresentasi.value ? (openBlock(), createBlock("a", {
+                            key: 1,
+                            href: `/storage/${filePresentasi.value.path}`,
+                            target: "_blank",
+                            class: "w-full flex items-center gap-3 p-3 border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-sm transition-all"
+                          }, [
+                            createVNode("div", { class: "p-2 bg-amber-50 text-amber-500 rounded-sm" }, [
+                              createVNode(_component_Icon, {
+                                icon: "solar:play-bold",
+                                class: "w-5 h-5"
+                              })
+                            ]),
+                            createVNode("div", { class: "min-w-0 flex-1" }, [
+                              createVNode("span", { class: "block text-xs font-bold text-gray-800 dark:text-gray-200 truncate" }, "Bahan Presentasi / Slide"),
+                              createVNode("span", { class: "text-[10px] text-gray-400 block mt-0.5" }, toDisplayString((filePresentasi.value.size / 1024 / 1024).toFixed(2)) + " MB", 1)
+                            ]),
+                            createVNode(_component_Icon, {
+                              icon: "solar:download-bold",
+                              class: "w-4 h-4 text-gray-400"
+                            })
+                          ], 8, ["href"])) : createCommentVNode("", true),
+                          !filePdf.value && !filePresentasi.value ? (openBlock(), createBlock("div", {
+                            key: 2,
+                            class: "flex items-center gap-2.5 p-3 rounded-lg bg-gray-50 dark:bg-gray-900"
+                          }, [
+                            createVNode(_component_Icon, {
+                              icon: "solar:info-circle-bold",
+                              class: "w-4 h-4 shrink-0 text-gray-400"
+                            }),
+                            createVNode("span", { class: "text-[11px] text-gray-400" }, "Laporan dan presentasi belum tersedia.")
+                          ])) : createCommentVNode("", true)
+                        ])
+                      ], 64))
                     ]),
                     createVNode("div", { class: "bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700 space-y-6" }, [
                       createVNode("h4", { class: "font-bold text-gray-800 dark:text-white text-sm border-b border-gray-50 dark:border-gray-700 pb-3 flex items-center justify-between" }, [

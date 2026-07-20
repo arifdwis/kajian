@@ -290,54 +290,62 @@ const deleteKajian = () => {
   <p class="text-[10px] text-gray-300 dark:text-gray-600 mt-1">Dokumen cover, laporan, dan presentasi belum tersedia.</p>
  </div>
 
- <!-- Cover preview -->
- <div v-else class="aspect-[4/3] bg-gray-100 dark:bg-gray-900 rounded-card overflow-hidden border border-gray-200 dark:border-gray-700 relative flex items-center justify-center">
- <img 
- v-if="fileCover" 
- :src="`/storage/${fileCover.path}`" 
- alt="Cover"
- class="w-full h-full object-cover" 
- />
- <div v-else class="text-center p-6 text-gray-300">
- <Icon icon="solar:gallery-bold" class="w-12 h-12 mx-auto mb-2" />
- <span class="text-xs">Tidak ada cover</span>
- </div>
- </div>
+ <template v-else>
+  <!-- Cover preview -->
+  <div class="aspect-[4/3] bg-gray-100 dark:bg-gray-900 rounded-card overflow-hidden border border-gray-200 dark:border-gray-700 relative flex items-center justify-center">
+  <img 
+   v-if="fileCover" 
+   :src="`/storage/${fileCover.path}`" 
+   alt="Cover"
+   class="w-full h-full object-cover" 
+  />
+  <div v-else class="text-center p-6 text-gray-300">
+   <Icon icon="solar:gallery-bold" class="w-12 h-12 mx-auto mb-2" />
+   <span class="text-xs">Tidak ada cover</span>
+  </div>
+  </div>
 
- <!-- PDF & Slide downloads -->
- <div class="space-y-3">
- <a 
- v-if="filePdf"
- :href="`/storage/${filePdf.path}`" 
- target="_blank"
- class="w-full flex items-center gap-3 p-3 border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-sm transition-all"
- >
- <div class="p-2 bg-red-50 text-red-500 rounded-sm">
- <Icon icon="solar:file-text-bold" class="w-5 h-5" />
- </div>
- <div class="min-w-0 flex-1">
- <span class="block text-xs font-bold text-gray-800 dark:text-gray-200 truncate">Laporan Kajian Utama</span>
- <span class="text-[10px] text-gray-400 block mt-0.5">{{ (filePdf.size / 1024 / 1024).toFixed(2) }} MB • PDF</span>
- </div>
- <Icon icon="solar:download-bold" class="w-4 h-4 text-gray-400" />
- </a>
+  <!-- PDF & Slide downloads -->
+  <div class="space-y-3">
+  <a 
+   v-if="filePdf"
+   :href="`/storage/${filePdf.path}`" 
+   target="_blank"
+   class="w-full flex items-center gap-3 p-3 border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-sm transition-all"
+  >
+   <div class="p-2 bg-red-50 text-red-500 rounded-sm">
+   <Icon icon="solar:file-text-bold" class="w-5 h-5" />
+   </div>
+   <div class="min-w-0 flex-1">
+   <span class="block text-xs font-bold text-gray-800 dark:text-gray-200 truncate">Laporan Kajian Utama</span>
+   <span class="text-[10px] text-gray-400 block mt-0.5">{{ (filePdf.size / 1024 / 1024).toFixed(2) }} MB • PDF</span>
+   </div>
+   <Icon icon="solar:download-bold" class="w-4 h-4 text-gray-400" />
+  </a>
 
- <a 
- v-if="filePresentasi"
- :href="`/storage/${filePresentasi.path}`" 
- target="_blank"
- class="w-full flex items-center gap-3 p-3 border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-sm transition-all"
- >
- <div class="p-2 bg-amber-50 text-amber-500 rounded-sm">
- <Icon icon="solar:play-bold" class="w-5 h-5" />
- </div>
- <div class="min-w-0 flex-1">
- <span class="block text-xs font-bold text-gray-800 dark:text-gray-200 truncate">Bahan Presentasi / Slide</span>
- <span class="text-[10px] text-gray-400 block mt-0.5">{{ (filePresentasi.size / 1024 / 1024).toFixed(2) }} MB</span>
- </div>
- <Icon icon="solar:download-bold" class="w-4 h-4 text-gray-400" />
- </a>
- </div>
+  <a 
+   v-if="filePresentasi"
+   :href="`/storage/${filePresentasi.path}`" 
+   target="_blank"
+   class="w-full flex items-center gap-3 p-3 border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-sm transition-all"
+  >
+   <div class="p-2 bg-amber-50 text-amber-500 rounded-sm">
+   <Icon icon="solar:play-bold" class="w-5 h-5" />
+   </div>
+   <div class="min-w-0 flex-1">
+   <span class="block text-xs font-bold text-gray-800 dark:text-gray-200 truncate">Bahan Presentasi / Slide</span>
+   <span class="text-[10px] text-gray-400 block mt-0.5">{{ (filePresentasi.size / 1024 / 1024).toFixed(2) }} MB</span>
+   </div>
+  <Icon icon="solar:download-bold" class="w-4 h-4 text-gray-400" />
+  </a>
+
+  <!-- No attachments message -->
+  <div v-if="!filePdf && !filePresentasi" class="flex items-center gap-2.5 p-3 rounded-lg bg-gray-50 dark:bg-gray-900">
+  <Icon icon="solar:info-circle-bold" class="w-4 h-4 shrink-0 text-gray-400" />
+  <span class="text-[11px] text-gray-400">Laporan dan presentasi belum tersedia.</span>
+  </div>
+  </div>
+ </template>
  </div>
 
  <!-- Version Control snaps -->

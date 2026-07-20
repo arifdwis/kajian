@@ -5,9 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 
 use App\Models\Kajian;
-use App\Models\User;
 use App\Observers\KajianObserver;
-use App\Observers\UserObserver;
 
 use Illuminate\Support\Facades\Gate;
 
@@ -27,7 +25,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Kajian::observe(KajianObserver::class);
-        User::observe(UserObserver::class);
 
         // Dynamic Gate checks based on custom RBAC tables
         Gate::before(function ($user, $ability) {

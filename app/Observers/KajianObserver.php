@@ -3,10 +3,8 @@
 namespace App\Observers;
 
 use App\Models\Kajian;
-use App\Models\AuditLog;
 use App\Models\Notifikasi;
 use App\Models\User;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cache;
 
 class KajianObserver
@@ -17,7 +15,7 @@ class KajianObserver
     public function creating(Kajian $kajian): void
     {
         if (empty($kajian->slug)) {
-            $kajian->slug = Str::slug($kajian->judul) . '-' . rand(1000, 9999);
+            $kajian->slug = \Illuminate\Support\Str::slug($kajian->judul) . '-' . rand(1000, 9999);
         }
 
         if (auth()->check()) {
@@ -43,9 +41,7 @@ class KajianObserver
     public function created(Kajian $kajian): void
     {
         Cache::flush();
-        $this->logActivity($kajian, 'create', null, $kajian->getAttributes());
-        
-        // Notify admin about new kajian from operator
+
         if ($kajian->status === 'draft') {
             $this->createNotificationToRole('admin', 'Kajian Baru Dibuat', "Kajian baru berjudul \"{$kajian->judul}\" telah dibuat dan menunggu review.", $kajian->id);
             $this->createNotificationToRole('superadmin', 'Kajian Baru Dibuat', "Kajian baru berjudul \"{$kajian->judul}\" telah dibuat.", $kajian->id);
@@ -58,32 +54,17 @@ class KajianObserver
     public function updated(Kajian $kajian): void
     {
         Cache::flush();
-        // Check if status changed
+
         if ($kajian->isDirty('status')) {
-            $oldStatus = $kajian->getOriginal('status');
             $newStatus = $kajian->status;
 
-            $this->logActivity($kajian, "status_change_{$oldStatus}_to_{$newStatus}", ['status' => $oldStatus], ['status' => $newStatus]);
-
-            // Notifications
             if ($newStatus === 'published') {
-                // Notify operator/creator
                 $this->createNotification($kajian->created_by, 'Kajian Dipublikasikan', "Kajian Anda yang berjudul \"{$kajian->judul}\" telah dipublikasikan.", $kajian->id);
             } elseif ($newStatus === 'archived') {
-                // Notify operator/creator
                 $this->createNotification($kajian->created_by, 'Kajian Diarsipkan', "Kajian Anda yang berjudul \"{$kajian->judul}\" telah diarsipkan.", $kajian->id);
             } elseif ($newStatus === 'review') {
-                // Notify admins
                 $this->createNotificationToRole('admin', 'Kajian Memerlukan Review', "Kajian berjudul \"{$kajian->judul}\" memerlukan review Anda.", $kajian->id);
             }
-        } else {
-            // General update
-            $dirty = $kajian->getDirty();
-            $original = [];
-            foreach ($dirty as $key => $value) {
-                $original[$key] = $kajian->getOriginal($key);
-            }
-            $this->logActivity($kajian, 'update', $original, $dirty);
         }
     }
 
@@ -93,24 +74,6 @@ class KajianObserver
     public function deleted(Kajian $kajian): void
     {
         Cache::flush();
-        $this->logActivity($kajian, 'delete', $kajian->getAttributes(), null);
-    }
-
-    /**
-     * Helper to write audit trail
-     */
-    protected function logActivity(Kajian $kajian, string $action, ?array $old, ?array $new): void
-    {
-        AuditLog::create([
-            'user_id' => auth()->id(),
-            'action' => $action,
-            'model_type' => Kajian::class,
-            'model_id' => $kajian->id,
-            'old_values' => $old,
-            'new_values' => $new,
-            'ip_address' => request()->ip(),
-            'user_agent' => request()->userAgent(),
-        ]);
     }
 
     /**

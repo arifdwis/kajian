@@ -18,6 +18,26 @@ const _sfc_main = {
   },
   setup(__props) {
     const toast = useToast();
+    const showUsersModal = ref(false);
+    const usersModalLoading = ref(false);
+    const usersModalRole = ref("");
+    const usersModalUsers = ref([]);
+    const openUsersModal = async (role) => {
+      showUsersModal.value = true;
+      usersModalLoading.value = true;
+      usersModalRole.value = role.name;
+      usersModalUsers.value = [];
+      try {
+        const res = await fetch(route("settings.roles.users", role.id));
+        const data = await res.json();
+        usersModalUsers.value = data.users || [];
+      } catch {
+        toast.error("Gagal memuat daftar pengguna.");
+        showUsersModal.value = false;
+      } finally {
+        usersModalLoading.value = false;
+      }
+    };
     const props = __props;
     const search = ref(props.filters.search || "");
     const showModal = ref(false);
@@ -109,12 +129,12 @@ const _sfc_main = {
             }
             _push2(`<!--[-->`);
             ssrRenderList(__props.roles.data, (item) => {
-              _push2(`<tr class="hover:bg-gray-50/50 dark:hover:bg-gray-800 transition-colors"${_scopeId}><td class="px-6 py-4 font-semibold text-gray-900 dark:text-white"${_scopeId}>${ssrInterpolate(item.name)}</td><td class="px-6 py-4 text-gray-500 font-mono text-xs"${_scopeId}>${ssrInterpolate(item.slug)}</td><td class="px-6 py-4 text-center"${_scopeId}><span class="${ssrRenderClass([item.users_count > 0 ? "bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400" : "bg-gray-100 text-gray-400 dark:bg-gray-700 dark:text-gray-500", "inline-flex items-center gap-1 px-2 py-0.5 text-[11px] font-semibold rounded-full"])}"${_scopeId}>`);
+              _push2(`<tr class="hover:bg-gray-50/50 dark:hover:bg-gray-800 transition-colors"${_scopeId}><td class="px-6 py-4 font-semibold text-gray-900 dark:text-white"${_scopeId}>${ssrInterpolate(item.name)}</td><td class="px-6 py-4 text-gray-500 font-mono text-xs"${_scopeId}>${ssrInterpolate(item.slug)}</td><td class="px-6 py-4 text-center"${_scopeId}><button class="${ssrRenderClass([item.users_count > 0 ? "bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/30" : "bg-gray-100 text-gray-400 dark:bg-gray-700 dark:text-gray-500", "inline-flex items-center gap-1 px-2 py-0.5 text-[11px] font-semibold rounded-full cursor-pointer transition-all hover:scale-105"])}" title="Lihat pengguna"${_scopeId}>`);
               _push2(ssrRenderComponent(_component_Icon, {
                 icon: "solar:user-bold",
                 class: "w-3 h-3"
               }, null, _parent2, _scopeId));
-              _push2(` ${ssrInterpolate(item.users_count)}</span></td><td class="px-6 py-4 text-right"${_scopeId}><div class="flex items-center justify-end gap-2"${_scopeId}>`);
+              _push2(` ${ssrInterpolate(item.users_count)}</button></td><td class="px-6 py-4 text-right"${_scopeId}><div class="flex items-center justify-end gap-2"${_scopeId}>`);
               _push2(ssrRenderComponent(unref(Link), {
                 href: _ctx.route("settings.roles.permission", item.id),
                 class: "p-2 bg-paper-2 hover:bg-blue-100 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400 rounded-sm transition-all",
@@ -167,6 +187,34 @@ const _sfc_main = {
                 class: "w-5 h-5"
               }, null, _parent2, _scopeId));
               _push2(`</button></div><form class="space-y-4"${_scopeId}><div${_scopeId}><label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"${_scopeId}>Nama Role <span class="text-red-500"${_scopeId}>*</span></label><input type="text"${ssrRenderAttr("value", unref(form).name)} required placeholder="E.g., Akademisi" class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-950 text-slate-900 dark:text-white px-4 py-2.5 focus:ring-2 focus:ring-blue-500/20"${_scopeId}></div><div class="flex justify-end gap-2 border-t dark:border-slate-800 pt-4"${_scopeId}><button type="button" class="px-4 py-2 border border-rule dark:border-rule-dark text-slate-700 dark:text-slate-400 text-xs font-semibold rounded-sm"${_scopeId}> Batal </button><button type="submit"${ssrIncludeBooleanAttr(unref(form).processing) ? " disabled" : ""} class="px-5 py-2 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-all"${_scopeId}> Simpan </button></div></form></div></div>`);
+            } else {
+              _push2(`<!---->`);
+            }
+            if (showUsersModal.value) {
+              _push2(`<div class="fixed inset-0 z-50 flex items-center justify-center p-4"${_scopeId}><div class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"${_scopeId}></div><div class="relative w-full max-w-lg bg-paper dark:bg-paper-dark border border-rule dark:border-rule-dark rounded-card p-6 space-y-4"${_scopeId}><div class="flex justify-between items-center border-b dark:border-slate-800 pb-3"${_scopeId}><h4 class="font-bold text-slate-900 dark:text-white"${_scopeId}> Pengguna: ${ssrInterpolate(usersModalRole.value)}</h4><button class="text-slate-400 hover:text-slate-600"${_scopeId}>`);
+              _push2(ssrRenderComponent(_component_Icon, {
+                icon: "solar:close-square-linear",
+                class: "w-5 h-5"
+              }, null, _parent2, _scopeId));
+              _push2(`</button></div>`);
+              if (usersModalLoading.value) {
+                _push2(`<div class="py-8 text-center text-gray-400"${_scopeId}>`);
+                _push2(ssrRenderComponent(_component_Icon, {
+                  icon: "solar:spinner-bold",
+                  class: "w-6 h-6 animate-spin mx-auto mb-2"
+                }, null, _parent2, _scopeId));
+                _push2(` Memuat... </div>`);
+              } else if (usersModalUsers.value.length === 0) {
+                _push2(`<div class="py-8 text-center text-gray-400 text-sm"${_scopeId}> Tidak ada pengguna dengan role ini. </div>`);
+              } else {
+                _push2(`<div class="max-h-80 overflow-y-auto space-y-2"${_scopeId}><!--[-->`);
+                ssrRenderList(usersModalUsers.value, (user) => {
+                  var _a, _b;
+                  _push2(`<div class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg"${_scopeId}><div class="w-9 h-9 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 font-bold text-sm shrink-0"${_scopeId}>${ssrInterpolate(((_b = (_a = user.name) == null ? void 0 : _a.charAt(0)) == null ? void 0 : _b.toUpperCase()) || "?")}</div><div class="min-w-0"${_scopeId}><p class="text-sm font-semibold text-gray-900 dark:text-white truncate"${_scopeId}>${ssrInterpolate(user.name)}</p><p class="text-xs text-gray-500 dark:text-gray-400 truncate"${_scopeId}>${ssrInterpolate(user.email)}</p></div></div>`);
+                });
+                _push2(`<!--]--></div>`);
+              }
+              _push2(`</div></div>`);
             } else {
               _push2(`<!---->`);
             }
@@ -243,15 +291,17 @@ const _sfc_main = {
                             createVNode("td", { class: "px-6 py-4 font-semibold text-gray-900 dark:text-white" }, toDisplayString(item.name), 1),
                             createVNode("td", { class: "px-6 py-4 text-gray-500 font-mono text-xs" }, toDisplayString(item.slug), 1),
                             createVNode("td", { class: "px-6 py-4 text-center" }, [
-                              createVNode("span", {
-                                class: ["inline-flex items-center gap-1 px-2 py-0.5 text-[11px] font-semibold rounded-full", item.users_count > 0 ? "bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400" : "bg-gray-100 text-gray-400 dark:bg-gray-700 dark:text-gray-500"]
+                              createVNode("button", {
+                                onClick: ($event) => openUsersModal(item),
+                                class: ["inline-flex items-center gap-1 px-2 py-0.5 text-[11px] font-semibold rounded-full cursor-pointer transition-all hover:scale-105", item.users_count > 0 ? "bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/30" : "bg-gray-100 text-gray-400 dark:bg-gray-700 dark:text-gray-500"],
+                                title: "Lihat pengguna"
                               }, [
                                 createVNode(_component_Icon, {
                                   icon: "solar:user-bold",
                                   class: "w-3 h-3"
                                 }),
                                 createTextVNode(" " + toDisplayString(item.users_count), 1)
-                              ], 2)
+                              ], 10, ["onClick"])
                             ]),
                             createVNode("td", { class: "px-6 py-4 text-right" }, [
                               createVNode("div", { class: "flex items-center justify-end gap-2" }, [
@@ -356,6 +406,59 @@ const _sfc_main = {
                         }, " Simpan ", 8, ["disabled"])
                       ])
                     ], 32)
+                  ])
+                ])) : createCommentVNode("", true),
+                showUsersModal.value ? (openBlock(), createBlock("div", {
+                  key: 1,
+                  class: "fixed inset-0 z-50 flex items-center justify-center p-4"
+                }, [
+                  createVNode("div", {
+                    class: "absolute inset-0 bg-slate-900/40 backdrop-blur-sm",
+                    onClick: ($event) => showUsersModal.value = false
+                  }, null, 8, ["onClick"]),
+                  createVNode("div", { class: "relative w-full max-w-lg bg-paper dark:bg-paper-dark border border-rule dark:border-rule-dark rounded-card p-6 space-y-4" }, [
+                    createVNode("div", { class: "flex justify-between items-center border-b dark:border-slate-800 pb-3" }, [
+                      createVNode("h4", { class: "font-bold text-slate-900 dark:text-white" }, " Pengguna: " + toDisplayString(usersModalRole.value), 1),
+                      createVNode("button", {
+                        onClick: ($event) => showUsersModal.value = false,
+                        class: "text-slate-400 hover:text-slate-600"
+                      }, [
+                        createVNode(_component_Icon, {
+                          icon: "solar:close-square-linear",
+                          class: "w-5 h-5"
+                        })
+                      ], 8, ["onClick"])
+                    ]),
+                    usersModalLoading.value ? (openBlock(), createBlock("div", {
+                      key: 0,
+                      class: "py-8 text-center text-gray-400"
+                    }, [
+                      createVNode(_component_Icon, {
+                        icon: "solar:spinner-bold",
+                        class: "w-6 h-6 animate-spin mx-auto mb-2"
+                      }),
+                      createTextVNode(" Memuat... ")
+                    ])) : usersModalUsers.value.length === 0 ? (openBlock(), createBlock("div", {
+                      key: 1,
+                      class: "py-8 text-center text-gray-400 text-sm"
+                    }, " Tidak ada pengguna dengan role ini. ")) : (openBlock(), createBlock("div", {
+                      key: 2,
+                      class: "max-h-80 overflow-y-auto space-y-2"
+                    }, [
+                      (openBlock(true), createBlock(Fragment, null, renderList(usersModalUsers.value, (user) => {
+                        var _a, _b;
+                        return openBlock(), createBlock("div", {
+                          key: user.id,
+                          class: "flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg"
+                        }, [
+                          createVNode("div", { class: "w-9 h-9 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 font-bold text-sm shrink-0" }, toDisplayString(((_b = (_a = user.name) == null ? void 0 : _a.charAt(0)) == null ? void 0 : _b.toUpperCase()) || "?"), 1),
+                          createVNode("div", { class: "min-w-0" }, [
+                            createVNode("p", { class: "text-sm font-semibold text-gray-900 dark:text-white truncate" }, toDisplayString(user.name), 1),
+                            createVNode("p", { class: "text-xs text-gray-500 dark:text-gray-400 truncate" }, toDisplayString(user.email), 1)
+                          ])
+                        ]);
+                      }), 128))
+                    ]))
                   ])
                 ])) : createCommentVNode("", true),
                 createVNode(_sfc_main$3, {

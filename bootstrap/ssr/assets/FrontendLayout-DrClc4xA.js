@@ -190,7 +190,7 @@ const _sfc_main = {
       }
       _push(`</div></nav><main class="flex-1 pt-[82px]">`);
       ssrRenderSlot(_ctx.$slots, "default", {}, null, _push, _parent);
-      _push(`</main><footer style="${ssrRenderStyle({ "border-top": "1px solid var(--color-rule)", "background-color": "var(--color-paper-2)" })}"><div class="container mx-auto px-4 xl:px-0 py-16 md:py-20"><div class="grid grid-cols-2 md:grid-cols-4 gap-10 pb-14" style="${ssrRenderStyle({ "border-bottom": "1px solid var(--color-rule)" })}"><div><h5 class="text-xs font-semibold mb-5" style="${ssrRenderStyle({ "color": "var(--color-ink)" })}">Akses Cepat</h5><ul class="space-y-3"><li>`);
+      _push(`</main><footer style="${ssrRenderStyle({ "border-top": "1px solid var(--color-rule)", "background-color": "var(--color-paper-2)" })}"><div class="container mx-auto px-4 xl:px-0 py-16 md:py-20"><div class="grid grid-cols-2 md:grid-cols-5 gap-8 pb-14" style="${ssrRenderStyle({ "border-bottom": "1px solid var(--color-rule)" })}"><div><h5 class="text-xs font-semibold mb-5" style="${ssrRenderStyle({ "color": "var(--color-ink)" })}">Akses Cepat</h5><ul class="space-y-3"><li>`);
       _push(ssrRenderComponent(unref(Link), {
         href: "/",
         class: "text-sm transition-colors hover:underline",
@@ -241,7 +241,27 @@ const _sfc_main = {
         }),
         _: 1
       }, _parent));
-      _push(`</li></ul></div><div><h5 class="text-xs font-semibold mb-5" style="${ssrRenderStyle({ "color": "var(--color-ink)" })}">Layanan</h5><ul class="space-y-3"><li>`);
+      _push(`</li></ul></div><div><h5 class="text-xs font-semibold mb-5" style="${ssrRenderStyle({ "color": "var(--color-ink)" })}">Ekosistem Samarinda</h5><ul class="space-y-3"><li><a href="https://samarindakota.go.id" target="_blank" rel="noopener" class="text-sm transition-colors hover:underline flex items-center gap-1" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">Portal Samarinda `);
+      _push(ssrRenderComponent(_component_Icon, {
+        icon: "solar:export-linear",
+        class: "w-3.5 h-3.5"
+      }, null, _parent));
+      _push(`</a></li><li><a href="https://satudata.samarindakota.go.id" target="_blank" rel="noopener" class="text-sm transition-colors hover:underline flex items-center gap-1" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">Satu Data Samarinda `);
+      _push(ssrRenderComponent(_component_Icon, {
+        icon: "solar:export-linear",
+        class: "w-3.5 h-3.5"
+      }, null, _parent));
+      _push(`</a></li><li><a href="https://ppid.samarindakota.go.id" target="_blank" rel="noopener" class="text-sm transition-colors hover:underline flex items-center gap-1" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">PPID Kota Samarinda `);
+      _push(ssrRenderComponent(_component_Icon, {
+        icon: "solar:export-linear",
+        class: "w-3.5 h-3.5"
+      }, null, _parent));
+      _push(`</a></li><li><a href="https://lpse.samarindakota.go.id" target="_blank" rel="noopener" class="text-sm transition-colors hover:underline flex items-center gap-1" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">LPSE Kota Samarinda `);
+      _push(ssrRenderComponent(_component_Icon, {
+        icon: "solar:export-linear",
+        class: "w-3.5 h-3.5"
+      }, null, _parent));
+      _push(`</a></li></ul></div><div><h5 class="text-xs font-semibold mb-5" style="${ssrRenderStyle({ "color": "var(--color-ink)" })}">Layanan</h5><ul class="space-y-3"><li>`);
       _push(ssrRenderComponent(unref(Link), {
         href: _ctx.route("login"),
         class: "text-sm transition-colors hover:underline",
@@ -258,7 +278,7 @@ const _sfc_main = {
         }),
         _: 1
       }, _parent));
-      _push(`</li><li><a href="#" class="text-sm transition-colors hover:underline" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">Panduan Pengguna</a></li><li><a href="#" class="text-sm transition-colors hover:underline" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">Syarat &amp; Ketentuan</a></li></ul></div><div><h5 class="text-xs font-semibold mb-5" style="${ssrRenderStyle({ "color": "var(--color-ink)" })}">Kontak</h5><ul class="space-y-3"><li class="text-sm" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">Jl. Dahlia No.81, Kel. Bugis</li><li class="text-sm" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">Kec. Samarinda Kota, Kota Samarinda</li><li class="text-sm" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">Kalimantan Timur 75121</li><li class="text-sm" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">Telp: 0541-203785</li><li><a href="mailto:bappedalitbang@samarindakota.go.id" class="text-sm" style="${ssrRenderStyle({ "color": "var(--color-accent)" })}">bappedalitbang@samarindakota.go.id</a></li></ul></div><div><h5 class="text-xs font-semibold mb-5" style="${ssrRenderStyle({ "color": "var(--color-ink)" })}">Ikuti Kami</h5><div class="flex items-center gap-3"><a href="https://www.instagram.com/bapperida_smd/" target="_blank" class="w-9 h-9 flex items-center justify-center rounded-lg transition-colors" style="${ssrRenderStyle({ "border": "1px solid var(--color-rule)", "color": "var(--color-ink-2)" })}">`);
+      _push(`</li><li><a href="#" class="text-sm transition-colors hover:underline" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">Panduan Pengguna</a></li><li><a href="#" class="text-sm transition-colors hover:underline" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">Syarat &amp; Ketentuan</a></li></ul></div><div><h5 class="text-xs font-semibold mb-5" style="${ssrRenderStyle({ "color": "var(--color-ink)" })}">Kontak BAPPERIDA</h5><ul class="space-y-3"><li class="text-sm" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">Jl. Dahlia No.81, Kel. Bugis</li><li class="text-sm" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">Kec. Samarinda Kota, Kota Samarinda</li><li class="text-sm" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">Kalimantan Timur 75121</li><li class="text-sm" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">Telp: 0541-203785</li><li><a href="mailto:bappedalitbang@samarindakota.go.id" class="text-sm" style="${ssrRenderStyle({ "color": "var(--color-accent)" })}">bappedalitbang@samarindakota.go.id</a></li></ul></div><div><h5 class="text-xs font-semibold mb-5" style="${ssrRenderStyle({ "color": "var(--color-ink)" })}">Ikuti Kami</h5><div class="flex items-center gap-3"><a href="https://www.instagram.com/bapperida_smd/" target="_blank" class="w-9 h-9 flex items-center justify-center rounded-lg transition-colors" style="${ssrRenderStyle({ "border": "1px solid var(--color-rule)", "color": "var(--color-ink-2)" })}">`);
       _push(ssrRenderComponent(_component_Icon, {
         icon: "solar:gallery-bold",
         class: "w-4 h-4"

@@ -1,7 +1,7 @@
-import { ref, resolveComponent, unref, withCtx, createTextVNode, createVNode, toDisplayString, withModifiers, withDirectives, vModelText, openBlock, createBlock, Fragment, renderList, createCommentVNode, useSSRContext } from "vue";
+import { ref, resolveComponent, unref, withCtx, createTextVNode, createVNode, toDisplayString, openBlock, createBlock, withModifiers, withDirectives, vModelText, Fragment, renderList, createCommentVNode, useSSRContext } from "vue";
 import { ssrRenderComponent, ssrRenderStyle, ssrInterpolate, ssrRenderAttr, ssrRenderList } from "vue/server-renderer";
 import { Head, Link, router } from "@inertiajs/vue3";
-import { _ as _sfc_main$1 } from "./FrontendLayout-Cs4D5AFH.js";
+import { _ as _sfc_main$1 } from "./FrontendLayout-DrClc4xA.js";
 const _sfc_main = {
   __name: "Home",
   __ssrInlineRender: true,
@@ -25,7 +25,12 @@ const _sfc_main = {
       _push(ssrRenderComponent(_sfc_main$1, null, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<section style="${ssrRenderStyle({ "background-color": "var(--color-paper)" })}"${_scopeId}><div class="container mx-auto px-4 xl:px-0 pt-28 pb-24 md:pt-32 md:pb-28"${_scopeId}><div class="flex items-center gap-2 mb-8" style="${ssrRenderStyle({ "color": "var(--color-ink-2)", "font-family": "var(--font-mono)", "font-size": "12px", "letter-spacing": "0.06em", "text-transform": "uppercase" })}"${_scopeId}><span style="${ssrRenderStyle({ "width": "7px", "height": "7px", "border-radius": "50%", "background-color": "var(--color-accent)", "display": "inline-block" })}"${_scopeId}></span><span${_scopeId}>LIVE · <strong style="${ssrRenderStyle({ "color": "var(--color-accent)" })}"${_scopeId}>${ssrInterpolate(__props.summary.total_published || 0)}</strong> DOKUMEN TERBIT</span></div><div class="grid grid-cols-1 lg:grid-cols-5 gap-16"${_scopeId}><div class="lg:col-span-3"${_scopeId}><h1 class="text-5xl sm:text-6xl lg:text-7xl font-semibold leading-[1.05] tracking-tight" style="${ssrRenderStyle({ "font-family": "var(--font-display)", "color": "var(--color-ink)", "letter-spacing": "-0.03em" })}"${_scopeId}> Akses Riset &amp; <br${_scopeId}><span style="${ssrRenderStyle({ "color": "var(--color-accent)" })}"${_scopeId}>Kajian Daerah</span></h1><p class="mt-6 text-base lg:text-lg leading-relaxed max-w-lg" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}"${_scopeId}> Telusuri dokumen kajian akademis, rencana penelitian strategis, dan data inovasi daerah guna mendukung transparansi dan perumusan kebijakan yang akurat. </p><div class="flex items-center gap-3 mt-8"${_scopeId}><form class="flex-1 flex items-center" style="${ssrRenderStyle({ "border": "1px solid var(--color-rule)", "border-radius": "8px", "max-width": "28rem" })}"${_scopeId}><div class="flex-1 flex items-center gap-3 px-4"${_scopeId}>`);
+            _push2(`<section style="${ssrRenderStyle({ "background-color": "var(--color-paper)" })}" class="relative overflow-hidden"${_scopeId}><div class="absolute right-0 top-0 w-1/3 h-full pointer-events-none opacity-[0.04] dark:opacity-[0.02] overflow-hidden hidden lg:block"${_scopeId}><svg class="w-full h-full" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.3"${_scopeId}><circle cx="50" cy="50" r="40" stroke-dasharray="2 2"${_scopeId}></circle><circle cx="50" cy="50" r="28"${_scopeId}></circle><line x1="10" y1="50" x2="90" y2="50"${_scopeId}></line><line x1="50" y1="10" x2="50" y2="90"${_scopeId}></line><polygon points="50,15 85,50 50,85 15,50" stroke-dasharray="1 1"${_scopeId}></polygon><ellipse cx="50" cy="50" rx="38" ry="12" transform="rotate(30, 50, 50)"${_scopeId}></ellipse><ellipse cx="50" cy="50" rx="38" ry="12" transform="rotate(-30, 50, 50)"${_scopeId}></ellipse></svg></div><div class="container mx-auto px-4 xl:px-0 pt-28 pb-24 md:pt-32 md:pb-28"${_scopeId}><div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase mb-8 border" style="${ssrRenderStyle({ "background-color": "var(--color-paper-2)", "border-color": "var(--color-rule)", "color": "var(--color-ink)" })}"${_scopeId}>`);
+            _push2(ssrRenderComponent(_component_Icon, {
+              icon: "solar:globus-bold-duotone",
+              class: "w-4.5 h-4.5 text-emerald-600 dark:text-emerald-450"
+            }, null, _parent2, _scopeId));
+            _push2(`<span${_scopeId}>Portal Kajian &amp; Riset Pembangunan Kota Samarinda</span></div><div class="flex items-center gap-2 mb-8" style="${ssrRenderStyle({ "color": "var(--color-ink-2)", "font-family": "var(--font-mono)", "font-size": "12px", "letter-spacing": "0.06em", "text-transform": "uppercase" })}"${_scopeId}><span style="${ssrRenderStyle({ "width": "7px", "height": "7px", "border-radius": "50%", "background-color": "var(--color-accent)", "display": "inline-block" })}"${_scopeId}></span><span${_scopeId}>LIVE · <strong style="${ssrRenderStyle({ "color": "var(--color-accent)" })}"${_scopeId}>${ssrInterpolate(__props.summary.total_published || 0)}</strong> DOKUMEN TERBIT</span></div><div class="grid grid-cols-1 lg:grid-cols-5 gap-16"${_scopeId}><div class="lg:col-span-3"${_scopeId}><h1 class="text-5xl sm:text-6xl lg:text-7xl font-semibold leading-[1.05] tracking-tight" style="${ssrRenderStyle({ "font-family": "var(--font-display)", "color": "var(--color-ink)", "letter-spacing": "-0.03em" })}"${_scopeId}> Akses Riset &amp; <br${_scopeId}><span style="${ssrRenderStyle({ "color": "var(--color-accent)" })}"${_scopeId}>Kajian Daerah</span></h1><p class="mt-6 text-base lg:text-lg leading-relaxed max-w-lg" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}"${_scopeId}> Telusuri dokumen kajian akademis, rencana penelitian strategis, dan data inovasi daerah guna mendukung transparansi dan perumusan kebijakan yang akurat. </p><div class="flex items-center gap-3 mt-8"${_scopeId}><form class="flex-1 flex items-center" style="${ssrRenderStyle({ "border": "1px solid var(--color-rule)", "border-radius": "8px", "max-width": "28rem" })}"${_scopeId}><div class="flex-1 flex items-center gap-3 px-4"${_scopeId}>`);
             _push2(ssrRenderComponent(_component_Icon, {
               icon: "solar:magnifer-linear",
               class: "w-5 h-5 shrink-0",
@@ -68,7 +73,7 @@ const _sfc_main = {
               }
               _push2(`</span>`);
             });
-            _push2(`<!--]--></div></div></div></section><section style="${ssrRenderStyle({ "background-color": "var(--color-paper-2)", "border-top": "1px solid var(--color-rule)", "padding": "80px 0" })}"${_scopeId}><div class="container mx-auto px-4 xl:px-0"${_scopeId}><div class="flex items-center justify-between mb-12"${_scopeId}><div${_scopeId}><span style="${ssrRenderStyle({ "font-family": "var(--font-mono)", "font-size": "12px", "letter-spacing": "0.06em", "text-transform": "uppercase", "color": "var(--color-ink-2)", "display": "block", "margin-bottom": "4px" })}"${_scopeId}>♦ ringkasan</span><h2 class="text-2xl font-semibold" style="${ssrRenderStyle({ "font-family": "var(--font-display)", "color": "var(--color-ink)", "letter-spacing": "-0.02em" })}"${_scopeId}>Capaian <span style="${ssrRenderStyle({ "color": "var(--color-accent)" })}"${_scopeId}>Publikasi</span></h2></div></div><div class="grid grid-cols-1 md:grid-cols-3 gap-5"${_scopeId}><div class="p-8" style="${ssrRenderStyle({ "border": "1px solid var(--color-rule)", "border-radius": "12px", "background-color": "var(--color-paper)" })}"${_scopeId}><span style="${ssrRenderStyle({ "font-family": "var(--font-display)", "font-size": "44px", "font-weight": "600", "color": "var(--color-accent)", "letter-spacing": "-0.03em" })}"${_scopeId}>${ssrInterpolate(__props.summary.total_published || 0)}</span><span style="${ssrRenderStyle({ "font-family": "var(--font-mono)", "font-size": "12px", "letter-spacing": "0.06em", "text-transform": "uppercase", "color": "var(--color-ink-2)", "display": "block", "margin-top": "4px" })}"${_scopeId}>Total Kajian</span><p style="${ssrRenderStyle({ "font-size": "14px", "color": "var(--color-ink-2)", "margin-top": "10px", "line-height": "1.6" })}"${_scopeId}>Seluruh dokumen kajian dan penelitian yang telah diterbitkan dan dapat diakses publik.</p></div><div class="p-8" style="${ssrRenderStyle({ "border": "1px solid var(--color-rule)", "border-radius": "12px", "background-color": "var(--color-paper)" })}"${_scopeId}><span style="${ssrRenderStyle({ "font-family": "var(--font-display)", "font-size": "44px", "font-weight": "600", "color": "var(--color-accent)", "letter-spacing": "-0.03em" })}"${_scopeId}>${ssrInterpolate(__props.summary.total_views || 0)}</span><span style="${ssrRenderStyle({ "font-family": "var(--font-mono)", "font-size": "12px", "letter-spacing": "0.06em", "text-transform": "uppercase", "color": "var(--color-ink-2)", "display": "block", "margin-top": "4px" })}"${_scopeId}>Total Kunjungan</span><p style="${ssrRenderStyle({ "font-size": "14px", "color": "var(--color-ink-2)", "margin-top": "10px", "line-height": "1.6" })}"${_scopeId}>Akumulasi kunjungan dari akademisi, peneliti, dan masyarakat umum.</p></div><div class="p-8" style="${ssrRenderStyle({ "border": "1px solid var(--color-rule)", "border-radius": "12px", "background-color": "var(--color-paper)" })}"${_scopeId}><span style="${ssrRenderStyle({ "font-family": "var(--font-display)", "font-size": "44px", "font-weight": "600", "color": "var(--color-accent)", "letter-spacing": "-0.03em" })}"${_scopeId}>${ssrInterpolate(__props.summary.total_downloads || 0)}</span><span style="${ssrRenderStyle({ "font-family": "var(--font-mono)", "font-size": "12px", "letter-spacing": "0.06em", "text-transform": "uppercase", "color": "var(--color-ink-2)", "display": "block", "margin-top": "4px" })}"${_scopeId}>Total Unduhan</span><p style="${ssrRenderStyle({ "font-size": "14px", "color": "var(--color-ink-2)", "margin-top": "10px", "line-height": "1.6" })}"${_scopeId}>Dokumen kajian yang telah diunduh oleh pengguna portal.</p></div></div></div></section><section style="${ssrRenderStyle({ "padding": "80px 0" })}"${_scopeId}><div class="container mx-auto px-4 xl:px-0"${_scopeId}><div class="flex items-center justify-between mb-12"${_scopeId}><div${_scopeId}><span style="${ssrRenderStyle({ "font-family": "var(--font-mono)", "font-size": "12px", "letter-spacing": "0.06em", "text-transform": "uppercase", "color": "var(--color-ink-2)", "display": "block", "margin-bottom": "4px" })}"${_scopeId}>♦ bidang</span><h2 class="text-2xl font-semibold" style="${ssrRenderStyle({ "font-family": "var(--font-display)", "color": "var(--color-ink)", "letter-spacing": "-0.02em" })}"${_scopeId}>Klaster Bidang <span style="${ssrRenderStyle({ "color": "var(--color-accent)" })}"${_scopeId}>Penelitian</span></h2></div>`);
+            _push2(`<!--]--></div></div></div></section><section style="${ssrRenderStyle({ "background-color": "var(--color-paper)", "padding": "80px 0", "border-top": "1px solid var(--color-rule)", "border-bottom": "1px solid var(--color-rule)" })}"${_scopeId}><div class="container mx-auto px-4 xl:px-0"${_scopeId}><div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"${_scopeId}><div class="lg:col-span-5 flex items-end justify-center gap-6"${_scopeId}><div class="relative group text-center"${_scopeId}><div class="overflow-hidden rounded-card border border-gray-150 dark:border-gray-700 bg-gray-50 dark:bg-gray-800" style="${ssrRenderStyle({ "width": "170px", "height": "230px" })}"${_scopeId}><img src="https://satudata.samarindakota.go.id/img/new-walikota.png" alt="Dr. H. Andi Harun" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"${_scopeId}></div><p class="mt-3 text-xs font-bold" style="${ssrRenderStyle({ "color": "var(--color-ink)" })}"${_scopeId}>Dr. H. Andi Harun</p><p class="text-[10px] uppercase tracking-widest" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}"${_scopeId}>Walikota Samarinda</p></div><div class="relative group text-center"${_scopeId}><div class="overflow-hidden rounded-card border border-gray-150 dark:border-gray-700 bg-gray-50 dark:bg-gray-800" style="${ssrRenderStyle({ "width": "170px", "height": "230px" })}"${_scopeId}><img src="https://satudata.samarindakota.go.id/img/new-wawali.png" alt="Dr. H. Rusmadi, M.S." class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"${_scopeId}></div><p class="mt-3 text-xs font-bold" style="${ssrRenderStyle({ "color": "var(--color-ink)" })}"${_scopeId}>Dr. H. Rusmadi, M.S.</p><p class="text-[10px] uppercase tracking-widest" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}"${_scopeId}>Wakil Walikota Samarinda</p></div></div><div class="lg:col-span-7 space-y-6"${_scopeId}><div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase" style="${ssrRenderStyle({ "background-color": "rgba(16, 185, 129, 0.08)", "border": "1px solid rgba(16, 185, 129, 0.15)", "color": "#10B981" })}"${_scopeId}><span style="${ssrRenderStyle({ "width": "6px", "height": "6px", "border-radius": "50%", "background-color": "#10B981", "display": "inline-block" })}"${_scopeId}></span> Samarinda Kota Pusat Peradaban </div><h3 class="text-3xl font-semibold tracking-tight" style="${ssrRenderStyle({ "font-family": "var(--font-display)", "color": "var(--color-ink)", "letter-spacing": "-0.02em" })}"${_scopeId}> Mewujudkan Kebijakan Berbasis <span style="${ssrRenderStyle({ "color": "var(--color-accent)" })}"${_scopeId}>Data &amp; Riset Ilmiah</span></h3><p class="text-sm leading-relaxed" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}"${_scopeId}> Pemerintah Kota Samarinda berkomitmen untuk terus meningkatkan kualitas tata kelola pemerintahan yang transparan dan akuntabel. Melalui portal <strong${_scopeId}>SIKAJIAN</strong>, setiap dokumen hasil penelitian, kajian akademis, dan naskah rekomendasi kebijakan dipublikasikan secara luas untuk mendorong kolaborasi antara pemerintah, akademisi, dan masyarakat guna membangun Samarinda sebagai Kota Pusat Peradaban. </p><div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 border-t" style="${ssrRenderStyle({ "border-color": "var(--color-rule)" })}"${_scopeId}><div${_scopeId}><h5 class="text-xs font-bold uppercase tracking-wider" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}"${_scopeId}>Prinsip Pembangunan</h5><p class="text-xs mt-1" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}"${_scopeId}>Objektivitas, Akurasi Data, dan Kemanfaatan Publik secara inklusif.</p></div><div${_scopeId}><h5 class="text-xs font-bold uppercase tracking-wider" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}"${_scopeId}>Rencana Strategis</h5><p class="text-xs mt-1" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}"${_scopeId}>Mendukung RPJMD Kota Samarinda melalui kajian yang terstruktur dan terukur.</p></div></div></div></div></div></section><section style="${ssrRenderStyle({ "background-color": "var(--color-paper-2)", "border-top": "1px solid var(--color-rule)", "padding": "80px 0" })}"${_scopeId}><div class="container mx-auto px-4 xl:px-0"${_scopeId}><div class="flex items-center justify-between mb-12"${_scopeId}><div${_scopeId}><span style="${ssrRenderStyle({ "font-family": "var(--font-mono)", "font-size": "12px", "letter-spacing": "0.06em", "text-transform": "uppercase", "color": "var(--color-ink-2)", "display": "block", "margin-bottom": "4px" })}"${_scopeId}>♦ ringkasan</span><h2 class="text-2xl font-semibold" style="${ssrRenderStyle({ "font-family": "var(--font-display)", "color": "var(--color-ink)", "letter-spacing": "-0.02em" })}"${_scopeId}>Capaian <span style="${ssrRenderStyle({ "color": "var(--color-accent)" })}"${_scopeId}>Publikasi</span></h2></div></div><div class="grid grid-cols-1 md:grid-cols-3 gap-5"${_scopeId}><div class="p-8" style="${ssrRenderStyle({ "border": "1px solid var(--color-rule)", "border-radius": "12px", "background-color": "var(--color-paper)" })}"${_scopeId}><span style="${ssrRenderStyle({ "font-family": "var(--font-display)", "font-size": "44px", "font-weight": "600", "color": "var(--color-accent)", "letter-spacing": "-0.03em" })}"${_scopeId}>${ssrInterpolate(__props.summary.total_published || 0)}</span><span style="${ssrRenderStyle({ "font-family": "var(--font-mono)", "font-size": "12px", "letter-spacing": "0.06em", "text-transform": "uppercase", "color": "var(--color-ink-2)", "display": "block", "margin-top": "4px" })}"${_scopeId}>Total Kajian</span><p style="${ssrRenderStyle({ "font-size": "14px", "color": "var(--color-ink-2)", "margin-top": "10px", "line-height": "1.6" })}"${_scopeId}>Seluruh dokumen kajian dan penelitian yang telah diterbitkan dan dapat diakses publik.</p></div><div class="p-8" style="${ssrRenderStyle({ "border": "1px solid var(--color-rule)", "border-radius": "12px", "background-color": "var(--color-paper)" })}"${_scopeId}><span style="${ssrRenderStyle({ "font-family": "var(--font-display)", "font-size": "44px", "font-weight": "600", "color": "var(--color-accent)", "letter-spacing": "-0.03em" })}"${_scopeId}>${ssrInterpolate(__props.summary.total_views || 0)}</span><span style="${ssrRenderStyle({ "font-family": "var(--font-mono)", "font-size": "12px", "letter-spacing": "0.06em", "text-transform": "uppercase", "color": "var(--color-ink-2)", "display": "block", "margin-top": "4px" })}"${_scopeId}>Total Kunjungan</span><p style="${ssrRenderStyle({ "font-size": "14px", "color": "var(--color-ink-2)", "margin-top": "10px", "line-height": "1.6" })}"${_scopeId}>Akumulasi kunjungan dari akademisi, peneliti, dan masyarakat umum.</p></div><div class="p-8" style="${ssrRenderStyle({ "border": "1px solid var(--color-rule)", "border-radius": "12px", "background-color": "var(--color-paper)" })}"${_scopeId}><span style="${ssrRenderStyle({ "font-family": "var(--font-display)", "font-size": "44px", "font-weight": "600", "color": "var(--color-accent)", "letter-spacing": "-0.03em" })}"${_scopeId}>${ssrInterpolate(__props.summary.total_downloads || 0)}</span><span style="${ssrRenderStyle({ "font-family": "var(--font-mono)", "font-size": "12px", "letter-spacing": "0.06em", "text-transform": "uppercase", "color": "var(--color-ink-2)", "display": "block", "margin-top": "4px" })}"${_scopeId}>Total Unduhan</span><p style="${ssrRenderStyle({ "font-size": "14px", "color": "var(--color-ink-2)", "margin-top": "10px", "line-height": "1.6" })}"${_scopeId}>Dokumen kajian yang telah diunduh oleh pengguna portal.</p></div></div></div></section><section style="${ssrRenderStyle({ "padding": "80px 0" })}"${_scopeId}><div class="container mx-auto px-4 xl:px-0"${_scopeId}><div class="flex items-center justify-between mb-12"${_scopeId}><div${_scopeId}><span style="${ssrRenderStyle({ "font-family": "var(--font-mono)", "font-size": "12px", "letter-spacing": "0.06em", "text-transform": "uppercase", "color": "var(--color-ink-2)", "display": "block", "margin-bottom": "4px" })}"${_scopeId}>♦ bidang</span><h2 class="text-2xl font-semibold" style="${ssrRenderStyle({ "font-family": "var(--font-display)", "color": "var(--color-ink)", "letter-spacing": "-0.02em" })}"${_scopeId}>Klaster Bidang <span style="${ssrRenderStyle({ "color": "var(--color-accent)" })}"${_scopeId}>Penelitian</span></h2></div>`);
             _push2(ssrRenderComponent(unref(Link), {
               href: _ctx.route("portal.kajian"),
               class: "text-sm font-medium transition-colors shrink-0",
@@ -215,8 +220,72 @@ const _sfc_main = {
             _push2(`<!--]--></div></div></div></section>`);
           } else {
             return [
-              createVNode("section", { style: { "background-color": "var(--color-paper)" } }, [
+              createVNode("section", {
+                style: { "background-color": "var(--color-paper)" },
+                class: "relative overflow-hidden"
+              }, [
+                createVNode("div", { class: "absolute right-0 top-0 w-1/3 h-full pointer-events-none opacity-[0.04] dark:opacity-[0.02] overflow-hidden hidden lg:block" }, [
+                  (openBlock(), createBlock("svg", {
+                    class: "w-full h-full",
+                    viewBox: "0 0 100 100",
+                    fill: "none",
+                    stroke: "currentColor",
+                    "stroke-width": "0.3"
+                  }, [
+                    createVNode("circle", {
+                      cx: "50",
+                      cy: "50",
+                      r: "40",
+                      "stroke-dasharray": "2 2"
+                    }),
+                    createVNode("circle", {
+                      cx: "50",
+                      cy: "50",
+                      r: "28"
+                    }),
+                    createVNode("line", {
+                      x1: "10",
+                      y1: "50",
+                      x2: "90",
+                      y2: "50"
+                    }),
+                    createVNode("line", {
+                      x1: "50",
+                      y1: "10",
+                      x2: "50",
+                      y2: "90"
+                    }),
+                    createVNode("polygon", {
+                      points: "50,15 85,50 50,85 15,50",
+                      "stroke-dasharray": "1 1"
+                    }),
+                    createVNode("ellipse", {
+                      cx: "50",
+                      cy: "50",
+                      rx: "38",
+                      ry: "12",
+                      transform: "rotate(30, 50, 50)"
+                    }),
+                    createVNode("ellipse", {
+                      cx: "50",
+                      cy: "50",
+                      rx: "38",
+                      ry: "12",
+                      transform: "rotate(-30, 50, 50)"
+                    })
+                  ]))
+                ]),
                 createVNode("div", { class: "container mx-auto px-4 xl:px-0 pt-28 pb-24 md:pt-32 md:pb-28" }, [
+                  createVNode("div", {
+                    class: "inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase mb-8 border",
+                    style: { "background-color": "var(--color-paper-2)", "border-color": "var(--color-rule)", "color": "var(--color-ink)" }
+                  }, [
+                    createVNode(_component_Icon, {
+                      icon: "solar:globus-bold-duotone",
+                      class: "w-4.5 h-4.5 text-emerald-600 dark:text-emerald-450"
+                    }),
+                    createVNode("span", null, "Portal Kajian & Riset Pembangunan Kota Samarinda")
+                  ]),
                   createVNode("div", {
                     class: "flex items-center gap-2 mb-8",
                     style: { "color": "var(--color-ink-2)", "font-family": "var(--font-mono)", "font-size": "12px", "letter-spacing": "0.06em", "text-transform": "uppercase" }
@@ -348,6 +417,103 @@ const _sfc_main = {
                           }, "✦")) : createCommentVNode("", true)
                         ]);
                       }), 128))
+                    ])
+                  ])
+                ])
+              ]),
+              createVNode("section", { style: { "background-color": "var(--color-paper)", "padding": "80px 0", "border-top": "1px solid var(--color-rule)", "border-bottom": "1px solid var(--color-rule)" } }, [
+                createVNode("div", { class: "container mx-auto px-4 xl:px-0" }, [
+                  createVNode("div", { class: "grid grid-cols-1 lg:grid-cols-12 gap-12 items-center" }, [
+                    createVNode("div", { class: "lg:col-span-5 flex items-end justify-center gap-6" }, [
+                      createVNode("div", { class: "relative group text-center" }, [
+                        createVNode("div", {
+                          class: "overflow-hidden rounded-card border border-gray-150 dark:border-gray-700 bg-gray-50 dark:bg-gray-800",
+                          style: { "width": "170px", "height": "230px" }
+                        }, [
+                          createVNode("img", {
+                            src: "https://satudata.samarindakota.go.id/img/new-walikota.png",
+                            alt: "Dr. H. Andi Harun",
+                            class: "w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          })
+                        ]),
+                        createVNode("p", {
+                          class: "mt-3 text-xs font-bold",
+                          style: { "color": "var(--color-ink)" }
+                        }, "Dr. H. Andi Harun"),
+                        createVNode("p", {
+                          class: "text-[10px] uppercase tracking-widest",
+                          style: { "color": "var(--color-ink-2)" }
+                        }, "Walikota Samarinda")
+                      ]),
+                      createVNode("div", { class: "relative group text-center" }, [
+                        createVNode("div", {
+                          class: "overflow-hidden rounded-card border border-gray-150 dark:border-gray-700 bg-gray-50 dark:bg-gray-800",
+                          style: { "width": "170px", "height": "230px" }
+                        }, [
+                          createVNode("img", {
+                            src: "https://satudata.samarindakota.go.id/img/new-wawali.png",
+                            alt: "Dr. H. Rusmadi, M.S.",
+                            class: "w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          })
+                        ]),
+                        createVNode("p", {
+                          class: "mt-3 text-xs font-bold",
+                          style: { "color": "var(--color-ink)" }
+                        }, "Dr. H. Rusmadi, M.S."),
+                        createVNode("p", {
+                          class: "text-[10px] uppercase tracking-widest",
+                          style: { "color": "var(--color-ink-2)" }
+                        }, "Wakil Walikota Samarinda")
+                      ])
+                    ]),
+                    createVNode("div", { class: "lg:col-span-7 space-y-6" }, [
+                      createVNode("div", {
+                        class: "inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase",
+                        style: { "background-color": "rgba(16, 185, 129, 0.08)", "border": "1px solid rgba(16, 185, 129, 0.15)", "color": "#10B981" }
+                      }, [
+                        createVNode("span", { style: { "width": "6px", "height": "6px", "border-radius": "50%", "background-color": "#10B981", "display": "inline-block" } }),
+                        createTextVNode(" Samarinda Kota Pusat Peradaban ")
+                      ]),
+                      createVNode("h3", {
+                        class: "text-3xl font-semibold tracking-tight",
+                        style: { "font-family": "var(--font-display)", "color": "var(--color-ink)", "letter-spacing": "-0.02em" }
+                      }, [
+                        createTextVNode(" Mewujudkan Kebijakan Berbasis "),
+                        createVNode("span", { style: { "color": "var(--color-accent)" } }, "Data & Riset Ilmiah")
+                      ]),
+                      createVNode("p", {
+                        class: "text-sm leading-relaxed",
+                        style: { "color": "var(--color-ink-2)" }
+                      }, [
+                        createTextVNode(" Pemerintah Kota Samarinda berkomitmen untuk terus meningkatkan kualitas tata kelola pemerintahan yang transparan dan akuntabel. Melalui portal "),
+                        createVNode("strong", null, "SIKAJIAN"),
+                        createTextVNode(", setiap dokumen hasil penelitian, kajian akademis, dan naskah rekomendasi kebijakan dipublikasikan secara luas untuk mendorong kolaborasi antara pemerintah, akademisi, dan masyarakat guna membangun Samarinda sebagai Kota Pusat Peradaban. ")
+                      ]),
+                      createVNode("div", {
+                        class: "grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 border-t",
+                        style: { "border-color": "var(--color-rule)" }
+                      }, [
+                        createVNode("div", null, [
+                          createVNode("h5", {
+                            class: "text-xs font-bold uppercase tracking-wider",
+                            style: { "color": "var(--color-ink-2)" }
+                          }, "Prinsip Pembangunan"),
+                          createVNode("p", {
+                            class: "text-xs mt-1",
+                            style: { "color": "var(--color-ink-2)" }
+                          }, "Objektivitas, Akurasi Data, dan Kemanfaatan Publik secara inklusif.")
+                        ]),
+                        createVNode("div", null, [
+                          createVNode("h5", {
+                            class: "text-xs font-bold uppercase tracking-wider",
+                            style: { "color": "var(--color-ink-2)" }
+                          }, "Rencana Strategis"),
+                          createVNode("p", {
+                            class: "text-xs mt-1",
+                            style: { "color": "var(--color-ink-2)" }
+                          }, "Mendukung RPJMD Kota Samarinda melalui kajian yang terstruktur dan terukur.")
+                        ])
+                      ])
                     ])
                   ])
                 ])

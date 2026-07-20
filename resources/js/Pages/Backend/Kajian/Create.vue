@@ -90,12 +90,9 @@ const handleFileChange = (e, field) => {
 
 const submit = () => {
  form.post(route('kajian.store'), {
- onSuccess: () => {
-  toast.success('Kajian berhasil disimpan sebagai draf.');
- },
- onError: (errors) => {
-  Object.values(errors).forEach(err => toast.error(err));
- }
+  onError: (errors) => {
+   Object.values(errors).forEach(err => toast.error(err));
+  }
  });
 };
 </script>

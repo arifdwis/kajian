@@ -106,9 +106,6 @@ const getFileUrl = (type) => {
 
 const submit = () => {
  form.post(route('kajian.update', props.kajian.uuid), {
-  onSuccess: () => {
-   toast.success('Kajian berhasil diperbarui.');
-  },
   onError: (errors) => {
    Object.values(errors).forEach(err => toast.error(err));
   }

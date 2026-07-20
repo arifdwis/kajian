@@ -8,6 +8,30 @@ import { useToast } from 'vue-toastification';
 
 const toast = useToast();
 
+// Users modal
+const showUsersModal = ref(false);
+const usersModalLoading = ref(false);
+const usersModalRole = ref('');
+const usersModalUsers = ref([]);
+
+const openUsersModal = async (role) => {
+  showUsersModal.value = true;
+  usersModalLoading.value = true;
+  usersModalRole.value = role.name;
+  usersModalUsers.value = [];
+
+  try {
+    const res = await fetch(route('settings.roles.users', role.id));
+    const data = await res.json();
+    usersModalUsers.value = data.users || [];
+  } catch {
+    toast.error('Gagal memuat daftar pengguna.');
+    showUsersModal.value = false;
+  } finally {
+    usersModalLoading.value = false;
+  }
+};
+
 const props = defineProps({
  roles: Object,
  filters: Object,
@@ -147,12 +171,16 @@ const executeDeleteRole = () => {
  <td class="px-6 py-4 text-gray-500 font-mono text-xs">
  {{ item.slug }}
  </td>
- <td class="px-6 py-4 text-center">
- <span class="inline-flex items-center gap-1 px-2 py-0.5 text-[11px] font-semibold rounded-full"
-  :class="item.users_count > 0 ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'bg-gray-100 text-gray-400 dark:bg-gray-700 dark:text-gray-500'">
-  <Icon icon="solar:user-bold" class="w-3 h-3" />
-  {{ item.users_count }}
- </span>
+<td class="px-6 py-4 text-center">
+  <button 
+   @click="openUsersModal(item)"
+   class="inline-flex items-center gap-1 px-2 py-0.5 text-[11px] font-semibold rounded-full cursor-pointer transition-all hover:scale-105"
+   :class="item.users_count > 0 ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/30' : 'bg-gray-100 text-gray-400 dark:bg-gray-700 dark:text-gray-500'"
+   title="Lihat pengguna"
+  >
+   <Icon icon="solar:user-bold" class="w-3 h-3" />
+   {{ item.users_count }}
+  </button>
  </td>
  <td class="px-6 py-4 text-right">
  <div class="flex items-center justify-end gap-2">
@@ -242,9 +270,50 @@ const executeDeleteRole = () => {
  </div>
  </div>
 
+ <!-- Users Modal -->
+ <div v-if="showUsersModal" class="fixed inset-0 z-50 flex items-center justify-center p-4">
+  <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm" @click="showUsersModal = false"></div>
+  
+  <div class="relative w-full max-w-lg bg-paper dark:bg-paper-dark border border-rule dark:border-rule-dark rounded-card p-6 space-y-4">
+   <div class="flex justify-between items-center border-b dark:border-slate-800 pb-3">
+    <h4 class="font-bold text-slate-900 dark:text-white">
+     Pengguna: {{ usersModalRole }}
+    </h4>
+    <button @click="showUsersModal = false" class="text-slate-400 hover:text-slate-600">
+     <Icon icon="solar:close-square-linear" class="w-5 h-5" />
+    </button>
+   </div>
+
+   <div v-if="usersModalLoading" class="py-8 text-center text-gray-400">
+    <Icon icon="solar:spinner-bold" class="w-6 h-6 animate-spin mx-auto mb-2" />
+    Memuat...
+   </div>
+
+   <div v-else-if="usersModalUsers.length === 0" class="py-8 text-center text-gray-400 text-sm">
+    Tidak ada pengguna dengan role ini.
+   </div>
+
+   <div v-else class="max-h-80 overflow-y-auto space-y-2">
+    <div 
+     v-for="user in usersModalUsers" 
+     :key="user.id"
+     class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg"
+    >
+     <div class="w-9 h-9 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 font-bold text-sm shrink-0">
+      {{ user.name?.charAt(0)?.toUpperCase() || '?' }}
+     </div>
+     <div class="min-w-0">
+      <p class="text-sm font-semibold text-gray-900 dark:text-white truncate">{{ user.name }}</p>
+      <p class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ user.email }}</p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+
  <!-- Custom Reusable Confirm Modal -->
  <ConfirmModal 
- :show="showConfirmDelete"
+  :show="showConfirmDelete"
  title="Hapus Role Otorisasi"
  message="Apakah Anda yakin ingin menghapus role otorisasi ini? Tindakan ini dapat memengaruhi hak akses pengguna."
  confirm-text="Ya, Hapus"

@@ -19,7 +19,7 @@
     "/build/assets/AuthenticatedLayout-CCLRqrRv.js"
   ],
   "resources/js/Layouts/FrontendLayout.vue": [
-    "/build/assets/FrontendLayout-Cs4D5AFH.js"
+    "/build/assets/FrontendLayout-DrClc4xA.js"
   ],
   "resources/js/Layouts/GuestLayout.vue": [
     "/build/assets/InputError-BPcHmz-m.js"
@@ -46,10 +46,10 @@
     "/build/assets/Error-CfYdXONg.js"
   ],
   "resources/js/Pages/Backend/Kajian/Create.vue": [
-    "/build/assets/Create-B6me7Ys4.js"
+    "/build/assets/Create-Dc67wLrL.js"
   ],
   "resources/js/Pages/Backend/Kajian/Edit.vue": [
-    "/build/assets/Edit-5ULOICPQ.js"
+    "/build/assets/Edit-B8DkEtMb.js"
   ],
   "resources/js/Pages/Backend/Kajian/Index.vue": [
     "/build/assets/Index-Do9n-8E-.js"
@@ -90,7 +90,7 @@
     "/build/assets/Edit-B1v1Tkjq.js"
   ],
   "resources/js/Pages/Backend/Settings/LogActivity/Index.vue": [
-    "/build/assets/Index-DPkVyuTf.js"
+    "/build/assets/Index-D9_6QMQE.js"
   ],
   "resources/js/Pages/Backend/Settings/Menus/Index.vue": [
     "/build/assets/Index-oYABvfUg.js"
@@ -105,7 +105,7 @@
     "/build/assets/Index-DMN3YKPu.js"
   ],
   "resources/js/Pages/Backend/Settings/Roles/Index.vue": [
-    "/build/assets/Index-Dmpn0MwK.js"
+    "/build/assets/Index-CunMQIji.js"
   ],
   "resources/js/Pages/Backend/Settings/Roles/Permission.vue": [
     "/build/assets/Permission-Cb_Lec5x.js"
@@ -137,16 +137,16 @@
     "/build/assets/ResetPassword-yJUd0YoK.js"
   ],
   "resources/js/Pages/Frontend/Portal/Home.vue": [
-    "/build/assets/Home-CX8YmtEg.js"
+    "/build/assets/Home-BxF1GzgJ.js"
   ],
   "resources/js/Pages/Frontend/Portal/KajianDetail.vue": [
-    "/build/assets/KajianDetail-CDwtwjW3.js"
+    "/build/assets/KajianDetail-D7j18adZ.js"
   ],
   "resources/js/Pages/Frontend/Portal/KajianList.vue": [
-    "/build/assets/KajianList-Dh7lfMye.js"
+    "/build/assets/KajianList-CHTO9zVw.js"
   ],
   "resources/js/Pages/Frontend/Portal/Search.vue": [
-    "/build/assets/Search-wu7_6Qwj.js"
+    "/build/assets/Search-B37esIX0.js"
   ],
   "resources/js/ssr.js": [],
   "resources/js/utils/eventBus.js": [

@@ -18,6 +18,7 @@ class LogActivityController extends Controller
         if ($request->filled('search')) {
             $search = $request->search;
             $query->where('action', 'like', "%{$search}%")
+                  ->orWhere('model_type', 'like', "%{$search}%")
                   ->orWhereHas('user', function($q) use ($search) {
                       $q->where('name', 'like', "%{$search}%");
                   });

@@ -111,13 +111,22 @@ onMounted(() => {
   <footer style="border-top: 1px solid var(--color-rule); background-color: var(--color-paper-2);">
     <div class="container mx-auto px-4 xl:px-0 py-16 md:py-20">
       <!-- Link columns -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-10 pb-14" style="border-bottom: 1px solid var(--color-rule);">
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-8 pb-14" style="border-bottom: 1px solid var(--color-rule);">
         <div>
           <h5 class="text-xs font-semibold mb-5" style="color: var(--color-ink);">Akses Cepat</h5>
           <ul class="space-y-3">
             <li><Link href="/" class="text-sm transition-colors hover:underline" style="color: var(--color-ink-2);">Beranda</Link></li>
             <li><Link :href="route('portal.kajian')" class="text-sm transition-colors hover:underline" style="color: var(--color-ink-2);">Daftar Kajian</Link></li>
             <li><Link :href="route('portal.search')" class="text-sm transition-colors hover:underline" style="color: var(--color-ink-2);">Pencarian</Link></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="text-xs font-semibold mb-5" style="color: var(--color-ink);">Ekosistem Samarinda</h5>
+          <ul class="space-y-3">
+            <li><a href="https://samarindakota.go.id" target="_blank" rel="noopener" class="text-sm transition-colors hover:underline flex items-center gap-1" style="color: var(--color-ink-2);">Portal Samarinda <Icon icon="solar:export-linear" class="w-3.5 h-3.5" /></a></li>
+            <li><a href="https://satudata.samarindakota.go.id" target="_blank" rel="noopener" class="text-sm transition-colors hover:underline flex items-center gap-1" style="color: var(--color-ink-2);">Satu Data Samarinda <Icon icon="solar:export-linear" class="w-3.5 h-3.5" /></a></li>
+            <li><a href="https://ppid.samarindakota.go.id" target="_blank" rel="noopener" class="text-sm transition-colors hover:underline flex items-center gap-1" style="color: var(--color-ink-2);">PPID Kota Samarinda <Icon icon="solar:export-linear" class="w-3.5 h-3.5" /></a></li>
+            <li><a href="https://lpse.samarindakota.go.id" target="_blank" rel="noopener" class="text-sm transition-colors hover:underline flex items-center gap-1" style="color: var(--color-ink-2);">LPSE Kota Samarinda <Icon icon="solar:export-linear" class="w-3.5 h-3.5" /></a></li>
           </ul>
         </div>
         <div>
@@ -129,7 +138,7 @@ onMounted(() => {
           </ul>
         </div>
         <div>
-          <h5 class="text-xs font-semibold mb-5" style="color: var(--color-ink);">Kontak</h5>
+          <h5 class="text-xs font-semibold mb-5" style="color: var(--color-ink);">Kontak BAPPERIDA</h5>
           <ul class="space-y-3">
             <li class="text-sm" style="color: var(--color-ink-2);">Jl. Dahlia No.81, Kel. Bugis</li>
             <li class="text-sm" style="color: var(--color-ink-2);">Kec. Samarinda Kota, Kota Samarinda</li>

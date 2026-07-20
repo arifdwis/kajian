@@ -1,7 +1,7 @@
 import { ref, computed, resolveComponent, unref, withCtx, createTextVNode, toDisplayString, createVNode, withDirectives, withKeys, vModelText, openBlock, createBlock, createCommentVNode, Fragment, renderList, useSSRContext } from "vue";
 import { ssrRenderComponent, ssrRenderStyle, ssrRenderAttr, ssrRenderList, ssrInterpolate } from "vue/server-renderer";
 import { Head, Link, router } from "@inertiajs/vue3";
-import { _ as _sfc_main$1 } from "./FrontendLayout-Cs4D5AFH.js";
+import { _ as _sfc_main$1 } from "./FrontendLayout-DrClc4xA.js";
 import { _ as _sfc_main$2 } from "./Pagination-DE6AvrVK.js";
 import axios from "axios";
 import { useToast } from "vue-toastification";

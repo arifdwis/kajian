@@ -50,18 +50,13 @@ class DashboardController extends Controller
             ]);
         }
 
-        // 3. Pengguna (ASN, Akademisi, Mahasiswa)
-        if ($user->hasRole('pengguna')) {
-            $recent = $this->statsService->getRecentKajian(null, 8);
-            $popular = $this->statsService->getPopularKajian(null, 5);
+        // 3. General Authenticated Users (ASN, Akademisi, Mahasiswa, etc.)
+        $recent = $this->statsService->getRecentKajian(null, 8);
+        $popular = $this->statsService->getPopularKajian(null, 5);
 
-            return Inertia::render('Backend/DashboardAsn', [
-                'recentKajians' => $recent,
-                'popularKajians' => $popular,
-            ]);
-        }
-
-        // Fallback or guest
-        return redirect('/');
+        return Inertia::render('Backend/DashboardAsn', [
+            'recentKajians' => $recent,
+            'popularKajians' => $popular,
+        ]);
     }
 }

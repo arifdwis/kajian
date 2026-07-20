@@ -24,7 +24,7 @@ class PortalSearchController extends Controller
      */
     public function search(Request $request)
     {
-        $query = $request->input('q', '');
+        $query = (string) ($request->input('q') ?? '');
         $tahunId = $request->input('tahun_id') ? (int) $request->tahun_id : null;
         $bidangId = $request->input('bidang_id') ? (int) $request->bidang_id : null;
         $jenisId = $request->input('jenis_id') ? (int) $request->jenis_id : null;

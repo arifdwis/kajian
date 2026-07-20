@@ -157,9 +157,14 @@ class LaporanController extends Controller
             'value' => $j->kajians_count,
         ])->toArray();
 
-        // 4. Download trend
+        // 4. Download & View trends
+        $driver = DB::connection()->getDriverName();
+        $monthExpr = $driver === 'sqlite'
+            ? "strftime('%Y-%m', created_at) as month"
+            : "DATE_FORMAT(created_at, '%Y-%m') as month";
+
         $downloadsTrend = DownloadLog::select(
-                DB::raw("DATE_FORMAT(created_at, '%Y-%m') as month"),
+                DB::raw($monthExpr),
                 DB::raw("count(*) as count")
             )
             ->whereIn('kajian_id', $kajianIds)
@@ -174,7 +179,7 @@ class LaporanController extends Controller
 
         // 5. View trend (last 6 months)
         $viewsTrend = ViewLog::select(
-                DB::raw("DATE_FORMAT(created_at, '%Y-%m') as month"),
+                DB::raw($monthExpr),
                 DB::raw("count(*) as count")
             )
             ->whereIn('kajian_id', $kajianIds)

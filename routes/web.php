@@ -35,8 +35,9 @@ use App\Http\Controllers\Settings\LogActivityController;
 Route::get('/', [PortalController::class, 'index'])->name('home');
 Route::get('/kajian', [PortalKajianController::class, 'index'])->name('portal.kajian');
 Route::get('/kajian/search', [PortalSearchController::class, 'search'])->name('portal.search');
-Route::get('/kajian/{slug}', [PortalKajianController::class, 'show'])->name('portal.detail')->where('slug', '^(?!create|search$).*$');
+Route::get('/kajian/{slug}/preview', [PortalKajianController::class, 'preview'])->name('portal.preview')->where('slug', '^(?!create|search$).*$');
 Route::post('/kajian/{slug}/download', [PortalKajianController::class, 'download'])->name('portal.download')->where('slug', '^(?!create|search$).*$');
+Route::get('/kajian/{slug}', [PortalKajianController::class, 'show'])->name('portal.detail')->where('slug', '^(?!create|search$).*$');
 
 // 🔐 GUEST AUTHENTICATION
 Route::middleware('guest')->group(function () {

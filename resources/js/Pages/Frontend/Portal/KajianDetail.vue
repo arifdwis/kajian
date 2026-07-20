@@ -1,6 +1,6 @@
 <!-- Hallmark · genre: modern-minimal · macrostructure: Content-Detail (2/3+1/3) · theme: Samarinda civic green · design-system: design.md · designed-as-app -->
 <script setup>
-import { computed } from 'vue';
+import { ref, computed } from 'vue';
 import { Head, Link } from '@inertiajs/vue3';
 import FrontendLayout from '@/Layouts/FrontendLayout.vue';
 import axios from 'axios';
@@ -21,6 +21,26 @@ const getFile = (type) => {
 const filePdf = computed(() => getFile('pdf'));
 const filePresentasi = computed(() => getFile('presentasi'));
 const fileCover = computed(() => getFile('cover'));
+const hasAnyFiles = computed(() => filePdf.value || filePresentasi.value || fileCover.value);
+
+const showPdfReader = ref(false);
+const activePreviewFile = ref(null);
+
+const formatSize = (bytes) => {
+  if (!bytes || isNaN(bytes)) return 'Dokumen PDF';
+  const k = 1024;
+  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+};
+
+const openReader = (file) => {
+  if (!file) return;
+  activePreviewFile.value = file;
+  showPdfReader.value = true;
+  // Scroll smoothly to PDF reader if open
+  window.scrollTo({ top: 120, behavior: 'smooth' });
+};
 
 const triggerDownload = (file) => {
  if (!file) return;
@@ -172,8 +192,17 @@ const shareLink = (platform) => {
  <div class="p-6 rounded-xl space-y-6" style="background-color: var(--color-paper); border: 1px solid var(--color-rule);">
  <h4 class="font-semibold text-sm pb-3" style="color: var(--color-ink); border-bottom: 1px solid var(--color-rule);">Cover & Lampiran Berkas</h4>
  
+ <!-- Empty state: no files at all -->
+ <div v-if="!hasAnyFiles" class="text-center py-8">
+  <div class="w-16 h-16 mx-auto mb-3 rounded-full flex items-center justify-center" style="background-color: var(--color-paper-2);">
+   <Icon icon="solar:file-corrupt-bold" class="w-8 h-8" style="color: var(--color-ink-2);" />
+  </div>
+  <p class="text-xs font-semibold" style="color: var(--color-ink-2);">Belum ada berkas</p>
+  <p class="text-[10px] mt-1" style="color: var(--color-ink-2);">Dokumen cover, laporan, dan presentasi belum tersedia.</p>
+ </div>
+
  <!-- Cover graphic -->
- <div class="aspect-[4/3] rounded-xl overflow-hidden relative flex items-center justify-center" style="background-color: var(--color-paper-2); border: 1px solid var(--color-rule);">
+ <div v-else class="aspect-[4/3] rounded-xl overflow-hidden relative flex items-center justify-center" style="background-color: var(--color-paper-2); border: 1px solid var(--color-rule);">
  <img 
  v-if="fileCover" 
  :src="`/storage/${fileCover.file_path}`" 
@@ -186,40 +215,74 @@ const shareLink = (platform) => {
  </div>
  </div>
 
- <!-- Action buttons for attachment downloads -->
- <div class="space-y-3">
- <button 
- v-if="filePdf"
- @click="triggerDownload(filePdf)"
- class="w-full flex items-center gap-3 p-3.5 rounded-xl text-left"
- style="border: 1px solid var(--color-rule); background-color: var(--color-paper-2);"
- >
- <div class="p-2 rounded-sm" style="background-color: var(--color-paper); color: var(--color-accent);">
- <Icon icon="solar:file-text-bold" class="w-5 h-5" />
- </div>
- <div class="min-w-0 flex-grow">
- <span class="block text-xs font-semibold" style="color: var(--color-ink);">Laporan Kajian Utama</span>
- <span class="text-[9px] block mt-0.5" style="color: var(--color-ink-2);">{{ (filePdf.size / 1024 / 1024).toFixed(2) }} MB • PDF</span>
- </div>
- <Icon icon="solar:download-linear" class="w-4 h-4" style="color: var(--color-ink-2);" />
- </button>
+ <!-- Action buttons for attachment downloads and reading -->
+  <div class="space-y-3">
+    <!-- PDF File Card -->
+    <div v-if="filePdf" class="p-3.5 rounded-xl border space-y-3" style="border-color: var(--color-rule); background-color: var(--color-paper-2);">
+      <div class="flex items-center gap-3">
+        <div class="p-2 rounded-lg shrink-0" style="background-color: var(--color-paper); color: var(--color-accent);">
+          <Icon icon="solar:file-text-bold" class="w-5 h-5" />
+        </div>
+        <div class="min-w-0 flex-grow">
+          <span class="block text-xs font-bold" style="color: var(--color-ink);">Laporan Kajian Utama</span>
+          <span class="text-[10px] block mt-0.5" style="color: var(--color-ink-2);">{{ formatSize(filePdf.file_size) }} &middot; PDF</span>
+        </div>
+      </div>
 
- <button 
- v-if="filePresentasi"
- @click="triggerDownload(filePresentasi)"
- class="w-full flex items-center gap-3 p-3.5 rounded-xl text-left"
- style="border: 1px solid var(--color-rule); background-color: var(--color-paper-2);"
- >
- <div class="p-2 rounded-sm" style="background-color: var(--color-paper); color: var(--color-accent);">
- <Icon icon="solar:play-bold" class="w-5 h-5" />
- </div>
- <div class="min-w-0 flex-grow">
- <span class="block text-xs font-semibold" style="color: var(--color-ink);">Bahan Presentasi / Slide</span>
- <span class="text-[9px] block mt-0.5" style="color: var(--color-ink-2);">{{ (filePresentasi.size / 1024 / 1024).toFixed(2) }} MB</span>
- </div>
- <Icon icon="solar:download-linear" class="w-4 h-4" style="color: var(--color-ink-2);" />
- </button>
- </div>
+      <div class="grid grid-cols-2 gap-2 pt-2 border-t" style="border-color: var(--color-rule);">
+        <a 
+          :href="route('portal.preview', { slug: kajian.slug, file_uuid: filePdf.uuid })" 
+          target="_blank" 
+          class="flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg text-xs font-semibold transition-colors"
+          style="background-color: var(--color-paper); color: var(--color-accent); border: 1px solid var(--color-rule);"
+        >
+          <Icon icon="solar:eye-bold" class="w-4 h-4" />
+          <span>Baca</span>
+        </a>
+        <button 
+          @click="triggerDownload(filePdf)"
+          class="flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg text-xs font-semibold transition-colors"
+          style="background-color: var(--color-accent); color: var(--color-accent-ink);"
+        >
+          <Icon icon="solar:download-bold" class="w-4 h-4" />
+          <span>Unduh</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Presentation File Card -->
+    <div v-if="filePresentasi" class="p-3.5 rounded-xl border space-y-3" style="border-color: var(--color-rule); background-color: var(--color-paper-2);">
+      <div class="flex items-center gap-3">
+        <div class="p-2 rounded-lg shrink-0" style="background-color: var(--color-paper); color: var(--color-accent);">
+          <Icon icon="solar:play-bold" class="w-5 h-5" />
+        </div>
+        <div class="min-w-0 flex-grow">
+          <span class="block text-xs font-bold" style="color: var(--color-ink);">Bahan Presentasi / Slide</span>
+          <span class="text-[10px] block mt-0.5" style="color: var(--color-ink-2);">{{ formatSize(filePresentasi.file_size) }}</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2 pt-2 border-t" style="border-color: var(--color-rule);">
+        <a 
+          :href="route('portal.preview', { slug: kajian.slug, file_uuid: filePresentasi.uuid })" 
+          target="_blank" 
+          class="flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg text-xs font-semibold transition-colors"
+          style="background-color: var(--color-paper); color: var(--color-accent); border: 1px solid var(--color-rule);"
+        >
+          <Icon icon="solar:eye-bold" class="w-4 h-4" />
+          <span>Baca</span>
+        </a>
+        <button 
+          @click="triggerDownload(filePresentasi)"
+          class="flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg text-xs font-semibold transition-colors"
+          style="background-color: var(--color-accent); color: var(--color-accent-ink);"
+        >
+          <Icon icon="solar:download-bold" class="w-4 h-4" />
+          <span>Unduh</span>
+        </button>
+      </div>
+    </div>
+  </div>
  </div>
 
  <!-- Share Platform -->

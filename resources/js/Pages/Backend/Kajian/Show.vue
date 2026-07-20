@@ -23,6 +23,7 @@ const getFile = (type) => {
 const filePdf = computed(() => getFile('pdf'));
 const filePresentasi = computed(() => getFile('presentasi'));
 const fileCover = computed(() => getFile('cover'));
+const hasAnyFiles = computed(() => filePdf.value || filePresentasi.value || fileCover.value);
 
 const showConfirmModal = ref(false);
 const confirmModalConfig = ref({
@@ -280,8 +281,17 @@ const deleteKajian = () => {
  <div class="bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700 space-y-6">
  <h4 class="font-bold text-gray-800 dark:text-white text-sm border-b border-gray-50 dark:border-gray-700 pb-3">Cover & Lampiran Berkas</h4>
  
+ <!-- Empty state: no files at all -->
+ <div v-if="!hasAnyFiles" class="text-center py-8">
+  <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-gray-100 dark:bg-gray-900 flex items-center justify-center">
+   <Icon icon="solar:file-corrupt-bold" class="w-8 h-8 text-gray-300 dark:text-gray-600" />
+  </div>
+  <p class="text-xs font-semibold text-gray-400">Belum ada berkas</p>
+  <p class="text-[10px] text-gray-300 dark:text-gray-600 mt-1">Dokumen cover, laporan, dan presentasi belum tersedia.</p>
+ </div>
+
  <!-- Cover preview -->
- <div class="aspect-[4/3] bg-gray-100 dark:bg-gray-900 rounded-card overflow-hidden border border-gray-200 dark:border-gray-700 relative flex items-center justify-center">
+ <div v-else class="aspect-[4/3] bg-gray-100 dark:bg-gray-900 rounded-card overflow-hidden border border-gray-200 dark:border-gray-700 relative flex items-center justify-center">
  <img 
  v-if="fileCover" 
  :src="`/storage/${fileCover.path}`" 

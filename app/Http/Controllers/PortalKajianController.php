@@ -108,8 +108,12 @@ class PortalKajianController extends Controller
             ->where('status', 'published')
             ->firstOrFail();
 
-        // If file_id provided, use it. Otherwise get the PDF file.
-        if ($request->filled('file_id')) {
+        // Resolve file attachment via file_uuid, file_id, or default PDF
+        if ($request->filled('file_uuid')) {
+            $file = KajianFile::where('uuid', $request->file_uuid)
+                ->where('kajian_id', $kajian->id)
+                ->firstOrFail();
+        } elseif ($request->filled('file_id')) {
             $file = KajianFile::where('id', $request->file_id)
                 ->where('kajian_id', $kajian->id)
                 ->firstOrFail();
@@ -143,5 +147,58 @@ class PortalKajianController extends Controller
         }
 
         return response()->download($path, $file->file_name);
+    }
+
+    /**
+     * Preview PDF document inline in browser
+     */
+    public function preview(Request $request, $slug)
+    {
+        $kajian = Kajian::where('slug', $slug)
+            ->where('status', 'published')
+            ->firstOrFail();
+
+        // Resolve file attachment via file_uuid, file_id, or default PDF
+        if ($request->filled('file_uuid')) {
+            $file = KajianFile::where('uuid', $request->file_uuid)
+                ->where('kajian_id', $kajian->id)
+                ->firstOrFail();
+        } elseif ($request->filled('file_id')) {
+            $file = KajianFile::where('id', $request->file_id)
+                ->where('kajian_id', $kajian->id)
+                ->firstOrFail();
+        } else {
+            $file = KajianFile::where('kajian_id', $kajian->id)
+                ->where('tipe', 'pdf')
+                ->first();
+
+            if (!$file) {
+                $file = KajianFile::where('kajian_id', $kajian->id)->first();
+            }
+
+            if (!$file) {
+                abort(404, 'Tidak ada berkas untuk dibaca.');
+            }
+        }
+
+        // Increment view count for inline reading
+        $kajian->increment('view_count');
+        ViewLog::create([
+            'user_id' => auth()->id(),
+            'kajian_id' => $kajian->id,
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+        ]);
+
+        $path = storage_path('app/public/' . $file->file_path);
+
+        if (!file_exists($path)) {
+            abort(404, 'File not found on server.');
+        }
+
+        return response()->file($path, [
+            'Content-Type' => $file->mime_type ?? 'application/pdf',
+            'Content-Disposition' => 'inline; filename="' . $file->file_name . '"'
+        ]);
     }
 }

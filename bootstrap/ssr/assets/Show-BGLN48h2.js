@@ -27,6 +27,7 @@ const _sfc_main = {
     const filePdf = computed(() => getFile("pdf"));
     const filePresentasi = computed(() => getFile("presentasi"));
     const fileCover = computed(() => getFile("cover"));
+    const hasAnyFiles = computed(() => filePdf.value || filePresentasi.value || fileCover.value);
     const showConfirmModal = ref(false);
     const confirmModalConfig = ref({
       title: "",
@@ -249,18 +250,29 @@ const _sfc_main = {
             } else {
               _push2(`<!---->`);
             }
-            _push2(`</div></div><div class="space-y-6"${_scopeId}><div class="bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700 space-y-6"${_scopeId}><h4 class="font-bold text-gray-800 dark:text-white text-sm border-b border-gray-50 dark:border-gray-700 pb-3"${_scopeId}>Cover &amp; Lampiran Berkas</h4><div class="aspect-[4/3] bg-gray-100 dark:bg-gray-900 rounded-card overflow-hidden border border-gray-200 dark:border-gray-700 relative flex items-center justify-center"${_scopeId}>`);
-            if (fileCover.value) {
-              _push2(`<img${ssrRenderAttr("src", `/storage/${fileCover.value.path}`)} alt="Cover" class="w-full h-full object-cover"${_scopeId}>`);
-            } else {
-              _push2(`<div class="text-center p-6 text-gray-300"${_scopeId}>`);
+            _push2(`</div></div><div class="space-y-6"${_scopeId}><div class="bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700 space-y-6"${_scopeId}><h4 class="font-bold text-gray-800 dark:text-white text-sm border-b border-gray-50 dark:border-gray-700 pb-3"${_scopeId}>Cover &amp; Lampiran Berkas</h4>`);
+            if (!hasAnyFiles.value) {
+              _push2(`<div class="text-center py-8"${_scopeId}><div class="w-16 h-16 mx-auto mb-3 rounded-full bg-gray-100 dark:bg-gray-900 flex items-center justify-center"${_scopeId}>`);
               _push2(ssrRenderComponent(_component_Icon, {
-                icon: "solar:gallery-bold",
-                class: "w-12 h-12 mx-auto mb-2"
+                icon: "solar:file-corrupt-bold",
+                class: "w-8 h-8 text-gray-300 dark:text-gray-600"
               }, null, _parent2, _scopeId));
-              _push2(`<span class="text-xs"${_scopeId}>Tidak ada cover</span></div>`);
+              _push2(`</div><p class="text-xs font-semibold text-gray-400"${_scopeId}>Belum ada berkas</p><p class="text-[10px] text-gray-300 dark:text-gray-600 mt-1"${_scopeId}>Dokumen cover, laporan, dan presentasi belum tersedia.</p></div>`);
+            } else {
+              _push2(`<div class="aspect-[4/3] bg-gray-100 dark:bg-gray-900 rounded-card overflow-hidden border border-gray-200 dark:border-gray-700 relative flex items-center justify-center"${_scopeId}>`);
+              if (fileCover.value) {
+                _push2(`<img${ssrRenderAttr("src", `/storage/${fileCover.value.path}`)} alt="Cover" class="w-full h-full object-cover"${_scopeId}>`);
+              } else {
+                _push2(`<div class="text-center p-6 text-gray-300"${_scopeId}>`);
+                _push2(ssrRenderComponent(_component_Icon, {
+                  icon: "solar:gallery-bold",
+                  class: "w-12 h-12 mx-auto mb-2"
+                }, null, _parent2, _scopeId));
+                _push2(`<span class="text-xs"${_scopeId}>Tidak ada cover</span></div>`);
+              }
+              _push2(`</div>`);
             }
-            _push2(`</div><div class="space-y-3"${_scopeId}>`);
+            _push2(`<div class="space-y-3"${_scopeId}>`);
             if (filePdf.value) {
               _push2(`<a${ssrRenderAttr("href", `/storage/${filePdf.value.path}`)} target="_blank" class="w-full flex items-center gap-3 p-3 border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-sm transition-all"${_scopeId}><div class="p-2 bg-red-50 text-red-500 rounded-sm"${_scopeId}>`);
               _push2(ssrRenderComponent(_component_Icon, {
@@ -494,7 +506,22 @@ const _sfc_main = {
                   createVNode("div", { class: "space-y-6" }, [
                     createVNode("div", { class: "bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700 space-y-6" }, [
                       createVNode("h4", { class: "font-bold text-gray-800 dark:text-white text-sm border-b border-gray-50 dark:border-gray-700 pb-3" }, "Cover & Lampiran Berkas"),
-                      createVNode("div", { class: "aspect-[4/3] bg-gray-100 dark:bg-gray-900 rounded-card overflow-hidden border border-gray-200 dark:border-gray-700 relative flex items-center justify-center" }, [
+                      !hasAnyFiles.value ? (openBlock(), createBlock("div", {
+                        key: 0,
+                        class: "text-center py-8"
+                      }, [
+                        createVNode("div", { class: "w-16 h-16 mx-auto mb-3 rounded-full bg-gray-100 dark:bg-gray-900 flex items-center justify-center" }, [
+                          createVNode(_component_Icon, {
+                            icon: "solar:file-corrupt-bold",
+                            class: "w-8 h-8 text-gray-300 dark:text-gray-600"
+                          })
+                        ]),
+                        createVNode("p", { class: "text-xs font-semibold text-gray-400" }, "Belum ada berkas"),
+                        createVNode("p", { class: "text-[10px] text-gray-300 dark:text-gray-600 mt-1" }, "Dokumen cover, laporan, dan presentasi belum tersedia.")
+                      ])) : (openBlock(), createBlock("div", {
+                        key: 1,
+                        class: "aspect-[4/3] bg-gray-100 dark:bg-gray-900 rounded-card overflow-hidden border border-gray-200 dark:border-gray-700 relative flex items-center justify-center"
+                      }, [
                         fileCover.value ? (openBlock(), createBlock("img", {
                           key: 0,
                           src: `/storage/${fileCover.value.path}`,
@@ -510,7 +537,7 @@ const _sfc_main = {
                           }),
                           createVNode("span", { class: "text-xs" }, "Tidak ada cover")
                         ]))
-                      ]),
+                      ])),
                       createVNode("div", { class: "space-y-3" }, [
                         filePdf.value ? (openBlock(), createBlock("a", {
                           key: 0,

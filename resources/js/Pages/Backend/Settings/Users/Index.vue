@@ -106,7 +106,7 @@ const executeDeleteUser = () => {
  <div class="flex items-center justify-end gap-2">
  <Link 
  :href="route('settings.users.edit', item.id)"
- class="p-2 bg-gray-50 hover:bg-amber-50 text-gray-600 hover:text-amber-600 dark:bg-gray-600 dark:text-gray-300 rounded-sm transition-all"
+ class="p-2 bg-gray-50 hover:bg-amber-50 text-gray-600 hover:text-amber-600 dark:bg-gray-600 dark:text-gray-300 rounded-sm transition-colors duration-150"
  title="Edit"
  >
  <Icon icon="solar:pen-bold" class="w-4 h-4" />
@@ -114,7 +114,7 @@ const executeDeleteUser = () => {
  <button 
  v-if="$page.props.auth.user.id !== item.id"
  @click="confirmDeleteUser(item.id)"
- class="p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-sm transition-all"
+ class="p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-sm transition-colors duration-150"
  title="Hapus"
  >
  <Icon icon="solar:trash-bin-trash-bold" class="w-4 h-4" />

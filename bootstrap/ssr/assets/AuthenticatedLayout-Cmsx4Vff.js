@@ -286,14 +286,14 @@ const _sfc_main$2 = {
     });
     return (_ctx, _push, _parent, _attrs) => {
       _push(`<aside${ssrRenderAttrs(mergeProps({
-        class: ["fixed top-0 left-0 z-20 flex flex-col flex-shrink-0 h-full pt-16 font-normal duration-300 transition-all", isCollapsed.value ? "w-16" : "w-64"],
+        class: ["fixed top-0 left-0 z-20 flex flex-col flex-shrink-0 h-full pt-16 font-normal transition-[width] duration-300", isCollapsed.value ? "w-16" : "w-64"],
         style: { backgroundColor: "var(--color-paper)", borderRight: "1px solid var(--color-rule)" },
         "aria-label": "Sidebar"
-      }, _attrs))}><div class="relative flex flex-col flex-1 min-h-0 pt-0"><div class="flex flex-col flex-1 pt-4 overflow-y-auto overflow-x-hidden"><div class="flex-1 px-3 space-y-1"><ul class="py-2 space-y-2"><!--[-->`);
+      }, _attrs))}><div class="relative flex flex-col flex-1 min-h-0"><div class="flex flex-col flex-1 pt-4 overflow-y-auto overflow-x-hidden"><div class="flex-1 px-3 space-y-1"><ul class="py-2 space-y-2"><!--[-->`);
       ssrRenderList(menuItems.value, (item, index) => {
         _push(`<li>`);
         if (item.children && item.children.length > 0) {
-          _push(`<!--[--><div class="${ssrRenderClass([isCollapsed.value ? "justify-center" : "justify-between", "flex items-center py-2.5 px-3 text-sm font-semibold rounded-sm cursor-pointer transition-all duration-150 group relative"])}" style="${ssrRenderStyle({
+          _push(`<!--[--><div class="${ssrRenderClass([isCollapsed.value ? "justify-center" : "justify-between", "flex items-center py-2.5 px-3 text-sm font-semibold rounded-sm cursor-pointer transition-colors duration-150 group relative"])}" style="${ssrRenderStyle({
             color: hasActiveChild(item) || openDropdowns.value[index] ? "var(--color-accent)" : "var(--color-ink)",
             backgroundColor: hasActiveChild(item) || openDropdowns.value[index] ? "var(--color-paper-2)" : "transparent"
           })}"><div class="flex items-center">`);
@@ -324,7 +324,7 @@ const _sfc_main$2 = {
               _push(`<li>`);
               _push(ssrRenderComponent(unref(Link), {
                 href: getHref(child.route),
-                class: "flex items-center py-2 px-3 text-[13px] font-semibold border-l-[1.5px] border-dashed transition-all duration-150 rounded-r-xl",
+                class: "flex items-center py-2 px-3 text-[13px] font-semibold border-l-[1.5px] border-dashed transition-colors duration-150 rounded-r-xl",
                 style: {
                   borderColor: isActive(child.route) ? "var(--color-accent)" : "var(--color-rule)",
                   backgroundColor: isActive(child.route) ? "var(--color-paper-2)" : "transparent",
@@ -352,8 +352,9 @@ const _sfc_main$2 = {
         } else {
           _push(ssrRenderComponent(unref(Link), {
             href: getHref(item.route),
-            class: ["flex items-center py-2.5 px-3 text-sm font-semibold rounded-sm transition-all duration-150 group relative", isCollapsed.value ? "justify-center" : ""],
+            class: ["flex items-center py-2.5 px-3 text-sm font-semibold rounded-sm transition-colors duration-150 group relative border-l-[1.5px]", isCollapsed.value ? "justify-center" : ""],
             style: {
+              borderColor: isActive(item.route) ? "var(--color-accent)" : "transparent",
               color: isActive(item.route) ? "#fff" : "var(--color-ink)",
               backgroundColor: isActive(item.route) ? "var(--color-accent)" : "transparent"
             }
@@ -389,7 +390,13 @@ const _sfc_main$2 = {
         }
         _push(`</li>`);
       });
-      _push(`<!--]--></ul></div></div></div></aside>`);
+      _push(`<!--]--></ul></div>`);
+      if (!isCollapsed.value) {
+        _push(`<div class="px-3 py-3 border-t" style="${ssrRenderStyle({ borderColor: "var(--color-rule)" })}"><div class="flex items-center gap-2 px-2"><div class="w-6 h-6 rounded flex items-center justify-center text-[9px] font-black" style="${ssrRenderStyle({ "background-color": "var(--color-accent)", "color": "var(--color-accent-ink)" })}">SK</div><span class="text-[10px] font-mono tracking-wider" style="${ssrRenderStyle({ "color": "var(--color-ink-2)" })}">SIKAJIAN v1.0</span></div></div>`);
+      } else {
+        _push(`<!---->`);
+      }
+      _push(`</div></div></aside>`);
     };
   }
 };
@@ -437,7 +444,7 @@ const _sfc_main = {
       _push(ssrRenderComponent(_sfc_main$3, null, null, _parent));
       _push(`<div class="flex flex-1 pt-16">`);
       _push(ssrRenderComponent(_sfc_main$2, null, null, _parent));
-      _push(`<div class="${ssrRenderClass([isCollapsed.value ? "pl-16" : "pl-64", "flex flex-col flex-1 duration-300 transition-all"])}"><main class="flex-1 p-6 sm:p-8">`);
+      _push(`<div class="${ssrRenderClass([isCollapsed.value ? "pl-16" : "pl-64", "flex flex-col flex-1 transition-[padding] duration-300"])}"><main class="flex-1 p-6 sm:p-8">`);
       ssrRenderSlot(_ctx.$slots, "default", {}, null, _push, _parent);
       _push(`</main>`);
       _push(ssrRenderComponent(Footer, null, null, _parent));

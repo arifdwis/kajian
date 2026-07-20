@@ -75,12 +75,12 @@ onUnmounted(() => {
 
 <template>
  <aside 
-  class="fixed top-0 left-0 z-20 flex flex-col flex-shrink-0 h-full pt-16 font-normal duration-300 transition-all"
+  class="fixed top-0 left-0 z-20 flex flex-col flex-shrink-0 h-full pt-16 font-normal transition-[width] duration-300"
   :class="isCollapsed ? 'w-16' : 'w-64'"
   :style="{ backgroundColor: 'var(--color-paper)', borderRight: '1px solid var(--color-rule)' }"
   aria-label="Sidebar"
  >
-  <div class="relative flex flex-col flex-1 min-h-0 pt-0">
+  <div class="relative flex flex-col flex-1 min-h-0">
    <div class="flex flex-col flex-1 pt-4 overflow-y-auto overflow-x-hidden">
     <div class="flex-1 px-3 space-y-1">
      <ul class="py-2 space-y-2">
@@ -90,7 +90,7 @@ onUnmounted(() => {
        <template v-if="item.children && item.children.length > 0">
         <div 
          @click="toggleDropdown(index)" 
-         class="flex items-center py-2.5 px-3 text-sm font-semibold rounded-sm cursor-pointer transition-all duration-150 group relative"
+         class="flex items-center py-2.5 px-3 text-sm font-semibold rounded-sm cursor-pointer transition-colors duration-150 group relative"
          :class="isCollapsed ? 'justify-center' : 'justify-between'"
          :style="{
           color: (hasActiveChild(item) || openDropdowns[index]) ? 'var(--color-accent)' : 'var(--color-ink)',
@@ -123,7 +123,7 @@ onUnmounted(() => {
          <li v-for="child in item.children" :key="child.route">
           <Link 
            :href="getHref(child.route)" 
-           class="flex items-center py-2 px-3 text-[13px] font-semibold border-l-[1.5px] border-dashed transition-all duration-150 rounded-r-xl"
+           class="flex items-center py-2 px-3 text-[13px] font-semibold border-l-[1.5px] border-dashed transition-colors duration-150 rounded-r-xl"
            :style="{
             borderColor: isActive(child.route) ? 'var(--color-accent)' : 'var(--color-rule)',
             backgroundColor: isActive(child.route) ? 'var(--color-paper-2)' : 'transparent',
@@ -140,9 +140,10 @@ onUnmounted(() => {
        <template v-else>
         <Link 
          :href="getHref(item.route)" 
-         class="flex items-center py-2.5 px-3 text-sm font-semibold rounded-sm transition-all duration-150 group relative"
+         class="flex items-center py-2.5 px-3 text-sm font-semibold rounded-sm transition-colors duration-150 group relative border-l-[1.5px]"
          :class="isCollapsed ? 'justify-center' : ''"
          :style="{
+          borderColor: isActive(item.route) ? 'var(--color-accent)' : 'transparent',
           color: isActive(item.route) ? '#fff' : 'var(--color-ink)',
           backgroundColor: isActive(item.route) ? 'var(--color-accent)' : 'transparent'
          }"
@@ -158,6 +159,13 @@ onUnmounted(() => {
 
       </li>
      </ul>
+    </div>
+    <!-- Sidebar footer branding -->
+    <div v-if="!isCollapsed" class="px-3 py-3 border-t" :style="{ borderColor: 'var(--color-rule)' }">
+     <div class="flex items-center gap-2 px-2">
+      <div class="w-6 h-6 rounded flex items-center justify-center text-[9px] font-black" style="background-color: var(--color-accent); color: var(--color-accent-ink);">SK</div>
+      <span class="text-[10px] font-mono tracking-wider" style="color: var(--color-ink-2);">SIKAJIAN v1.0</span>
+     </div>
     </div>
    </div>
   </div>

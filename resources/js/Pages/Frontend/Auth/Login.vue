@@ -47,7 +47,7 @@ const submit = () => {
  <div class="space-y-4">
  <a 
  :href="route('sso.login')"
- class="w-full flex items-center justify-center gap-3 px-6 py-4 text-white font-semibold rounded-card transition-all text-sm"
+ class="w-full flex items-center justify-center gap-3 px-6 py-4 text-white font-semibold rounded-card transition-colors duration-150 text-sm"
  >
  <Icon icon="solar:login-2-bold" class="w-5 h-5" />
  Masuk dengan SSO Samarinda

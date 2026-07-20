@@ -70,7 +70,7 @@ const search = (term) => {
 
             <!-- Search Form -->
             <div class="mt-8">
-              <form @submit.prevent="search()" class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 p-1.5 rounded-xl border transition-all shadow-sm focus-within:shadow-md" style="border-color: var(--color-rule); background-color: var(--color-paper-2); max-width: 30rem;">
+              <form @submit.prevent="search()" class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 p-1.5 rounded-xl border transition-colors duration-150 shadow-sm focus-within:shadow-md" style="border-color: var(--color-rule); background-color: var(--color-paper-2); max-width: 30rem;">
                 <div class="flex-1 flex items-center gap-3 px-3 py-2 sm:py-0">
                   <Icon icon="solar:magnifer-linear" class="w-5 h-5 shrink-0" style="color: var(--color-ink-2);" />
                   <input 
@@ -83,7 +83,7 @@ const search = (term) => {
                 </div>
                 <button 
                   type="submit" 
-                  class="px-6 py-3 text-xs font-bold uppercase tracking-wider rounded-lg transition-all shrink-0 active:scale-[0.98]" 
+                  class="px-6 py-3 text-xs font-bold uppercase tracking-wider rounded-lg transition-transform duration-100 shrink-0 active:scale-[0.98]" 
                   style="background-color: var(--color-accent); color: var(--color-accent-ink);"
                 >
                   Cari Kajian
@@ -115,7 +115,7 @@ const search = (term) => {
 
           <!-- Right Column: Index Card -->
           <div class="lg:col-span-2">
-            <div class="p-6 rounded-card border shadow-sm transition-all hover:shadow-md" style="border-color: var(--color-rule); background-color: var(--color-paper);">
+            <div class="p-6 rounded-card border shadow-sm transition-shadow duration-200 hover:shadow-md" style="border-color: var(--color-rule); background-color: var(--color-paper);">
               <div class="flex items-center justify-between pb-4 mb-4 border-b" style="border-color: var(--color-rule);">
                 <div>
                   <span class="font-mono text-[11px] uppercase tracking-wider block" style="color: var(--color-ink-2);">Index Publikasi</span>
@@ -143,7 +143,7 @@ const search = (term) => {
 
               <div class="mt-6 pt-4 border-t" style="border-color: var(--color-rule);">
                 <div class="w-full h-2 rounded-full overflow-hidden" style="background-color: var(--color-rule);">
-                  <div class="h-full rounded-full transition-all duration-500" style="width: 78%; background-color: var(--color-accent);"></div>
+                  <div class="h-full rounded-full transition-colors duration-150 duration-500" style="width: 78%; background-color: var(--color-accent);"></div>
                 </div>
                 <p class="text-[11px] font-mono uppercase tracking-wider mt-2.5 flex items-center justify-between" style="color: var(--color-ink-2);">
                   <span>{{ bidangs.length }} Rumpun Bidang Aktif</span>
@@ -177,7 +177,7 @@ const search = (term) => {
           <!-- Photos of Walikota & Wawali -->
           <div class="lg:col-span-5 flex items-start justify-center gap-6 sm:gap-8">
             <div class="relative group text-center">
-              <div class="overflow-hidden rounded-2xl border shadow-sm transition-all duration-300 group-hover:shadow-md group-hover:-translate-y-1" style="width: 175px; height: 230px; border-color: var(--color-rule); background-color: var(--color-paper-2);">
+              <div class="overflow-hidden rounded-2xl border shadow-sm transition-transform duration-300 group-hover:shadow-md group-hover:-translate-y-1" style="width: 175px; height: 230px; border-color: var(--color-rule); background-color: var(--color-paper-2);">
                 <img src="https://satudata.samarindakota.go.id/img/new-walikota.png" alt="Dr. H. Andi Harun" class="w-full h-full object-cover object-[center_18%] transition-transform duration-500 group-hover:scale-105" />
               </div>
               <h5 class="mt-3 text-xs font-bold" style="color: var(--color-ink);">Dr. H. Andi Harun</h5>
@@ -185,7 +185,7 @@ const search = (term) => {
             </div>
             
             <div class="relative group text-center">
-              <div class="overflow-hidden rounded-2xl border shadow-sm transition-all duration-300 group-hover:shadow-md group-hover:-translate-y-1" style="width: 175px; height: 230px; border-color: var(--color-rule); background-color: var(--color-paper-2);">
+              <div class="overflow-hidden rounded-2xl border shadow-sm transition-transform duration-300 group-hover:shadow-md group-hover:-translate-y-1" style="width: 175px; height: 230px; border-color: var(--color-rule); background-color: var(--color-paper-2);">
                 <img src="https://satudata.samarindakota.go.id/img/new-wawali.png" alt="H. Saefuddin Zuhri, S.E., M.M." class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" style="object-position: -40% 2%;" />
               </div>
               <h5 class="mt-3 text-xs font-bold" style="color: var(--color-ink);">H. Saefuddin Zuhri, S.E., M.M.</h5>
@@ -235,7 +235,7 @@ const search = (term) => {
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="p-8 rounded-card border shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md" style="border-color: var(--color-rule); background-color: var(--color-paper);">
+          <div class="p-8 rounded-card border shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-md" style="border-color: var(--color-rule); background-color: var(--color-paper);">
             <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style="background-color: var(--color-paper-2); color: var(--color-accent);">
               <Icon icon="solar:folder-open-bold-duotone" class="w-6 h-6" />
             </div>
@@ -244,7 +244,7 @@ const search = (term) => {
             <p class="text-xs mt-3 leading-relaxed" style="color: var(--color-ink-2);">Seluruh dokumen kajian dan penelitian yang telah diverifikasi dan dipublikasikan untuk umum.</p>
           </div>
 
-          <div class="p-8 rounded-card border shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md" style="border-color: var(--color-rule); background-color: var(--color-paper);">
+          <div class="p-8 rounded-card border shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-md" style="border-color: var(--color-rule); background-color: var(--color-paper);">
             <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style="background-color: rgba(16, 185, 129, 0.1); color: #10B981;">
               <Icon icon="solar:eye-bold-duotone" class="w-6 h-6" />
             </div>
@@ -253,7 +253,7 @@ const search = (term) => {
             <p class="text-xs mt-3 leading-relaxed" style="color: var(--color-ink-2);">Akumulasi penelusuran dan pembacaan dari akademisi, peneliti, dan masyarakat umum.</p>
           </div>
 
-          <div class="p-8 rounded-card border shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md" style="border-color: var(--color-rule); background-color: var(--color-paper);">
+          <div class="p-8 rounded-card border shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-md" style="border-color: var(--color-rule); background-color: var(--color-paper);">
             <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style="background-color: rgba(59, 130, 246, 0.1); color: #3B82F6;">
               <Icon icon="solar:download-bold-duotone" class="w-6 h-6" />
             </div>
@@ -283,7 +283,7 @@ const search = (term) => {
             v-for="b in bidangs" 
             :key="b.id" 
             :href="route('portal.kajian', { bidang_id: b.id })" 
-            class="p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 hover:shadow-md group flex flex-col justify-between" 
+            class="p-6 rounded-2xl border transition-transform duration-300 hover:-translate-y-1 hover:shadow-md group flex flex-col justify-between" 
             style="border-color: var(--color-rule); background-color: var(--color-paper-2);"
           >
             <div>
@@ -319,7 +319,7 @@ const search = (term) => {
             <div 
               v-for="item in recentKajians" 
               :key="item.id" 
-              class="p-6 rounded-card border transition-all duration-300 hover:shadow-md flex flex-col justify-between group" 
+              class="p-6 rounded-card border transition-transform duration-300 hover:shadow-md flex flex-col justify-between group" 
               style="border-color: var(--color-rule); background-color: var(--color-paper);"
             >
               <div>

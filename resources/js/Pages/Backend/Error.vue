@@ -74,13 +74,13 @@ const icon = computed(() => {
  <div class="flex items-center gap-3">
  <Link 
  href="/"
- class="px-5 py-2.5 bg-paper-2 hover:bg-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 text-xs font-semibold rounded-sm transition-all"
+ class="px-5 py-2.5 bg-paper-2 hover:bg-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 text-xs font-semibold rounded-sm transition-colors duration-150"
  >
  Portal Publik
  </Link>
  <Link 
  :href="route('dashboard')"
- class="px-5 py-2.5 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-all "
+ class="px-5 py-2.5 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-colors duration-150 "
  >
  Masuk Dashboard
  </Link>

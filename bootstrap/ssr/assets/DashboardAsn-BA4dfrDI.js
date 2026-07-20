@@ -1,7 +1,7 @@
 import { computed, resolveComponent, unref, withCtx, createTextVNode, toDisplayString, createVNode, openBlock, createBlock, Fragment, renderList, useSSRContext } from "vue";
 import { ssrRenderComponent, ssrRenderStyle, ssrInterpolate, ssrRenderList } from "vue/server-renderer";
 import { usePage, Head, Link } from "@inertiajs/vue3";
-import { _ as _sfc_main$1 } from "./AuthenticatedLayout-CCLRqrRv.js";
+import { _ as _sfc_main$1 } from "./AuthenticatedLayout-Cmsx4Vff.js";
 import "flowbite-vue";
 import "./ApplicationLogo-CmsQkCHn.js";
 import "@iconify/vue";
@@ -77,7 +77,7 @@ const _sfc_main = {
             _push2(`<!--]--></div></div><div class="lg:col-span-2 bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6 flex flex-col justify-between"${_scopeId}><div${_scopeId}><h4 class="font-bold text-gray-800 dark:text-white text-base mb-1"${_scopeId}>Publikasi Riset Terbaru</h4><p class="text-xs text-gray-400 mb-6 font-medium"${_scopeId}>Buku, laporan kajian, dan naskah akademik terbaru</p></div><div class="grid grid-cols-1 md:grid-cols-2 gap-4"${_scopeId}><!--[-->`);
             ssrRenderList(__props.recentKajians, (item) => {
               var _a, _b, _c;
-              _push2(`<div class="p-4 bg-gray-50 dark:bg-gray-900/40 border border-gray-100 dark:border-gray-800 rounded-card flex flex-col justify-between hover: transition-all duration-200"${_scopeId}><div${_scopeId}><span class="bg-teal-50 dark:bg-teal-950/40 text-teal-600 dark:text-teal-400 font-bold text-[9px] uppercase tracking-wider px-2 py-0.5 rounded border border-teal-200/30"${_scopeId}>${ssrInterpolate(((_a = item.jenis_kajian) == null ? void 0 : _a.nama) || "Kajian")}</span><h5 class="text-xs font-bold text-gray-800 dark:text-gray-200 line-clamp-2 mt-2 leading-relaxed"${_scopeId}>${ssrInterpolate(item.judul)}</h5></div><div class="mt-4 pt-3 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between"${_scopeId}><span class="text-[10px] text-gray-400 font-medium"${_scopeId}>${ssrInterpolate((_b = item.tahun) == null ? void 0 : _b.tahun)} • ${ssrInterpolate((_c = item.bidang) == null ? void 0 : _c.nama)}</span>`);
+              _push2(`<div class="p-4 bg-gray-50 dark:bg-gray-900/40 border border-gray-100 dark:border-gray-800 rounded-card flex flex-col justify-between hover: transition-colors duration-150 duration-200"${_scopeId}><div${_scopeId}><span class="bg-teal-50 dark:bg-teal-950/40 text-teal-600 dark:text-teal-400 font-bold text-[9px] uppercase tracking-wider px-2 py-0.5 rounded border border-teal-200/30"${_scopeId}>${ssrInterpolate(((_a = item.jenis_kajian) == null ? void 0 : _a.nama) || "Kajian")}</span><h5 class="text-xs font-bold text-gray-800 dark:text-gray-200 line-clamp-2 mt-2 leading-relaxed"${_scopeId}>${ssrInterpolate(item.judul)}</h5></div><div class="mt-4 pt-3 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between"${_scopeId}><span class="text-[10px] text-gray-400 font-medium"${_scopeId}>${ssrInterpolate((_b = item.tahun) == null ? void 0 : _b.tahun)} • ${ssrInterpolate((_c = item.bidang) == null ? void 0 : _c.nama)}</span>`);
               _push2(ssrRenderComponent(unref(Link), {
                 href: _ctx.route("portal.detail", item.slug),
                 class: "text-xs font-bold text-teal-600 hover:text-teal-800 transition-colors"
@@ -199,7 +199,7 @@ const _sfc_main = {
                         var _a, _b, _c;
                         return openBlock(), createBlock("div", {
                           key: item.id,
-                          class: "p-4 bg-gray-50 dark:bg-gray-900/40 border border-gray-100 dark:border-gray-800 rounded-card flex flex-col justify-between hover: transition-all duration-200"
+                          class: "p-4 bg-gray-50 dark:bg-gray-900/40 border border-gray-100 dark:border-gray-800 rounded-card flex flex-col justify-between hover: transition-colors duration-150 duration-200"
                         }, [
                           createVNode("div", null, [
                             createVNode("span", { class: "bg-teal-50 dark:bg-teal-950/40 text-teal-600 dark:text-teal-400 font-bold text-[9px] uppercase tracking-wider px-2 py-0.5 rounded border border-teal-200/30" }, toDisplayString(((_a = item.jenis_kajian) == null ? void 0 : _a.nama) || "Kajian"), 1),

@@ -1,14 +1,14 @@
 import { computed, resolveComponent, unref, withCtx, createTextVNode, toDisplayString, createVNode, openBlock, createBlock, Fragment, renderList, useSSRContext } from "vue";
 import { ssrRenderComponent, ssrRenderStyle, ssrInterpolate, ssrRenderList, ssrRenderClass } from "vue/server-renderer";
 import { usePage, Head, Link } from "@inertiajs/vue3";
-import { _ as _sfc_main$1 } from "./AuthenticatedLayout-CCLRqrRv.js";
+import { _ as _sfc_main$1 } from "./AuthenticatedLayout-Cmsx4Vff.js";
 import Chart from "primevue/chart";
 import "flowbite-vue";
 import "./ApplicationLogo-CmsQkCHn.js";
 import "@iconify/vue";
 import "mitt";
 const _sfc_main = {
-  __name: "DashboardOperator",
+  __name: "Dashboard",
   __ssrInlineRender: true,
   props: {
     summary: Object,
@@ -27,9 +27,9 @@ const _sfc_main = {
           label: "Unduhan",
           data: (props.charts.downloads_trend || []).map((item) => item.value),
           fill: false,
-          borderColor: "#8B5CF6",
+          borderColor: "#3B82F6",
           tension: 0.4,
-          pointBackgroundColor: "#8B5CF6",
+          pointBackgroundColor: "#3B82F6",
           pointHoverRadius: 6
         }
       ]
@@ -94,26 +94,63 @@ const _sfc_main = {
       },
       cutout: "65%"
     };
+    const barChartData = computed(() => ({
+      labels: (props.charts.per_bidang || []).map((item) => item.label),
+      datasets: [
+        {
+          label: "Jumlah Kajian",
+          backgroundColor: "#8B5CF6",
+          hoverBackgroundColor: "#7C3AED",
+          data: (props.charts.per_bidang || []).map((item) => item.value),
+          borderRadius: 6
+        }
+      ]
+    }));
+    const barChartOptions = {
+      indexAxis: "y",
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false
+        }
+      },
+      scales: {
+        x: {
+          grid: {
+            color: "rgba(156, 163, 175, 0.15)",
+            drawBorder: false
+          },
+          ticks: {
+            color: "#9CA3AF",
+            precision: 0
+          }
+        },
+        y: {
+          grid: {
+            display: false
+          },
+          ticks: {
+            color: "#9CA3AF"
+          }
+        }
+      }
+    };
     return (_ctx, _push, _parent, _attrs) => {
       const _component_Icon = resolveComponent("Icon");
       _push(`<!--[-->`);
-      _push(ssrRenderComponent(unref(Head), { title: "Dashboard Operator" }, null, _parent));
+      _push(ssrRenderComponent(unref(Head), { title: "Dashboard Admin" }, null, _parent));
       _push(ssrRenderComponent(_sfc_main$1, null, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<div class="space-y-8"${_scopeId}><div class="relative overflow-hidden rounded-card p-8" style="${ssrRenderStyle({ "background": "linear-gradient(135deg, #6B46C1 0%, #4C51BF 100%)" })}"${_scopeId}><div class="absolute -right-10 -top-10 w-40 h-40 rounded-full blur-2xl" style="${ssrRenderStyle({ "background": "rgba(255,255,255,0.08)" })}"${_scopeId}></div><div class="absolute right-20 bottom-0 w-32 h-32 rounded-full blur-xl" style="${ssrRenderStyle({ "background": "rgba(255,255,255,0.06)" })}"${_scopeId}></div><div class="relative z-10 max-w-xl"${_scopeId}><span class="font-bold text-xs uppercase tracking-wider px-3 py-1 rounded-full" style="${ssrRenderStyle({ "background": "rgba(255,255,255,0.15)", "color": "#fff", "border": "1px solid rgba(255,255,255,0.25)" })}"${_scopeId}> Operator Bidang </span><h2 class="text-2xl font-bold mt-4 text-white"${_scopeId}>Selamat Datang, ${ssrInterpolate(user.value.name)}</h2><p class="text-sm mt-2 leading-relaxed" style="${ssrRenderStyle({ "color": "rgba(255,255,255,0.85)" })}"${_scopeId}> Kelola draf, usulan kajian baru, lampiran, dan publikasi penelitian khusus untuk Bidang Anda. </p></div></div><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"${_scopeId}><div class="bg-paper dark:bg-gray-800 rounded-card p-6 border border-gray-100 dark:border-gray-700 transition-shadow"${_scopeId}><div class="flex items-center justify-between"${_scopeId}><div${_scopeId}><p class="text-xs font-semibold text-gray-400 uppercase tracking-wider"${_scopeId}>Total Kajian Bidang</p><h3 class="text-2xl font-bold text-gray-900 dark:text-white mt-1"${_scopeId}>${ssrInterpolate(__props.summary.total_kajian)}</h3></div><div class="p-3 bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-sm"${_scopeId}>`);
+            _push2(`<div class="space-y-8"${_scopeId}><div class="relative overflow-hidden rounded-card p-8" style="${ssrRenderStyle({ "background": "linear-gradient(135deg, var(--color-accent) 0%, oklch(35% 0.06 135) 100%)" })}"${_scopeId}><div class="absolute -right-10 -top-10 w-40 h-40 rounded-full blur-2xl" style="${ssrRenderStyle({ "background": "rgba(255,255,255,0.08)" })}"${_scopeId}></div><div class="absolute right-20 bottom-0 w-32 h-32 rounded-full blur-xl" style="${ssrRenderStyle({ "background": "rgba(255,255,255,0.06)" })}"${_scopeId}></div><div class="relative z-10 max-w-xl"${_scopeId}><span class="font-bold text-xs uppercase tracking-wider px-3 py-1 rounded-full" style="${ssrRenderStyle({ "background": "rgba(255,255,255,0.15)", "color": "#fff", "border": "1px solid rgba(255,255,255,0.25)" })}"${_scopeId}> Admin Bapperida </span><h2 class="text-2xl font-bold mt-4 text-white"${_scopeId}>Selamat Datang Kembali, ${ssrInterpolate(user.value.name)}</h2><p class="text-sm mt-2 leading-relaxed" style="${ssrRenderStyle({ "color": "rgba(255,255,255,0.85)" })}"${_scopeId}> Kelola data penelitian, riset, dan kajian strategis Pemerintah Kota Samarinda secara terpadu melalui panel SIKAJIAN. </p></div></div><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"${_scopeId}><div class="bg-paper dark:bg-gray-800 rounded-card p-6 border border-gray-100 dark:border-gray-700 transition-shadow"${_scopeId}><div class="flex items-center justify-between"${_scopeId}><div${_scopeId}><p class="text-xs font-semibold text-gray-400 uppercase tracking-wider"${_scopeId}>Total Kajian</p><h3 class="text-2xl font-bold text-gray-900 dark:text-white mt-1"${_scopeId}>${ssrInterpolate(__props.summary.total_kajian)}</h3></div><div class="p-3 bg-paper-2 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-sm"${_scopeId}>`);
             _push2(ssrRenderComponent(_component_Icon, {
               icon: "solar:folder-open-bold",
               class: "w-6 h-6"
             }, null, _parent2, _scopeId));
-            _push2(`</div></div></div><div class="bg-paper dark:bg-gray-800 rounded-card p-6 border border-gray-100 dark:border-gray-700 transition-shadow"${_scopeId}><div class="flex items-center justify-between"${_scopeId}><div${_scopeId}><p class="text-xs font-semibold text-gray-400 uppercase tracking-wider"${_scopeId}>Telah Terbit</p><h3 class="text-2xl font-bold text-emerald-600 dark:text-emerald-400 mt-1"${_scopeId}>${ssrInterpolate(__props.summary.total_published)}</h3></div><div class="p-3 bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 rounded-sm"${_scopeId}>`);
+            _push2(`</div></div></div><div class="bg-paper dark:bg-gray-800 rounded-card p-6 border border-gray-100 dark:border-gray-700 transition-shadow"${_scopeId}><div class="flex items-center justify-between"${_scopeId}><div${_scopeId}><p class="text-xs font-semibold text-gray-400 uppercase tracking-wider"${_scopeId}>Dipublikasikan</p><h3 class="text-2xl font-bold text-emerald-600 dark:text-emerald-400 mt-1"${_scopeId}>${ssrInterpolate(__props.summary.total_published)}</h3></div><div class="p-3 bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 rounded-sm"${_scopeId}>`);
             _push2(ssrRenderComponent(_component_Icon, {
               icon: "solar:check-square-bold",
-              class: "w-6 h-6"
-            }, null, _parent2, _scopeId));
-            _push2(`</div></div></div><div class="bg-paper dark:bg-gray-800 rounded-card p-6 border border-gray-100 dark:border-gray-700 transition-shadow"${_scopeId}><div class="flex items-center justify-between"${_scopeId}><div${_scopeId}><p class="text-xs font-semibold text-gray-400 uppercase tracking-wider"${_scopeId}>Draf internal</p><h3 class="text-2xl font-bold text-indigo-600 dark:text-indigo-400 mt-1"${_scopeId}>${ssrInterpolate(__props.summary.total_draft)}</h3></div><div class="p-3 bg-indigo-50 dark:bg-indigo-950/30 text-indigo-600 dark:text-indigo-400 rounded-sm"${_scopeId}>`);
-            _push2(ssrRenderComponent(_component_Icon, {
-              icon: "solar:notes-bold",
               class: "w-6 h-6"
             }, null, _parent2, _scopeId));
             _push2(`</div></div></div><div class="bg-paper dark:bg-gray-800 rounded-card p-6 border border-gray-100 dark:border-gray-700 transition-shadow"${_scopeId}><div class="flex items-center justify-between"${_scopeId}><div${_scopeId}><p class="text-xs font-semibold text-gray-400 uppercase tracking-wider"${_scopeId}>Menunggu Review</p><h3 class="text-2xl font-bold text-amber-500 dark:text-amber-400 mt-1"${_scopeId}>${ssrInterpolate(__props.summary.total_review)}</h3></div><div class="p-3 bg-amber-50 dark:bg-amber-950/30 text-amber-500 dark:text-amber-400 rounded-sm"${_scopeId}>`);
@@ -121,24 +158,36 @@ const _sfc_main = {
               icon: "solar:clock-circle-bold",
               class: "w-6 h-6"
             }, null, _parent2, _scopeId));
-            _push2(`</div></div></div></div><div class="grid grid-cols-1 lg:grid-cols-3 gap-8"${_scopeId}><div class="lg:col-span-2 bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6"${_scopeId}><h4 class="font-bold text-gray-800 dark:text-white text-base mb-1"${_scopeId}>Unduhan Kajian Bidang</h4><p class="text-xs text-gray-400 mb-6"${_scopeId}>Tren download 6 bulan terakhir</p><div class="h-72 relative"${_scopeId}>`);
+            _push2(`</div></div></div><div class="bg-paper dark:bg-gray-800 rounded-card p-6 border border-gray-100 dark:border-gray-700 transition-shadow"${_scopeId}><div class="flex items-center justify-between"${_scopeId}><div${_scopeId}><p class="text-xs font-semibold text-gray-400 uppercase tracking-wider"${_scopeId}>Total Unduhan</p><h3 class="text-2xl font-bold text-indigo-600 dark:text-indigo-400 mt-1"${_scopeId}>${ssrInterpolate(__props.summary.total_downloads)}</h3></div><div class="p-3 bg-indigo-50 dark:bg-indigo-950/30 text-indigo-600 dark:text-indigo-400 rounded-sm"${_scopeId}>`);
+            _push2(ssrRenderComponent(_component_Icon, {
+              icon: "solar:download-bold",
+              class: "w-6 h-6"
+            }, null, _parent2, _scopeId));
+            _push2(`</div></div></div></div><div class="grid grid-cols-1 lg:grid-cols-3 gap-8"${_scopeId}><div class="lg:col-span-2 bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6"${_scopeId}><h4 class="font-bold text-gray-800 dark:text-white text-base mb-1"${_scopeId}>Tren Unduhan Kajian</h4><p class="text-xs text-gray-400 mb-6"${_scopeId}>Aktivitas download 6 bulan terakhir</p><div class="h-72 relative"${_scopeId}>`);
             _push2(ssrRenderComponent(unref(Chart), {
               type: "line",
               data: lineChartData.value,
               options: lineChartOptions,
               class: "h-full w-full"
             }, null, _parent2, _scopeId));
-            _push2(`</div></div><div class="bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6 flex flex-col justify-between"${_scopeId}><div${_scopeId}><h4 class="font-bold text-gray-800 dark:text-white text-base mb-1"${_scopeId}>Jenis Riset Bidang</h4><p class="text-xs text-gray-400 mb-6"${_scopeId}>Distribusi per kategori kajian</p></div><div class="h-72 flex items-center justify-center relative"${_scopeId}>`);
+            _push2(`</div></div><div class="bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6 flex flex-col justify-between"${_scopeId}><div${_scopeId}><h4 class="font-bold text-gray-800 dark:text-white text-base mb-1"${_scopeId}>Persentase Jenis Kajian</h4><p class="text-xs text-gray-400 mb-6"${_scopeId}>Berdasarkan klasifikasi riset</p></div><div class="h-72 flex items-center justify-center relative"${_scopeId}>`);
             _push2(ssrRenderComponent(unref(Chart), {
               type: "doughnut",
               data: doughnutChartData.value,
               options: doughnutChartOptions,
               class: "h-full w-full"
             }, null, _parent2, _scopeId));
-            _push2(`</div></div></div><div class="grid grid-cols-1 lg:grid-cols-3 gap-8"${_scopeId}><div class="lg:col-span-2 bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6 flex flex-col justify-between"${_scopeId}><div${_scopeId}><h4 class="font-bold text-gray-800 dark:text-white text-base mb-1"${_scopeId}>Kajian Bidang Terpopuler</h4><p class="text-xs text-gray-400 mb-6"${_scopeId}>Paling banyak dicari &amp; didownload oleh pemohon</p></div><div class="space-y-4"${_scopeId}><!--[-->`);
+            _push2(`</div></div></div><div class="grid grid-cols-1 lg:grid-cols-3 gap-8"${_scopeId}><div class="lg:col-span-2 bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6"${_scopeId}><h4 class="font-bold text-gray-800 dark:text-white text-base mb-1"${_scopeId}>Kajian per Bidang</h4><p class="text-xs text-gray-400 mb-6"${_scopeId}>Jumlah publikasi terbit per unit</p><div class="h-72 relative"${_scopeId}>`);
+            _push2(ssrRenderComponent(unref(Chart), {
+              type: "bar",
+              data: barChartData.value,
+              options: barChartOptions,
+              class: "h-full w-full"
+            }, null, _parent2, _scopeId));
+            _push2(`</div></div><div class="bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6 flex flex-col justify-between"${_scopeId}><div${_scopeId}><h4 class="font-bold text-gray-800 dark:text-white text-base mb-1"${_scopeId}>Kajian Terpopuler</h4><p class="text-xs text-gray-400 mb-6"${_scopeId}>Paling sering diunduh oleh pemohon</p></div><div class="flex-1 overflow-y-auto space-y-4 max-h-[280px]"${_scopeId}><!--[-->`);
             ssrRenderList(__props.popularKajians, (item) => {
               var _a, _b;
-              _push2(`<div class="flex items-start gap-3 border-b border-gray-50 dark:border-gray-700 pb-3 last:border-0 last:pb-0"${_scopeId}><div class="p-2 bg-purple-50 dark:bg-purple-900/20 text-purple-600 rounded-sm shrink-0"${_scopeId}>`);
+              _push2(`<div class="flex items-start gap-3 border-b border-gray-50 dark:border-gray-700 pb-3 last:border-0 last:pb-0"${_scopeId}><div class="p-2 bg-paper-2 dark:bg-blue-900/20 text-blue-600 rounded-sm shrink-0"${_scopeId}>`);
               _push2(ssrRenderComponent(_component_Icon, {
                 icon: "solar:file-text-bold",
                 class: "w-5 h-5"
@@ -165,47 +214,7 @@ const _sfc_main = {
               }, null, _parent2, _scopeId));
               _push2(` ${ssrInterpolate(item.download_count)}</span></div>`);
             });
-            _push2(`<!--]--></div></div><div class="bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6 flex flex-col justify-between"${_scopeId}><div${_scopeId}><h4 class="font-bold text-gray-800 dark:text-white text-base mb-1"${_scopeId}>Menu Cepat</h4><p class="text-xs text-gray-400 mb-6"${_scopeId}>Aksi cepat pengoperasian kajian</p></div><div class="space-y-3"${_scopeId}>`);
-            _push2(ssrRenderComponent(unref(Link), {
-              href: _ctx.route("kajian.create"),
-              class: "w-full flex items-center justify-between p-4 text-white rounded-card transition-all font-semibold text-sm"
-            }, {
-              default: withCtx((_2, _push3, _parent3, _scopeId2) => {
-                if (_push3) {
-                  _push3(`<span${_scopeId2}>Buat Kajian Baru</span>`);
-                  _push3(ssrRenderComponent(_component_Icon, {
-                    icon: "solar:add-circle-bold",
-                    class: "w-5 h-5"
-                  }, null, _parent3, _scopeId2));
-                } else {
-                  return [
-                    createVNode("span", null, "Buat Kajian Baru"),
-                    createVNode(_component_Icon, {
-                      icon: "solar:add-circle-bold",
-                      class: "w-5 h-5"
-                    })
-                  ];
-                }
-              }),
-              _: 1
-            }, _parent2, _scopeId));
-            _push2(ssrRenderComponent(unref(Link), {
-              href: _ctx.route("kajian.index", { status: "draft" }),
-              class: "w-full flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-white rounded-card transition-all font-semibold text-sm"
-            }, {
-              default: withCtx((_2, _push3, _parent3, _scopeId2) => {
-                if (_push3) {
-                  _push3(`<span${_scopeId2}>Lihat Draf</span><span class="bg-gray-200 dark:bg-gray-800 text-xs px-2 py-0.5 rounded-full"${_scopeId2}>${ssrInterpolate(__props.summary.total_draft)}</span>`);
-                } else {
-                  return [
-                    createVNode("span", null, "Lihat Draf"),
-                    createVNode("span", { class: "bg-gray-200 dark:bg-gray-800 text-xs px-2 py-0.5 rounded-full" }, toDisplayString(__props.summary.total_draft), 1)
-                  ];
-                }
-              }),
-              _: 1
-            }, _parent2, _scopeId));
-            _push2(`</div></div></div><div class="bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card overflow-hidden"${_scopeId}><div class="p-6 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center bg-gray-50/50 dark:bg-gray-800/50"${_scopeId}><div${_scopeId}><h4 class="font-bold text-gray-800 dark:text-white text-base"${_scopeId}>Unggahan Terbaru Bidang</h4><p class="text-xs text-gray-400 mt-0.5"${_scopeId}>Daftar kajian yang baru dimasukkan oleh Bidang Anda</p></div>`);
+            _push2(`<!--]--></div></div></div><div class="bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card overflow-hidden"${_scopeId}><div class="p-6 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center bg-gray-50/50 dark:bg-gray-800/50"${_scopeId}><div${_scopeId}><h4 class="font-bold text-gray-800 dark:text-white text-base"${_scopeId}>Unggahan Terbaru</h4><p class="text-xs text-gray-400 mt-0.5"${_scopeId}>Daftar kajian yang baru dimasukkan sistem</p></div>`);
             _push2(ssrRenderComponent(unref(Link), {
               href: _ctx.route("kajian.index"),
               class: "text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors"
@@ -221,10 +230,10 @@ const _sfc_main = {
               }),
               _: 1
             }, _parent2, _scopeId));
-            _push2(`</div><div class="overflow-x-auto"${_scopeId}><table class="w-full text-left text-sm"${_scopeId}><thead class="bg-gray-50/70 dark:bg-gray-900/50 text-gray-400 text-xs font-semibold uppercase tracking-wider"${_scopeId}><tr${_scopeId}><th class="px-6 py-4"${_scopeId}>Judul Kajian</th><th class="px-6 py-4"${_scopeId}>Tahun</th><th class="px-6 py-4"${_scopeId}>Status</th><th class="px-6 py-4 text-right"${_scopeId}>Aksi</th></tr></thead><tbody class="divide-y divide-gray-100 dark:divide-gray-700"${_scopeId}><!--[-->`);
+            _push2(`</div><div class="overflow-x-auto"${_scopeId}><table class="w-full text-left text-sm"${_scopeId}><thead class="bg-gray-50/70 dark:bg-gray-900/50 text-gray-400 text-xs font-semibold uppercase tracking-wider"${_scopeId}><tr${_scopeId}><th class="px-6 py-4"${_scopeId}>Judul Kajian</th><th class="px-6 py-4"${_scopeId}>Bidang</th><th class="px-6 py-4"${_scopeId}>Tahun</th><th class="px-6 py-4"${_scopeId}>Status</th><th class="px-6 py-4 text-right"${_scopeId}>Aksi</th></tr></thead><tbody class="divide-y divide-gray-100 dark:divide-gray-700"${_scopeId}><!--[-->`);
             ssrRenderList(__props.recentKajians, (item) => {
-              var _a;
-              _push2(`<tr class="hover:bg-gray-50/50 dark:hover:bg-gray-800/30 transition-colors"${_scopeId}><td class="px-6 py-4 font-semibold text-gray-900 dark:text-white max-w-sm truncate"${_scopeId}>${ssrInterpolate(item.judul)}</td><td class="px-6 py-4 text-gray-500"${_scopeId}>${ssrInterpolate((_a = item.tahun) == null ? void 0 : _a.tahun)}</td><td class="px-6 py-4"${_scopeId}><span class="${ssrRenderClass([{
+              var _a, _b;
+              _push2(`<tr class="hover:bg-gray-50/50 dark:hover:bg-gray-800/30 transition-colors"${_scopeId}><td class="px-6 py-4 font-semibold text-gray-900 dark:text-white max-w-sm truncate"${_scopeId}>${ssrInterpolate(item.judul)}</td><td class="px-6 py-4 text-gray-500"${_scopeId}>${ssrInterpolate((_a = item.bidang) == null ? void 0 : _a.nama)}</td><td class="px-6 py-4 text-gray-500"${_scopeId}>${ssrInterpolate((_b = item.tahun) == null ? void 0 : _b.tahun)}</td><td class="px-6 py-4"${_scopeId}><span class="${ssrRenderClass([{
                 "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/30 dark:text-emerald-400 dark:border-emerald-800": item.status === "published",
                 "bg-paper-2 text-blue-700 border-blue-200 dark:bg-blue-950/30 dark:text-blue-400 dark:border-blue-800": item.status === "draft",
                 "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/30 dark:text-amber-400 dark:border-amber-800": item.status === "review",
@@ -232,7 +241,7 @@ const _sfc_main = {
               }, "px-2.5 py-1 rounded-full text-xs font-bold border"])}"${_scopeId}>${ssrInterpolate(item.status)}</span></td><td class="px-6 py-4 text-right"${_scopeId}>`);
               _push2(ssrRenderComponent(unref(Link), {
                 href: _ctx.route("kajian.show", item.uuid),
-                class: "px-3 py-1.5 bg-gray-100 hover:bg-paper-2 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-blue-600 rounded-sm transition-all inline-flex items-center text-xs font-bold"
+                class: "px-3 py-1.5 bg-gray-100 hover:bg-paper-2 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-blue-600 rounded-sm transition-colors duration-150 inline-flex items-center text-xs font-bold"
               }, {
                 default: withCtx((_2, _push3, _parent3, _scopeId2) => {
                   if (_push3) {
@@ -253,7 +262,7 @@ const _sfc_main = {
               createVNode("div", { class: "space-y-8" }, [
                 createVNode("div", {
                   class: "relative overflow-hidden rounded-card p-8",
-                  style: { "background": "linear-gradient(135deg, #6B46C1 0%, #4C51BF 100%)" }
+                  style: { "background": "linear-gradient(135deg, var(--color-accent) 0%, oklch(35% 0.06 135) 100%)" }
                 }, [
                   createVNode("div", {
                     class: "absolute -right-10 -top-10 w-40 h-40 rounded-full blur-2xl",
@@ -267,22 +276,22 @@ const _sfc_main = {
                     createVNode("span", {
                       class: "font-bold text-xs uppercase tracking-wider px-3 py-1 rounded-full",
                       style: { "background": "rgba(255,255,255,0.15)", "color": "#fff", "border": "1px solid rgba(255,255,255,0.25)" }
-                    }, " Operator Bidang "),
-                    createVNode("h2", { class: "text-2xl font-bold mt-4 text-white" }, "Selamat Datang, " + toDisplayString(user.value.name), 1),
+                    }, " Admin Bapperida "),
+                    createVNode("h2", { class: "text-2xl font-bold mt-4 text-white" }, "Selamat Datang Kembali, " + toDisplayString(user.value.name), 1),
                     createVNode("p", {
                       class: "text-sm mt-2 leading-relaxed",
                       style: { "color": "rgba(255,255,255,0.85)" }
-                    }, " Kelola draf, usulan kajian baru, lampiran, dan publikasi penelitian khusus untuk Bidang Anda. ")
+                    }, " Kelola data penelitian, riset, dan kajian strategis Pemerintah Kota Samarinda secara terpadu melalui panel SIKAJIAN. ")
                   ])
                 ]),
                 createVNode("div", { class: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" }, [
                   createVNode("div", { class: "bg-paper dark:bg-gray-800 rounded-card p-6 border border-gray-100 dark:border-gray-700 transition-shadow" }, [
                     createVNode("div", { class: "flex items-center justify-between" }, [
                       createVNode("div", null, [
-                        createVNode("p", { class: "text-xs font-semibold text-gray-400 uppercase tracking-wider" }, "Total Kajian Bidang"),
+                        createVNode("p", { class: "text-xs font-semibold text-gray-400 uppercase tracking-wider" }, "Total Kajian"),
                         createVNode("h3", { class: "text-2xl font-bold text-gray-900 dark:text-white mt-1" }, toDisplayString(__props.summary.total_kajian), 1)
                       ]),
-                      createVNode("div", { class: "p-3 bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-sm" }, [
+                      createVNode("div", { class: "p-3 bg-paper-2 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-sm" }, [
                         createVNode(_component_Icon, {
                           icon: "solar:folder-open-bold",
                           class: "w-6 h-6"
@@ -293,26 +302,12 @@ const _sfc_main = {
                   createVNode("div", { class: "bg-paper dark:bg-gray-800 rounded-card p-6 border border-gray-100 dark:border-gray-700 transition-shadow" }, [
                     createVNode("div", { class: "flex items-center justify-between" }, [
                       createVNode("div", null, [
-                        createVNode("p", { class: "text-xs font-semibold text-gray-400 uppercase tracking-wider" }, "Telah Terbit"),
+                        createVNode("p", { class: "text-xs font-semibold text-gray-400 uppercase tracking-wider" }, "Dipublikasikan"),
                         createVNode("h3", { class: "text-2xl font-bold text-emerald-600 dark:text-emerald-400 mt-1" }, toDisplayString(__props.summary.total_published), 1)
                       ]),
                       createVNode("div", { class: "p-3 bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 rounded-sm" }, [
                         createVNode(_component_Icon, {
                           icon: "solar:check-square-bold",
-                          class: "w-6 h-6"
-                        })
-                      ])
-                    ])
-                  ]),
-                  createVNode("div", { class: "bg-paper dark:bg-gray-800 rounded-card p-6 border border-gray-100 dark:border-gray-700 transition-shadow" }, [
-                    createVNode("div", { class: "flex items-center justify-between" }, [
-                      createVNode("div", null, [
-                        createVNode("p", { class: "text-xs font-semibold text-gray-400 uppercase tracking-wider" }, "Draf internal"),
-                        createVNode("h3", { class: "text-2xl font-bold text-indigo-600 dark:text-indigo-400 mt-1" }, toDisplayString(__props.summary.total_draft), 1)
-                      ]),
-                      createVNode("div", { class: "p-3 bg-indigo-50 dark:bg-indigo-950/30 text-indigo-600 dark:text-indigo-400 rounded-sm" }, [
-                        createVNode(_component_Icon, {
-                          icon: "solar:notes-bold",
                           class: "w-6 h-6"
                         })
                       ])
@@ -331,12 +326,26 @@ const _sfc_main = {
                         })
                       ])
                     ])
+                  ]),
+                  createVNode("div", { class: "bg-paper dark:bg-gray-800 rounded-card p-6 border border-gray-100 dark:border-gray-700 transition-shadow" }, [
+                    createVNode("div", { class: "flex items-center justify-between" }, [
+                      createVNode("div", null, [
+                        createVNode("p", { class: "text-xs font-semibold text-gray-400 uppercase tracking-wider" }, "Total Unduhan"),
+                        createVNode("h3", { class: "text-2xl font-bold text-indigo-600 dark:text-indigo-400 mt-1" }, toDisplayString(__props.summary.total_downloads), 1)
+                      ]),
+                      createVNode("div", { class: "p-3 bg-indigo-50 dark:bg-indigo-950/30 text-indigo-600 dark:text-indigo-400 rounded-sm" }, [
+                        createVNode(_component_Icon, {
+                          icon: "solar:download-bold",
+                          class: "w-6 h-6"
+                        })
+                      ])
+                    ])
                   ])
                 ]),
                 createVNode("div", { class: "grid grid-cols-1 lg:grid-cols-3 gap-8" }, [
                   createVNode("div", { class: "lg:col-span-2 bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6" }, [
-                    createVNode("h4", { class: "font-bold text-gray-800 dark:text-white text-base mb-1" }, "Unduhan Kajian Bidang"),
-                    createVNode("p", { class: "text-xs text-gray-400 mb-6" }, "Tren download 6 bulan terakhir"),
+                    createVNode("h4", { class: "font-bold text-gray-800 dark:text-white text-base mb-1" }, "Tren Unduhan Kajian"),
+                    createVNode("p", { class: "text-xs text-gray-400 mb-6" }, "Aktivitas download 6 bulan terakhir"),
                     createVNode("div", { class: "h-72 relative" }, [
                       createVNode(unref(Chart), {
                         type: "line",
@@ -348,8 +357,8 @@ const _sfc_main = {
                   ]),
                   createVNode("div", { class: "bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6 flex flex-col justify-between" }, [
                     createVNode("div", null, [
-                      createVNode("h4", { class: "font-bold text-gray-800 dark:text-white text-base mb-1" }, "Jenis Riset Bidang"),
-                      createVNode("p", { class: "text-xs text-gray-400 mb-6" }, "Distribusi per kategori kajian")
+                      createVNode("h4", { class: "font-bold text-gray-800 dark:text-white text-base mb-1" }, "Persentase Jenis Kajian"),
+                      createVNode("p", { class: "text-xs text-gray-400 mb-6" }, "Berdasarkan klasifikasi riset")
                     ]),
                     createVNode("div", { class: "h-72 flex items-center justify-center relative" }, [
                       createVNode(unref(Chart), {
@@ -362,19 +371,31 @@ const _sfc_main = {
                   ])
                 ]),
                 createVNode("div", { class: "grid grid-cols-1 lg:grid-cols-3 gap-8" }, [
-                  createVNode("div", { class: "lg:col-span-2 bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6 flex flex-col justify-between" }, [
+                  createVNode("div", { class: "lg:col-span-2 bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6" }, [
+                    createVNode("h4", { class: "font-bold text-gray-800 dark:text-white text-base mb-1" }, "Kajian per Bidang"),
+                    createVNode("p", { class: "text-xs text-gray-400 mb-6" }, "Jumlah publikasi terbit per unit"),
+                    createVNode("div", { class: "h-72 relative" }, [
+                      createVNode(unref(Chart), {
+                        type: "bar",
+                        data: barChartData.value,
+                        options: barChartOptions,
+                        class: "h-full w-full"
+                      }, null, 8, ["data"])
+                    ])
+                  ]),
+                  createVNode("div", { class: "bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6 flex flex-col justify-between" }, [
                     createVNode("div", null, [
-                      createVNode("h4", { class: "font-bold text-gray-800 dark:text-white text-base mb-1" }, "Kajian Bidang Terpopuler"),
-                      createVNode("p", { class: "text-xs text-gray-400 mb-6" }, "Paling banyak dicari & didownload oleh pemohon")
+                      createVNode("h4", { class: "font-bold text-gray-800 dark:text-white text-base mb-1" }, "Kajian Terpopuler"),
+                      createVNode("p", { class: "text-xs text-gray-400 mb-6" }, "Paling sering diunduh oleh pemohon")
                     ]),
-                    createVNode("div", { class: "space-y-4" }, [
+                    createVNode("div", { class: "flex-1 overflow-y-auto space-y-4 max-h-[280px]" }, [
                       (openBlock(true), createBlock(Fragment, null, renderList(__props.popularKajians, (item) => {
                         var _a, _b;
                         return openBlock(), createBlock("div", {
                           key: item.id,
                           class: "flex items-start gap-3 border-b border-gray-50 dark:border-gray-700 pb-3 last:border-0 last:pb-0"
                         }, [
-                          createVNode("div", { class: "p-2 bg-purple-50 dark:bg-purple-900/20 text-purple-600 rounded-sm shrink-0" }, [
+                          createVNode("div", { class: "p-2 bg-paper-2 dark:bg-blue-900/20 text-blue-600 rounded-sm shrink-0" }, [
                             createVNode(_component_Icon, {
                               icon: "solar:file-text-bold",
                               class: "w-5 h-5"
@@ -403,44 +424,13 @@ const _sfc_main = {
                         ]);
                       }), 128))
                     ])
-                  ]),
-                  createVNode("div", { class: "bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card p-6 flex flex-col justify-between" }, [
-                    createVNode("div", null, [
-                      createVNode("h4", { class: "font-bold text-gray-800 dark:text-white text-base mb-1" }, "Menu Cepat"),
-                      createVNode("p", { class: "text-xs text-gray-400 mb-6" }, "Aksi cepat pengoperasian kajian")
-                    ]),
-                    createVNode("div", { class: "space-y-3" }, [
-                      createVNode(unref(Link), {
-                        href: _ctx.route("kajian.create"),
-                        class: "w-full flex items-center justify-between p-4 text-white rounded-card transition-all font-semibold text-sm"
-                      }, {
-                        default: withCtx(() => [
-                          createVNode("span", null, "Buat Kajian Baru"),
-                          createVNode(_component_Icon, {
-                            icon: "solar:add-circle-bold",
-                            class: "w-5 h-5"
-                          })
-                        ]),
-                        _: 1
-                      }, 8, ["href"]),
-                      createVNode(unref(Link), {
-                        href: _ctx.route("kajian.index", { status: "draft" }),
-                        class: "w-full flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-white rounded-card transition-all font-semibold text-sm"
-                      }, {
-                        default: withCtx(() => [
-                          createVNode("span", null, "Lihat Draf"),
-                          createVNode("span", { class: "bg-gray-200 dark:bg-gray-800 text-xs px-2 py-0.5 rounded-full" }, toDisplayString(__props.summary.total_draft), 1)
-                        ]),
-                        _: 1
-                      }, 8, ["href"])
-                    ])
                   ])
                 ]),
                 createVNode("div", { class: "bg-paper dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-card overflow-hidden" }, [
                   createVNode("div", { class: "p-6 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center bg-gray-50/50 dark:bg-gray-800/50" }, [
                     createVNode("div", null, [
-                      createVNode("h4", { class: "font-bold text-gray-800 dark:text-white text-base" }, "Unggahan Terbaru Bidang"),
-                      createVNode("p", { class: "text-xs text-gray-400 mt-0.5" }, "Daftar kajian yang baru dimasukkan oleh Bidang Anda")
+                      createVNode("h4", { class: "font-bold text-gray-800 dark:text-white text-base" }, "Unggahan Terbaru"),
+                      createVNode("p", { class: "text-xs text-gray-400 mt-0.5" }, "Daftar kajian yang baru dimasukkan sistem")
                     ]),
                     createVNode(unref(Link), {
                       href: _ctx.route("kajian.index"),
@@ -457,6 +447,7 @@ const _sfc_main = {
                       createVNode("thead", { class: "bg-gray-50/70 dark:bg-gray-900/50 text-gray-400 text-xs font-semibold uppercase tracking-wider" }, [
                         createVNode("tr", null, [
                           createVNode("th", { class: "px-6 py-4" }, "Judul Kajian"),
+                          createVNode("th", { class: "px-6 py-4" }, "Bidang"),
                           createVNode("th", { class: "px-6 py-4" }, "Tahun"),
                           createVNode("th", { class: "px-6 py-4" }, "Status"),
                           createVNode("th", { class: "px-6 py-4 text-right" }, "Aksi")
@@ -464,13 +455,14 @@ const _sfc_main = {
                       ]),
                       createVNode("tbody", { class: "divide-y divide-gray-100 dark:divide-gray-700" }, [
                         (openBlock(true), createBlock(Fragment, null, renderList(__props.recentKajians, (item) => {
-                          var _a;
+                          var _a, _b;
                           return openBlock(), createBlock("tr", {
                             key: item.id,
                             class: "hover:bg-gray-50/50 dark:hover:bg-gray-800/30 transition-colors"
                           }, [
                             createVNode("td", { class: "px-6 py-4 font-semibold text-gray-900 dark:text-white max-w-sm truncate" }, toDisplayString(item.judul), 1),
-                            createVNode("td", { class: "px-6 py-4 text-gray-500" }, toDisplayString((_a = item.tahun) == null ? void 0 : _a.tahun), 1),
+                            createVNode("td", { class: "px-6 py-4 text-gray-500" }, toDisplayString((_a = item.bidang) == null ? void 0 : _a.nama), 1),
+                            createVNode("td", { class: "px-6 py-4 text-gray-500" }, toDisplayString((_b = item.tahun) == null ? void 0 : _b.tahun), 1),
                             createVNode("td", { class: "px-6 py-4" }, [
                               createVNode("span", {
                                 class: ["px-2.5 py-1 rounded-full text-xs font-bold border", {
@@ -484,7 +476,7 @@ const _sfc_main = {
                             createVNode("td", { class: "px-6 py-4 text-right" }, [
                               createVNode(unref(Link), {
                                 href: _ctx.route("kajian.show", item.uuid),
-                                class: "px-3 py-1.5 bg-gray-100 hover:bg-paper-2 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-blue-600 rounded-sm transition-all inline-flex items-center text-xs font-bold"
+                                class: "px-3 py-1.5 bg-gray-100 hover:bg-paper-2 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-blue-600 rounded-sm transition-colors duration-150 inline-flex items-center text-xs font-bold"
                               }, {
                                 default: withCtx(() => [
                                   createTextVNode(" Detail ")
@@ -511,7 +503,7 @@ const _sfc_main = {
 const _sfc_setup = _sfc_main.setup;
 _sfc_main.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Backend/DashboardOperator.vue");
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Backend/Dashboard.vue");
   return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
 };
 export {

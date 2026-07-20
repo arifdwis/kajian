@@ -1,7 +1,7 @@
 import { ref, resolveComponent, unref, withCtx, createVNode, createTextVNode, openBlock, createBlock, createCommentVNode, Fragment, renderList, toDisplayString, useSSRContext } from "vue";
 import { ssrRenderComponent, ssrRenderList, ssrRenderClass, ssrInterpolate } from "vue/server-renderer";
 import { Head, router } from "@inertiajs/vue3";
-import { _ as _sfc_main$1 } from "./AuthenticatedLayout-CCLRqrRv.js";
+import { _ as _sfc_main$1 } from "./AuthenticatedLayout-Cmsx4Vff.js";
 import { _ as _sfc_main$2 } from "./Pagination-DE6AvrVK.js";
 import { _ as _sfc_main$3 } from "./ConfirmModal-C43yiw5v.js";
 import { useToast } from "vue-toastification";
@@ -41,7 +41,7 @@ const _sfc_main = {
       _push(ssrRenderComponent(_sfc_main$1, null, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<div class="space-y-6 w-full"${_scopeId}><div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700"${_scopeId}><div${_scopeId}><h3 class="text-xl font-bold text-gray-900 dark:text-white"${_scopeId}>Notifikasi Saya</h3><p class="text-xs text-gray-500 mt-1"${_scopeId}>Kotak masuk info aktivitas, review kajian, dan persetujuan dari sistem.</p></div><button class="inline-flex items-center gap-1.5 px-4 py-2 border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-bold rounded-sm text-xs hover:bg-gray-50 dark:hover:bg-gray-700 transition-all"${_scopeId}>`);
+            _push2(`<div class="space-y-6 w-full"${_scopeId}><div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700"${_scopeId}><div${_scopeId}><h3 class="text-xl font-bold text-gray-900 dark:text-white"${_scopeId}>Notifikasi Saya</h3><p class="text-xs text-gray-500 mt-1"${_scopeId}>Kotak masuk info aktivitas, review kajian, dan persetujuan dari sistem.</p></div><button class="inline-flex items-center gap-1.5 px-4 py-2 border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-bold rounded-sm text-xs hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-150"${_scopeId}>`);
             _push2(ssrRenderComponent(_component_Icon, {
               icon: "solar:check-square-bold",
               class: "w-4 h-4"
@@ -104,7 +104,7 @@ const _sfc_main = {
                   ]),
                   createVNode("button", {
                     onClick: markAllAsRead,
-                    class: "inline-flex items-center gap-1.5 px-4 py-2 border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-bold rounded-sm text-xs hover:bg-gray-50 dark:hover:bg-gray-700 transition-all"
+                    class: "inline-flex items-center gap-1.5 px-4 py-2 border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-bold rounded-sm text-xs hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-150"
                   }, [
                     createVNode(_component_Icon, {
                       icon: "solar:check-square-bold",

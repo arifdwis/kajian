@@ -98,7 +98,7 @@ const togglePerm = (id) => {
   <div class="bg-paper dark:bg-gray-800 p-5 rounded-card border border-gray-100 dark:border-gray-700">
   <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
    <div class="flex items-center gap-3">
-   <Link :href="route('settings.roles.index')" class="p-2 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 rounded-sm transition-all">
+   <Link :href="route('settings.roles.index')" class="p-2 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 rounded-sm transition-colors duration-150">
     <Icon icon="solar:arrow-left-outline" class="w-5 h-5" />
    </Link>
    <div>
@@ -117,7 +117,7 @@ const togglePerm = (id) => {
   </div>
   <!-- Progress bar -->
   <div class="mt-3 h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
-   <div class="h-full rounded-full transition-all duration-300" :class="progress === 100 ? 'bg-green-500' : 'bg-blue-500'" :style="{ width: progress + '%' }" />
+   <div class="h-full rounded-full transition-colors duration-150 duration-300" :class="progress === 100 ? 'bg-green-500' : 'bg-blue-500'" :style="{ width: progress + '%' }" />
   </div>
   </div>
 
@@ -166,7 +166,7 @@ const togglePerm = (id) => {
      :key="p.id"
      type="button"
      @click="togglePerm(p.id)"
-     class="inline-flex items-center gap-1 px-2 py-1 rounded text-[11px] border transition-all cursor-pointer select-none"
+     class="inline-flex items-center gap-1 px-2 py-1 rounded text-[11px] border transition-colors duration-150 cursor-pointer select-none"
      :class="form.permissions.includes(p.id)
      ? 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300 shadow-sm'
      : 'bg-white dark:bg-gray-900 border-gray-100 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-gray-200 dark:hover:border-gray-600'"
@@ -196,7 +196,7 @@ const togglePerm = (id) => {
    <button
     type="submit"
     :disabled="form.processing"
-    class="px-5 py-2 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-all inline-flex items-center gap-1.5"
+    class="px-5 py-2 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-colors duration-150 inline-flex items-center gap-1.5"
    >
     <Icon v-if="form.processing" icon="svg-spinners:ring-resize" class="w-4 h-4 animate-spin" />
     <Icon v-else icon="solar:disk-bold" class="w-4 h-4" />

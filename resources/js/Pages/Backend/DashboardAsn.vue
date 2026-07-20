@@ -84,7 +84,7 @@ const user = computed(() => page.props.auth.user);
  <p class="text-xs text-gray-400 mb-6 font-medium">Buku, laporan kajian, dan naskah akademik terbaru</p>
  </div>
  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
- <div v-for="item in recentKajians" :key="item.id" class="p-4 bg-gray-50 dark:bg-gray-900/40 border border-gray-100 dark:border-gray-800 rounded-card flex flex-col justify-between hover: transition-all duration-200">
+ <div v-for="item in recentKajians" :key="item.id" class="p-4 bg-gray-50 dark:bg-gray-900/40 border border-gray-100 dark:border-gray-800 rounded-card flex flex-col justify-between hover: transition-colors duration-150 duration-200">
  <div>
  <span class="bg-teal-50 dark:bg-teal-950/40 text-teal-600 dark:text-teal-400 font-bold text-[9px] uppercase tracking-wider px-2 py-0.5 rounded border border-teal-200/30">
  {{ item.jenis_kajian?.nama || 'Kajian' }}

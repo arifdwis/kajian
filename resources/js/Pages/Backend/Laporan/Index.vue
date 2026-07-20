@@ -67,14 +67,14 @@ const exportExcel = () => {
  <div class="flex gap-2">
  <Link 
  :href="route('laporan.statistik')"
- class="px-4 py-2.5 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 font-bold rounded-sm text-xs transition-all inline-flex items-center gap-1.5 border border-gray-200 dark:border-gray-600"
+ class="px-4 py-2.5 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 font-bold rounded-sm text-xs transition-colors duration-150 inline-flex items-center gap-1.5 border border-gray-200 dark:border-gray-600"
  >
  <Icon icon="solar:chart-square-bold" class="w-4 h-4" />
  Statistik Kajian
  </Link>
  <button 
  @click="exportExcel"
- class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-sm text-xs transition-all inline-flex items-center gap-1.5 "
+ class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-sm text-xs transition-colors duration-150 inline-flex items-center gap-1.5 "
  >
  <Icon icon="solar:document-bold" class="w-4 h-4" />
  Export Excel

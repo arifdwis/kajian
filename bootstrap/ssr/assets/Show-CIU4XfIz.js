@@ -1,7 +1,7 @@
 import { computed, ref, resolveComponent, unref, withCtx, createVNode, createTextVNode, toDisplayString, openBlock, createBlock, createCommentVNode, Fragment, renderList, useSSRContext } from "vue";
 import { ssrRenderComponent, ssrInterpolate, ssrRenderAttr, ssrRenderClass, ssrRenderList } from "vue/server-renderer";
 import { usePage, Head, Link, router } from "@inertiajs/vue3";
-import { _ as _sfc_main$1 } from "./AuthenticatedLayout-CCLRqrRv.js";
+import { _ as _sfc_main$1 } from "./AuthenticatedLayout-Cmsx4Vff.js";
 import { _ as _sfc_main$2 } from "./ConfirmModal-C43yiw5v.js";
 import { useToast } from "vue-toastification";
 import "flowbite-vue";
@@ -124,7 +124,7 @@ const _sfc_main = {
             _push2(`<div class="space-y-6"${_scopeId}><div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700"${_scopeId}><div class="flex items-center gap-3"${_scopeId}>`);
             _push2(ssrRenderComponent(unref(Link), {
               href: _ctx.route("kajian.index"),
-              class: "p-2.5 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-paper-2 hover:text-blue-600 rounded-sm transition-all"
+              class: "p-2.5 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-paper-2 hover:text-blue-600 rounded-sm transition-colors duration-150"
             }, {
               default: withCtx((_2, _push3, _parent3, _scopeId2) => {
                 if (_push3) {
@@ -146,7 +146,7 @@ const _sfc_main = {
             _push2(`<div${_scopeId}><span class="text-xs font-semibold text-blue-600 dark:text-blue-400 capitalize bg-paper-2 dark:bg-blue-900/30 px-2.5 py-1 rounded-full border border-blue-100 dark:border-blue-800"${_scopeId}>${ssrInterpolate((_a = __props.kajian.jenis_kajian) == null ? void 0 : _a.nama)}</span><h3 class="text-lg font-bold text-gray-900 dark:text-white mt-2 max-w-2xl line-clamp-1"${ssrRenderAttr("title", __props.kajian.judul)}${_scopeId}>${ssrInterpolate(__props.kajian.judul)}</h3></div></div><div class="flex flex-wrap gap-2"${_scopeId}>`);
             _push2(ssrRenderComponent(unref(Link), {
               href: _ctx.route("kajian.edit", __props.kajian.uuid),
-              class: "px-4 py-2.5 bg-gray-100 dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-200 text-gray-700 font-bold rounded-sm text-xs transition-all inline-flex items-center gap-2"
+              class: "px-4 py-2.5 bg-gray-100 dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-200 text-gray-700 font-bold rounded-sm text-xs transition-colors duration-150 inline-flex items-center gap-2"
             }, {
               default: withCtx((_2, _push3, _parent3, _scopeId2) => {
                 if (_push3) {
@@ -168,7 +168,7 @@ const _sfc_main = {
               _: 1
             }, _parent2, _scopeId));
             if (__props.kajian.status === "draft" && isAdmin.value) {
-              _push2(`<button class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-sm text-xs transition-all inline-flex items-center gap-2"${_scopeId}>`);
+              _push2(`<button class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-sm text-xs transition-colors duration-150 inline-flex items-center gap-2"${_scopeId}>`);
               _push2(ssrRenderComponent(_component_Icon, {
                 icon: "solar:check-square-bold",
                 class: "w-4 h-4"
@@ -178,7 +178,7 @@ const _sfc_main = {
               _push2(`<!---->`);
             }
             if (__props.kajian.status === "published" && isAdmin.value) {
-              _push2(`<button class="px-4 py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-sm text-xs transition-all inline-flex items-center gap-2"${_scopeId}>`);
+              _push2(`<button class="px-4 py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-sm text-xs transition-colors duration-150 inline-flex items-center gap-2"${_scopeId}>`);
               _push2(ssrRenderComponent(_component_Icon, {
                 icon: "solar:archive-down-bold",
                 class: "w-4 h-4"
@@ -188,7 +188,7 @@ const _sfc_main = {
               _push2(`<!---->`);
             }
             if (["published", "archived", "review"].includes(__props.kajian.status)) {
-              _push2(`<button class="px-4 py-2.5 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-bold rounded-sm text-xs transition-all inline-flex items-center gap-2 border border-indigo-100 dark:border-indigo-800"${_scopeId}>`);
+              _push2(`<button class="px-4 py-2.5 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-bold rounded-sm text-xs transition-colors duration-150 inline-flex items-center gap-2 border border-indigo-100 dark:border-indigo-800"${_scopeId}>`);
               _push2(ssrRenderComponent(_component_Icon, {
                 icon: "solar:notes-bold",
                 class: "w-4 h-4"
@@ -197,7 +197,7 @@ const _sfc_main = {
             } else {
               _push2(`<!---->`);
             }
-            _push2(`<button class="px-4 py-2.5 bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400 hover:bg-red-100 font-bold rounded-sm text-xs transition-all inline-flex items-center gap-2 border border-red-100 dark:border-red-900/50"${_scopeId}>`);
+            _push2(`<button class="px-4 py-2.5 bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400 hover:bg-red-100 font-bold rounded-sm text-xs transition-colors duration-150 inline-flex items-center gap-2 border border-red-100 dark:border-red-900/50"${_scopeId}>`);
             _push2(ssrRenderComponent(_component_Icon, {
               icon: "solar:trash-bin-trash-bold",
               class: "w-4 h-4"
@@ -272,7 +272,7 @@ const _sfc_main = {
               }
               _push2(`</div><div class="space-y-3"${_scopeId}>`);
               if (filePdf.value) {
-                _push2(`<a${ssrRenderAttr("href", `/storage/${filePdf.value.path}`)} target="_blank" class="w-full flex items-center gap-3 p-3 border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-sm transition-all"${_scopeId}><div class="p-2 bg-red-50 text-red-500 rounded-sm"${_scopeId}>`);
+                _push2(`<a${ssrRenderAttr("href", `/storage/${filePdf.value.path}`)} target="_blank" class="w-full flex items-center gap-3 p-3 border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-sm transition-colors duration-150"${_scopeId}><div class="p-2 bg-red-50 text-red-500 rounded-sm"${_scopeId}>`);
                 _push2(ssrRenderComponent(_component_Icon, {
                   icon: "solar:file-text-bold",
                   class: "w-5 h-5"
@@ -287,7 +287,7 @@ const _sfc_main = {
                 _push2(`<!---->`);
               }
               if (filePresentasi.value) {
-                _push2(`<a${ssrRenderAttr("href", `/storage/${filePresentasi.value.path}`)} target="_blank" class="w-full flex items-center gap-3 p-3 border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-sm transition-all"${_scopeId}><div class="p-2 bg-amber-50 text-amber-500 rounded-sm"${_scopeId}>`);
+                _push2(`<a${ssrRenderAttr("href", `/storage/${filePresentasi.value.path}`)} target="_blank" class="w-full flex items-center gap-3 p-3 border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-sm transition-colors duration-150"${_scopeId}><div class="p-2 bg-amber-50 text-amber-500 rounded-sm"${_scopeId}>`);
                 _push2(ssrRenderComponent(_component_Icon, {
                   icon: "solar:play-bold",
                   class: "w-5 h-5"
@@ -342,7 +342,7 @@ const _sfc_main = {
                   createVNode("div", { class: "flex items-center gap-3" }, [
                     createVNode(unref(Link), {
                       href: _ctx.route("kajian.index"),
-                      class: "p-2.5 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-paper-2 hover:text-blue-600 rounded-sm transition-all"
+                      class: "p-2.5 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-paper-2 hover:text-blue-600 rounded-sm transition-colors duration-150"
                     }, {
                       default: withCtx(() => [
                         createVNode(_component_Icon, {
@@ -363,7 +363,7 @@ const _sfc_main = {
                   createVNode("div", { class: "flex flex-wrap gap-2" }, [
                     createVNode(unref(Link), {
                       href: _ctx.route("kajian.edit", __props.kajian.uuid),
-                      class: "px-4 py-2.5 bg-gray-100 dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-200 text-gray-700 font-bold rounded-sm text-xs transition-all inline-flex items-center gap-2"
+                      class: "px-4 py-2.5 bg-gray-100 dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-200 text-gray-700 font-bold rounded-sm text-xs transition-colors duration-150 inline-flex items-center gap-2"
                     }, {
                       default: withCtx(() => [
                         createVNode(_component_Icon, {
@@ -377,7 +377,7 @@ const _sfc_main = {
                     __props.kajian.status === "draft" && isAdmin.value ? (openBlock(), createBlock("button", {
                       key: 0,
                       onClick: publishKajian,
-                      class: "px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-sm text-xs transition-all inline-flex items-center gap-2"
+                      class: "px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-sm text-xs transition-colors duration-150 inline-flex items-center gap-2"
                     }, [
                       createVNode(_component_Icon, {
                         icon: "solar:check-square-bold",
@@ -388,7 +388,7 @@ const _sfc_main = {
                     __props.kajian.status === "published" && isAdmin.value ? (openBlock(), createBlock("button", {
                       key: 1,
                       onClick: archiveKajian,
-                      class: "px-4 py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-sm text-xs transition-all inline-flex items-center gap-2"
+                      class: "px-4 py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-sm text-xs transition-colors duration-150 inline-flex items-center gap-2"
                     }, [
                       createVNode(_component_Icon, {
                         icon: "solar:archive-down-bold",
@@ -399,7 +399,7 @@ const _sfc_main = {
                     ["published", "archived", "review"].includes(__props.kajian.status) ? (openBlock(), createBlock("button", {
                       key: 2,
                       onClick: toDraftKajian,
-                      class: "px-4 py-2.5 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-bold rounded-sm text-xs transition-all inline-flex items-center gap-2 border border-indigo-100 dark:border-indigo-800"
+                      class: "px-4 py-2.5 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-bold rounded-sm text-xs transition-colors duration-150 inline-flex items-center gap-2 border border-indigo-100 dark:border-indigo-800"
                     }, [
                       createVNode(_component_Icon, {
                         icon: "solar:notes-bold",
@@ -409,7 +409,7 @@ const _sfc_main = {
                     ])) : createCommentVNode("", true),
                     createVNode("button", {
                       onClick: deleteKajian,
-                      class: "px-4 py-2.5 bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400 hover:bg-red-100 font-bold rounded-sm text-xs transition-all inline-flex items-center gap-2 border border-red-100 dark:border-red-900/50"
+                      class: "px-4 py-2.5 bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400 hover:bg-red-100 font-bold rounded-sm text-xs transition-colors duration-150 inline-flex items-center gap-2 border border-red-100 dark:border-red-900/50"
                     }, [
                       createVNode(_component_Icon, {
                         icon: "solar:trash-bin-trash-bold",
@@ -551,7 +551,7 @@ const _sfc_main = {
                             key: 0,
                             href: `/storage/${filePdf.value.path}`,
                             target: "_blank",
-                            class: "w-full flex items-center gap-3 p-3 border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-sm transition-all"
+                            class: "w-full flex items-center gap-3 p-3 border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-sm transition-colors duration-150"
                           }, [
                             createVNode("div", { class: "p-2 bg-red-50 text-red-500 rounded-sm" }, [
                               createVNode(_component_Icon, {
@@ -572,7 +572,7 @@ const _sfc_main = {
                             key: 1,
                             href: `/storage/${filePresentasi.value.path}`,
                             target: "_blank",
-                            class: "w-full flex items-center gap-3 p-3 border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-sm transition-all"
+                            class: "w-full flex items-center gap-3 p-3 border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-sm transition-colors duration-150"
                           }, [
                             createVNode("div", { class: "p-2 bg-amber-50 text-amber-500 rounded-sm" }, [
                               createVNode(_component_Icon, {

@@ -282,7 +282,7 @@ const executeDeleteLog = () => {
    <button 
     v-if="hasActiveFilters"
     @click="clearFilters"
-    class="inline-flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-semibold text-red-600 bg-red-50 hover:bg-red-100 dark:bg-red-900/20 dark:text-red-400 dark:hover:bg-red-900/30 rounded-sm transition-all"
+    class="inline-flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-semibold text-red-600 bg-red-50 hover:bg-red-100 dark:bg-red-900/20 dark:text-red-400 dark:hover:bg-red-900/30 rounded-sm transition-colors duration-150"
    >
     <Icon icon="solar:close-circle-bold" class="w-4 h-4" />
     Reset Filter
@@ -293,23 +293,23 @@ const executeDeleteLog = () => {
   <div class="flex flex-col md:flex-row md:items-center gap-3">
    <!-- Quick Date Buttons -->
    <div class="flex flex-wrap gap-1.5">
-    <button @click="setQuickDate('today')" class="px-3 py-1.5 text-[11px] font-semibold rounded-full border transition-all"
+    <button @click="setQuickDate('today')" class="px-3 py-1.5 text-[11px] font-semibold rounded-full border transition-colors duration-150"
      :class="filterDateFrom === filterDateTo && filterDateFrom ? 'bg-accent text-accent-ink border-accent' : 'border-gray-200 dark:border-gray-700 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800'">
      Hari Ini
     </button>
-    <button @click="setQuickDate('yesterday')" class="px-3 py-1.5 text-[11px] font-semibold rounded-full border transition-all"
+    <button @click="setQuickDate('yesterday')" class="px-3 py-1.5 text-[11px] font-semibold rounded-full border transition-colors duration-150"
      :class="filterDateFrom !== filterDateTo && filterDateFrom ? 'bg-accent text-accent-ink border-accent' : 'border-gray-200 dark:border-gray-700 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800'">
      Kemarin
     </button>
-    <button @click="setQuickDate('this_week')" class="px-3 py-1.5 text-[11px] font-semibold rounded-full border transition-all"
+    <button @click="setQuickDate('this_week')" class="px-3 py-1.5 text-[11px] font-semibold rounded-full border transition-colors duration-150"
      :class="filterDateFrom !== filterDateTo && filterDateFrom ? 'bg-accent text-accent-ink border-accent' : 'border-gray-200 dark:border-gray-700 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800'">
      Minggu Ini
     </button>
-    <button @click="setQuickDate('this_month')" class="px-3 py-1.5 text-[11px] font-semibold rounded-full border transition-all"
+    <button @click="setQuickDate('this_month')" class="px-3 py-1.5 text-[11px] font-semibold rounded-full border transition-colors duration-150"
      :class="filterDateFrom !== filterDateTo && filterDateFrom ? 'bg-accent text-accent-ink border-accent' : 'border-gray-200 dark:border-gray-700 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800'">
      Bulan Ini
     </button>
-    <button @click="setQuickDate('this_year')" class="px-3 py-1.5 text-[11px] font-semibold rounded-full border transition-all"
+    <button @click="setQuickDate('this_year')" class="px-3 py-1.5 text-[11px] font-semibold rounded-full border transition-colors duration-150"
      :class="filterDateFrom !== filterDateTo && filterDateFrom ? 'bg-accent text-accent-ink border-accent' : 'border-gray-200 dark:border-gray-700 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800'">
      Tahun Ini
     </button>
@@ -405,14 +405,14 @@ const executeDeleteLog = () => {
   <div class="flex items-center justify-end gap-2">
   <button 
    @click="viewDetails(item.id)"
-   class="p-2 bg-gray-50 hover:bg-paper-2 text-gray-600 hover:text-blue-600 dark:bg-gray-600 dark:text-gray-300 rounded-sm transition-all"
+   class="p-2 bg-gray-50 hover:bg-paper-2 text-gray-600 hover:text-blue-600 dark:bg-gray-600 dark:text-gray-300 rounded-sm transition-colors duration-150"
    title="Detail Log"
   >
    <Icon icon="solar:eye-bold" class="w-4 h-4" />
   </button>
   <button 
    @click="confirmDeleteLog(item.id)"
-   class="p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-sm transition-all"
+   class="p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-sm transition-colors duration-150"
    title="Hapus"
   >
    <Icon icon="solar:trash-bin-trash-bold" class="w-4 h-4" />

@@ -334,7 +334,7 @@ const barChartOptions = {
  <td class="px-6 py-4 text-right">
  <Link 
  :href="route('kajian.show', item.uuid)" 
- class="px-3 py-1.5 bg-gray-100 hover:bg-paper-2 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-blue-600 rounded-sm transition-all inline-flex items-center text-xs font-bold"
+ class="px-3 py-1.5 bg-gray-100 hover:bg-paper-2 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-blue-600 rounded-sm transition-colors duration-150 inline-flex items-center text-xs font-bold"
  >
  Detail
  </Link>

@@ -45,7 +45,7 @@ const _sfc_main = {
       _push(`</div><span class="absolute bottom-2 right-1/2 translate-x-12 px-3 py-1 bg-slate-900 dark:bg-paper text-white dark:text-slate-950 text-xs font-semibold rounded-sm font-mono"> CODE ${ssrInterpolate(__props.status)}</span></div><div class="max-w-md space-y-3 mb-8"><h2 class="text-2xl font-semibold text-slate-900 dark:text-white tracking-tight">${ssrInterpolate(title.value)}</h2><p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-medium">${ssrInterpolate(description.value)}</p></div><div class="flex items-center gap-3">`);
       _push(ssrRenderComponent(unref(Link), {
         href: "/",
-        class: "px-5 py-2.5 bg-paper-2 hover:bg-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 text-xs font-semibold rounded-sm transition-all"
+        class: "px-5 py-2.5 bg-paper-2 hover:bg-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 text-xs font-semibold rounded-sm transition-colors duration-150"
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
@@ -60,7 +60,7 @@ const _sfc_main = {
       }, _parent));
       _push(ssrRenderComponent(unref(Link), {
         href: _ctx.route("dashboard"),
-        class: "px-5 py-2.5 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-all"
+        class: "px-5 py-2.5 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-colors duration-150"
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {

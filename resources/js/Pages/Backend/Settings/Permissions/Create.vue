@@ -26,7 +26,7 @@ const submit = () => {
  <div class="space-y-6">
  <!-- Header bar -->
  <div class="flex items-center gap-3 bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700 ">
- <Link :href="route('settings.permissions.index')" class="p-2.5 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-paper-2 hover:text-blue-600 rounded-sm transition-all">
+ <Link :href="route('settings.permissions.index')" class="p-2.5 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-paper-2 hover:text-blue-600 rounded-sm transition-colors duration-150">
  <Icon icon="solar:arrow-left-outline" class="w-5 h-5" />
  </Link>
  <div>
@@ -59,7 +59,7 @@ const submit = () => {
  <button 
  type="submit"
  :disabled="form.processing"
- class="px-6 py-2.5 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-all inline-flex items-center gap-1"
+ class="px-6 py-2.5 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-colors duration-150 inline-flex items-center gap-1"
  >
  <Icon v-if="form.processing" icon="svg-spinners:ring-resize" class="w-4 h-4 animate-spin" />
  Simpan

@@ -29,7 +29,7 @@ const getFileUrl = (type) => {
  <span class="text-xs font-sans text-slate-500 font-medium">Pratinjau Cetak Dokumen Kajian</span>
  <button 
  @click="window.print()"
- class="px-4 py-2 bg-accent text-accent-ink font-sans font-bold text-xs rounded-sm transition-all "
+ class="px-4 py-2 bg-accent text-accent-ink font-sans font-bold text-xs rounded-sm transition-colors duration-150 "
  >
  Cetak Dokumen (Ctrl+P)
  </button>

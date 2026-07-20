@@ -1,7 +1,7 @@
 import { ref, computed, resolveComponent, unref, withCtx, createVNode, createTextVNode, toDisplayString, withDirectives, withKeys, vModelText, openBlock, createBlock, createCommentVNode, Fragment, renderList, useSSRContext } from "vue";
 import { ssrRenderComponent, ssrInterpolate, ssrRenderAttr, ssrRenderList } from "vue/server-renderer";
 import { Head, Link, router } from "@inertiajs/vue3";
-import { _ as _sfc_main$1 } from "./AuthenticatedLayout-CCLRqrRv.js";
+import { _ as _sfc_main$1 } from "./AuthenticatedLayout-Cmsx4Vff.js";
 import "flowbite-vue";
 import "./ApplicationLogo-CmsQkCHn.js";
 import "@iconify/vue";
@@ -64,7 +64,7 @@ const _sfc_main = {
             _push2(`<div class="space-y-6"${_scopeId}><div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700"${_scopeId}><div${_scopeId}><h3 class="text-xl font-bold text-gray-900 dark:text-white"${_scopeId}>Laporan &amp; Rekapitulasi Kajian</h3><p class="text-xs text-gray-500 mt-1"${_scopeId}>Cetak rekapitulasi data penelitian terbit dan rekapitulasi file kajian Bapperida.</p></div><div class="flex gap-2"${_scopeId}>`);
             _push2(ssrRenderComponent(unref(Link), {
               href: _ctx.route("laporan.statistik"),
-              class: "px-4 py-2.5 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 font-bold rounded-sm text-xs transition-all inline-flex items-center gap-1.5 border border-gray-200 dark:border-gray-600"
+              class: "px-4 py-2.5 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 font-bold rounded-sm text-xs transition-colors duration-150 inline-flex items-center gap-1.5 border border-gray-200 dark:border-gray-600"
             }, {
               default: withCtx((_2, _push3, _parent3, _scopeId2) => {
                 if (_push3) {
@@ -85,7 +85,7 @@ const _sfc_main = {
               }),
               _: 1
             }, _parent2, _scopeId));
-            _push2(`<button class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-sm text-xs transition-all inline-flex items-center gap-1.5"${_scopeId}>`);
+            _push2(`<button class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-sm text-xs transition-colors duration-150 inline-flex items-center gap-1.5"${_scopeId}>`);
             _push2(ssrRenderComponent(_component_Icon, {
               icon: "solar:document-bold",
               class: "w-4 h-4"
@@ -184,7 +184,7 @@ const _sfc_main = {
                   createVNode("div", { class: "flex gap-2" }, [
                     createVNode(unref(Link), {
                       href: _ctx.route("laporan.statistik"),
-                      class: "px-4 py-2.5 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 font-bold rounded-sm text-xs transition-all inline-flex items-center gap-1.5 border border-gray-200 dark:border-gray-600"
+                      class: "px-4 py-2.5 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 font-bold rounded-sm text-xs transition-colors duration-150 inline-flex items-center gap-1.5 border border-gray-200 dark:border-gray-600"
                     }, {
                       default: withCtx(() => [
                         createVNode(_component_Icon, {
@@ -197,7 +197,7 @@ const _sfc_main = {
                     }, 8, ["href"]),
                     createVNode("button", {
                       onClick: exportExcel,
-                      class: "px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-sm text-xs transition-all inline-flex items-center gap-1.5"
+                      class: "px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-sm text-xs transition-colors duration-150 inline-flex items-center gap-1.5"
                     }, [
                       createVNode(_component_Icon, {
                         icon: "solar:document-bold",

@@ -1,7 +1,7 @@
 import { ref, computed, resolveComponent, unref, withCtx, createVNode, toDisplayString, withModifiers, withDirectives, vModelText, openBlock, createBlock, createCommentVNode, createTextVNode, useSSRContext } from "vue";
 import { ssrRenderComponent, ssrInterpolate, ssrRenderAttr, ssrRenderClass, ssrIncludeBooleanAttr } from "vue/server-renderer";
 import { useForm, Head } from "@inertiajs/vue3";
-import { _ as _sfc_main$1 } from "./AuthenticatedLayout-CCLRqrRv.js";
+import { _ as _sfc_main$1 } from "./AuthenticatedLayout-Cmsx4Vff.js";
 import { useToast } from "vue-toastification";
 import "flowbite-vue";
 import "./ApplicationLogo-CmsQkCHn.js";
@@ -74,7 +74,7 @@ const _sfc_main = {
             } else {
               _push2(`<input type="text"${ssrRenderAttr("value", unref(profileForm).institution_name)} placeholder="Tuliskan nama instansi / perguruan tinggi / organisasi..." class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-950 text-slate-900 dark:text-white px-4 py-2.5"${_scopeId}>`);
             }
-            _push2(`</div><div class="flex justify-end pt-2"${_scopeId}><button type="submit"${ssrIncludeBooleanAttr(unref(profileForm).processing) ? " disabled" : ""} class="px-5 py-2.5 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-all inline-flex items-center gap-1"${_scopeId}>`);
+            _push2(`</div><div class="flex justify-end pt-2"${_scopeId}><button type="submit"${ssrIncludeBooleanAttr(unref(profileForm).processing) ? " disabled" : ""} class="px-5 py-2.5 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-colors duration-150 inline-flex items-center gap-1"${_scopeId}>`);
             if (unref(profileForm).processing) {
               _push2(ssrRenderComponent(_component_Icon, {
                 icon: "svg-spinners:ring-resize",
@@ -83,7 +83,7 @@ const _sfc_main = {
             } else {
               _push2(`<!---->`);
             }
-            _push2(` Simpan Perubahan </button></div></form></div><div class="bg-paper dark:bg-gray-800 p-8 rounded-card border border-gray-100 dark:border-gray-700"${_scopeId}><h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider border-b dark:border-gray-700 pb-3 mb-5"${_scopeId}>Ganti Password Keamanan</h4><form class="space-y-4"${_scopeId}><div${_scopeId}><label class="block text-xs font-semibold text-slate-455 uppercase tracking-wider mb-2"${_scopeId}>Password Saat Ini</label><input type="password"${ssrRenderAttr("value", unref(passwordForm).current_password)} required placeholder="••••••••" class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-955 text-slate-900 dark:text-white px-4 py-2.5"${_scopeId}></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-4"${_scopeId}><div${_scopeId}><label class="block text-xs font-semibold text-slate-455 uppercase tracking-wider mb-2"${_scopeId}>Password Baru</label><input type="password"${ssrRenderAttr("value", unref(passwordForm).password)} required placeholder="••••••••" class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-955 text-slate-900 dark:text-white px-4 py-2.5"${_scopeId}></div><div${_scopeId}><label class="block text-xs font-semibold text-slate-455 uppercase tracking-wider mb-2"${_scopeId}>Konfirmasi Password Baru</label><input type="password"${ssrRenderAttr("value", unref(passwordForm).password_confirmation)} required placeholder="••••••••" class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-955 text-slate-900 dark:text-white px-4 py-2.5"${_scopeId}></div></div><div class="flex justify-end pt-2"${_scopeId}><button type="submit"${ssrIncludeBooleanAttr(unref(passwordForm).processing) ? " disabled" : ""} class="px-5 py-2.5 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-all inline-flex items-center gap-1"${_scopeId}>`);
+            _push2(` Simpan Perubahan </button></div></form></div><div class="bg-paper dark:bg-gray-800 p-8 rounded-card border border-gray-100 dark:border-gray-700"${_scopeId}><h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider border-b dark:border-gray-700 pb-3 mb-5"${_scopeId}>Ganti Password Keamanan</h4><form class="space-y-4"${_scopeId}><div${_scopeId}><label class="block text-xs font-semibold text-slate-455 uppercase tracking-wider mb-2"${_scopeId}>Password Saat Ini</label><input type="password"${ssrRenderAttr("value", unref(passwordForm).current_password)} required placeholder="••••••••" class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-955 text-slate-900 dark:text-white px-4 py-2.5"${_scopeId}></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-4"${_scopeId}><div${_scopeId}><label class="block text-xs font-semibold text-slate-455 uppercase tracking-wider mb-2"${_scopeId}>Password Baru</label><input type="password"${ssrRenderAttr("value", unref(passwordForm).password)} required placeholder="••••••••" class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-955 text-slate-900 dark:text-white px-4 py-2.5"${_scopeId}></div><div${_scopeId}><label class="block text-xs font-semibold text-slate-455 uppercase tracking-wider mb-2"${_scopeId}>Konfirmasi Password Baru</label><input type="password"${ssrRenderAttr("value", unref(passwordForm).password_confirmation)} required placeholder="••••••••" class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-955 text-slate-900 dark:text-white px-4 py-2.5"${_scopeId}></div></div><div class="flex justify-end pt-2"${_scopeId}><button type="submit"${ssrIncludeBooleanAttr(unref(passwordForm).processing) ? " disabled" : ""} class="px-5 py-2.5 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-colors duration-150 inline-flex items-center gap-1"${_scopeId}>`);
             if (unref(passwordForm).processing) {
               _push2(ssrRenderComponent(_component_Icon, {
                 icon: "svg-spinners:ring-resize",
@@ -203,7 +203,7 @@ const _sfc_main = {
                           createVNode("button", {
                             type: "submit",
                             disabled: unref(profileForm).processing,
-                            class: "px-5 py-2.5 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-all inline-flex items-center gap-1"
+                            class: "px-5 py-2.5 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-colors duration-150 inline-flex items-center gap-1"
                           }, [
                             unref(profileForm).processing ? (openBlock(), createBlock(_component_Icon, {
                               key: 0,
@@ -263,7 +263,7 @@ const _sfc_main = {
                           createVNode("button", {
                             type: "submit",
                             disabled: unref(passwordForm).processing,
-                            class: "px-5 py-2.5 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-all inline-flex items-center gap-1"
+                            class: "px-5 py-2.5 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-colors duration-150 inline-flex items-center gap-1"
                           }, [
                             unref(passwordForm).processing ? (openBlock(), createBlock(_component_Icon, {
                               key: 0,

@@ -105,7 +105,7 @@ const submit = () => {
  <!-- Header -->
  <div class="flex items-center justify-between bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700">
   <div class="flex items-center gap-3">
-  <Link :href="route('kajian.index')" class="p-2.5 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-paper-2 hover:text-blue-600 rounded-sm transition-all">
+  <Link :href="route('kajian.index')" class="p-2.5 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-paper-2 hover:text-blue-600 rounded-sm transition-colors duration-150">
   <Icon icon="solar:arrow-left-outline" class="w-5 h-5" />
   </Link>
   <div>
@@ -122,7 +122,7 @@ const submit = () => {
    <!-- Step circle -->
    <button
    @click="goToStep(index + 1)"
-   class="flex items-center gap-2 px-3 py-2 rounded-lg transition-all text-xs font-semibold"
+   class="flex items-center gap-2 px-3 py-2 rounded-lg transition-colors duration-150 text-xs font-semibold"
    :class="[
     currentStep === index + 1
     ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400'

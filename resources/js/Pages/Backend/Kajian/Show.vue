@@ -122,7 +122,7 @@ const deleteKajian = () => {
  <!-- Header bar with Breadcrumb -->
  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700 ">
  <div class="flex items-center gap-3">
- <Link :href="route('kajian.index')" class="p-2.5 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-paper-2 hover:text-blue-600 rounded-sm transition-all">
+ <Link :href="route('kajian.index')" class="p-2.5 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-paper-2 hover:text-blue-600 rounded-sm transition-colors duration-150">
  <Icon icon="solar:arrow-left-outline" class="w-5 h-5" />
  </Link>
  <div>
@@ -139,7 +139,7 @@ const deleteKajian = () => {
  <div class="flex flex-wrap gap-2">
  <Link 
  :href="route('kajian.edit', kajian.uuid)"
- class="px-4 py-2.5 bg-gray-100 dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-200 text-gray-700 font-bold rounded-sm text-xs transition-all inline-flex items-center gap-2"
+ class="px-4 py-2.5 bg-gray-100 dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-200 text-gray-700 font-bold rounded-sm text-xs transition-colors duration-150 inline-flex items-center gap-2"
  >
  <Icon icon="solar:pen-bold" class="w-4 h-4" />
  Edit
@@ -148,7 +148,7 @@ const deleteKajian = () => {
  <button 
  v-if="kajian.status === 'draft' && isAdmin"
  @click="publishKajian"
- class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-sm text-xs transition-all inline-flex items-center gap-2"
+ class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-sm text-xs transition-colors duration-150 inline-flex items-center gap-2"
  >
  <Icon icon="solar:check-square-bold" class="w-4 h-4" />
  Publish
@@ -157,7 +157,7 @@ const deleteKajian = () => {
  <button 
  v-if="kajian.status === 'published' && isAdmin"
  @click="archiveKajian"
- class="px-4 py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-sm text-xs transition-all inline-flex items-center gap-2"
+ class="px-4 py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-sm text-xs transition-colors duration-150 inline-flex items-center gap-2"
  >
  <Icon icon="solar:archive-down-bold" class="w-4 h-4" />
  Arsipkan
@@ -166,7 +166,7 @@ const deleteKajian = () => {
  <button 
  v-if="['published', 'archived', 'review'].includes(kajian.status)"
  @click="toDraftKajian"
- class="px-4 py-2.5 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-bold rounded-sm text-xs transition-all inline-flex items-center gap-2 border border-indigo-100 dark:border-indigo-800"
+ class="px-4 py-2.5 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-bold rounded-sm text-xs transition-colors duration-150 inline-flex items-center gap-2 border border-indigo-100 dark:border-indigo-800"
  >
  <Icon icon="solar:notes-bold" class="w-4 h-4" />
  Kembalikan ke Draft
@@ -174,7 +174,7 @@ const deleteKajian = () => {
 
  <button 
  @click="deleteKajian"
- class="px-4 py-2.5 bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400 hover:bg-red-100 font-bold rounded-sm text-xs transition-all inline-flex items-center gap-2 border border-red-100 dark:border-red-900/50"
+ class="px-4 py-2.5 bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400 hover:bg-red-100 font-bold rounded-sm text-xs transition-colors duration-150 inline-flex items-center gap-2 border border-red-100 dark:border-red-900/50"
  >
  <Icon icon="solar:trash-bin-trash-bold" class="w-4 h-4" />
  Hapus
@@ -311,7 +311,7 @@ const deleteKajian = () => {
    v-if="filePdf"
    :href="`/storage/${filePdf.path}`" 
    target="_blank"
-   class="w-full flex items-center gap-3 p-3 border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-sm transition-all"
+   class="w-full flex items-center gap-3 p-3 border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-sm transition-colors duration-150"
   >
    <div class="p-2 bg-red-50 text-red-500 rounded-sm">
    <Icon icon="solar:file-text-bold" class="w-5 h-5" />
@@ -327,7 +327,7 @@ const deleteKajian = () => {
    v-if="filePresentasi"
    :href="`/storage/${filePresentasi.path}`" 
    target="_blank"
-   class="w-full flex items-center gap-3 p-3 border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-sm transition-all"
+   class="w-full flex items-center gap-3 p-3 border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-sm transition-colors duration-150"
   >
    <div class="p-2 bg-amber-50 text-amber-500 rounded-sm">
    <Icon icon="solar:play-bold" class="w-5 h-5" />

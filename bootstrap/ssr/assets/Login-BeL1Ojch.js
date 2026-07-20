@@ -21,12 +21,12 @@ const _sfc_main = {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             _push2(ssrRenderComponent(unref(Head), { title: "Login" }, null, _parent2, _scopeId));
-            _push2(`<div data-v-5951c89b${_scopeId}><div class="text-center mb-8" data-v-5951c89b${_scopeId}><h1 class="text-3xl font-semibold text-gray-900 dark:text-white tracking-tight" data-v-5951c89b${_scopeId}>SIKAJIAN</h1><p class="text-sm text-gray-500 dark:text-gray-400 mt-2" data-v-5951c89b${_scopeId}> Sistem Informasi Kajian dan Riset </p><p class="text-xs text-gray-400 dark:text-gray-500 font-medium" data-v-5951c89b${_scopeId}>Bapperida Kota Samarinda</p></div><div class="space-y-4" data-v-5951c89b${_scopeId}><a${ssrRenderAttr("href", _ctx.route("sso.login"))} class="w-full flex items-center justify-center gap-3 px-6 py-4 text-white font-semibold rounded-card transition-all text-sm" data-v-5951c89b${_scopeId}>`);
+            _push2(`<div data-v-14531f45${_scopeId}><div class="text-center mb-8" data-v-14531f45${_scopeId}><h1 class="text-3xl font-semibold text-gray-900 dark:text-white tracking-tight" data-v-14531f45${_scopeId}>SIKAJIAN</h1><p class="text-sm text-gray-500 dark:text-gray-400 mt-2" data-v-14531f45${_scopeId}> Sistem Informasi Kajian dan Riset </p><p class="text-xs text-gray-400 dark:text-gray-500 font-medium" data-v-14531f45${_scopeId}>Bapperida Kota Samarinda</p></div><div class="space-y-4" data-v-14531f45${_scopeId}><a${ssrRenderAttr("href", _ctx.route("sso.login"))} class="w-full flex items-center justify-center gap-3 px-6 py-4 text-white font-semibold rounded-card transition-colors duration-150 text-sm" data-v-14531f45${_scopeId}>`);
             _push2(ssrRenderComponent(_component_Icon, {
               icon: "solar:login-2-bold",
               class: "w-5 h-5"
             }, null, _parent2, _scopeId));
-            _push2(` Masuk dengan SSO Samarinda </a><p class="text-[11px] text-center text-gray-400 dark:text-gray-500 leading-normal px-2" data-v-5951c89b${_scopeId}> Aplikasi ini terintegrasi dengan Single Sign On Pemkot Samarinda. Silakan gunakan akun SSO Anda untuk login. </p></div></div>`);
+            _push2(` Masuk dengan SSO Samarinda </a><p class="text-[11px] text-center text-gray-400 dark:text-gray-500 leading-normal px-2" data-v-14531f45${_scopeId}> Aplikasi ini terintegrasi dengan Single Sign On Pemkot Samarinda. Silakan gunakan akun SSO Anda untuk login. </p></div></div>`);
           } else {
             return [
               createVNode(unref(Head), { title: "Login" }),
@@ -39,7 +39,7 @@ const _sfc_main = {
                 createVNode("div", { class: "space-y-4" }, [
                   createVNode("a", {
                     href: _ctx.route("sso.login"),
-                    class: "w-full flex items-center justify-center gap-3 px-6 py-4 text-white font-semibold rounded-card transition-all text-sm"
+                    class: "w-full flex items-center justify-center gap-3 px-6 py-4 text-white font-semibold rounded-card transition-colors duration-150 text-sm"
                   }, [
                     createVNode(_component_Icon, {
                       icon: "solar:login-2-bold",
@@ -64,7 +64,7 @@ _sfc_main.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Frontend/Auth/Login.vue");
   return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
 };
-const Login = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-5951c89b"]]);
+const Login = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-14531f45"]]);
 export {
   Login as default
 };

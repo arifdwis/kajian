@@ -1,7 +1,7 @@
 import { computed, onMounted, ref, resolveComponent, unref, withCtx, createVNode, createTextVNode, toDisplayString, openBlock, createBlock, Fragment, renderList, createCommentVNode, withModifiers, withDirectives, vModelText, vShow, vModelCheckbox, useSSRContext } from "vue";
 import { ssrRenderComponent, ssrInterpolate, ssrRenderList, ssrRenderClass, ssrRenderStyle, ssrRenderAttr, ssrIncludeBooleanAttr, ssrLooseContain } from "vue/server-renderer";
 import { useForm, Head, Link } from "@inertiajs/vue3";
-import { _ as _sfc_main$1 } from "./AuthenticatedLayout-CCLRqrRv.js";
+import { _ as _sfc_main$1 } from "./AuthenticatedLayout-Cmsx4Vff.js";
 import { useToast } from "vue-toastification";
 import "flowbite-vue";
 import "./ApplicationLogo-CmsQkCHn.js";
@@ -117,7 +117,7 @@ const _sfc_main = {
             _push2(`<div class="space-y-4"${_scopeId}><div class="bg-paper dark:bg-gray-800 p-5 rounded-card border border-gray-100 dark:border-gray-700"${_scopeId}><div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"${_scopeId}><div class="flex items-center gap-3"${_scopeId}>`);
             _push2(ssrRenderComponent(unref(Link), {
               href: _ctx.route("kajian.show", __props.kajian.uuid),
-              class: "p-2 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 rounded-sm transition-all"
+              class: "p-2 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 rounded-sm transition-colors duration-150"
             }, {
               default: withCtx((_2, _push3, _parent3, _scopeId2) => {
                 if (_push3) {
@@ -138,7 +138,7 @@ const _sfc_main = {
             }, _parent2, _scopeId));
             _push2(`<div${_scopeId}><h3 class="text-lg font-bold text-gray-900 dark:text-white"${_scopeId}>Edit: ${ssrInterpolate(__props.kajian.judul)}</h3><p class="text-[11px] text-gray-500 mt-0.5"${_scopeId}>Langkah ${ssrInterpolate(currentStep.value)} dari ${ssrInterpolate(totalSteps)}: ${ssrInterpolate(steps[currentStep.value - 1].label)}</p></div></div></div><div class="flex items-center justify-between mt-4"${_scopeId}><!--[-->`);
             ssrRenderList(steps, (step, index) => {
-              _push2(`<!--[--><button class="${ssrRenderClass([currentStep.value === index + 1 ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400" : currentStep.value > index + 1 ? "text-green-600 dark:text-green-400" : "text-gray-400 dark:text-gray-500 hover:bg-gray-50 dark:hover:bg-gray-700", "flex items-center gap-1.5 px-2 py-1.5 rounded-lg transition-all text-[11px] font-semibold"])}"${_scopeId}><span class="${ssrRenderClass([currentStep.value === index + 1 ? "bg-blue-600 text-white" : currentStep.value > index + 1 ? "bg-green-500 text-white" : "bg-gray-200 dark:bg-gray-600 text-gray-500 dark:text-gray-400", "w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold shrink-0"])}"${_scopeId}>`);
+              _push2(`<!--[--><button class="${ssrRenderClass([currentStep.value === index + 1 ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400" : currentStep.value > index + 1 ? "text-green-600 dark:text-green-400" : "text-gray-400 dark:text-gray-500 hover:bg-gray-50 dark:hover:bg-gray-700", "flex items-center gap-1.5 px-2 py-1.5 rounded-lg transition-colors duration-150 text-[11px] font-semibold"])}"${_scopeId}><span class="${ssrRenderClass([currentStep.value === index + 1 ? "bg-blue-600 text-white" : currentStep.value > index + 1 ? "bg-green-500 text-white" : "bg-gray-200 dark:bg-gray-600 text-gray-500 dark:text-gray-400", "w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold shrink-0"])}"${_scopeId}>`);
               if (currentStep.value > index + 1) {
                 _push2(ssrRenderComponent(_component_Icon, {
                   icon: "solar:check-read-bold",
@@ -377,7 +377,7 @@ const _sfc_main = {
                     createVNode("div", { class: "flex items-center gap-3" }, [
                       createVNode(unref(Link), {
                         href: _ctx.route("kajian.show", __props.kajian.uuid),
-                        class: "p-2 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 rounded-sm transition-all"
+                        class: "p-2 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 rounded-sm transition-colors duration-150"
                       }, {
                         default: withCtx(() => [
                           createVNode(_component_Icon, {
@@ -398,7 +398,7 @@ const _sfc_main = {
                       return openBlock(), createBlock(Fragment, { key: index }, [
                         createVNode("button", {
                           onClick: ($event) => goToStep(index + 1),
-                          class: ["flex items-center gap-1.5 px-2 py-1.5 rounded-lg transition-all text-[11px] font-semibold", currentStep.value === index + 1 ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400" : currentStep.value > index + 1 ? "text-green-600 dark:text-green-400" : "text-gray-400 dark:text-gray-500 hover:bg-gray-50 dark:hover:bg-gray-700"]
+                          class: ["flex items-center gap-1.5 px-2 py-1.5 rounded-lg transition-colors duration-150 text-[11px] font-semibold", currentStep.value === index + 1 ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400" : currentStep.value > index + 1 ? "text-green-600 dark:text-green-400" : "text-gray-400 dark:text-gray-500 hover:bg-gray-50 dark:hover:bg-gray-700"]
                         }, [
                           createVNode("span", {
                             class: ["w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold shrink-0", currentStep.value === index + 1 ? "bg-blue-600 text-white" : currentStep.value > index + 1 ? "bg-green-500 text-white" : "bg-gray-200 dark:bg-gray-600 text-gray-500 dark:text-gray-400"]

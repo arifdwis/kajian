@@ -53,7 +53,7 @@ const executeDeletePermission = () => {
  </div>
  <Link 
  :href="route('settings.permissions.create')"
- class="inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-accent-ink font-semibold rounded-card transition-all text-sm shrink-0 "
+ class="inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-accent-ink font-semibold rounded-card transition-colors duration-150 text-sm shrink-0 "
  >
  <Icon icon="solar:add-circle-bold" class="w-5 h-5" />
  Tambah Permission
@@ -101,14 +101,14 @@ const executeDeletePermission = () => {
  <div class="flex items-center justify-end gap-2">
  <Link 
  :href="route('settings.permissions.edit', item.id)"
- class="p-2 bg-gray-50 hover:bg-amber-50 text-gray-600 hover:text-amber-600 dark:bg-gray-600 dark:text-gray-300 rounded-sm transition-all"
+ class="p-2 bg-gray-50 hover:bg-amber-50 text-gray-600 hover:text-amber-600 dark:bg-gray-600 dark:text-gray-300 rounded-sm transition-colors duration-150"
  title="Edit"
  >
  <Icon icon="solar:pen-bold" class="w-4 h-4" />
  </Link>
  <button 
  @click="confirmDeletePermission(item.id)"
- class="p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-sm transition-all"
+ class="p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-sm transition-colors duration-150"
  title="Hapus"
  >
  <Icon icon="solar:trash-bin-trash-bold" class="w-4 h-4" />

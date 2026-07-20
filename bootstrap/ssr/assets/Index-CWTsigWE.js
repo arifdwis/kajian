@@ -1,7 +1,7 @@
 import { ref, resolveComponent, unref, withCtx, createVNode, createTextVNode, withDirectives, withKeys, vModelText, openBlock, createBlock, createCommentVNode, Fragment, renderList, toDisplayString, withModifiers, useSSRContext } from "vue";
 import { ssrRenderComponent, ssrRenderAttr, ssrRenderList, ssrInterpolate, ssrIncludeBooleanAttr } from "vue/server-renderer";
 import { useForm, Head, router } from "@inertiajs/vue3";
-import { _ as _sfc_main$1 } from "./AuthenticatedLayout-CCLRqrRv.js";
+import { _ as _sfc_main$1 } from "./AuthenticatedLayout-Cmsx4Vff.js";
 import { _ as _sfc_main$2 } from "./Pagination-DE6AvrVK.js";
 import { _ as _sfc_main$3 } from "./ConfirmModal-C43yiw5v.js";
 import { useToast } from "vue-toastification";
@@ -91,7 +91,7 @@ const _sfc_main = {
       _push(ssrRenderComponent(_sfc_main$1, null, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<div class="space-y-6 w-full"${_scopeId}><div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700"${_scopeId}><div${_scopeId}><h3 class="text-xl font-bold text-gray-900 dark:text-white"${_scopeId}>Master Jenis Kajian</h3><p class="text-xs text-gray-500 mt-1"${_scopeId}>Kelola jenis atau kategori klasifikasi dokumen penelitian.</p></div><button class="inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-accent-ink font-semibold rounded-card transition-all text-sm shrink-0"${_scopeId}>`);
+            _push2(`<div class="space-y-6 w-full"${_scopeId}><div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700"${_scopeId}><div${_scopeId}><h3 class="text-xl font-bold text-gray-900 dark:text-white"${_scopeId}>Master Jenis Kajian</h3><p class="text-xs text-gray-500 mt-1"${_scopeId}>Kelola jenis atau kategori klasifikasi dokumen penelitian.</p></div><button class="inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-accent-ink font-semibold rounded-card transition-colors duration-150 text-sm shrink-0"${_scopeId}>`);
             _push2(ssrRenderComponent(_component_Icon, {
               icon: "solar:add-circle-bold",
               class: "w-5 h-5"
@@ -109,12 +109,12 @@ const _sfc_main = {
             }
             _push2(`<!--[-->`);
             ssrRenderList(__props.jenisKajians.data, (item) => {
-              _push2(`<tr class="hover:bg-gray-50/50 dark:hover:bg-gray-800 transition-colors"${_scopeId}><td class="px-6 py-4 font-semibold text-gray-900 dark:text-white"${_scopeId}>${ssrInterpolate(item.nama)}</td><td class="px-6 py-4 text-gray-500 font-mono text-xs"${_scopeId}>${ssrInterpolate(item.slug)}</td><td class="px-6 py-4 text-right"${_scopeId}><div class="flex items-center justify-end gap-2"${_scopeId}><button class="p-2 bg-gray-50 hover:bg-amber-50 text-gray-600 hover:text-amber-600 dark:bg-gray-600 dark:text-gray-300 rounded-sm transition-all" title="Edit"${_scopeId}>`);
+              _push2(`<tr class="hover:bg-gray-50/50 dark:hover:bg-gray-800 transition-colors"${_scopeId}><td class="px-6 py-4 font-semibold text-gray-900 dark:text-white"${_scopeId}>${ssrInterpolate(item.nama)}</td><td class="px-6 py-4 text-gray-500 font-mono text-xs"${_scopeId}>${ssrInterpolate(item.slug)}</td><td class="px-6 py-4 text-right"${_scopeId}><div class="flex items-center justify-end gap-2"${_scopeId}><button class="p-2 bg-gray-50 hover:bg-amber-50 text-gray-600 hover:text-amber-600 dark:bg-gray-600 dark:text-gray-300 rounded-sm transition-colors duration-150" title="Edit"${_scopeId}>`);
               _push2(ssrRenderComponent(_component_Icon, {
                 icon: "solar:pen-bold",
                 class: "w-4 h-4"
               }, null, _parent2, _scopeId));
-              _push2(`</button><button class="p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-sm transition-all" title="Hapus"${_scopeId}>`);
+              _push2(`</button><button class="p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-sm transition-colors duration-150" title="Hapus"${_scopeId}>`);
               _push2(ssrRenderComponent(_component_Icon, {
                 icon: "solar:trash-bin-trash-bold",
                 class: "w-4 h-4"
@@ -132,7 +132,7 @@ const _sfc_main = {
                 icon: "solar:close-square-linear",
                 class: "w-5 h-5"
               }, null, _parent2, _scopeId));
-              _push2(`</button></div><form class="space-y-4"${_scopeId}><div${_scopeId}><label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"${_scopeId}>Nama Jenis <span class="text-red-500"${_scopeId}>*</span></label><input type="text"${ssrRenderAttr("value", unref(form).nama)} required placeholder="E.g., Kajian Kebijakan / Policy Brief" class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-950 text-slate-900 dark:text-white px-4 py-2.5 focus:ring-2 focus:ring-blue-500/20"${_scopeId}></div><div class="flex justify-end gap-2 border-t dark:border-slate-800 pt-4"${_scopeId}><button type="button" class="px-4 py-2 border border-rule dark:border-rule-dark text-slate-700 dark:text-slate-300 text-xs font-semibold rounded-sm"${_scopeId}> Batal </button><button type="submit"${ssrIncludeBooleanAttr(unref(form).processing) ? " disabled" : ""} class="px-5 py-2 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-all"${_scopeId}> Simpan </button></div></form></div></div>`);
+              _push2(`</button></div><form class="space-y-4"${_scopeId}><div${_scopeId}><label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"${_scopeId}>Nama Jenis <span class="text-red-500"${_scopeId}>*</span></label><input type="text"${ssrRenderAttr("value", unref(form).nama)} required placeholder="E.g., Kajian Kebijakan / Policy Brief" class="w-full text-sm rounded-sm border border-rule dark:border-rule-dark bg-paper dark:bg-slate-950 text-slate-900 dark:text-white px-4 py-2.5 focus:ring-2 focus:ring-blue-500/20"${_scopeId}></div><div class="flex justify-end gap-2 border-t dark:border-slate-800 pt-4"${_scopeId}><button type="button" class="px-4 py-2 border border-rule dark:border-rule-dark text-slate-700 dark:text-slate-300 text-xs font-semibold rounded-sm"${_scopeId}> Batal </button><button type="submit"${ssrIncludeBooleanAttr(unref(form).processing) ? " disabled" : ""} class="px-5 py-2 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-colors duration-150"${_scopeId}> Simpan </button></div></form></div></div>`);
             } else {
               _push2(`<!---->`);
             }
@@ -157,7 +157,7 @@ const _sfc_main = {
                   ]),
                   createVNode("button", {
                     onClick: openCreateModal,
-                    class: "inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-accent-ink font-semibold rounded-card transition-all text-sm shrink-0"
+                    class: "inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-accent-ink font-semibold rounded-card transition-colors duration-150 text-sm shrink-0"
                   }, [
                     createVNode(_component_Icon, {
                       icon: "solar:add-circle-bold",
@@ -211,7 +211,7 @@ const _sfc_main = {
                               createVNode("div", { class: "flex items-center justify-end gap-2" }, [
                                 createVNode("button", {
                                   onClick: ($event) => openEditModal(item),
-                                  class: "p-2 bg-gray-50 hover:bg-amber-50 text-gray-600 hover:text-amber-600 dark:bg-gray-600 dark:text-gray-300 rounded-sm transition-all",
+                                  class: "p-2 bg-gray-50 hover:bg-amber-50 text-gray-600 hover:text-amber-600 dark:bg-gray-600 dark:text-gray-300 rounded-sm transition-colors duration-150",
                                   title: "Edit"
                                 }, [
                                   createVNode(_component_Icon, {
@@ -221,7 +221,7 @@ const _sfc_main = {
                                 ], 8, ["onClick"]),
                                 createVNode("button", {
                                   onClick: ($event) => confirmDeleteJenis(item.id),
-                                  class: "p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-sm transition-all",
+                                  class: "p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-sm transition-colors duration-150",
                                   title: "Hapus"
                                 }, [
                                   createVNode(_component_Icon, {
@@ -292,7 +292,7 @@ const _sfc_main = {
                         createVNode("button", {
                           type: "submit",
                           disabled: unref(form).processing,
-                          class: "px-5 py-2 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-all"
+                          class: "px-5 py-2 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-colors duration-150"
                         }, " Simpan ", 8, ["disabled"])
                       ])
                     ], 32)

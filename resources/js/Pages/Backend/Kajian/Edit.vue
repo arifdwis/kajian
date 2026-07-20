@@ -122,7 +122,7 @@ const submit = () => {
   <div class="bg-paper dark:bg-gray-800 p-5 rounded-card border border-gray-100 dark:border-gray-700">
   <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
    <div class="flex items-center gap-3">
-   <Link :href="route('kajian.show', kajian.uuid)" class="p-2 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 rounded-sm transition-all">
+   <Link :href="route('kajian.show', kajian.uuid)" class="p-2 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 rounded-sm transition-colors duration-150">
     <Icon icon="solar:arrow-left-outline" class="w-5 h-5" />
    </Link>
    <div>
@@ -134,7 +134,7 @@ const submit = () => {
   <!-- Stepper -->
   <div class="flex items-center justify-between mt-4">
    <template v-for="(step, index) in steps" :key="index">
-   <button @click="goToStep(index + 1)" class="flex items-center gap-1.5 px-2 py-1.5 rounded-lg transition-all text-[11px] font-semibold" :class="currentStep === index + 1 ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400' : currentStep > index + 1 ? 'text-green-600 dark:text-green-400' : 'text-gray-400 dark:text-gray-500 hover:bg-gray-50 dark:hover:bg-gray-700'">
+   <button @click="goToStep(index + 1)" class="flex items-center gap-1.5 px-2 py-1.5 rounded-lg transition-colors duration-150 text-[11px] font-semibold" :class="currentStep === index + 1 ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400' : currentStep > index + 1 ? 'text-green-600 dark:text-green-400' : 'text-gray-400 dark:text-gray-500 hover:bg-gray-50 dark:hover:bg-gray-700'">
     <span class="w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold shrink-0" :class="currentStep === index + 1 ? 'bg-blue-600 text-white' : currentStep > index + 1 ? 'bg-green-500 text-white' : 'bg-gray-200 dark:bg-gray-600 text-gray-500 dark:text-gray-400'">
     <Icon v-if="currentStep > index + 1" icon="solar:check-read-bold" class="w-3 h-3" />
     <span v-else>{{ index + 1 }}</span>

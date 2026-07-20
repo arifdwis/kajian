@@ -1,7 +1,7 @@
 import { ref, computed, resolveComponent, unref, withCtx, createVNode, createTextVNode, toDisplayString, withDirectives, vModelText, withModifiers, openBlock, createBlock, Fragment, renderList, createCommentVNode, useSSRContext } from "vue";
 import { ssrRenderComponent, ssrInterpolate, ssrRenderClass, ssrRenderStyle, ssrRenderAttr, ssrRenderList, ssrIncludeBooleanAttr } from "vue/server-renderer";
 import { useForm, Head, Link } from "@inertiajs/vue3";
-import { _ as _sfc_main$1 } from "./AuthenticatedLayout-CCLRqrRv.js";
+import { _ as _sfc_main$1 } from "./AuthenticatedLayout-Cmsx4Vff.js";
 import { useToast } from "vue-toastification";
 import "flowbite-vue";
 import "./ApplicationLogo-CmsQkCHn.js";
@@ -95,7 +95,7 @@ const _sfc_main = {
             _push2(`<div class="space-y-4"${_scopeId}><div class="bg-paper dark:bg-gray-800 p-5 rounded-card border border-gray-100 dark:border-gray-700"${_scopeId}><div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"${_scopeId}><div class="flex items-center gap-3"${_scopeId}>`);
             _push2(ssrRenderComponent(unref(Link), {
               href: _ctx.route("settings.roles.index"),
-              class: "p-2 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 rounded-sm transition-all"
+              class: "p-2 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 rounded-sm transition-colors duration-150"
             }, {
               default: withCtx((_2, _push3, _parent3, _scopeId2) => {
                 if (_push3) {
@@ -114,7 +114,7 @@ const _sfc_main = {
               }),
               _: 1
             }, _parent2, _scopeId));
-            _push2(`<div${_scopeId}><h3 class="text-lg font-bold text-gray-900 dark:text-white"${_scopeId}>Hak Akses: ${ssrInterpolate(__props.role.name)}</h3><div class="flex items-center gap-3 mt-1"${_scopeId}><span class="text-[11px] text-gray-500"${_scopeId}>${ssrInterpolate(selectedCount.value)} / ${ssrInterpolate(totalCount.value)} permission</span><span class="text-[11px] text-gray-300 dark:text-gray-600"${_scopeId}>•</span><span class="${ssrRenderClass([progress.value === 100 ? "text-green-500" : "text-blue-500", "text-[11px] font-semibold"])}"${_scopeId}>${ssrInterpolate(progress.value)}%</span></div></div></div><div class="flex gap-2"${_scopeId}><button class="px-3 py-1.5 border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 text-[11px] font-semibold rounded-sm hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"${_scopeId}>Pilih Semua</button><button class="px-3 py-1.5 border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 text-[11px] font-semibold rounded-sm hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"${_scopeId}>Kosongkan</button></div></div><div class="mt-3 h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"${_scopeId}><div class="${ssrRenderClass([progress.value === 100 ? "bg-green-500" : "bg-blue-500", "h-full rounded-full transition-all duration-300"])}" style="${ssrRenderStyle({ width: progress.value + "%" })}"${_scopeId}></div></div></div><div class="relative"${_scopeId}>`);
+            _push2(`<div${_scopeId}><h3 class="text-lg font-bold text-gray-900 dark:text-white"${_scopeId}>Hak Akses: ${ssrInterpolate(__props.role.name)}</h3><div class="flex items-center gap-3 mt-1"${_scopeId}><span class="text-[11px] text-gray-500"${_scopeId}>${ssrInterpolate(selectedCount.value)} / ${ssrInterpolate(totalCount.value)} permission</span><span class="text-[11px] text-gray-300 dark:text-gray-600"${_scopeId}>•</span><span class="${ssrRenderClass([progress.value === 100 ? "text-green-500" : "text-blue-500", "text-[11px] font-semibold"])}"${_scopeId}>${ssrInterpolate(progress.value)}%</span></div></div></div><div class="flex gap-2"${_scopeId}><button class="px-3 py-1.5 border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 text-[11px] font-semibold rounded-sm hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"${_scopeId}>Pilih Semua</button><button class="px-3 py-1.5 border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 text-[11px] font-semibold rounded-sm hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"${_scopeId}>Kosongkan</button></div></div><div class="mt-3 h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"${_scopeId}><div class="${ssrRenderClass([progress.value === 100 ? "bg-green-500" : "bg-blue-500", "h-full rounded-full transition-colors duration-150 duration-300"])}" style="${ssrRenderStyle({ width: progress.value + "%" })}"${_scopeId}></div></div></div><div class="relative"${_scopeId}>`);
             _push2(ssrRenderComponent(_component_Icon, {
               icon: "solar:magnifer-linear",
               class: "absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"
@@ -123,7 +123,7 @@ const _sfc_main = {
             ssrRenderList(filteredGroups.value, (perms, groupName) => {
               _push2(`<div class="bg-paper dark:bg-gray-800 rounded-card border border-gray-100 dark:border-gray-700 overflow-hidden"${_scopeId}><div class="flex items-center justify-between px-4 py-2.5 bg-gray-50/50 dark:bg-gray-750 border-b border-gray-100 dark:border-gray-700"${_scopeId}><div class="flex items-center gap-2"${_scopeId}><span class="text-[11px] font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider capitalize"${_scopeId}>${ssrInterpolate(groupName)}</span><span class="${ssrRenderClass([groupSelectedCount(groupName) === perms.length ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400" : "bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-400", "text-[10px] px-1.5 py-0.5 rounded-full font-semibold"])}"${_scopeId}>${ssrInterpolate(groupSelectedCount(groupName))}/${ssrInterpolate(perms.length)}</span></div><button type="button" class="${ssrRenderClass([groupSelectedCount(groupName) === perms.length ? "text-green-600 hover:bg-green-50 dark:text-green-400 dark:hover:bg-green-900/20" : "text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20", "text-[10px] font-semibold px-2 py-0.5 rounded transition-colors"])}"${_scopeId}>${ssrInterpolate(groupSelectedCount(groupName) === perms.length ? "✓ Terpilih" : "Pilih")}</button></div><div class="p-2 flex flex-wrap gap-1.5"${_scopeId}><!--[-->`);
               ssrRenderList(perms, (p) => {
-                _push2(`<button type="button" class="${ssrRenderClass([unref(form).permissions.includes(p.id) ? "bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300 shadow-sm" : "bg-white dark:bg-gray-900 border-gray-100 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-gray-200 dark:hover:border-gray-600", "inline-flex items-center gap-1 px-2 py-1 rounded text-[11px] border transition-all cursor-pointer select-none"])}"${_scopeId}><span class="${ssrRenderClass([unref(form).permissions.includes(p.id) ? "bg-blue-500 border-blue-500" : "border-gray-300 dark:border-gray-600", "w-3 h-3 rounded-sm border flex items-center justify-center shrink-0 transition-colors"])}"${_scopeId}>`);
+                _push2(`<button type="button" class="${ssrRenderClass([unref(form).permissions.includes(p.id) ? "bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300 shadow-sm" : "bg-white dark:bg-gray-900 border-gray-100 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-gray-200 dark:hover:border-gray-600", "inline-flex items-center gap-1 px-2 py-1 rounded text-[11px] border transition-colors duration-150 cursor-pointer select-none"])}"${_scopeId}><span class="${ssrRenderClass([unref(form).permissions.includes(p.id) ? "bg-blue-500 border-blue-500" : "border-gray-300 dark:border-gray-600", "w-3 h-3 rounded-sm border flex items-center justify-center shrink-0 transition-colors"])}"${_scopeId}>`);
                 if (unref(form).permissions.includes(p.id)) {
                   _push2(ssrRenderComponent(_component_Icon, {
                     icon: "solar:check-read-bold",
@@ -158,7 +158,7 @@ const _sfc_main = {
               }),
               _: 1
             }, _parent2, _scopeId));
-            _push2(`<button type="submit"${ssrIncludeBooleanAttr(unref(form).processing) ? " disabled" : ""} class="px-5 py-2 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-all inline-flex items-center gap-1.5"${_scopeId}>`);
+            _push2(`<button type="submit"${ssrIncludeBooleanAttr(unref(form).processing) ? " disabled" : ""} class="px-5 py-2 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-colors duration-150 inline-flex items-center gap-1.5"${_scopeId}>`);
             if (unref(form).processing) {
               _push2(ssrRenderComponent(_component_Icon, {
                 icon: "svg-spinners:ring-resize",
@@ -179,7 +179,7 @@ const _sfc_main = {
                     createVNode("div", { class: "flex items-center gap-3" }, [
                       createVNode(unref(Link), {
                         href: _ctx.route("settings.roles.index"),
-                        class: "p-2 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 rounded-sm transition-all"
+                        class: "p-2 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 rounded-sm transition-colors duration-150"
                       }, {
                         default: withCtx(() => [
                           createVNode(_component_Icon, {
@@ -213,7 +213,7 @@ const _sfc_main = {
                   ]),
                   createVNode("div", { class: "mt-3 h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden" }, [
                     createVNode("div", {
-                      class: ["h-full rounded-full transition-all duration-300", progress.value === 100 ? "bg-green-500" : "bg-blue-500"],
+                      class: ["h-full rounded-full transition-colors duration-150 duration-300", progress.value === 100 ? "bg-green-500" : "bg-blue-500"],
                       style: { width: progress.value + "%" }
                     }, null, 6)
                   ])
@@ -260,7 +260,7 @@ const _sfc_main = {
                               key: p.id,
                               type: "button",
                               onClick: ($event) => togglePerm(p.id),
-                              class: ["inline-flex items-center gap-1 px-2 py-1 rounded text-[11px] border transition-all cursor-pointer select-none", unref(form).permissions.includes(p.id) ? "bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300 shadow-sm" : "bg-white dark:bg-gray-900 border-gray-100 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-gray-200 dark:hover:border-gray-600"]
+                              class: ["inline-flex items-center gap-1 px-2 py-1 rounded text-[11px] border transition-colors duration-150 cursor-pointer select-none", unref(form).permissions.includes(p.id) ? "bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300 shadow-sm" : "bg-white dark:bg-gray-900 border-gray-100 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-gray-200 dark:hover:border-gray-600"]
                             }, [
                               createVNode("span", {
                                 class: ["w-3 h-3 rounded-sm border flex items-center justify-center shrink-0 transition-colors", unref(form).permissions.includes(p.id) ? "bg-blue-500 border-blue-500" : "border-gray-300 dark:border-gray-600"]
@@ -297,7 +297,7 @@ const _sfc_main = {
                       createVNode("button", {
                         type: "submit",
                         disabled: unref(form).processing,
-                        class: "px-5 py-2 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-all inline-flex items-center gap-1.5"
+                        class: "px-5 py-2 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-colors duration-150 inline-flex items-center gap-1.5"
                       }, [
                         unref(form).processing ? (openBlock(), createBlock(_component_Icon, {
                           key: 0,

@@ -1,7 +1,7 @@
 import { ref, resolveComponent, unref, withCtx, createVNode, createTextVNode, withDirectives, withKeys, vModelText, openBlock, createBlock, createCommentVNode, Fragment, renderList, toDisplayString, useSSRContext } from "vue";
 import { ssrRenderComponent, ssrRenderAttr, ssrRenderList, ssrInterpolate } from "vue/server-renderer";
 import { Head, Link, router } from "@inertiajs/vue3";
-import { _ as _sfc_main$1 } from "./AuthenticatedLayout-CCLRqrRv.js";
+import { _ as _sfc_main$1 } from "./AuthenticatedLayout-Cmsx4Vff.js";
 import { _ as _sfc_main$2 } from "./Pagination-DE6AvrVK.js";
 import { _ as _sfc_main$3 } from "./ConfirmModal-C43yiw5v.js";
 import { useToast } from "vue-toastification";
@@ -50,7 +50,7 @@ const _sfc_main = {
             _push2(`<div class="space-y-6 w-full"${_scopeId}><div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700"${_scopeId}><div${_scopeId}><h3 class="text-xl font-bold text-gray-900 dark:text-white"${_scopeId}>Manajemen Permission</h3><p class="text-xs text-gray-500 mt-1"${_scopeId}>Daftar perizinan akses sistem granular yang digunakan SIKAJIAN.</p></div>`);
             _push2(ssrRenderComponent(unref(Link), {
               href: _ctx.route("settings.permissions.create"),
-              class: "inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-accent-ink font-semibold rounded-card transition-all text-sm shrink-0"
+              class: "inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-accent-ink font-semibold rounded-card transition-colors duration-150 text-sm shrink-0"
             }, {
               default: withCtx((_2, _push3, _parent3, _scopeId2) => {
                 if (_push3) {
@@ -87,7 +87,7 @@ const _sfc_main = {
               _push2(`<tr class="hover:bg-gray-50/50 dark:hover:bg-gray-800 transition-colors"${_scopeId}><td class="px-6 py-4 font-semibold text-gray-900 dark:text-white"${_scopeId}>${ssrInterpolate(item.name)}</td><td class="px-6 py-4 text-gray-500 font-mono text-xs"${_scopeId}>${ssrInterpolate(item.slug)}</td><td class="px-6 py-4 text-right"${_scopeId}><div class="flex items-center justify-end gap-2"${_scopeId}>`);
               _push2(ssrRenderComponent(unref(Link), {
                 href: _ctx.route("settings.permissions.edit", item.id),
-                class: "p-2 bg-gray-50 hover:bg-amber-50 text-gray-600 hover:text-amber-600 dark:bg-gray-600 dark:text-gray-300 rounded-sm transition-all",
+                class: "p-2 bg-gray-50 hover:bg-amber-50 text-gray-600 hover:text-amber-600 dark:bg-gray-600 dark:text-gray-300 rounded-sm transition-colors duration-150",
                 title: "Edit"
               }, {
                 default: withCtx((_2, _push3, _parent3, _scopeId2) => {
@@ -107,7 +107,7 @@ const _sfc_main = {
                 }),
                 _: 2
               }, _parent2, _scopeId));
-              _push2(`<button class="p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-sm transition-all" title="Hapus"${_scopeId}>`);
+              _push2(`<button class="p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-sm transition-colors duration-150" title="Hapus"${_scopeId}>`);
               _push2(ssrRenderComponent(_component_Icon, {
                 icon: "solar:trash-bin-trash-bold",
                 class: "w-4 h-4"
@@ -140,7 +140,7 @@ const _sfc_main = {
                   ]),
                   createVNode(unref(Link), {
                     href: _ctx.route("settings.permissions.create"),
-                    class: "inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-accent-ink font-semibold rounded-card transition-all text-sm shrink-0"
+                    class: "inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-accent-ink font-semibold rounded-card transition-colors duration-150 text-sm shrink-0"
                   }, {
                     default: withCtx(() => [
                       createVNode(_component_Icon, {
@@ -197,7 +197,7 @@ const _sfc_main = {
                               createVNode("div", { class: "flex items-center justify-end gap-2" }, [
                                 createVNode(unref(Link), {
                                   href: _ctx.route("settings.permissions.edit", item.id),
-                                  class: "p-2 bg-gray-50 hover:bg-amber-50 text-gray-600 hover:text-amber-600 dark:bg-gray-600 dark:text-gray-300 rounded-sm transition-all",
+                                  class: "p-2 bg-gray-50 hover:bg-amber-50 text-gray-600 hover:text-amber-600 dark:bg-gray-600 dark:text-gray-300 rounded-sm transition-colors duration-150",
                                   title: "Edit"
                                 }, {
                                   default: withCtx(() => [
@@ -210,7 +210,7 @@ const _sfc_main = {
                                 }, 8, ["href"]),
                                 createVNode("button", {
                                   onClick: ($event) => confirmDeletePermission(item.id),
-                                  class: "p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-sm transition-all",
+                                  class: "p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-sm transition-colors duration-150",
                                   title: "Hapus"
                                 }, [
                                   createVNode(_component_Icon, {

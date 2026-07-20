@@ -47,7 +47,7 @@ const executeMarkAllAsRead = () => {
  </div>
  <button 
  @click="markAllAsRead"
- class="inline-flex items-center gap-1.5 px-4 py-2 border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-bold rounded-sm text-xs hover:bg-gray-50 dark:hover:bg-gray-700 transition-all"
+ class="inline-flex items-center gap-1.5 px-4 py-2 border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-bold rounded-sm text-xs hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-150"
  >
  <Icon icon="solar:check-square-bold" class="w-4 h-4" />
  Tandai Semua Dibaca

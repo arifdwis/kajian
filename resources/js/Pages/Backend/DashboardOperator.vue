@@ -238,14 +238,14 @@ const doughnutChartOptions = {
  <div class="space-y-3">
  <Link 
  :href="route('kajian.create')" 
- class="w-full flex items-center justify-between p-4 text-white rounded-card transition-all font-semibold text-sm "
+ class="w-full flex items-center justify-between p-4 text-white rounded-card transition-colors duration-150 font-semibold text-sm "
  >
  <span>Buat Kajian Baru</span>
  <Icon icon="solar:add-circle-bold" class="w-5 h-5" />
  </Link>
  <Link 
  :href="route('kajian.index', { status: 'draft' })" 
- class="w-full flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-white rounded-card transition-all font-semibold text-sm"
+ class="w-full flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-white rounded-card transition-colors duration-150 font-semibold text-sm"
  >
  <span>Lihat Draf</span>
  <span class="bg-gray-200 dark:bg-gray-800 text-xs px-2 py-0.5 rounded-full">{{ summary.total_draft }}</span>
@@ -297,7 +297,7 @@ const doughnutChartOptions = {
  <td class="px-6 py-4 text-right">
  <Link 
  :href="route('kajian.show', item.uuid)" 
- class="px-3 py-1.5 bg-gray-100 hover:bg-paper-2 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-blue-600 rounded-sm transition-all inline-flex items-center text-xs font-bold"
+ class="px-3 py-1.5 bg-gray-100 hover:bg-paper-2 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-blue-600 rounded-sm transition-colors duration-150 inline-flex items-center text-xs font-bold"
  >
  Detail
  </Link>

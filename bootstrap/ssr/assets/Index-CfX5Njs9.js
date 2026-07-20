@@ -1,7 +1,7 @@
 import { ref, computed, resolveComponent, unref, withCtx, createVNode, createTextVNode, withDirectives, withKeys, vModelText, openBlock, createBlock, createCommentVNode, Fragment, renderList, toDisplayString, useSSRContext } from "vue";
 import { ssrRenderComponent, ssrRenderAttr, ssrRenderList, ssrInterpolate, ssrRenderClass } from "vue/server-renderer";
 import { Head, Link, router } from "@inertiajs/vue3";
-import { _ as _sfc_main$1 } from "./AuthenticatedLayout-CCLRqrRv.js";
+import { _ as _sfc_main$1 } from "./AuthenticatedLayout-Cmsx4Vff.js";
 import { _ as _sfc_main$2 } from "./Pagination-DE6AvrVK.js";
 import { _ as _sfc_main$3 } from "./ConfirmModal-C43yiw5v.js";
 import { useToast } from "vue-toastification";
@@ -135,7 +135,7 @@ const _sfc_main = {
             _push2(`<div class="space-y-6"${_scopeId}><div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700"${_scopeId}><div${_scopeId}><h3 class="text-xl font-bold text-gray-900 dark:text-white"${_scopeId}>Daftar Dokumen Kajian &amp; Riset</h3><p class="text-xs text-gray-500 mt-1"${_scopeId}>Kelola publikasi, naskah akademik, dan draf kajian OPD.</p></div>`);
             _push2(ssrRenderComponent(unref(Link), {
               href: _ctx.route("kajian.create"),
-              class: "inline-flex items-center gap-2 px-5 py-3 bg-accent text-accent-ink font-semibold rounded-card transition-all text-sm shrink-0"
+              class: "inline-flex items-center gap-2 px-5 py-3 bg-accent text-accent-ink font-semibold rounded-card transition-colors duration-150 text-sm shrink-0"
             }, {
               default: withCtx((_2, _push3, _parent3, _scopeId2) => {
                 if (_push3) {
@@ -205,7 +205,7 @@ const _sfc_main = {
                 "bg-gray-50 text-gray-600 border-gray-200 dark:bg-gray-950/30 dark:text-gray-400 dark:border-gray-800": item2.status === "archived"
               }, "px-2.5 py-1 rounded-full text-xs font-bold border capitalize"])}"${_scopeId}>${ssrInterpolate(item2.status)}</span></td><td class="px-6 py-4 text-right"${_scopeId}><div class="flex items-center justify-end gap-2"${_scopeId}>`);
               if (item2.status === "review" && _ctx.$page.props.auth.roles.some((r) => ["superadmin", "admin"].includes(r))) {
-                _push2(`<button class="p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 rounded-sm transition-all" title="Publish"${_scopeId}>`);
+                _push2(`<button class="p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 rounded-sm transition-colors duration-150" title="Publish"${_scopeId}>`);
                 _push2(ssrRenderComponent(_component_Icon, {
                   icon: "solar:check-square-bold",
                   class: "w-4 h-4"
@@ -215,7 +215,7 @@ const _sfc_main = {
                 _push2(`<!---->`);
               }
               if (item2.status === "published" && _ctx.$page.props.auth.roles.some((r) => ["superadmin", "admin"].includes(r))) {
-                _push2(`<button class="p-2 bg-gray-100 hover:bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-300 rounded-sm transition-all" title="Archive"${_scopeId}>`);
+                _push2(`<button class="p-2 bg-gray-100 hover:bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-300 rounded-sm transition-colors duration-150" title="Archive"${_scopeId}>`);
                 _push2(ssrRenderComponent(_component_Icon, {
                   icon: "solar:archive-down-bold",
                   class: "w-4 h-4"
@@ -226,7 +226,7 @@ const _sfc_main = {
               }
               _push2(ssrRenderComponent(unref(Link), {
                 href: _ctx.route("kajian.show", item2.uuid),
-                class: "p-2 bg-gray-50 hover:bg-paper-2 text-gray-600 hover:text-blue-600 dark:bg-gray-700 dark:text-gray-300 rounded-sm transition-all",
+                class: "p-2 bg-gray-50 hover:bg-paper-2 text-gray-600 hover:text-blue-600 dark:bg-gray-700 dark:text-gray-300 rounded-sm transition-colors duration-150",
                 title: "Detail"
               }, {
                 default: withCtx((_2, _push3, _parent3, _scopeId2) => {
@@ -248,7 +248,7 @@ const _sfc_main = {
               }, _parent2, _scopeId));
               _push2(ssrRenderComponent(unref(Link), {
                 href: _ctx.route("kajian.edit", item2.uuid),
-                class: "p-2 bg-gray-50 hover:bg-amber-50 text-gray-600 hover:text-amber-600 dark:bg-gray-700 dark:text-gray-300 rounded-sm transition-all",
+                class: "p-2 bg-gray-50 hover:bg-amber-50 text-gray-600 hover:text-amber-600 dark:bg-gray-700 dark:text-gray-300 rounded-sm transition-colors duration-150",
                 title: "Edit"
               }, {
                 default: withCtx((_2, _push3, _parent3, _scopeId2) => {
@@ -268,7 +268,7 @@ const _sfc_main = {
                 }),
                 _: 2
               }, _parent2, _scopeId));
-              _push2(`<button class="p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-sm transition-all" title="Delete"${_scopeId}>`);
+              _push2(`<button class="p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-sm transition-colors duration-150" title="Delete"${_scopeId}>`);
               _push2(ssrRenderComponent(_component_Icon, {
                 icon: "solar:trash-bin-trash-bold",
                 class: "w-4 h-4"
@@ -300,7 +300,7 @@ const _sfc_main = {
                   ]),
                   createVNode(unref(Link), {
                     href: _ctx.route("kajian.create"),
-                    class: "inline-flex items-center gap-2 px-5 py-3 bg-accent text-accent-ink font-semibold rounded-card transition-all text-sm shrink-0"
+                    class: "inline-flex items-center gap-2 px-5 py-3 bg-accent text-accent-ink font-semibold rounded-card transition-colors duration-150 text-sm shrink-0"
                   }, {
                     default: withCtx(() => [
                       createVNode(_component_Icon, {
@@ -431,7 +431,7 @@ const _sfc_main = {
                                 item2.status === "review" && _ctx.$page.props.auth.roles.some((r) => ["superadmin", "admin"].includes(r)) ? (openBlock(), createBlock("button", {
                                   key: 0,
                                   onClick: ($event) => publishKajian(item2.uuid),
-                                  class: "p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 rounded-sm transition-all",
+                                  class: "p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 rounded-sm transition-colors duration-150",
                                   title: "Publish"
                                 }, [
                                   createVNode(_component_Icon, {
@@ -442,7 +442,7 @@ const _sfc_main = {
                                 item2.status === "published" && _ctx.$page.props.auth.roles.some((r) => ["superadmin", "admin"].includes(r)) ? (openBlock(), createBlock("button", {
                                   key: 1,
                                   onClick: ($event) => archiveKajian(item2.uuid),
-                                  class: "p-2 bg-gray-100 hover:bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-300 rounded-sm transition-all",
+                                  class: "p-2 bg-gray-100 hover:bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-300 rounded-sm transition-colors duration-150",
                                   title: "Archive"
                                 }, [
                                   createVNode(_component_Icon, {
@@ -452,7 +452,7 @@ const _sfc_main = {
                                 ], 8, ["onClick"])) : createCommentVNode("", true),
                                 createVNode(unref(Link), {
                                   href: _ctx.route("kajian.show", item2.uuid),
-                                  class: "p-2 bg-gray-50 hover:bg-paper-2 text-gray-600 hover:text-blue-600 dark:bg-gray-700 dark:text-gray-300 rounded-sm transition-all",
+                                  class: "p-2 bg-gray-50 hover:bg-paper-2 text-gray-600 hover:text-blue-600 dark:bg-gray-700 dark:text-gray-300 rounded-sm transition-colors duration-150",
                                   title: "Detail"
                                 }, {
                                   default: withCtx(() => [
@@ -465,7 +465,7 @@ const _sfc_main = {
                                 }, 8, ["href"]),
                                 createVNode(unref(Link), {
                                   href: _ctx.route("kajian.edit", item2.uuid),
-                                  class: "p-2 bg-gray-50 hover:bg-amber-50 text-gray-600 hover:text-amber-600 dark:bg-gray-700 dark:text-gray-300 rounded-sm transition-all",
+                                  class: "p-2 bg-gray-50 hover:bg-amber-50 text-gray-600 hover:text-amber-600 dark:bg-gray-700 dark:text-gray-300 rounded-sm transition-colors duration-150",
                                   title: "Edit"
                                 }, {
                                   default: withCtx(() => [
@@ -478,7 +478,7 @@ const _sfc_main = {
                                 }, 8, ["href"]),
                                 createVNode("button", {
                                   onClick: ($event) => deleteKajian(item2.id),
-                                  class: "p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-sm transition-all",
+                                  class: "p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-sm transition-colors duration-150",
                                   title: "Delete"
                                 }, [
                                   createVNode(_component_Icon, {

@@ -1,7 +1,7 @@
 import { computed, ref, resolveComponent, unref, withCtx, createVNode, createTextVNode, toDisplayString, openBlock, createBlock, Fragment, renderList, createCommentVNode, withModifiers, withDirectives, vModelText, vShow, vModelCheckbox, useSSRContext } from "vue";
 import { ssrRenderComponent, ssrInterpolate, ssrRenderList, ssrRenderClass, ssrRenderStyle, ssrRenderAttr, ssrIncludeBooleanAttr, ssrLooseContain } from "vue/server-renderer";
 import { useForm, Head, Link } from "@inertiajs/vue3";
-import { _ as _sfc_main$1 } from "./AuthenticatedLayout-CCLRqrRv.js";
+import { _ as _sfc_main$1 } from "./AuthenticatedLayout-Cmsx4Vff.js";
 import { useToast } from "vue-toastification";
 import "flowbite-vue";
 import "./ApplicationLogo-CmsQkCHn.js";
@@ -102,7 +102,7 @@ const _sfc_main = {
             _push2(`<div class="space-y-6"${_scopeId}><div class="flex items-center justify-between bg-paper dark:bg-gray-800 p-6 rounded-card border border-gray-100 dark:border-gray-700"${_scopeId}><div class="flex items-center gap-3"${_scopeId}>`);
             _push2(ssrRenderComponent(unref(Link), {
               href: _ctx.route("kajian.index"),
-              class: "p-2.5 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-paper-2 hover:text-blue-600 rounded-sm transition-all"
+              class: "p-2.5 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-paper-2 hover:text-blue-600 rounded-sm transition-colors duration-150"
             }, {
               default: withCtx((_2, _push3, _parent3, _scopeId2) => {
                 if (_push3) {
@@ -125,7 +125,7 @@ const _sfc_main = {
             ssrRenderList(steps, (step, index) => {
               _push2(`<!--[--><button class="${ssrRenderClass([[
                 currentStep.value === index + 1 ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400" : currentStep.value > index + 1 ? "text-green-600 dark:text-green-400" : "text-gray-400 dark:text-gray-500 hover:bg-gray-50 dark:hover:bg-gray-700"
-              ], "flex items-center gap-2 px-3 py-2 rounded-lg transition-all text-xs font-semibold"])}"${_scopeId}><span class="${ssrRenderClass([[
+              ], "flex items-center gap-2 px-3 py-2 rounded-lg transition-colors duration-150 text-xs font-semibold"])}"${_scopeId}><span class="${ssrRenderClass([[
                 currentStep.value === index + 1 ? "bg-blue-600 text-white" : currentStep.value > index + 1 ? "bg-green-500 text-white" : "bg-gray-200 dark:bg-gray-600 text-gray-500 dark:text-gray-400"
               ], "w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-bold shrink-0"])}"${_scopeId}>`);
               if (currentStep.value > index + 1) {
@@ -324,7 +324,7 @@ const _sfc_main = {
                   createVNode("div", { class: "flex items-center gap-3" }, [
                     createVNode(unref(Link), {
                       href: _ctx.route("kajian.index"),
-                      class: "p-2.5 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-paper-2 hover:text-blue-600 rounded-sm transition-all"
+                      class: "p-2.5 bg-gray-50 dark:bg-gray-700 dark:text-gray-300 hover:bg-paper-2 hover:text-blue-600 rounded-sm transition-colors duration-150"
                     }, {
                       default: withCtx(() => [
                         createVNode(_component_Icon, {
@@ -346,7 +346,7 @@ const _sfc_main = {
                       return openBlock(), createBlock(Fragment, { key: index }, [
                         createVNode("button", {
                           onClick: ($event) => goToStep(index + 1),
-                          class: ["flex items-center gap-2 px-3 py-2 rounded-lg transition-all text-xs font-semibold", [
+                          class: ["flex items-center gap-2 px-3 py-2 rounded-lg transition-colors duration-150 text-xs font-semibold", [
                             currentStep.value === index + 1 ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400" : currentStep.value > index + 1 ? "text-green-600 dark:text-green-400" : "text-gray-400 dark:text-gray-500 hover:bg-gray-50 dark:hover:bg-gray-700"
                           ]]
                         }, [

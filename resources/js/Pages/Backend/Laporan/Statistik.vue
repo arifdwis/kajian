@@ -181,7 +181,7 @@ const annualOpts = {
    <!-- Header -->
    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-6 rounded-card" :style="{ backgroundColor: 'var(--color-paper)', border: '1px solid var(--color-rule)' }">
     <div class="flex items-center gap-3">
-     <Link :href="route('laporan.index')" class="p-2.5 rounded-sm transition-all" :style="{ backgroundColor: 'var(--color-paper-2)', color: 'var(--color-ink-2)' }">
+     <Link :href="route('laporan.index')" class="p-2.5 rounded-sm transition-colors duration-150" :style="{ backgroundColor: 'var(--color-paper-2)', color: 'var(--color-ink-2)' }">
       <Icon icon="solar:arrow-left-outline" class="w-5 h-5" />
      </Link>
      <div>
@@ -215,7 +215,7 @@ const annualOpts = {
        <option v-for="t in tahuns" :key="t.id" :value="t.id">{{ t.tahun }}</option>
       </select>
      </div>
-     <button @click="resetFilter" class="text-xs font-bold py-2.5 rounded-sm transition-all" :style="{ border: '1px solid var(--color-rule)', color: 'var(--color-ink)' }">Reset Filter</button>
+     <button @click="resetFilter" class="text-xs font-bold py-2.5 rounded-sm transition-colors duration-150" :style="{ border: '1px solid var(--color-rule)', color: 'var(--color-ink)' }">Reset Filter</button>
     </div>
    </div>
 

@@ -1,7 +1,7 @@
 import { ref, resolveComponent, unref, withCtx, createVNode, withDirectives, withKeys, vModelText, openBlock, createBlock, createCommentVNode, Fragment, renderList, toDisplayString, useSSRContext } from "vue";
 import { ssrRenderComponent, ssrRenderAttr, ssrRenderList, ssrInterpolate } from "vue/server-renderer";
 import { Head, Link, router } from "@inertiajs/vue3";
-import { _ as _sfc_main$1 } from "./AuthenticatedLayout-CCLRqrRv.js";
+import { _ as _sfc_main$1 } from "./AuthenticatedLayout-Cmsx4Vff.js";
 import { _ as _sfc_main$2 } from "./Pagination-DE6AvrVK.js";
 import { _ as _sfc_main$3 } from "./ConfirmModal-C43yiw5v.js";
 import { useToast } from "vue-toastification";
@@ -67,7 +67,7 @@ const _sfc_main = {
               _push2(`<!--]--></div></td><td class="px-6 py-4 text-right"${_scopeId}><div class="flex items-center justify-end gap-2"${_scopeId}>`);
               _push2(ssrRenderComponent(unref(Link), {
                 href: _ctx.route("settings.users.edit", item.id),
-                class: "p-2 bg-gray-50 hover:bg-amber-50 text-gray-600 hover:text-amber-600 dark:bg-gray-600 dark:text-gray-300 rounded-sm transition-all",
+                class: "p-2 bg-gray-50 hover:bg-amber-50 text-gray-600 hover:text-amber-600 dark:bg-gray-600 dark:text-gray-300 rounded-sm transition-colors duration-150",
                 title: "Edit"
               }, {
                 default: withCtx((_2, _push3, _parent3, _scopeId2) => {
@@ -88,7 +88,7 @@ const _sfc_main = {
                 _: 2
               }, _parent2, _scopeId));
               if (_ctx.$page.props.auth.user.id !== item.id) {
-                _push2(`<button class="p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-sm transition-all" title="Hapus"${_scopeId}>`);
+                _push2(`<button class="p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-sm transition-colors duration-150" title="Hapus"${_scopeId}>`);
                 _push2(ssrRenderComponent(_component_Icon, {
                   icon: "solar:trash-bin-trash-bold",
                   class: "w-4 h-4"
@@ -180,7 +180,7 @@ const _sfc_main = {
                               createVNode("div", { class: "flex items-center justify-end gap-2" }, [
                                 createVNode(unref(Link), {
                                   href: _ctx.route("settings.users.edit", item.id),
-                                  class: "p-2 bg-gray-50 hover:bg-amber-50 text-gray-600 hover:text-amber-600 dark:bg-gray-600 dark:text-gray-300 rounded-sm transition-all",
+                                  class: "p-2 bg-gray-50 hover:bg-amber-50 text-gray-600 hover:text-amber-600 dark:bg-gray-600 dark:text-gray-300 rounded-sm transition-colors duration-150",
                                   title: "Edit"
                                 }, {
                                   default: withCtx(() => [
@@ -194,7 +194,7 @@ const _sfc_main = {
                                 _ctx.$page.props.auth.user.id !== item.id ? (openBlock(), createBlock("button", {
                                   key: 0,
                                   onClick: ($event) => confirmDeleteUser(item.id),
-                                  class: "p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-sm transition-all",
+                                  class: "p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-sm transition-colors duration-150",
                                   title: "Hapus"
                                 }, [
                                   createVNode(_component_Icon, {

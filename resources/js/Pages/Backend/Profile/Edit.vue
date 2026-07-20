@@ -164,7 +164,7 @@ const updatePassword = () => {
  <button 
  type="submit"
  :disabled="profileForm.processing"
- class="px-5 py-2.5 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-all inline-flex items-center gap-1 "
+ class="px-5 py-2.5 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-colors duration-150 inline-flex items-center gap-1 "
  >
  <Icon v-if="profileForm.processing" icon="svg-spinners:ring-resize" class="w-4 h-4 animate-spin" />
  Simpan Perubahan
@@ -214,7 +214,7 @@ const updatePassword = () => {
  <button 
  type="submit"
  :disabled="passwordForm.processing"
- class="px-5 py-2.5 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-all inline-flex items-center gap-1 "
+ class="px-5 py-2.5 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-colors duration-150 inline-flex items-center gap-1 "
  >
  <Icon v-if="passwordForm.processing" icon="svg-spinners:ring-resize" class="w-4 h-4 animate-spin" />
  Ubah Password

@@ -108,7 +108,7 @@ const executeDeleteMenu = () => {
  </div>
  <button 
  @click="openCreateModal"
- class="inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-accent-ink font-semibold rounded-card transition-all text-sm shrink-0 "
+ class="inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-accent-ink font-semibold rounded-card transition-colors duration-150 text-sm shrink-0 "
  >
  <Icon icon="solar:add-circle-bold" class="w-5 h-5" />
  Tambah Menu
@@ -144,14 +144,14 @@ const executeDeleteMenu = () => {
  <div class="flex items-center gap-2">
  <button 
  @click="openEditModal(menu)"
- class="p-2 bg-paper dark:bg-gray-800 border dark:border-gray-600 text-gray-600 hover:text-amber-500 rounded-sm transition-all"
+ class="p-2 bg-paper dark:bg-gray-800 border dark:border-gray-600 text-gray-600 hover:text-amber-500 rounded-sm transition-colors duration-150"
  title="Edit"
  >
  <Icon icon="solar:pen-bold" class="w-4 h-4" />
  </button>
  <button 
  @click="confirmDeleteMenu(menu.id)"
- class="p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-sm transition-all"
+ class="p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-sm transition-colors duration-150"
  title="Hapus"
  >
  <Icon icon="solar:trash-bin-trash-bold" class="w-4 h-4" />
@@ -295,7 +295,7 @@ const executeDeleteMenu = () => {
  <button 
  type="submit"
  :disabled="form.processing"
- class="px-5 py-2 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-all"
+ class="px-5 py-2 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-colors duration-150"
  >
  Simpan
  </button>

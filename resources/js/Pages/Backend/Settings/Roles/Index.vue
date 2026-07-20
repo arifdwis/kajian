@@ -126,7 +126,7 @@ const executeDeleteRole = () => {
  </div>
  <button 
  @click="openCreateModal"
- class="inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-accent-ink font-semibold rounded-card transition-all text-sm shrink-0 "
+ class="inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-accent-ink font-semibold rounded-card transition-colors duration-150 text-sm shrink-0 "
  >
  <Icon icon="solar:add-circle-bold" class="w-5 h-5" />
  Tambah Role
@@ -174,7 +174,7 @@ const executeDeleteRole = () => {
 <td class="px-6 py-4 text-center">
   <button 
    @click="openUsersModal(item)"
-   class="inline-flex items-center gap-1 px-2 py-0.5 text-[11px] font-semibold rounded-full cursor-pointer transition-all hover:scale-105"
+   class="inline-flex items-center gap-1 px-2 py-0.5 text-[11px] font-semibold rounded-full cursor-pointer transition-colors duration-150 hover:scale-105"
    :class="item.users_count > 0 ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/30' : 'bg-gray-100 text-gray-400 dark:bg-gray-700 dark:text-gray-500'"
    title="Lihat pengguna"
   >
@@ -186,14 +186,14 @@ const executeDeleteRole = () => {
  <div class="flex items-center justify-end gap-2">
  <Link
   :href="route('settings.roles.permission', item.id)"
-  class="p-2 bg-paper-2 hover:bg-blue-100 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400 rounded-sm transition-all"
+  class="p-2 bg-paper-2 hover:bg-blue-100 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400 rounded-sm transition-colors duration-150"
   title="Kelola Hak Akses"
  >
   <Icon icon="solar:shield-keyhole-bold" class="w-4 h-4" />
  </Link>
  <button
   @click="openEditModal(item)"
-  class="p-2 bg-gray-50 hover:bg-amber-50 text-gray-600 hover:text-amber-600 dark:bg-gray-600 dark:text-gray-300 rounded-sm transition-all"
+  class="p-2 bg-gray-50 hover:bg-amber-50 text-gray-600 hover:text-amber-600 dark:bg-gray-600 dark:text-gray-300 rounded-sm transition-colors duration-150"
   title="Edit"
  >
   <Icon icon="solar:pen-bold" class="w-4 h-4" />
@@ -201,7 +201,7 @@ const executeDeleteRole = () => {
  <button
   v-if="!['superadmin', 'admin'].includes(item.slug)"
   @click="confirmDeleteRole(item.id)"
-  class="p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-sm transition-all"
+  class="p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-sm transition-colors duration-150"
   title="Hapus"
  >
   <Icon icon="solar:trash-bin-trash-bold" class="w-4 h-4" />
@@ -261,7 +261,7 @@ const executeDeleteRole = () => {
  <button 
  type="submit"
  :disabled="form.processing"
- class="px-5 py-2 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-all"
+ class="px-5 py-2 bg-accent text-accent-ink text-xs font-bold rounded-sm transition-colors duration-150"
  >
  Simpan
  </button>

@@ -32,7 +32,7 @@ onUnmounted(() => {
  <Sidebar />
  
  <div 
- class="flex flex-col flex-1 duration-300 transition-all"
+ class="flex flex-col flex-1 transition-[padding] duration-300"
  :class="isCollapsed ? 'pl-16' : 'pl-64'"
  >
  <main class="flex-1 p-6 sm:p-8">

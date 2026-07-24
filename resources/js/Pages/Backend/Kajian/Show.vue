@@ -25,6 +25,13 @@ const filePresentasi = computed(() => getFile('presentasi'));
 const fileCover = computed(() => getFile('cover'));
 const hasAnyFiles = computed(() => filePdf.value || filePresentasi.value || fileCover.value);
 
+const getFileUrl = (file) => {
+ if (!file) return null;
+ // File from S3 - path is stored as s3 path
+ // AWS_URL is https://d3dyajxapape7i.cloudfront.net
+ return `https://d3dyajxapape7i.cloudfront.net/${file.file_path || file.path}`;
+};
+
 const showConfirmModal = ref(false);
 const confirmModalConfig = ref({
  title: '',
@@ -290,15 +297,15 @@ const deleteKajian = () => {
   <p class="text-[10px] text-gray-300 dark:text-gray-600 mt-1">Dokumen cover, laporan, dan presentasi belum tersedia.</p>
  </div>
 
- <template v-else>
-  <!-- Cover preview -->
-  <div class="aspect-[4/3] bg-gray-100 dark:bg-gray-900 rounded-card overflow-hidden border border-gray-200 dark:border-gray-700 relative flex items-center justify-center">
-  <img 
-   v-if="fileCover" 
-   :src="`/storage/${fileCover.path}`" 
-   alt="Cover"
-   class="w-full h-full object-cover" 
-  />
+<template v-else>
+   <!-- Cover preview -->
+   <div class="aspect-[4/3] bg-gray-100 dark:bg-gray-900 rounded-card overflow-hidden border border-gray-200 dark:border-gray-700 relative flex items-center justify-center">
+   <img 
+    v-if="fileCover" 
+    :src="getFileUrl(fileCover)" 
+    alt="Cover"
+    class="w-full h-full object-cover" 
+   />
   <div v-else class="text-center p-6 text-gray-300">
    <Icon icon="solar:gallery-bold" class="w-12 h-12 mx-auto mb-2" />
    <span class="text-xs">Tidak ada cover</span>

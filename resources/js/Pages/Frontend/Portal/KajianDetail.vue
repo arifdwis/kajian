@@ -23,6 +23,13 @@ const filePresentasi = computed(() => getFile('presentasi'));
 const fileCover = computed(() => getFile('cover'));
 const hasAnyFiles = computed(() => filePdf.value || filePresentasi.value || fileCover.value);
 
+const getFileUrl = (file) => {
+ if (!file) return null;
+ // File from S3 - path is stored as s3 path
+ // AWS_URL is https://d3dyajxapape7i.cloudfront.net
+ return `https://d3dyajxapape7i.cloudfront.net/${file.file_path}`;
+};
+
 const showPdfReader = ref(false);
 const activePreviewFile = ref(null);
 
@@ -33,6 +40,7 @@ const formatSize = (bytes) => {
   const i = Math.floor(Math.log(bytes) / Math.log(k));
   return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
 };
+
 
 const openReader = (file) => {
   if (!file) return;
@@ -206,7 +214,7 @@ const shareLink = (platform) => {
   <div class="aspect-[4/3] rounded-xl overflow-hidden relative flex items-center justify-center" style="background-color: var(--color-paper-2); border: 1px solid var(--color-rule);">
   <img 
    v-if="fileCover" 
-   :src="`/storage/${fileCover.file_path}`" 
+   :src="getFileUrl(fileCover)" 
    alt="Cover File"
    class="w-full h-full object-cover" 
   />

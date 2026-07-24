@@ -28,6 +28,10 @@ const _sfc_main = {
     const filePresentasi = computed(() => getFile("presentasi"));
     const fileCover = computed(() => getFile("cover"));
     const hasAnyFiles = computed(() => filePdf.value || filePresentasi.value || fileCover.value);
+    const getFileUrl = (file) => {
+      if (!file) return null;
+      return `https://d3dyajxapape7i.cloudfront.net/${file.file_path || file.path}`;
+    };
     const showConfirmModal = ref(false);
     const confirmModalConfig = ref({
       title: "",
@@ -261,7 +265,7 @@ const _sfc_main = {
             } else {
               _push2(`<!--[--><div class="aspect-[4/3] bg-gray-100 dark:bg-gray-900 rounded-card overflow-hidden border border-gray-200 dark:border-gray-700 relative flex items-center justify-center"${_scopeId}>`);
               if (fileCover.value) {
-                _push2(`<img${ssrRenderAttr("src", `/storage/${fileCover.value.path}`)} alt="Cover" class="w-full h-full object-cover"${_scopeId}>`);
+                _push2(`<img${ssrRenderAttr("src", getFileUrl(fileCover.value))} alt="Cover" class="w-full h-full object-cover"${_scopeId}>`);
               } else {
                 _push2(`<div class="text-center p-6 text-gray-300"${_scopeId}>`);
                 _push2(ssrRenderComponent(_component_Icon, {
@@ -532,7 +536,7 @@ const _sfc_main = {
                         createVNode("div", { class: "aspect-[4/3] bg-gray-100 dark:bg-gray-900 rounded-card overflow-hidden border border-gray-200 dark:border-gray-700 relative flex items-center justify-center" }, [
                           fileCover.value ? (openBlock(), createBlock("img", {
                             key: 0,
-                            src: `/storage/${fileCover.value.path}`,
+                            src: getFileUrl(fileCover.value),
                             alt: "Cover",
                             class: "w-full h-full object-cover"
                           }, null, 8, ["src"])) : (openBlock(), createBlock("div", {

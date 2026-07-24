@@ -24,7 +24,7 @@ class KajianService
         }
 
         $folder = 'kajian/' . $kajian->uuid . '/' . $type;
-        $path = $file->store($folder, 'public');
+        $path = $file->store($folder, 's3');
 
         return KajianFile::create([
             'kajian_id' => $kajian->id,
@@ -42,8 +42,8 @@ class KajianService
      */
     public function deleteFile(KajianFile $file): bool
     {
-        if (Storage::disk('public')->exists($file->file_path)) {
-            Storage::disk('public')->delete($file->file_path);
+        if (Storage::disk('s3')->exists($file->file_path)) {
+            Storage::disk('s3')->delete($file->file_path);
         }
         return $file->delete();
     }
@@ -54,7 +54,7 @@ class KajianService
     public function uploadGallery(Kajian $kajian, UploadedFile $file, ?string $caption = null): KajianGallery
     {
         $folder = 'kajian/' . $kajian->uuid . '/gallery';
-        $path = $file->store($folder, 'public');
+        $path = $file->store($folder, 's3');
 
         $maxOrder = $kajian->galleries()->max('sort_order') ?? 0;
 

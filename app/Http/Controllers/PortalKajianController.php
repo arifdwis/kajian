@@ -140,13 +140,7 @@ class PortalKajianController extends Controller
             'user_agent' => $request->userAgent(),
         ]);
 
-        $path = storage_path('app/public/' . $file->file_path);
-
-        if (!file_exists($path)) {
-            abort(404, 'File not found on server.');
-        }
-
-        return response()->download($path, $file->file_name);
+        return Storage::disk('s3')->download($file->file_path, $file->file_name);
     }
 
     /**
@@ -190,13 +184,7 @@ class PortalKajianController extends Controller
             'user_agent' => $request->userAgent(),
         ]);
 
-        $path = storage_path('app/public/' . $file->file_path);
-
-        if (!file_exists($path)) {
-            abort(404, 'File not found on server.');
-        }
-
-        return response()->file($path, [
+        return Storage::disk('s3')->response($file->file_path, $file->file_name, [
             'Content-Type' => $file->mime_type ?? 'application/pdf',
             'Content-Disposition' => 'inline; filename="' . $file->file_name . '"'
         ]);
